@@ -1,0 +1,12 @@
+svg.architectureVisualisation {
+    g.compound > rect:hover {
+        stroke: white;
+        stroke-opacity: 1;
+        fill: red;
+    }
+    .link:hover {
+      stroke: #A000;
+      stroke-opacity: 1;
+      fill: black;
+    }
+}
