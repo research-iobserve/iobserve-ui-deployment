@@ -1,12 +1,43 @@
 svg.architectureVisualisation {
-    g.compound > rect:hover {
-        stroke: white;
-        stroke-opacity: 1;
-        fill: red;
+    .root {
+        g.compound {
+            &:first-child rect { // hide root compound
+                opacity: 0;
+            }
+
+            & > rect {
+                opacity: 0.1;
+
+                &:hover {
+                    stroke: white;
+                    stroke-opacity: 1;
+                    fill: red;
+                }
+            }
+        }
     }
-    .link:hover {
-      stroke: #A000;
-      stroke-opacity: 1;
-      fill: black;
+    .link {
+        stroke: #999;
+        stroke-opacity: .6;
+        fill: none;
+        stroke-width: 2px;
+
+        &:hover {
+          stroke: #A000;
+          stroke-opacity: 1;
+        }
+    }
+    g.leaf > rect {
+      stroke: #fff;
+      stroke-width: 1px;
+      opacity: .5;
+    }
+
+    // .node {}
+
+    .port {
+      stroke: #000;
+      width: 1px;
+      opacity: .6;
     }
 }
