@@ -73,23 +73,24 @@ export default Ember.Component.extend({
 
             const nodeData = root.selectAll('.node')
                 .data(nodes, p => p.id);
-            const node = nodeData.enter()
-                .append('g')
-                .attr('class', d => d.children? 'node compound' : 'node leaf');
+            const nodeEnter = nodeData.enter()
+                .append('g');
 
             nodeData.exit()
                 .remove();
 
-            const atoms = node.append('rect')
+            nodeData.attr('class', d => d.children? 'node compound' : 'node leaf');
+
+            const atoms = nodeEnter.append('rect')
                 .attr('width', 10)
                 .attr('height', 10)
                 .attr('x', 0)
                 .attr('y', 0);
 
-            node.append('title')
+            nodeEnter.append('title')
                 .text(d => d.id);
 
-            node.append('text')
+            nodeEnter.append('text')
                 .attr('x', (d) => d.children? 0 : 2.5)
                 .attr('y', 5)
                 .text((d) => _.get(d, 'labels.0.text', d.id))
@@ -105,11 +106,13 @@ export default Ember.Component.extend({
                 .attr('class', 'link')
                 .attr('d', 'M0 0');
 
+
             linkData.exit()
                 .remove();
 
             // apply edge routes
-            link.transition().attr('d', (d) => {
+            linkData.transition().attr('d', (d) => {
+                log('test');
               let path = '';
               path += 'M' + d.sourcePoint.x + ' ' + d.sourcePoint.y + ' ';
                 (d.bendPoints || []).forEach(bp => path += 'L' + bp.x + ' ' + bp.y + ' ');
@@ -117,8 +120,8 @@ export default Ember.Component.extend({
               return path;
             });
 
-            // apply node positions
-            node.transition()
+            // apply nodeEnter positions
+            nodeData.transition()
               .attr('transform', (d) => 'translate(' + (d.x || 0) + ' ' + (d.y || 0) + ')');
 
             atoms.transition()
