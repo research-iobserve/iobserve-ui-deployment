@@ -8,28 +8,28 @@ export default Ember.Component.extend({
         this._super();
         const self = this;
         const log = self.debug.bind(self);
-        this.interval = setInterval(function() {
-            const graph = self.get('graph');
+        // this.interval = setInterval(function() {
+        //     const graph = self.get('graph');
 
-            log('update interval called', graph);
+        //     log('update interval called', graph);
 
-            if(!graph) {
-                return; // eventual consistent
-            }
-            const edges = graph.edges || [];
-            const index = Math.floor(Math.random()*edges.length);
-            if(Math.random() > 0.5) {
-                edges.splice(index, 1);
-            } else { // FIXME: does not render updates
-                const children = _.get(graph, 'children', []);
-                const randomNodeIndex = Math.floor(Math.random()*children.length);
-                const randomNodeId = children[randomNodeIndex].id;
-                graph.edges = _.set(edges, `${index}.target`, randomNodeId);
-                log(`updating random edge (${index}) to target a random node id ${randomNodeId}`, randomNodeIndex, edges);
-            }
-            self.set('graph', graph);
-            self.renderGraph();
-        }, 1000);
+        //     if(!graph) {
+        //         return; // eventual consistent
+        //     }
+        //     const edges = graph.edges || [];
+        //     const index = Math.floor(Math.random()*edges.length);
+        //     if(Math.random() > 0.5) {
+        //         edges.splice(index, 1);
+        //     } else { // FIXME: does not render updates
+        //         const children = _.get(graph, 'children', []);
+        //         const randomNodeIndex = Math.floor(Math.random()*children.length);
+        //         const randomNodeId = children[randomNodeIndex].id;
+        //         graph.edges = _.set(edges, `${index}.target`, randomNodeId);
+        //         log(`updating random edge (${index}) to target a random node id ${randomNodeId}`, randomNodeIndex, edges);
+        //     }
+        //     self.set('graph', graph);
+        //     self.renderGraph();
+        // }, 1000);
     },
     willDestroyElement() {
         clearInterval(this.interval);
@@ -56,7 +56,10 @@ export default Ember.Component.extend({
             .size([width, height])
             .transformGroup(root)
             .options({
-                edgeRouting: "ORTHOGONAL"
+                edgeRouting: "ORTHOGONAL",
+                aspectRatio: 1.7,
+                separateConnComp: true,
+                // layoutHierarchy: false
             });
         // group shizzle
 
@@ -112,7 +115,6 @@ export default Ember.Component.extend({
 
             // apply edge routes
             linkData.transition().attr('d', (d) => {
-                log('test');
               let path = '';
               path += 'M' + d.sourcePoint.x + ' ' + d.sourcePoint.y + ' ';
                 (d.bendPoints || []).forEach(bp => path += 'L' + bp.x + ' ' + bp.y + ' ');

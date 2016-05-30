@@ -7,7 +7,10 @@ export default Ember.Route.extend({
         labels: [{text: 'My Architecture'}],
         'properties': {
             'direction': 'RIGHT',
-            'spacing': 10
+            'spacing': 10,
+            'de.cau.cs.kieler.aspectRatio': 1.7,
+            'de.cau.cs.kieler.separateConnComp': true,
+            'separateConnComp': true
         },
         children: [{
             id: 'VM_Profile',
@@ -128,7 +131,7 @@ export default Ember.Route.extend({
             id: 'VM_2>Auth->VM_4>User',
             source: 'VM_2>Auth',
             target: 'VM_4>User',
-        }, {
+        } /*{
             id: 'VM_Big>User->VM_Profile>Database',
             source: 'VM_Big>User',
             target: 'VM_Profile>Database',
@@ -164,7 +167,7 @@ export default Ember.Route.extend({
             id: 'VM_8>User->VM_Profile>Database',
             source: 'VM_8>User',
             target: 'VM_Profile>Database',
-        }]
+        }*/]
     };
   }
 });
