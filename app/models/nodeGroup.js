@@ -1,4 +1,4 @@
-import BaseEntity from './baseentity.js';
+import BaseEntity from './baseentity';
 import attr from 'ember-data/attr';
 
 export default BaseEntity.extend({

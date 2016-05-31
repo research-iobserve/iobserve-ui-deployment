@@ -1,6 +1,19 @@
-import RESTAdapter from 'ember-data/adapters/rest';
+import Ember from 'ember';
+import BaseAdapter from './_baseAdapter';
+import UrlTemplates from "ember-data-url-templates";
 
-export default RESTAdapter.extend({
-    host: 'http://localhost:3000',
-    namespace: 'v1'
+/**
+ * @param  {UrlTemplate}
+ * @param  {Object} configuration for templates
+ * @return {Adapter} adapter that is used for all metamodel models
+ */
+export default BaseAdapter.extend(UrlTemplates, {
+    urlTemplate: '{+host}/{+namespace}/systems{/systemId}/{pathForType}/{/id}',
+    findAllUrlTemplate: '{+host}/{+namespace}/systems{/systemId}/{pathForType}/{?query*}',
+
+    urlSegments: {
+        systemId() {
+          return this.get('session.systemId');
+        }
+    }
 });

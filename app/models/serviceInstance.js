@@ -1,8 +1,9 @@
-import BaseEntity from './baseentity.js';
+import BaseEntity from './baseentity';
 import attr from 'ember-data/attr';
+import DS from 'ember-data';
 
 export default BaseEntity.extend({
     name: attr('string'),
-    node: attr(), // FIXME relation
-    service: attr() // FIXME relation
+    node: DS.belongsTo('node', {async: true}),
+    service: DS.belongsTo('service', {async: true})
 });

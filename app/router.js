@@ -6,10 +6,10 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('home', {path: '/'});
-  this.route('architecture', {path: '/architecture'});
-  this.route('cola', {path: '/cola'});
-  this.route('cytoscape');
+    this.route('home', {path: '/'});
+    this.route('architectures', function() {
+        this.route('single', {path: '/:systemId'});
+    });
 });
 
 export default Router;
