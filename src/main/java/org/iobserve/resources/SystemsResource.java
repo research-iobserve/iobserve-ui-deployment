@@ -9,9 +9,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-/**
- * Root resource (exposed at "myresource" path)
- */
 @Path("v1/systems")
 @Produces(MediaType.APPLICATION_JSON)
 public class SystemsResource {
@@ -24,9 +21,9 @@ public class SystemsResource {
     }
 
     @GET
-    public List getSystems() {
+    public List<System> getSystems() {
         Query query = entityManager.createQuery("SELECT e FROM System e");
-        return query.getResultList();
+        return (List<System>) query.getResultList();
     }
 
     @POST
