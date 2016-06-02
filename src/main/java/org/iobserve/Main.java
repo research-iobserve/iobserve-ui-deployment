@@ -23,6 +23,7 @@ public class Main {
         // create a resource config that scans for JAX-RS resources and providers
         // in org.iobserve package
         final ResourceConfig rc = new ResourceConfig().packages("org.iobserve.resources");
+        rc.register(new DependencyInjectionBinder());
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
@@ -38,6 +39,7 @@ public class Main {
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
+        new BoostrapData();
         System.in.read();
         server.stop();
     }
