@@ -7,22 +7,27 @@ import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
  * Created by cdor on 25.04.16.
  */
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Node extends Measurable {
 
     private String name;
+
     @OneToMany(mappedBy="node",cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<ServiceInstance> services;
     private String ip;
     private String hostname;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @XmlTransient
     private NodeGroup group;
 
 

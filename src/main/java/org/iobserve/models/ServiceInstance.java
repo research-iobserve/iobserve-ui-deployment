@@ -1,26 +1,33 @@
 package org.iobserve.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
  * Created by cdor on 25.04.16.
  */
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ServiceInstance extends Measurable {
     private String Name;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "node")
+    @XmlTransient
     private Node node;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonManagedReference
+    @XmlTransient
     private Service service;
 
     public ServiceInstance() {

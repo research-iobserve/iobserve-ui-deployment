@@ -5,18 +5,28 @@ import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
  * Created by cdor on 25.04.16.
  */
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CommunicationInstance extends Measurable{
+
     @OneToOne(cascade = CascadeType.ALL)
+    @XmlTransient
     private ServiceInstance source;
+
     @OneToOne(cascade = CascadeType.ALL)
+    @XmlTransient
     private ServiceInstance target;
+
     @ManyToOne(cascade = CascadeType.ALL)
+    @XmlTransient
     private Communication communication;
 
     public CommunicationInstance() {

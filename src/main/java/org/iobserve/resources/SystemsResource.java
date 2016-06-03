@@ -13,12 +13,8 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class SystemsResource {
 
-    private EntityManager entityManager;
-
     @Inject
-    public SystemsResource(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    private EntityManager entityManager;
 
     @GET
     public List<System> getSystems() {
