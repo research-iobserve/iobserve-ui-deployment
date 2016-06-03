@@ -1,4 +1,4 @@
-package org.iobserve;
+package org.iobserve.resources;
 
 import org.iobserve.models.*;
 import org.iobserve.models.System;
@@ -7,22 +7,35 @@ import org.iobserve.models.util.SeriesElement;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by cdor on 25.04.16.
+ * Created by cdor on 03.06.16.
  */
-public class BoostrapData {
+@Path("v1/systems")
+public class CreateDummySystemResource {
+    @Inject
+    private EntityManager entityManager;
 
-    public BoostrapData(){//JPAApi api){
-        // EntityManager em = jpaApi.em();
+    @POST
+    @Path("/createDummy")
+    public String createDummy() {
+        createBoostrapData();
+        return "dummy created";
+    }
+
+    private void createBoostrapData(){
         final Integer numObj = 100;
 
         //Nodes
@@ -236,16 +249,11 @@ public class BoostrapData {
         system.setId(generateId());
 
         //Save to database
-        EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("postgres" );
-        EntityManager em = emf .createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.persist(system);
-        tx.commit();
-        em.close();
-        emf.close();
 
+        EntityTransaction tx = entityManager.getTransaction();
+        tx.begin();
+        entityManager.persist(system);
+        tx.commit();
     }
 
     public String generateId(){
@@ -290,4 +298,3 @@ public class BoostrapData {
         bean.setLastUpdate(new Date());
     }
 }
-
