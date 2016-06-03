@@ -12,7 +12,6 @@ import java.util.List;
 @Path("v1/systems")
 @Produces(MediaType.APPLICATION_JSON)
 public class SystemsResource {
-
     @Inject
     private EntityManager entityManager;
 

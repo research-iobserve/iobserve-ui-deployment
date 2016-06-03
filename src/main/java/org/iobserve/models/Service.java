@@ -12,8 +12,6 @@ import java.util.List;
  */
 @Entity
 public class Service extends Measurable{
-    @Column(name="system_id")
-    private String system;
     private String  name;
     private String description;
 
@@ -46,14 +44,6 @@ public class Service extends Measurable{
         this.name = name;
         this.description = description;
         this.instances = instances;
-    }
-
-    public String getSystem() {
-        return system;
-    }
-
-    public void setSystem(String system) {
-        this.system = system;
     }
 
     public String getName() {

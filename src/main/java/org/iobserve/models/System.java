@@ -11,18 +11,32 @@ import java.util.List;
 @Entity
 public class System extends BaseEntity {
     private String name;
-
+    //Nodes
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="system_id", referencedColumnName="id")
     private List<NodeGroup> nodeGroups;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="system_id", referencedColumnName="id")
+    private List<Node> nodes;
+
+    //Communication
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="system_id", referencedColumnName="id")
     private List<Communication> communications;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="system_id", referencedColumnName="id")
+    private List<CommunicationInstance> communicationInstances;
+
+    //Services
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="system_id", referencedColumnName="id")
     private List<Service> services;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="system_id", referencedColumnName="id")
+    private List<ServiceInstance> serviceInstances;
 
     public System(){
     }
@@ -58,4 +72,29 @@ public class System extends BaseEntity {
     public void setServices(List<Service> services) {
         this.services = services;
     }
+
+    public List<Node> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<Node> nodes) {
+        this.nodes = nodes;
+    }
+
+    public List<CommunicationInstance> getCommunicationInstances() {
+        return communicationInstances;
+    }
+
+    public void setCommunicationInstances(List<CommunicationInstance> communicationInstances) {
+        this.communicationInstances = communicationInstances;
+    }
+
+    public List<ServiceInstance> getServiceInstances() {
+        return serviceInstances;
+    }
+
+    public void setServiceInstances(List<ServiceInstance> serviceInstances) {
+        this.serviceInstances = serviceInstances;
+    }
+
 }

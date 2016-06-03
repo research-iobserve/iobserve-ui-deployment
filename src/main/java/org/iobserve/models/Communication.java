@@ -12,8 +12,6 @@ import java.util.List;
  */
 @Entity
 public class Communication extends Measurable{
-    @Column(name="system_id")
-    private String system;
     private String technology;
     @OneToOne(cascade = CascadeType.ALL)
     private Service source;
@@ -44,14 +42,6 @@ public class Communication extends Measurable{
         this.source = source;
         this.target = target;
         this.instances = instances;
-    }
-
-    public String getSystem() {
-        return system;
-    }
-
-    public void setSystem(String system) {
-        this.system = system;
     }
 
     public String getTechnology() {

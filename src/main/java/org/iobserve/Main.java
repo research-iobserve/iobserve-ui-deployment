@@ -1,6 +1,7 @@
 package org.iobserve;
 
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -24,6 +25,7 @@ public class Main {
         // in org.iobserve package
         final ResourceConfig rc = new ResourceConfig().packages("org.iobserve.resources");
         rc.register(new DependencyInjectionBinder());
+
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI

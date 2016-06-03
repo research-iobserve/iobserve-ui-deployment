@@ -13,8 +13,6 @@ import java.util.List;
  */
 @Entity
 public class NodeGroup extends Measurable{
-    @Column(name="system_id")
-    private String system;
     @OneToMany(mappedBy = "group",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Node> nodes;
@@ -42,15 +40,6 @@ public class NodeGroup extends Measurable{
         super(statusInfoList, timeSeriesList);
         this.name = name;
     }
-
-    public String getSystem() {
-        return system;
-    }
-
-    public void setSystem(String system) {
-        this.system = system;
-    }
-
 
     public List<Node> getNodes() {
         return nodes;

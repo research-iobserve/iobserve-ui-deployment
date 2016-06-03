@@ -14,6 +14,7 @@ import javax.persistence.EntityTransaction;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -31,11 +32,18 @@ public class CreateDummySystemResource {
     @POST
     @Path("/createDummy")
     public String createDummy() {
-        createBoostrapData();
+        createBoostrapData(null);
         return "dummy created";
     }
 
-    private void createBoostrapData(){
+    @POST
+    @Path("/createDummy/{id}")
+    public String createDummyWithId(@PathParam("id") String id) {
+        String message = createBoostrapData(id);
+        return message;
+    }
+
+    private String createBoostrapData(String id){
         final Integer numObj = 100;
 
         //Nodes
@@ -242,11 +250,41 @@ public class CreateDummySystemResource {
         }
 
         final System system = new System();
+
+        List<ServiceInstance> allServiceInstances = new LinkedList<ServiceInstance>();
+        allServiceInstances.addAll(serviceInstances0);
+        allServiceInstances.addAll(serviceInstances1);
+        allServiceInstances.addAll(serviceInstances2);
+        allServiceInstances.addAll(serviceInstances3);
+        allServiceInstances.addAll(serviceInstances4);
+        allServiceInstances.addAll(serviceInstances5);
+        system.setServiceInstances(allServiceInstances);
+
+        List<Node> allNodes = new LinkedList<>();
+        allNodes.addAll(nodes0);
+        allNodes.addAll(nodes1);
+        allNodes.addAll(nodes2);
+        system.setNodes(allNodes);
+
+        List<CommunicationInstance> allCommunicationInstances = new LinkedList<>();
+        allCommunicationInstances.addAll(communicationInstances0);
+        allCommunicationInstances.addAll(communicationInstances1);
+        allCommunicationInstances.addAll(communicationInstances2);
+        system.setCommunicationInstances(allCommunicationInstances);
+
+
         system.setName("Name");
         system.setCommunications(communications);
         system.setNodeGroups(groups);
         system.setServices(services);
-        system.setId(generateId());
+
+        if(id == null || entityManager.find(System.class, id) == null){
+            system.setId(generateId());
+        }else{
+            system.setId(id);
+        }
+
+
 
         //Save to database
 
@@ -254,6 +292,7 @@ public class CreateDummySystemResource {
         tx.begin();
         entityManager.persist(system);
         tx.commit();
+        return "Dummy created with id: " + system.getId() + "\n";
     }
 
     public String generateId(){
