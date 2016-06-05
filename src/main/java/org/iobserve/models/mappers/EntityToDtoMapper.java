@@ -13,7 +13,14 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
+ * This interface provides a blueprint for the transformation between model classes (JPA entities)
+ * and their corresponding {@link org.iobserve.models.dataaccessobjects.DataTransportObject}.
+ * Transformations are declared using the {@link Mapping} annotation.
+ * These transformations are then used between the resource (http/json) layer and the service layer (JPA).
+ *
  * @author Mathis Neumann
+ * @see org.iobserve.models.dataaccessobjects.DataTransportObject
+ * @see http://mapstruct.org
  */
 @Mapper
 public interface EntityToDtoMapper {

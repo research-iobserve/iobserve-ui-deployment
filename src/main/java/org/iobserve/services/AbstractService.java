@@ -27,7 +27,7 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
 
     /**
      * Transforms a model instance to it's corresponding DataTransportObject.
-     * Propably uses the generated implementation of {@link EntityToDtoMapper}
+     * Probably uses the generated implementation of {@link EntityToDtoMapper}
      * @param model
      * @return a lightweight version of the model instance using DataTransportObjects
      *

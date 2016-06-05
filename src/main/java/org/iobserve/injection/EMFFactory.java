@@ -12,7 +12,7 @@ import javax.persistence.Persistence;
  * due to jerseys threading model.
  * Avoids that the factory has to be recreated, as it is a singleton instance.
  * @see DependencyInjectionBinder
- * based on "http://stackoverflow.com/a/28122910/1249001"
+ * @source http://stackoverflow.com/a/28122910/1249001
  */
 public class EMFFactory implements Factory<EntityManagerFactory> { // TODO: use CloseableService
 
