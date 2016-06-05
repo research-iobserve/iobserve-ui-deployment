@@ -22,6 +22,7 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
     @Inject
     protected EntityToDtoMapper modelToDtoMapper;
 
+    // TODO: implement generic methods to simplify subclasses
     public abstract List<ModelDto> findAll();
     public abstract ModelDto findById(String id);
 

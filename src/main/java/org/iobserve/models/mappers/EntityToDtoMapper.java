@@ -20,7 +20,7 @@ import org.mapstruct.factory.Mappers;
  *
  * @author Mathis Neumann
  * @see org.iobserve.models.dataaccessobjects.DataTransportObject
- * @see http://mapstruct.org
+ * @see <a href="http://mapstruct.org">MapStruct</a>
  */
 @Mapper
 public interface EntityToDtoMapper {

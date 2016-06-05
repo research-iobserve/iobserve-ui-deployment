@@ -1,10 +1,9 @@
 package org.iobserve.resources;
 
-import org.iobserve.models.System;
+import org.iobserve.models.dataaccessobjects.SystemDto;
+import org.iobserve.services.SystemService;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -14,17 +13,23 @@ import java.util.List;
 public class SystemsResource {
 
     @Inject
-    private EntityManager entityManager;
+    private SystemService service;
+
 
     @GET
-    public List<System> getSystems() {
-        Query query = entityManager.createQuery("SELECT e FROM System e");
-        return (List<System>) query.getResultList();
+    public List<SystemDto> getSystems() {
+        return this.service.findAll();
+    }
+
+    @GET
+    @Path("/{systemId}")
+    public SystemDto getSystem(@PathParam("systemId") String id) {
+        return this.service.findById(id);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public System createSystem(System system) {
+    public SystemDto createSystem(SystemDto system) {
         system.setId("123");
         return system;
     }
