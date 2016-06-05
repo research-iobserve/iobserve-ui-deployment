@@ -3,6 +3,7 @@ package org.iobserve;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.iobserve.injection.DependencyInjectionBinder;
 
 import java.io.IOException;
 import java.net.URI;

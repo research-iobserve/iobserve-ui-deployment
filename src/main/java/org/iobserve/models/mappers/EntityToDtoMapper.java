@@ -10,6 +10,7 @@ import org.iobserve.models.dataaccessobjects.NodeDto;
 import org.iobserve.models.dataaccessobjects.SystemDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 /**
  * @author Mathis Neumann
@@ -17,16 +18,19 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface EntityToDtoMapper {
 
-    SystemDto systemToSystemDto(System system);
+    EntityToDtoMapper INSTANCE = Mappers.getMapper(EntityToDtoMapper.class);
+    
+    SystemDto transform(System system);
 
     @Mapping(source = "source.id", target = "sourceId") // TODO: http://stackoverflow.com/a/32556026/1249001
     @Mapping(source = "target.id", target = "targetId")
-    CommunicationDto transformCommunication(Communication communication);
+    CommunicationDto transform(Communication communication);
 
     @Mapping(source = "source.id", target = "sourceId")
     @Mapping(source = "target.id", target = "targetId")
-    CommunicationInstanceDto transformCommunicationInstance(CommunicationInstance communication);
+    CommunicationInstanceDto transform(CommunicationInstance communication);
 
     @Mapping(source = "group.id", target = "groupId")
-    NodeDto transformNode(Node node);
+    NodeDto transform(Node node);
+
 }

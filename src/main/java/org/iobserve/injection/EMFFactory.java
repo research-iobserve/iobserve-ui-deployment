@@ -1,7 +1,6 @@
 package org.iobserve.injection;
 
 import org.glassfish.hk2.api.Factory;
-import org.iobserve.DependencyInjectionBinder;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -9,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- * a factory for EntityManagerFactories which is provided to avoid scoping issues,
+ * A factory for EntityManagerFactories which is provided to avoid scoping issues,
  * due to jerseys threading model.
  * Avoids that the factory has to be recreated, as it is a singleton instance.
  * @see DependencyInjectionBinder

@@ -2,7 +2,7 @@ package org.iobserve.injection;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
-import org.iobserve.injection.EMFFactory;
+import org.iobserve.models.mappers.EntityToDtoMapper;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -20,6 +20,6 @@ public class DependencyInjectionBinder extends AbstractBinder {
         this.bindFactory(EMFFactory.EMFactory.class).to(EntityManager.class).in(RequestScoped.class);
 
         // TODO: bind generic service
-
+        this.bindFactory(EntityToDtoMapperFactory.class).to(EntityToDtoMapper.class).in(Singleton.class);
     }
 }
