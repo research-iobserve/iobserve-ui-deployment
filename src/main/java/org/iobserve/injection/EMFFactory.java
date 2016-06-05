@@ -1,6 +1,7 @@
-package org.iobserve;
+package org.iobserve.injection;
 
 import org.glassfish.hk2.api.Factory;
+import org.iobserve.DependencyInjectionBinder;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
