@@ -1,11 +1,10 @@
 package org.iobserve.resources;
 
-import org.iobserve.models.Node;
+import org.iobserve.models.dataaccessobjects.NodeDto;
+import org.iobserve.services.NodeService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.inject.Inject;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -13,22 +12,28 @@ import java.util.List;
 /**
  * Created by cdor on 03.06.16.
  */
-@Path("v1")
+@Path("v1/nodes")
 @Produces(MediaType.APPLICATION_JSON)
-public class NodeResource extends AbstractEntityResource<Node>{
+public class NodeResource {
+
+    @Inject
+    private NodeService service;
+
 
     @GET
-    @Path("/nodes/{entityId}")
-    @Override
-    public Node getSingle(@PathParam("entityId") String entityId) {
-        return super.getSingle(entityId);
+    public List<NodeDto> getNodes() {
+        return this.service.findAll();
     }
 
     @GET
-    @Path("/blob/{systemId}/nodes")
-    @Override
-    public List<Node> getAll(@PathParam("systemId") String systemId) {
-        System.out.println("Test all call");
-        return super.getAll(systemId);
+    @Path("/{systemId}")
+    public NodeDto getNode(@PathParam("systemId") String id) {
+        return this.service.findById(id);
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public NodeDto createNode(NodeDto node) {
+        return node;
     }
 }

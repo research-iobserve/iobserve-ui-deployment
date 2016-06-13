@@ -41,4 +41,8 @@ public interface EntityToDtoMapper {
     @Mapping(source = "service.id", target = "serviceId")
     ServiceInstanceDto transform(ServiceInstance node);
 
+    NodeGroupDto transform(NodeGroup nodeGroup);
+
+
+
 }

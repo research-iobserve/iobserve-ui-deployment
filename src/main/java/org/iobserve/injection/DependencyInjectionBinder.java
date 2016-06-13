@@ -2,8 +2,9 @@ package org.iobserve.injection;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
+import org.iobserve.models.CommunicationInstance;
 import org.iobserve.models.mappers.EntityToDtoMapper;
-import org.iobserve.services.SystemService;
+import org.iobserve.services.*;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -28,5 +29,11 @@ public class DependencyInjectionBinder extends AbstractBinder {
         // bind all services
         // TODO: possibility to use only generic services?
         this.bind(SystemService.class).to(SystemService.class).in(Singleton.class);
+        this.bind(NodeService.class).to(NodeService.class).in(Singleton.class);
+        this.bind(NodeGroupService.class).to(NodeGroupService.class).in(Singleton.class);
+        this.bind(ServiceService.class).to(ServiceService.class).in(Singleton.class);
+        this.bind(ServiceInstanceService.class).to(ServiceInstanceService.class).in(Singleton.class);
+        this.bind(CommunicationService.class).to(CommunicationService.class).in(Singleton.class);
+        this.bind(CommunicationInstanceService.class).to(CommunicationInstanceService.class).in(Singleton.class);
     }
 }

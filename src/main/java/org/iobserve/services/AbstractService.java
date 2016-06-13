@@ -1,5 +1,6 @@
 package org.iobserve.services;
 
+import org.iobserve.models.Node;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.models.util.BaseEntity;
@@ -28,16 +29,14 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
 
     // TODO: implement generic methods to simplify subclasses
     public List<ModelDto> findAll(){
-        System.out.println(persistentClass.getSimpleName());
+
         Query query = entityManager.createQuery("Select t from " + persistentClass.getSimpleName() +" t");
         return transformModelToDto((List<Model>) query.getResultList());
     }
 
     public ModelDto findById(String id){
-        Query query = entityManager.createQuery("Select t from " + persistentClass.getSimpleName() + " t where id = :id")
-                .setParameter("id", id);
 
-        return transformModelToDto((Model) query.getSingleResult());
+       return transformModelToDto(entityManager.find(persistentClass,id));
     }
 
     /**
