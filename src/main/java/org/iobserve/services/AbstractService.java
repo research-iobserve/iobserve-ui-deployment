@@ -24,7 +24,7 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
     @Inject
     protected EntityToDtoMapper modelToDtoMapper;
 
-    private Class<Model> persistentClass = (Class<Model>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    protected final  Class<Model> persistentClass = (Class<Model>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
     // TODO: implement generic methods to simplify subclasses
     public List<ModelDto> findAll(){
