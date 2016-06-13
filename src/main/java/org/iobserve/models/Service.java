@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by cdor on 25.04.16.
+ * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
 public class Service extends Measurable{
