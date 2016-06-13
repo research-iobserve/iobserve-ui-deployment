@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * A service implementation should provide basic interaction for a specific model
  * TODO: implement generic findAll/findById (based on other branch)
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
 public abstract class AbstractService<Model extends BaseEntity, ModelDto extends DataTransportObject> implements Service<ModelDto> {
 

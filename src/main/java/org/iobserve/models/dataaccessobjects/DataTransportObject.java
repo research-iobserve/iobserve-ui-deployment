@@ -10,7 +10,7 @@ package org.iobserve.models.dataaccessobjects;
  * The transformation functions between model instances and their corresponding DataTransportObject
  * are generated using MapStruct and {@link org.iobserve.models.mappers.EntityToDtoMapper}.
  *
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.mappers.EntityToDtoMapper
  */
 public abstract class DataTransportObject {

@@ -1,7 +1,7 @@
 package org.iobserve.models.dataaccessobjects;
 
 /**
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.System
  */
 public class SystemDto extends DataTransportObject {

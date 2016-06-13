@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
 public abstract class AbstractSystemComponentService<Model extends BaseEntity, ModelDto extends DataTransportObject> extends AbstractService<Model, ModelDto> {
 

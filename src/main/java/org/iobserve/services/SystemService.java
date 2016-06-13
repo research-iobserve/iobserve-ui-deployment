@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
 public class SystemService extends AbstractService<System,SystemDto> {
 //    @Override

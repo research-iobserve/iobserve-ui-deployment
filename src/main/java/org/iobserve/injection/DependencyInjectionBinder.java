@@ -2,7 +2,6 @@ package org.iobserve.injection;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
-import org.iobserve.models.CommunicationInstance;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.services.*;
 
@@ -12,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  * Binds all classes that should be accessible via the @Inject annotation
- * @author Mathis Neumann (simpleTechs)
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see javax.inject.Inject
  * @see AbstractBinder
  */

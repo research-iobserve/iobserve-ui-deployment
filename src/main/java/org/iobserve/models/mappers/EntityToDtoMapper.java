@@ -13,7 +13,7 @@ import org.mapstruct.factory.Mappers;
  * Transformations are declared using the {@link Mapping} annotation.
  * These transformations are then used between the resource (http/json) layer and the service layer (JPA).
  *
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.dataaccessobjects.DataTransportObject
  * @see <a href="http://mapstruct.org">MapStruct</a>
  */
