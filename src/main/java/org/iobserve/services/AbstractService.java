@@ -6,6 +6,8 @@ import org.iobserve.models.util.BaseEntity;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +24,21 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
     @Inject
     protected EntityToDtoMapper modelToDtoMapper;
 
+    private Class<Model> persistentClass = (Class<Model>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+
     // TODO: implement generic methods to simplify subclasses
-    public abstract List<ModelDto> findAll();
-    public abstract ModelDto findById(String id);
+    public List<ModelDto> findAll(){
+        System.out.println(persistentClass.getSimpleName());
+        Query query = entityManager.createQuery("Select t from " + persistentClass.getSimpleName() +" t");
+        return transformModelToDto((List<Model>) query.getResultList());
+    }
+
+    public ModelDto findById(String id){
+        Query query = entityManager.createQuery("Select t from " + persistentClass.getSimpleName() + " t where id = :id")
+                .setParameter("id", id);
+
+        return transformModelToDto((Model) query.getSingleResult());
+    }
 
     /**
      * Transforms a model instance to it's corresponding DataTransportObject.
@@ -40,5 +54,4 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
     protected List<ModelDto> transformModelToDto(List<Model> models) {
         return models.stream().map(this::transformModelToDto).collect(Collectors.toList());
     }
-
 }
