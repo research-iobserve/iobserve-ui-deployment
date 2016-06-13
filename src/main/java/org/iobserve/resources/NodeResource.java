@@ -21,7 +21,7 @@ public class NodeResource implements SystemComponentModelResource<NodeDto> {
 
 
     @GET
-    public List<NodeDto> getBySystem(String systemId) {
+    public List<NodeDto> getAllBySystem(String systemId) {
         return this.service.findAllBySystem(systemId);
     }
 
