@@ -3,6 +3,7 @@ package org.iobserve.models.dataaccessobjects;
 
 /**
  * @author Mathis Neumann
+ * @see org.iobserve.models.Node
  */
 public class NodeDto extends SystemIdDataTransportObject {
 

@@ -1,4 +1,5 @@
 package org.iobserve.services;
+import org.iobserve.models.Service;
 import org.iobserve.models.dataaccessobjects.ServiceDto;
 
 /**

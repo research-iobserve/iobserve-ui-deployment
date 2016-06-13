@@ -2,6 +2,7 @@ package org.iobserve.models.dataaccessobjects;
 
 /**
  * @author Mathis Neumann
+ * @see org.iobserve.models.System
  */
 public class SystemDto extends DataTransportObject {
     String name;

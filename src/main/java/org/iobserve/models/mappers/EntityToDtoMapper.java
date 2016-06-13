@@ -1,13 +1,8 @@
 package org.iobserve.models.mappers;
 
-import org.iobserve.models.Communication;
-import org.iobserve.models.CommunicationInstance;
-import org.iobserve.models.Node;
+import org.iobserve.models.*;
 import org.iobserve.models.System;
-import org.iobserve.models.dataaccessobjects.CommunicationDto;
-import org.iobserve.models.dataaccessobjects.CommunicationInstanceDto;
-import org.iobserve.models.dataaccessobjects.NodeDto;
-import org.iobserve.models.dataaccessobjects.SystemDto;
+import org.iobserve.models.dataaccessobjects.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -39,5 +34,11 @@ public interface EntityToDtoMapper {
 
     @Mapping(source = "group.id", target = "groupId")
     NodeDto transform(Node node);
+
+    ServiceDto transform(Service node);
+
+    @Mapping(source = "node.id", target = "nodeId")
+    @Mapping(source = "service.id", target = "serviceId")
+    ServiceInstanceDto transform(ServiceInstance node);
 
 }

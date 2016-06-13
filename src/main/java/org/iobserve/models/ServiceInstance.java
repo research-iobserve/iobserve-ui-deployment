@@ -1,6 +1,5 @@
 package org.iobserve.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.StatusInfo;
@@ -18,7 +17,7 @@ import java.util.List;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ServiceInstance extends Measurable {
-    private String Name;
+    private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "node")
@@ -34,33 +33,33 @@ public class ServiceInstance extends Measurable {
     }
 
     public ServiceInstance(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public ServiceInstance(String name, Node node, Service service) {
-        Name = name;
+        this.name = name;
         this.node = node;
         this.service = service;
     }
 
     public ServiceInstance(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, String name) {
         super(statusInfoList, timeSeriesList);
-        Name = name;
+        this.name = name;
     }
 
     public ServiceInstance(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, String name, Node node, Service service) {
         super(statusInfoList, timeSeriesList);
-        Name = name;
+        this.name = name;
         this.node = node;
         this.service = service;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public Node getNode() {
