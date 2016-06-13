@@ -26,8 +26,8 @@ public class NodeResource {
     }
 
     @GET
-    @Path("/{systemId}")
-    public NodeDto getNode(@PathParam("systemId") String id) {
+    @Path("/{nodeId}")
+    public NodeDto getNode(@PathParam("nodeId") String id) {
         return this.service.findById(id);
     }
 
