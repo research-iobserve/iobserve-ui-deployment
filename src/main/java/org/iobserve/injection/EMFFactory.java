@@ -1,4 +1,4 @@
-package org.iobserve;
+package org.iobserve.injection;
 
 import org.glassfish.hk2.api.Factory;
 
@@ -8,11 +8,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- * a factory for EntityManagerFactories which is provided to avoid scoping issues,
+ * A factory for EntityManagerFactories which is provided to avoid scoping issues,
  * due to jerseys threading model.
  * Avoids that the factory has to be recreated, as it is a singleton instance.
  * @see DependencyInjectionBinder
- * based on "http://stackoverflow.com/a/28122910/1249001"
+ * @source http://stackoverflow.com/a/28122910/1249001
  */
 public class EMFFactory implements Factory<EntityManagerFactory> { // TODO: use CloseableService
 
