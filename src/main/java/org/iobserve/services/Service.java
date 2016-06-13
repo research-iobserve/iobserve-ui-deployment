@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Base interface for all services.
  *
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
 public interface Service<ModelDto extends DataTransportObject> {
     List<ModelDto> findAll();

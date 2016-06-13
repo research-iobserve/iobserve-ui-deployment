@@ -4,7 +4,7 @@ import org.glassfish.hk2.api.Factory;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 
 /**
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
 public class EntityToDtoMapperFactory implements Factory<EntityToDtoMapper> {
 

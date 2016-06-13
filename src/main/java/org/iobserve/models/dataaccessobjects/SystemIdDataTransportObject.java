@@ -1,7 +1,7 @@
 package org.iobserve.models.dataaccessobjects;
 
 /**
- * @author Mathis Neumann
+ * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
 public abstract class SystemIdDataTransportObject extends DataTransportObject {
     String systemId;

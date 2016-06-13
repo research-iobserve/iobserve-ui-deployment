@@ -8,7 +8,7 @@ import java.util.List;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Measurable extends RevisionedBean{
+public abstract class Measurable extends RevisionedBean {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="parent_id", referencedColumnName="id")
     private List<StatusInfo> statusInformations;

@@ -10,30 +10,25 @@ import java.util.List;
 
 
 /**
- * Created by cdor on 03.06.16.
+ * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Path("v1/nodes")
 @Produces(MediaType.APPLICATION_JSON)
-public class NodeResource {
+public class NodeResource implements SystemComponentModelResource<NodeDto> {
 
     @Inject
     private NodeService service;
 
 
     @GET
-    public List<NodeDto> getNodes() {
-        return this.service.findAll();
+    public List<NodeDto> getAllBySystem(String systemId) {
+        return this.service.findAllBySystem(systemId);
     }
 
     @GET
-    @Path("/{nodeId}")
-    public NodeDto getNode(@PathParam("nodeId") String id) {
+    @Path("/{id}")
+    public NodeDto getById(@PathParam("id") String id) {
         return this.service.findById(id);
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public NodeDto createNode(NodeDto node) {
-        return node;
-    }
 }
