@@ -1,6 +1,5 @@
 package org.iobserve.services;
 
-import org.iobserve.models.Node;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.models.util.BaseEntity;
@@ -35,8 +34,10 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
     }
 
     public ModelDto findById(String id){
-
-       return transformModelToDto(entityManager.find(persistentClass,id));
+        Model result = entityManager.find(persistentClass,id);
+        ModelDto dto = transformModelToDto(result);
+        // enhance dto with measureable data from result
+        return dto;
     }
 
     /**

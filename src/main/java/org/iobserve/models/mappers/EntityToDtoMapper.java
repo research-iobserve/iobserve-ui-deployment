@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
  * @see <a href="http://mapstruct.org">MapStruct</a>
  */
 @Mapper
-public interface EntityToDtoMapper {
+public interface EntityToDtoMapper { // TODO: ignore measureable
 
     EntityToDtoMapper INSTANCE = Mappers.getMapper(EntityToDtoMapper.class);
     

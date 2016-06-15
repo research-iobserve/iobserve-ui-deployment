@@ -9,17 +9,11 @@ import org.iobserve.models.util.TimeSeries;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-
 import javax.persistence.EntityTransaction;
-
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by cdor on 03.06.16.
@@ -43,6 +37,118 @@ public class CreateDummySystemResource {
         return message;
     }
 
+    @POST
+    @Path("/createTest/{id}")
+    public void createTestWithId(@PathParam("id") String id) {
+        try {
+            createTestSystem(id);
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    private void createTestSystem(String systemId) {
+        System oldSystem = entityManager.find(System.class, systemId);
+        if(oldSystem != null) {
+            EntityTransaction tx = entityManager.getTransaction();
+            tx.begin();
+            entityManager.remove(oldSystem);
+            tx.commit();
+        }
+        System system = new System();
+        system.setId(systemId);
+        system.setName("Test System");
+
+        // nodes
+        Node node1 = prepareDummy(new Node(), systemId, "node", 1);
+        node1.setName("Node 1");
+        node1.setHostname("test hostname");
+        node1.setIp("10.0.0.1");
+
+        Node node2 = prepareDummy(new Node(), systemId, "node", 2);
+        node2.setName("Node 2");
+        node2.setHostname("Another hostname");
+        node2.setIp("10.0.0.2");
+
+
+        // node group - has both nodes
+        NodeGroup nodeGroup1 = prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
+        nodeGroup1.setName("Node Group 1");
+        nodeGroup1.setNodes(Arrays.asList(node1, node2));
+        node1.setGroup(nodeGroup1);
+        node2.setGroup(nodeGroup1);
+
+
+        // service instances
+        ServiceInstance serviceInstance1 = prepareDummy(new ServiceInstance(), systemId, "serviceInstance", 1);
+        serviceInstance1.setNode(node1);
+
+        ServiceInstance serviceInstance2 = prepareDummy(new ServiceInstance(), systemId, "serviceInstance", 2);
+        serviceInstance2.setNode(node1);
+
+        // create services
+        Service service1 = prepareDummy(new Service(), systemId, "service", 1);
+        service1.setName("Service 1");
+        service1.setDescription("A dummy description!");
+
+        Service service2 = prepareDummy(new Service(), systemId, "service", 2);
+        service2.setName("Service 2");
+        service2.setDescription("Another dummy description");
+
+        // link service to instances and backwards
+        serviceInstance1.setService(service1);
+        service1.setInstances(Collections.singletonList(serviceInstance1));
+        serviceInstance2.setService(service2);
+        service2.setInstances(Collections.singletonList(serviceInstance1));
+
+        // write services back to node
+        node1.setServices(Collections.singletonList(serviceInstance1));
+        node2.setServices(Collections.singletonList(serviceInstance2));
+
+        // communication instances - duplex communication
+        CommunicationInstance communicationInstance1 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 1);
+        communicationInstance1.setSource(serviceInstance1);
+        communicationInstance1.setTarget(serviceInstance2);
+        CommunicationInstance communicationInstance2 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 2);
+        communicationInstance2.setSource(serviceInstance2);
+        communicationInstance2.setTarget(serviceInstance1);
+
+        // communications - duplex
+        Communication communication1 = prepareDummy(new Communication(), systemId, "communication", 1);
+        communication1.setSource(service1);
+        communication1.setTarget(service2);
+        Communication communication2 = prepareDummy(new Communication(), systemId, "communication", 2);
+        communication2.setSource(service2);
+        communication2.setTarget(service1);
+
+        communication1.setInstances(Collections.singletonList(communicationInstance1));
+        communication2.setInstances(Collections.singletonList(communicationInstance2));
+
+        system.setCommunications(Arrays.asList(communication1, communication2));
+        system.setServices(Arrays.asList(service1, service2));
+        system.setNodeGroups(Collections.singletonList(nodeGroup1));
+
+        EntityTransaction tx = entityManager.getTransaction();
+        tx.begin();
+        this.entityManager.persist(system); // saves all thanks to cascading
+        tx.commit();
+    }
+
+    private <Bean extends RevisionedBean> Bean prepareDummy(Bean bean, String systemId, String prefix, int counter) {
+        bean.setId(generateTestId(systemId, prefix, counter));
+        bean.setSystemId(systemId);
+        bean.setChangelogSequence(0L);
+        bean.setLastUpdate(new Date());
+        bean.setRevisionNumber(0L);
+        return bean;
+    }
+
+    private String generateTestId(String systemId, String prefix, int counter){
+        return "test-"+systemId+"-"+prefix+"-"+counter;
+    }
+
+    // might look a bit weird, was Java->Scala->Java in the past
     private String createBoostrapData(String id){
         final Integer numObj = 100;
 
