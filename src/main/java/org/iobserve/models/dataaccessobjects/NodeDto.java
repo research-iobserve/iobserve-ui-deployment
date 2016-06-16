@@ -1,10 +1,13 @@
 package org.iobserve.models.dataaccessobjects;
 
 
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.Node
  */
+@XmlType(name = "node")
 public class NodeDto extends SystemIdDataTransportObject {
 
     private String name;

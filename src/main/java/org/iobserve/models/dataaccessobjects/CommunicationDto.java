@@ -1,9 +1,12 @@
 package org.iobserve.models.dataaccessobjects;
 
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.CommunicationInstance
  */
+@XmlType(name = "communication")
 public class CommunicationDto extends SystemIdDataTransportObject {
 
     String technology;

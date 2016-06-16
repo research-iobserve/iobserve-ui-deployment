@@ -1,10 +1,13 @@
 package org.iobserve.models.dataaccessobjects;
 
 
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.ServiceInstance
  */
+@XmlType(name = "serviceInstance")
 public class ServiceInstanceDto extends SystemIdDataTransportObject {
     private String name;
     private String nodeId;
