@@ -76,8 +76,8 @@ public class CreateDummySystemResource {
         NodeGroup nodeGroup1 = prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
         nodeGroup1.setName("Node Group 1");
         nodeGroup1.setNodes(Arrays.asList(node1, node2));
-        node1.setGroup(nodeGroup1);
-        node2.setGroup(nodeGroup1);
+        node1.setNodeGroup(nodeGroup1);
+        node2.setNodeGroup(nodeGroup1);
 
 
         // service instances
@@ -118,9 +118,11 @@ public class CreateDummySystemResource {
         Communication communication1 = prepareDummy(new Communication(), systemId, "communication", 1);
         communication1.setSource(service1);
         communication1.setTarget(service2);
+        communication1.setTechnology("REST");
         Communication communication2 = prepareDummy(new Communication(), systemId, "communication", 2);
         communication2.setSource(service2);
         communication2.setTarget(service1);
+        communication2.setTechnology("TCP/IP");
 
         communication1.setInstances(Collections.singletonList(communicationInstance1));
         communication2.setInstances(Collections.singletonList(communicationInstance2));

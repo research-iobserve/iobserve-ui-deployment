@@ -32,7 +32,7 @@ public interface EntityToDtoMapper { // TODO: ignore measureable
     @Mapping(source = "target.id", target = "targetId")
     CommunicationInstanceDto transform(CommunicationInstance communication);
 
-    @Mapping(source = "group.id", target = "groupId")
+    @Mapping(source = "nodeGroup.id", target = "nodeGroupId")
     NodeDto transform(Node node);
 
     ServiceDto transform(Service node);

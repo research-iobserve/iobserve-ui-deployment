@@ -29,7 +29,7 @@ public class NodeGroupResource implements SystemComponentModelResource<NodeGroup
     }
 
     @GET
-    @Path("/systems/{systemId}/nodegroups/{id}")
+    @Path("/nodegroups/{id}")
     @Override
     public NodeGroupDto getById(@PathParam("id") String id) {
         return this.service.findById(id);

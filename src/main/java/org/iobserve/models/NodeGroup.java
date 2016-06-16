@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Entity
 public class NodeGroup extends Measurable{
-    @OneToMany(mappedBy = "group",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "nodeGroup",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Node> nodes;
     private String name;

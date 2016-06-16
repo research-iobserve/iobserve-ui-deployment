@@ -11,7 +11,7 @@ public class NodeDto extends SystemIdDataTransportObject {
     private String ip;
     private String hostname;
 
-    private String groupId;
+    private String nodeGroupId;
 
     public String getName() {
         return name;
@@ -37,11 +37,11 @@ public class NodeDto extends SystemIdDataTransportObject {
         this.hostname = hostname;
     }
 
-    public String getGroupId() {
-        return groupId;
+    public String getNodeGroupId() {
+        return nodeGroupId;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    public void setNodeGroupId(String groupId) {
+        this.nodeGroupId = groupId;
     }
 }

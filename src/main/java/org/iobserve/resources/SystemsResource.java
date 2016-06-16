@@ -8,7 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("v1/systems")
+@Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
 public class SystemsResource {
     @Inject
@@ -16,20 +16,15 @@ public class SystemsResource {
 
 
     @GET
+    @Path("/systems")
     public List<SystemDto> getSystems() {
         return this.service.findAll();
     }
 
     @GET
-    @Path("/{systemId}")
+    @Path("/systems/{systemId}")
     public SystemDto getSystem(@PathParam("systemId") String id) {
         return this.service.findById(id);
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public SystemDto createSystem(SystemDto system) {
-        system.setId("123");
-        return system;
-    }
 }

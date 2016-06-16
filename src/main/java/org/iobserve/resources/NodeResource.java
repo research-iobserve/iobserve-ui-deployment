@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
-@Path("v1/nodes")
+@Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
 public class NodeResource implements SystemComponentModelResource<NodeDto> {
 
@@ -21,12 +21,13 @@ public class NodeResource implements SystemComponentModelResource<NodeDto> {
 
 
     @GET
-    public List<NodeDto> getAllBySystem(String systemId) {
+    @Path("/systems/{systemId}/nodes")
+    public List<NodeDto> getAllBySystem(@PathParam("systemId") String systemId) {
         return this.service.findAllBySystem(systemId);
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/nodes/{id}")
     public NodeDto getById(@PathParam("id") String id) {
         return this.service.findById(id);
     }

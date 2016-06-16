@@ -1,12 +1,13 @@
 package org.iobserve.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
@@ -28,7 +29,7 @@ public class Node extends Measurable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @XmlTransient
-    private NodeGroup group;
+    private NodeGroup nodeGroup;
 
 
     public Node() {
@@ -93,11 +94,11 @@ public class Node extends Measurable {
         this.hostname = hostname;
     }
 
-    public NodeGroup getGroup() {
-        return group;
+    public NodeGroup getNodeGroup() {
+        return nodeGroup;
     }
 
-    public void setGroup(NodeGroup group) {
-        this.group = group;
+    public void setNodeGroup(NodeGroup group) {
+        this.nodeGroup = group;
     }
 }
