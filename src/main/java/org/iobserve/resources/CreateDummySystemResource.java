@@ -18,27 +18,27 @@ import java.util.*;
 /**
  * Created by cdor on 03.06.16.
  */
-@Path("v1/systems")
+@Path("v1")
 public class CreateDummySystemResource {
     @Inject
     private EntityManager entityManager;
 
     @POST
-    @Path("/createDummy")
+    @Path("systems/createDummy")
     public String createDummy() {
         createBoostrapData(null);
         return "dummy created";
     }
 
     @POST
-    @Path("/createDummy/{id}")
+    @Path("systems/createDummy/{id}")
     public String createDummyWithId(@PathParam("id") String id) {
         String message = createBoostrapData(id);
         return message;
     }
 
     @POST
-    @Path("/createTest/{id}")
+    @Path("systems/createTest/{id}")
     public void createTestWithId(@PathParam("id") String id) {
         try {
             createTestSystem(id);
