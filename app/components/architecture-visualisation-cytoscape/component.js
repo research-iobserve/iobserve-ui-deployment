@@ -1,11 +1,26 @@
 import Ember from 'ember';
 import cytoscape from 'npm:cytoscape';
 import cycola from 'npm:cytoscape-cola';
+import cytoscapeStyle from './style';
 // import cola from 'npm:webcola';
 import _ from 'npm:lodash';
 
 export default Ember.Component.extend({
     classNames: ['cytoscapeRenderingSpace'],
+    dummyGraph: {
+        nodes: [
+            { data: { id: 'a', parent: 'b', name: 'Test Service' } },
+            { data: { id: 'b' } },
+            { data: { id: 'c', parent: 'b' } },
+            { data: { id: 'd' } },
+            { data: { id: 'e' } },
+            { data: { id: 'f', parent: 'e' } }
+        ],
+        edges: [
+            { data: { id: 'ad', source: 'a', target: 'd' } },
+            { data: { id: 'eb', source: 'e', target: 'b' } }
+        ]
+    },
     init: function() {
         cycola( cytoscape, cola );
 
@@ -46,45 +61,9 @@ export default Ember.Component.extend({
           boxSelectionEnabled: false,
           autounselectify: true,
 
-          style: [
-            {
-              selector: 'node',
-              css: {
-                'content': 'data(id)',
-                'text-valign': 'center',
-                'text-halign': 'center'
-              }
-            },
-            {
-              selector: '$node > node',
-              css: {
-                'padding-top': '10px',
-                'padding-left': '10px',
-                'padding-bottom': '10px',
-                'padding-right': '10px',
-                'text-valign': 'top',
-                'text-halign': 'center',
-                'background-color': '#bbb'
-              }
-            },
-            {
-              selector: 'edge',
-              css: {
-                'target-arrow-shape': 'triangle'
-              }
-            },
-            {
-              selector: ':selected',
-              css: {
-                'background-color': 'black',
-                'line-color': 'black',
-                'target-arrow-color': 'black',
-                'source-arrow-color': 'black'
-              }
-            }
-          ],
+          style: cytoscapeStyle,
 
-          elements: this.get('graph'),
+          elements: this.get('dummyGraph'), // TODO!
 
           layout: {
             name: 'cola',
