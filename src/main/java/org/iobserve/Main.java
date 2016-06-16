@@ -1,9 +1,9 @@
 package org.iobserve;
 
 import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.iobserve.filters.CORSResponseFilter;
 import org.iobserve.injection.DependencyInjectionBinder;
 
 import java.io.IOException;
@@ -26,6 +26,7 @@ public class Main {
         // in org.iobserve package
         final ResourceConfig rc = new ResourceConfig().packages("org.iobserve.resources");
         rc.register(new DependencyInjectionBinder());
+        rc.register(CORSResponseFilter.class);
 
 
         // create and start a new instance of grizzly http server
