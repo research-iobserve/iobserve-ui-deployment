@@ -9,6 +9,6 @@ import org.iobserve.models.dataaccessobjects.ServiceInstanceDto;
 public class ServiceInstanceService extends AbstractSystemComponentService<ServiceInstance,ServiceInstanceDto> {
     @Override
     protected ServiceInstanceDto transformModelToDto(ServiceInstance serviceInstance) {
-        return this.transformModelToDto(serviceInstance);
+        return this.modelToDtoMapper.transform(serviceInstance);
     }
 }

@@ -4,6 +4,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.iobserve.filters.CORSResponseFilter;
+import org.iobserve.filters.GeneralExceptionMapper;
 import org.iobserve.injection.DependencyInjectionBinder;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class Main {
         final ResourceConfig rc = new ResourceConfig().packages("org.iobserve.resources");
         rc.register(new DependencyInjectionBinder());
         rc.register(CORSResponseFilter.class);
-
+        rc.register(GeneralExceptionMapper.class);
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
