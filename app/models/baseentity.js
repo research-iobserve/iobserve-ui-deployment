@@ -3,5 +3,6 @@ import attr from 'ember-data/attr';
 
 export default Model.extend({
     // id: attr('string') - not allowed to be listed by ember
-    systemId: attr('string') 
+    systemId: attr('string'),
+    type: attr('string')
 });
