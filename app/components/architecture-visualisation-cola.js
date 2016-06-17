@@ -141,5 +141,3 @@ export default Ember.Component.extend({
         // this.renderGraph();
     }
 });
-
-

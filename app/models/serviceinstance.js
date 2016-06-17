@@ -4,6 +4,6 @@ import DS from 'ember-data';
 
 export default BaseEntity.extend({
     name: attr('string'),
-    node: DS.belongsTo('node', {async: true}),
-    service: DS.belongsTo('service', {async: true})
+    nodeId: attr('string'),
+    serviceId: attr('string')
 });

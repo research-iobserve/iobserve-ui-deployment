@@ -63,7 +63,7 @@ export default Ember.Component.extend({
 
           style: cytoscapeStyle,
 
-          elements: this.get('dummyGraph'), // TODO!
+          elements: this.get('graph'), // TODO!
 
           layout: {
             name: 'cola',
@@ -72,5 +72,3 @@ export default Ember.Component.extend({
         });
     }
 });
-
-

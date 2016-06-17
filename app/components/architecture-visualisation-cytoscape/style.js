@@ -3,7 +3,7 @@ export default `
 
 
 node {
-    content: data(name);
+    content: data(label);
     text-valign: center;
     text-halign: center;
 }
