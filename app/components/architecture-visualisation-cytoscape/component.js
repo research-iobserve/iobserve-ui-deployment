@@ -9,16 +9,18 @@ export default Ember.Component.extend({
     classNames: ['cytoscapeRenderingSpace'],
     dummyGraph: {
         nodes: [
-            { data: { id: 'a', parent: 'b', name: 'Test Service' } },
-            { data: { id: 'b' } },
-            { data: { id: 'c', parent: 'b' } },
-            { data: { id: 'd' } },
-            { data: { id: 'e' } },
-            { data: { id: 'f', parent: 'e' } }
+            { data: { id: 'nodeWebnode', label: 'Webnode', type: 'node' } },
+            { data: { id: 'nodeLogicnode', label: 'Logicnode', type: 'node' } },
+            { data: { id: 'nodeAdapter', label: 'Adapter', type: 'node' } },
+            { data: { id: 'nodeDatabase', label: 'Database', type: 'node' } },
+            { data: { id: 'serviceInstanceFrontEnd', label: 'Database', type: 'serviceInstance', parent: 'nodeWebnode' } },
+            { data: { id: 'serviceInstanceCashDesk', label: 'CashDesk', type: 'serviceInstance', parent: 'nodeLogicnode' } },
+            { data: { id: 'serviceInstanceInventory', label: 'Inventory', type: 'serviceInstance' }, parent: 'nodeLogicnode' },
+            { data: { id: 'serviceInstanceData', label: 'Data', type: 'serviceInstance', parent: 'nodeLogicnode' } },
+            { data: { id: 'serviceInstancePostgresSQL', label: 'PostgresSQL', type: 'serviceInstance', parent: 'nodeDatabase' } },
         ],
         edges: [
-            { data: { id: 'ad', source: 'a', target: 'd' } },
-            { data: { id: 'eb', source: 'e', target: 'b' } }
+            { data: { id: 'ad', source: 'a', target: 'd', weight: 100 } },
         ]
     },
     init: function() {
