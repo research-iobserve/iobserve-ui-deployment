@@ -233,6 +233,13 @@ public class CreateDummySystemResource {
         communication5.setInstances(Collections.singletonList(communicationInstance5));
         communication6.setInstances(Collections.singletonList(communicationInstance6));
 
+        communicationInstance1.setCommunication(communication1);
+        communicationInstance2.setCommunication(communication2);
+        communicationInstance3.setCommunication(communication3);
+        communicationInstance4.setCommunication(communication4);
+        communicationInstance5.setCommunication(communication5);
+        communicationInstance6.setCommunication(communication6);
+
         system.setCommunications(Arrays.asList(communication1, communication2, communication3,communication4,communication5, communication6));
         system.setServices(Arrays.asList(service1, service2, service3, service4,service5,service6));
         system.setNodeGroups(Collections.singletonList(nodeGroup1));
