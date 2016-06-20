@@ -43,6 +43,11 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     background-color: ${variables.serviceColor};
     color: ${variables.serviceTextColor};
     font-weight: bold;
+    shadow-blur: 0;
+    shadow-color: #000;
+    shadow-offset-x: 2px;
+    shadow-offset-y: 2px;
+    shadow-opacity: 0.5;
 }
 [type="communicationInstance"] {
     color: #F4EFDC;
