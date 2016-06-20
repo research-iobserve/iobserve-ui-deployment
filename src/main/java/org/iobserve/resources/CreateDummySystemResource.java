@@ -20,6 +20,8 @@ import java.util.*;
  */
 @Path("v1")
 public class CreateDummySystemResource {
+    Random random = new Random();
+
     @Inject
     private EntityManager entityManager;
 
@@ -493,6 +495,20 @@ public class CreateDummySystemResource {
         allCommunicationInstances.addAll(communicationInstances2);
         system.setCommunicationInstances(allCommunicationInstances);
 
+        for (CommunicationInstance communicationInstance : allCommunicationInstances) {
+            communicationInstance.addStatusInformation(createCommunicationStatusInfo());
+            communicationInstance.addStatusInformation(createRandomInfo("usage", "nothing"));
+            communicationInstance.setTimeSeries(generateSeries());
+        }
+
+        for (Communication communication : communications) {
+            communication.addStatusInformation(createCommunicationStatusInfo());
+            communication.addStatusInformation(createRandomInfo("usage", "nothing"));
+            communication.setTimeSeries(generateSeries());
+        }
+
+
+
 
         system.setName("Name");
         system.setCommunications(communications);
@@ -556,5 +572,43 @@ public class CreateDummySystemResource {
         bean.setRevisionNumber(0L);
         bean.setChangelogSequence(0L);
         bean.setLastUpdate(new Date());
+    }
+
+    private StatusInfo createCommunicationStatusInfo(){
+        final StatusInfo info = new StatusInfo();
+        info.setTimestamp(new Date().getTime());
+        info.setKey("connections");
+        info.setValue(random.nextInt(500) + "");
+        return info;
+    }
+
+    private StatusInfo createRandomInfo(){
+        return createRandomInfo("info", random.nextInt(200)+"");
+    }
+
+
+    private StatusInfo createRandomInfo(String key, String value){
+        final StatusInfo info = new StatusInfo();
+        info.setTimestamp(new Date().getTime());
+        info.setKey(key);
+        info.setValue(value);
+        return info;
+    }
+
+    private TimeSeries createRandomSeries() {
+        return createRandomSeries(20);
+    }
+
+    private TimeSeries createRandomSeries(int size){
+        final TimeSeries series = new TimeSeries();
+        final List<SeriesElement> list = new LinkedList<>();
+
+        for (int i = 0; i < size; i++) {
+            final SeriesElement element = new SeriesElement();
+            element.setValue(random.nextInt(100));
+            list.add(element);
+        }
+        series.setSeries(list);
+        return series;
     }
 }

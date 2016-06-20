@@ -1,6 +1,7 @@
 package org.iobserve.models.util;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,11 +12,11 @@ import java.util.List;
 public abstract class Measurable extends RevisionedBean {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="parent_id", referencedColumnName="id")
-    private List<StatusInfo> statusInformations;
+    private List<StatusInfo> statusInformations = new LinkedList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="parent_id", referencedColumnName="id")
-    private List<TimeSeries> timeSeries;
+    private List<TimeSeries> timeSeries = new LinkedList<>();
 
     public Measurable() {
     }
@@ -33,11 +34,19 @@ public abstract class Measurable extends RevisionedBean {
         this.statusInformations = statusInfoList;
     }
 
+    public void addStatusInformation(StatusInfo info){
+        statusInformations.add(info);
+    }
+
     public List<TimeSeries> getTimeSeries() {
         return timeSeries;
     }
 
     public void setTimeSeries(List<TimeSeries> timeSeriesList) {
         this.timeSeries = timeSeriesList;
+    }
+
+    public void addTimeSeries(TimeSeries series){
+        timeSeries.add(series);
     }
 }
