@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-10 visualisationContainer">
+        {{architecture-visualisation-cytoscape graph=graph layoutAlgorithm=layoutAlgorithm}}
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+          <label for="layoutAlgorithm">Layout:</label>
+          <select class="form-control" id="layoutAlgorithm" onchange={{action "selectLayoutAlgorithm" value="target.value"}}>
+            {{#each layoutAlgorithms as |algorithm|}}
+                <option>{{algorithm}}</option>
+            {{/each}}
+          </select>
+        </div>
+    </div>
+</div>
+

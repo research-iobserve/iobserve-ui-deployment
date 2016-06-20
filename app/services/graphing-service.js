@@ -47,10 +47,10 @@ export default Ember.Service.extend({
 
     communicationInstances.forEach(instance => {
         const data = instance.toJSON({includeId: true});
-        data.label = data.name;
         data.source = data.sourceId;
         data.target = data.targetId;
         data.technology = instance.store.peekRecord('communication', data.communicationId).get('technology');
+        data.label = data.technology;
         this.debug('technology', data.technology);
 
       network.edges.push({

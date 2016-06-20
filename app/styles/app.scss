@@ -1,7 +1,9 @@
-body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
 
 @import "components/_architecture";
 @import "components/_cytoscape";
 
+$navbar-default-bg: #312312;
+$light-orange: #ff8c00;
+$navbar-default-color: $light-orange;
+
+@import "custom_bootstrap";
