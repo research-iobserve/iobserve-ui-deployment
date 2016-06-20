@@ -23,11 +23,17 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     padding-right: 10px;
     text-valign: top;
     text-halign: center;
+}
+
+[type="node"] {
     background-color: #CCC;
 }
 
-[type="red"] {
-    background-color: red;
+[type="nodeGroup"] {
+    background-color: white;
+    border-style: dotted;
+    border-color: #999;
+    border-width: 2px;
 }
 
 edge {
