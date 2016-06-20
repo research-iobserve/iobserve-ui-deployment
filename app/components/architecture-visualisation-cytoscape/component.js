@@ -4,6 +4,9 @@ import cycola from 'npm:cytoscape-cola';
 import cytoscapeStyle from './style';
 // import cola from 'npm:webcola';
 import _ from 'npm:lodash';
+import coseBilkent from 'npm:cytoscape-cose-bilkent';
+
+coseBilkent(cytoscape); // register
 
 export default Ember.Component.extend({
     layoutAlgorithm: 'cose',

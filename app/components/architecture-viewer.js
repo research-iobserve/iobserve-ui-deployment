@@ -4,8 +4,12 @@ export default Ember.Component.extend({
     graph: null,
     layoutAlgorithm: 'cose',
     layoutAlgorithms: [
-        "cose",
-        "cola"
+        'cose',
+        // 'cose-bilkent', // broken
+        'cola',
+        'grid',
+        'concentric',
+        'breadthfirst'
     ],
     init() {
         this._super();
