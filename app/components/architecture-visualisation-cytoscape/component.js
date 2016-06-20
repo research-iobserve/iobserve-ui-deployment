@@ -69,7 +69,8 @@ export default Ember.Component.extend({
 
           layout: {
             name: 'cola',
-            padding: 5
+            padding: 5,
+            maxSimulationTime: 1000
           }
         });
     }
