@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
  * @see org.iobserve.models.Service
  */
 @XmlType(name = "service")
-public class ServiceDto extends SystemIdDataTransportObject {
+public class ServiceDto extends MeasurableDataTrasferObject {
 
     private String name;
     private String description;

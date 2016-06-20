@@ -1,8 +1,10 @@
 package org.iobserve.services;
 
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
+import org.iobserve.models.dataaccessobjects.MeasurableDataTrasferObject;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.models.util.BaseEntity;
+import org.iobserve.models.util.Measurable;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -36,6 +38,14 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
     public ModelDto findById(String id){
         Model result = entityManager.find(persistentClass,id);
         ModelDto dto = transformModelToDto(result);
+
+        if(result instanceof Measurable ){
+           final Measurable measurable =  (Measurable) result;
+           final MeasurableDataTrasferObject measurableDto =  (MeasurableDataTrasferObject) dto;
+            measurableDto.setTimeSeries(measurable.getTimeSeries());
+            measurableDto.setStatusInformations(measurable.getStatusInformations());
+        }
+
         // enhance dto with measureable data from result
         return dto;
     }

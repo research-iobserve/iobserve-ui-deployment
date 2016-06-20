@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
  * @see org.iobserve.models.NodeGroup
  */
 @XmlType(name = "nodeGroup")
-public class NodeGroupDto extends SystemIdDataTransportObject {
+public class NodeGroupDto extends MeasurableDataTrasferObject {
 
     private String name;
 

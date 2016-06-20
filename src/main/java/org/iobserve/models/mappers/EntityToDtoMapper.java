@@ -26,24 +26,35 @@ public interface EntityToDtoMapper { // TODO: ignore measureable
 
     @Mapping(source = "source.id", target = "sourceId") // TODO: http://stackoverflow.com/a/32556026/1249001
     @Mapping(source = "target.id", target = "targetId")
+    @Mapping(target = "timeSeries", ignore=true)
+    @Mapping(target = "statusInformations", ignore=true)
     CommunicationDto transform(Communication communication);
 
     @Mapping(source = "source.id", target = "sourceId")
     @Mapping(source = "target.id", target = "targetId")
     @Mapping(source = "communication.id", target = "communicationId")
+    @Mapping(target = "timeSeries", ignore=true)
+    @Mapping(target = "statusInformations", ignore=true)
     CommunicationInstanceDto transform(CommunicationInstance communication);
 
+    @Mapping(target = "timeSeries", ignore=true)
+    @Mapping(target = "statusInformations", ignore=true)
+    NodeGroupDto transform(NodeGroup nodeGroup);
+
     @Mapping(source = "nodeGroup.id", target = "nodeGroupId")
+    @Mapping(target = "timeSeries", ignore=true)
+    @Mapping(target = "statusInformations", ignore=true)
     NodeDto transform(Node node);
 
+    @Mapping(target = "timeSeries", ignore=true)
+    @Mapping(target = "statusInformations", ignore=true)
     ServiceDto transform(Service node);
 
     @Mapping(source = "node.id", target = "nodeId")
     @Mapping(source = "service.id", target = "serviceId")
+    @Mapping(target = "timeSeries", ignore=true)
+    @Mapping(target = "statusInformations", ignore=true)
     ServiceInstanceDto transform(ServiceInstance node);
-
-    NodeGroupDto transform(NodeGroup nodeGroup);
-
 
 
 }

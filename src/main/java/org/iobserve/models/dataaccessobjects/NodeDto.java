@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlType;
  * @see org.iobserve.models.Node
  */
 @XmlType(name = "node")
-public class NodeDto extends SystemIdDataTransportObject {
+public class NodeDto extends MeasurableDataTrasferObject {
 
     private String name;
     private String ip;

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
  * @see org.iobserve.models.CommunicationInstance
  */
 @XmlType(name = "communicationInstance")
-public class CommunicationInstanceDto extends SystemIdDataTransportObject {
+public class CommunicationInstanceDto extends MeasurableDataTrasferObject {
 
     /**
      * id of the source service

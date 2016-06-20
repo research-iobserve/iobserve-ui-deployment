@@ -236,11 +236,24 @@ public class CreateDummySystemResource {
         communication6.setInstances(Collections.singletonList(communicationInstance6));
 
         communicationInstance1.setCommunication(communication1);
+        communicationInstance1.addStatusInformation(createInfo("connectrions", "10"));
+
         communicationInstance2.setCommunication(communication2);
+        communicationInstance2.addStatusInformation(createInfo("connections", "20"));
+
         communicationInstance3.setCommunication(communication3);
+        communicationInstance3.addStatusInformation(createInfo("connections", "10"));
+
         communicationInstance4.setCommunication(communication4);
+        communicationInstance4.addStatusInformation(createInfo("connections", "15"));
+
         communicationInstance5.setCommunication(communication5);
+        communicationInstance5.addStatusInformation(createInfo("connections", "10"));
+
         communicationInstance6.setCommunication(communication6);
+        communicationInstance6.addStatusInformation(createInfo("connections", "15"));
+
+
 
         system.setCommunications(Arrays.asList(communication1, communication2, communication3,communication4,communication5, communication6));
         system.setServices(Arrays.asList(service1, service2, service3, service4,service5,service6));
@@ -497,13 +510,13 @@ public class CreateDummySystemResource {
 
         for (CommunicationInstance communicationInstance : allCommunicationInstances) {
             communicationInstance.addStatusInformation(createCommunicationStatusInfo());
-            communicationInstance.addStatusInformation(createRandomInfo("usage", "nothing"));
+            communicationInstance.addStatusInformation(createInfo("usage", "nothing"));
             communicationInstance.setTimeSeries(generateSeries());
         }
 
         for (Communication communication : communications) {
             communication.addStatusInformation(createCommunicationStatusInfo());
-            communication.addStatusInformation(createRandomInfo("usage", "nothing"));
+            communication.addStatusInformation(createInfo("usage", "nothing"));
             communication.setTimeSeries(generateSeries());
         }
 
@@ -583,12 +596,13 @@ public class CreateDummySystemResource {
     }
 
     private StatusInfo createRandomInfo(){
-        return createRandomInfo("info", random.nextInt(200)+"");
+        return createInfo("info", random.nextInt(200)+"");
     }
 
 
-    private StatusInfo createRandomInfo(String key, String value){
+    private StatusInfo createInfo(String key, String value){
         final StatusInfo info = new StatusInfo();
+        info.setId(generateId());
         info.setTimestamp(new Date().getTime());
         info.setKey(key);
         info.setValue(value);
