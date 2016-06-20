@@ -7,6 +7,7 @@ export default Ember.Service.extend({
   createGraph(models) {
     this.debug('loaded models', models);
     const serviceInstances = models.serviceInstances;
+    const services = models.services;
     const communicationInstances = models.communicationInstances;
     const nodeGroups = models.nodeGroups;
     const nodes = models.nodes;
@@ -38,7 +39,7 @@ export default Ember.Service.extend({
     serviceInstances.forEach(instance => {
         const data = instance.toJSON({includeId: true});
         data.label = data.name;
-        data.parent = data.nodeId;
+        data.parent = data.nodeId;       
 
       network.nodes.push({
         data: data
@@ -49,6 +50,8 @@ export default Ember.Service.extend({
         data.label = data.name;
         data.source = data.sourceId;
         data.target = data.targetId;
+        data.technology = instance.store.peekRecord('communication', data.communicationId).get('technology');
+        this.debug('technology', data.technology);
 
       network.edges.push({
         data: data
