@@ -4,23 +4,8 @@
     Notice that this is only pseudo-css for cytoscape. See the cytoscape.js docs for more info.
 */
 
-/*https://color.adobe.com/anggo-djago-color-theme-2691053/*/
-const arrowBorderColor = '#002A4A';
-const arrowColor = arrowBorderColor;
-
-
-const nodeTextColor = '#002A4A';
-const nodeColor = '#17607D';
-
-const serviceColor = '#ED8910';
-const serviceTextColor = '#FFFEED';/* '#FFF1CE';*/
-
-const nodeGroupTextColor = nodeTextColor;
-const nodeGroupColor = 'white';
-const borderColor = '#D64700';
-
-
-export default `
+export default function(variables){
+    return `
 
 
 * {
@@ -48,34 +33,36 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 }
 
 [type="node"] {
-    background-color: ${nodeColor};
-    color: ${nodeTextColor};
+    background-color: ${variables.nodeColor};
+    color: ${variables.nodeTextColor};
     font-weight: bold;
 
 }
 
 [type="serviceInstance"] {
-    background-color: ${serviceColor};
-    color: ${serviceTextColor};
+    background-color: ${variables.serviceColor};
+    color: ${variables.serviceTextColor};
     font-weight: bold;
 }
 [type="communicationInstance"] {
     color: #F4EFDC;
-    line-color: ${arrowBorderColor};
-    target-arrow-color: ${arrowColor};
+    line-color: ${variables.arrowBorderColor};
+    target-arrow-color: ${variables.arrowColor};
 }
 
 [type="nodeGroup"] {
-    color: ${nodeGroupTextColor};
-    background-color: ${nodeGroupColor};
+    color: ${variables.nodeGroupTextColor};
+    background-color: ${variables.nodeGroupColor};
     border-style: dotted;
-    border-color: ${borderColor};
+    border-color: ${variables.borderColor};
     border-width: 2px;
     font-weight: bold;
 }
 
 edge {
     label: data(label);
+    color: ${variables.arrowLabelColor};
+    font-weight: bold;
     target-arrow-shape: triangle-backcurve;
     curve-style: bezier; /* supports arrows */
     width: 2px;
@@ -94,3 +81,4 @@ edge {
 
 
 `; /* js string end */
+}
