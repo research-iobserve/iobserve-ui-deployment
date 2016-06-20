@@ -39,7 +39,7 @@ export default Ember.Service.extend({
     serviceInstances.forEach(instance => {
         const data = instance.toJSON({includeId: true});
         data.label = data.name;
-        data.parent = data.nodeId;       
+        data.parent = data.nodeId;
 
       network.nodes.push({
         data: data
