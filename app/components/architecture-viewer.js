@@ -5,6 +5,7 @@ import Themes from './architecture-visualisation-cytoscape/themes';
 
 export default Ember.Component.extend({
     graph: null,
+    entityDetails: null,
     layoutAlgorithm: 'cose',
     theme: Themes[Object.keys(Themes)[0]], // first theme
     themes: Object.keys(Themes),
@@ -27,6 +28,9 @@ export default Ember.Component.extend({
         },
         selectTheme(theme) {
             this.set('theme', Themes[theme]);
+        },
+        graphClick(rawEntity) {
+            this.set('entityDetails', rawEntity);
         }
     }
 });

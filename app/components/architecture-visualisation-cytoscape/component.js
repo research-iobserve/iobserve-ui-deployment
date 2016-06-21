@@ -44,6 +44,23 @@ export default Ember.Component.extend({
           }
         });
 
+        this.rendering.on('click', (event) => {
+            const target = event.cyTarget;
+            const data = target && target.data && target.data();
+            if(data && data.id) {
+                this.debug('clicked on element in graph', data, event);
+                const action = this.get('select');
+                if(action) {
+                    action(data);
+                } else {
+                    this.debug('select action not set, ignoring click');
+                }
+            } else {
+                this.debug('clicked on non-selectable entity', event);
+            }
+
+        });
+
         // just for development purposes - TODO: remove
         window.cy = cytoscape;
         window.cytoscape = this.rendering;
