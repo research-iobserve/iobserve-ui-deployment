@@ -1,11 +1,16 @@
 import Ember from 'ember';
+import Themes from './architecture-visualisation-cytoscape/themes';
+
+
 
 export default Ember.Component.extend({
     graph: null,
     layoutAlgorithm: 'cose',
+    theme: Themes[Object.keys(Themes)[0]], // first theme
+    themes: Object.keys(Themes),
     layoutAlgorithms: [
         'cose',
-        // 'cose-bilkent', // broken
+        'cose-bilkent', // broken
         'cola',
         'grid',
         'concentric',
@@ -19,6 +24,9 @@ export default Ember.Component.extend({
         selectLayoutAlgorithm(value) {
             this.debug('value', value);
             this.set('layoutAlgorithm', value);
+        },
+        selectTheme(theme) {
+            this.set('theme', Themes[theme]);
         }
     }
 });

@@ -9,6 +9,7 @@ import coseBilkent from 'npm:cytoscape-cose-bilkent';
 coseBilkent(cytoscape); // register
 
 export default Ember.Component.extend({
+    theme: null,
     layoutAlgorithm: 'cose',
     classNames: ['cytoscapeRenderingSpace'],
     init: function() {
@@ -19,33 +20,18 @@ export default Ember.Component.extend({
     willDestroyElement() {
         clearInterval(this.interval);
     },
-    layoutChanged: Ember.observer('layout', function(newLayout) {
+    layoutChanged: function(newLayout) {
         this.debug('layout changed!', newLayout);
-    }),
+    }.observes('layout'),
     renderGraph: function() {
-        this.debug('graph', this.get('graph'));
+        this.debug('graph',this.get('theme'), this.get('graph'));
         this.cytoscape = cytoscape({
           container: this.element,
 
           boxSelectionEnabled: false,
           autounselectify: true,
 
-          style: cytoscapeStyle({
-                  nodeGroupTextColor: '#3399CC',
-                  nodeGroupColor: 'white',
-                  borderColor: '#39588A',
-
-                  nodeColor: '#B4DCED',
-                  nodeTextColor: '#3399CC',
-
-                  serviceColor: '#E8F8FF',
-                  serviceTextColor: '#3399CC',
-
-                  arrowBorderColor: '#3399CC',
-                  arrowColor: '#3399CC',
-                  arrowLabelColor: 'black'
-              }
-          ),
+          style: cytoscapeStyle(this.get('theme')),
 
           elements: _.cloneDeep(this.get('graph')), // TODO!
 
@@ -60,5 +46,5 @@ export default Ember.Component.extend({
 
         window.cy = cytoscape;
         window.cytoscape = this.cytoscape;
-    }.on('didInsertElement').observes('layoutAlgorithm', 'graph')
+    }.on('didInsertElement').observes('layoutAlgorithm', 'graph', 'theme')
 });
