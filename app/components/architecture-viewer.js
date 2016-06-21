@@ -1,8 +1,6 @@
 import Ember from 'ember';
 import Themes from './architecture-visualisation-cytoscape/themes';
 
-
-
 export default Ember.Component.extend({
     graph: null,
     entityDetails: null,

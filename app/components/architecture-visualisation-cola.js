@@ -36,7 +36,6 @@ export default Ember.Component.extend({
         clearInterval(this.interval);
     },
     didInsertElement: function() {
-        const log = this.debug.bind(this);
         const width = window.innerWidth;
         const height = window.innerHeight;
         this.debug('element', this.element);
@@ -80,7 +79,7 @@ export default Ember.Component.extend({
         // nodes
         const nodeData = root.selectAll('.node')
             .data(nodes);
-        const groupData = root.selectAll('.group')
+        /*const groupData = */ root.selectAll('.group')
             .data(groups);
         const nodeEnter = nodeData.enter()
             .append('g');
@@ -111,7 +110,7 @@ export default Ember.Component.extend({
         // FIXME does not handle updates (neither enter() nor exit())
         const linkData = root.selectAll('.link')
             .data(links, p => p.id);
-        const link = linkData.enter()
+        /*const link = */linkData.enter()
             .append('path')
             .attr('class', 'link')
             .attr('d', 'M0 0');

@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import BaseAdapter from './_baseAdapter';
 import UrlTemplates from "ember-data-url-templates";
 

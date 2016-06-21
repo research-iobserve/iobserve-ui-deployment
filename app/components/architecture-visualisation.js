@@ -6,8 +6,6 @@ import _ from 'npm:lodash';
 export default Ember.Component.extend({
     init: function() {
         this._super();
-        const self = this;
-        const log = self.debug.bind(self);
         // this.interval = setInterval(function() {
         //     const graph = self.get('graph');
 
@@ -104,7 +102,7 @@ export default Ember.Component.extend({
             // FIXME does not handle updates (neither enter() nor exit())
             const linkData = root.selectAll('.link')
                 .data(links, p => p.id);
-            const link = linkData.enter()
+            /*const link = */linkData.enter()
                 .append('path')
                 .attr('class', 'link')
                 .attr('d', 'M0 0');
