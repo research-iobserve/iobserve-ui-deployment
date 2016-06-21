@@ -25,7 +25,7 @@ export default Ember.Component.extend({
     }.observes('layout'),
     renderGraph: function() {
         this.debug('graph',this.get('theme'), this.get('graph'));
-        this.cytoscape = cytoscape({
+        this.rendering = cytoscape({
           container: this.element,
 
           boxSelectionEnabled: false,
@@ -33,7 +33,7 @@ export default Ember.Component.extend({
 
           style: cytoscapeStyle(this.get('theme')),
 
-          elements: _.cloneDeep(this.get('graph')), // TODO!
+          elements: _.cloneDeep(this.get('graph')),
 
           layout: {
             name: this.get('layoutAlgorithm'),
@@ -44,7 +44,8 @@ export default Ember.Component.extend({
           }
         });
 
+        // just for development purposes - TODO: remove
         window.cy = cytoscape;
-        window.cytoscape = this.cytoscape;
+        window.cytoscape = this.rendering;
     }.on('didInsertElement').observes('layoutAlgorithm', 'graph', 'theme')
 });

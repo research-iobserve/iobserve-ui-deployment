@@ -7,7 +7,7 @@ export default Ember.Service.extend({
   createGraph(models) {
     this.debug('loaded models', models);
     const serviceInstances = models.serviceInstances;
-    const services = models.services;
+    // const services = models.services; // not used in current view
     const communicationInstances = models.communicationInstances;
     const nodeGroups = models.nodeGroups;
     const nodes = models.nodes;
