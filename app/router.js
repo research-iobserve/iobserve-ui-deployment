@@ -8,7 +8,9 @@ const Router = Ember.Router.extend({
 Router.map(function() {
     this.route('home', {path: '/'});
     this.route('architectures', function() {
-        this.route('single', {path: '/:systemId'});
+        this.route('single', {path: '/:systemId'}, function() {
+            this.route('details', {path: '/:entityType/:entityId'}); // use model properties for automatic matching
+        });
     });
 });
 

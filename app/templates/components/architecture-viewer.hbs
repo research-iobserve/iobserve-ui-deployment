@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-10 visualisationContainer">
-        {{architecture-visualisation-cytoscape graph=graph layoutAlgorithm=layoutAlgorithm theme=theme select=(action "graphClick")}}
+        {{architecture-visualisation-cytoscape graph=graph layoutAlgorithm=layoutAlgorithm theme=theme select=(route-action 'loadDetails')}}
     </div>
-    <div class="col-md-2 visualistaionSidebar">
+    <div class="col-md-2 visualisationSidebar">
         <div class="form-group">
           <label for="layoutAlgorithm">Layout:</label>
           <select class="form-control" id="layoutAlgorithm" onchange={{action "selectLayoutAlgorithm" value="target.value"}}>
@@ -20,10 +20,8 @@
           </select>
         </div>
 
-        {{#if entityDetails}}
-            <h3>Details</h3>
-            {{entityDetails.type}}
-        {{/if}}
+        {{!-- this component can be used as a block, show content --}}
+        {{yield}}
     </div>
 </div>
 

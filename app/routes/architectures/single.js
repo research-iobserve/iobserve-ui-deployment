@@ -28,5 +28,22 @@ export default Ember.Route.extend({
       this.set('loading', false);
       return graph;
     });
+  },
+  actions: {
+    loadDetails(rawEntity) {
+        this.debug('loadDetails action', rawEntity);
+        const entityType = rawEntity.type.toLowerCase();
+        const entityId = rawEntity.id;
+
+        /* I would love to not generate the url first, but there seem to be unknown (to me) assumptions about
+        * passing object parameters to transitionTo which break with the current path variables.
+        */
+        const url = this.router.generate('architectures.single.details', {
+            systemId: this.get('session.systemId'),
+            entityType,
+            entityId
+        });
+        this.transitionTo(url);
+    }
   }
 });

@@ -9,8 +9,8 @@ import coseBilkent from 'npm:cytoscape-cose-bilkent';
 coseBilkent(cytoscape); // register
 
 export default Ember.Component.extend({
-    theme: null,
-    layoutAlgorithm: 'cose',
+    theme: null, // set by architecture-viewer
+    layoutAlgorithm: null, // set by architecture-viewer
     classNames: ['cytoscapeRenderingSpace'],
     init: function() {
         cycola( cytoscape, window.cola );
@@ -37,10 +37,10 @@ export default Ember.Component.extend({
 
           layout: {
             name: this.get('layoutAlgorithm'),
-            maxSimulationTime: 1000,
-            padding: 6,
-            ungrabifyWhileSimulating: true,
-            infinite: false
+            // maxSimulationTime: 1000,
+            // padding: 6,
+            // ungrabifyWhileSimulating: true,
+            // infinite: false
           }
         });
 

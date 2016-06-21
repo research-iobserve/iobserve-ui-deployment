@@ -7,7 +7,7 @@ import UrlTemplates from "ember-data-url-templates";
  * @return {Adapter} adapter that is used for all metamodel models
  */
 export default BaseAdapter.extend(UrlTemplates, {
-    urlTemplate: '{+host}/{+namespace}/systems{/systemId}/{pathForType}/{/id}',
+    urlTemplate: '{+host}/{+namespace}/{pathForType}{/id}',
     findAllUrlTemplate: '{+host}/{+namespace}/systems{/systemId}/{pathForType}/{?query*}',
 
     urlSegments: {
