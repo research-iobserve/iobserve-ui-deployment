@@ -32,6 +32,10 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     text-halign: center;
 }
 
+[type="nodeGroup"] {
+    events: no; /* disable click, drag etc as this is just a frame */
+}
+
 [type="node"] {
     background-color: ${variables.nodeColor};
     color: ${variables.nodeTextColor};
