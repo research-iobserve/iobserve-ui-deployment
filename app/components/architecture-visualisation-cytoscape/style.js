@@ -50,7 +50,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     color: ${theme.serviceTextColor};
     border-color: ${theme.serviceBorderColor};
     border-style: solid;
-    border-opacity: 1;
+    border-width: 1px;
     font-weight: bold;
     shadow-blur: 0;
     shadow-color: #000;
@@ -61,7 +61,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 
 [type="communicationInstance"] {
     color: ${theme.arrowColor};
-    line-color: ${theme.arrowBorderColor};
+    line-color: ${theme.arrowLineColor};
     target-arrow-color: ${theme.arrowColor};
 }
 

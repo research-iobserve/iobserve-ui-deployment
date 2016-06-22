@@ -1,5 +1,5 @@
 export default {
-    'simple' :{
+    'iObserve' :{
         nodeGroupTextColor : '#333399',
         nodeGroupColor : 'white',
         nodeGroupBorderColor : '#333399',
@@ -8,9 +8,9 @@ export default {
         nodeBorderColor : '#333399',
         serviceTextColor : '#333399',
         serviceColor : 'white',
-        serviceBorderColor : '#333399',
-        arrowBorderColor : '#333399',
-        arrowColor : '#333399',
+        serviceBorderColor : '#AAA',
+        arrowLineColor : '#AAA',
+        arrowColor : '#AAA',
         arrowLabelColor: '#333399'
     },
     'arctic': {
@@ -23,7 +23,7 @@ export default {
         serviceTextColor: '#3399CC',
         serviceColor: '#E8F8FF',
         serviceBorderColor : '#E8F8FF',
-        arrowBorderColor: '#3399CC',
+        arrowLineColor: '#3399CC',
         arrowColor: '#3399CC',
         arrowLabelColor: 'black'
     },
@@ -37,7 +37,7 @@ export default {
         serviceTextColor : '#FFFEED',
         serviceColor : '#ED8910',
         serviceBorderColor : '#ED8910',
-        arrowBorderColor : '#002A4A',
+        arrowLineColor : '#002A4A',
         arrowColor : '#002A4A',
         arrowLabelColor: 'black'
     },
@@ -51,7 +51,7 @@ export default {
         serviceTextColor : '#F0E3CA',
         serviceColor : '#93A608',
         serviceBorderColor : '#93A608',
-        arrowBorderColor : '#36231B',
+        arrowLineColor : '#36231B',
         arrowColor : '#36231B',
         arrowLabelColor: '#93A608'
     },
@@ -65,7 +65,7 @@ export default {
         serviceTextColor : '#D9E8F5',
         serviceColor : '#F29F01',
         serviceBorderColor : '#F29F01',
-        arrowBorderColor : '#1D3757',
+        arrowLineColor : '#1D3757',
         arrowColor : '#1D3757',
         arrowLabelColor: '#1D3757'
     },
@@ -79,7 +79,7 @@ export default {
         serviceTextColor : '#403E21',
         serviceColor : '#AABF8A',
         serviceBorderColor : '#AABF8A',
-        arrowBorderColor : '#89888C',
+        arrowLineColor : '#89888C',
         arrowColor : '#89888C',
         arrowLabelColor: '#403E21'
     },
@@ -93,7 +93,7 @@ export default {
         serviceTextColor : 'white',
         serviceColor : '#613eb4',
         serviceBorderColor : '#613eb4',
-        arrowBorderColor : '#f2901c',
+        arrowLineColor : '#f2901c',
         arrowColor : '#f2901c',
         arrowLabelColor: 'black'
     }
