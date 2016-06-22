@@ -4,7 +4,7 @@
     Notice that this is only pseudo-css for cytoscape. See the cytoscape.js docs for more info.
 */
 
-export default function(variables){
+export default function(theme){
     return `
 
 
@@ -38,17 +38,17 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 }
 
 [type="node"] {
-    background-color: ${variables.nodeColor};
-    color: ${variables.nodeTextColor};
-    border-color: ${variables.nodeBorderColor};
+    background-color: ${theme.nodeColor};
+    color: ${theme.nodeTextColor};
+    border-color: ${theme.nodeBorderColor};
     font-weight: bold;
 
 }
 
 [type="serviceInstance"] {
-    background-color: ${variables.serviceColor};
-    color: ${variables.serviceTextColor};
-    border-color: ${variables.serviceBorderColor};
+    background-color: ${theme.serviceColor};
+    color: ${theme.serviceTextColor};
+    border-color: ${theme.serviceBorderColor};
     border-style: solid;
     border-opacity: 1;
     font-weight: bold;
@@ -60,23 +60,23 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 }
 
 [type="communicationInstance"] {
-    color: ${variables.arrowColor};
-    line-color: ${variables.arrowBorderColor};
-    target-arrow-color: ${variables.arrowColor};
+    color: ${theme.arrowColor};
+    line-color: ${theme.arrowBorderColor};
+    target-arrow-color: ${theme.arrowColor};
 }
 
 [type="nodeGroup"] {
-    color: ${variables.nodeGroupTextColor};
-    background-color: ${variables.nodeGroupColor};
+    color: ${theme.nodeGroupTextColor};
+    background-color: ${theme.nodeGroupColor};
     border-style: dotted;
-    border-color: ${variables.nodeGroupBorderColor};
+    border-color: ${theme.nodeGroupBorderColor};
     border-width: 2px;
     font-weight: bold;
 }
 
 edge {
     label: data(label);
-    color: ${variables.arrowLabelColor};
+    color: ${theme.arrowLabelColor};
     font-weight: bold;
     target-arrow-shape: triangle-backcurve;
     curve-style: bezier; /* supports arrows */
