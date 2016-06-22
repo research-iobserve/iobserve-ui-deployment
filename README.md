@@ -1,7 +1,4 @@
-# Frontend-prototype
-
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+# iObserve Frontend
 
 ## Prerequisites
 
@@ -10,13 +7,11 @@ You will need the following things properly installed on your computer.
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Bower](http://bower.io/)
-* [Ember CLI](http://www.ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* [Ember CLI](http://www.ember-cli.com/) (via `npm install -g ember-cli`)
+* [PhantomJS](http://phantomjs.org/) (only for testing)
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* change into the new directory
 * `npm install`
 * `bower install`
 
@@ -39,9 +34,6 @@ Make use of the many generators for code, try `ember help generate` for more det
 * `ember build` (development)
 * `ember build --environment production` (production)
 
-### Deploying
-
-Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
