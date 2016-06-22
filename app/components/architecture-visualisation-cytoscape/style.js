@@ -61,8 +61,12 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 
 [type="communicationInstance"] {
     color: ${theme.arrowColor};
-    line-color: ${theme.arrowLineColor};
+    line-color: ${theme.arrowColor};
     target-arrow-color: ${theme.arrowColor};
+    text-background-color: ${theme.arrowLineColor};
+    text-background-opacity: 1;
+    text-background-shape: roundrectangle;
+    font-size: 12pt;
 }
 
 [type="nodeGroup"] {
@@ -80,7 +84,8 @@ edge {
     font-weight: bold;
     target-arrow-shape: triangle-backcurve;
     curve-style: bezier; /* supports arrows */
-    width: 2px;
+    width: data(workload);
+
 }
 
 :selected {

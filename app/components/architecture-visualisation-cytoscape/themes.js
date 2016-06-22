@@ -39,7 +39,7 @@ export default {
         serviceBorderColor : '#ED8910',
         arrowLineColor : '#002A4A',
         arrowColor : '#002A4A',
-        arrowLabelColor: 'black'
+        arrowLabelColor: '#FFFEED'
     },
     'forrest' :{
         nodeGroupTextColor : '#36231B',
@@ -53,9 +53,10 @@ export default {
         serviceBorderColor : '#93A608',
         arrowLineColor : '#36231B',
         arrowColor : '#36231B',
-        arrowLabelColor: '#93A608'
+        arrowLabelColor: '#F0E3CA'
     },
     'maritim' :{
+        // https://color.adobe.com/RportalNew-color-theme-199478/
         nodeGroupTextColor : '#1D3757',
         nodeGroupColor : 'white',
         nodeGroupBorderColor : '#1D3757',
@@ -67,9 +68,10 @@ export default {
         serviceBorderColor : '#F29F01',
         arrowLineColor : '#1D3757',
         arrowColor : '#1D3757',
-        arrowLabelColor: '#1D3757'
+        arrowLabelColor: '#D9E8F5'
     },
     'green' :{
+        // https://color.adobe.com/green-color-theme-1205538/
         nodeGroupTextColor : '#403E21',
         nodeGroupColor : 'white',
         nodeGroupBorderColor : '#403E21',
