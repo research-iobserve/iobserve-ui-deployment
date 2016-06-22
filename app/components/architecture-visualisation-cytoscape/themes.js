@@ -1,12 +1,28 @@
 export default {
+    'simple' :{
+        nodeGroupTextColor : '#333399',
+        nodeGroupColor : 'white',
+        nodeGroupBorderColor : '#333399',
+        nodeTextColor : '#333399',
+        nodeColor : 'white',
+        nodeBorderColor : '#333399',
+        serviceTextColor : 'white',
+        serviceColor : '#333399',
+        serviceBorderColor : '#333399',
+        arrowBorderColor : '#333399',
+        arrowColor : '#333399',
+        arrowLabelColor: '#333399'
+    },
     'arctic': {
         nodeGroupTextColor: '#3399CC',
         nodeGroupColor: 'white',
-        borderColor: '#39588A',
-        nodeColor: '#B4DCED',
+        nodeGroupBorderColor: '#39588A',
         nodeTextColor: '#3399CC',
-        serviceColor: '#E8F8FF',
+        nodeColor: '#B4DCED',
+        nodeBorderColor : '#B4DCED',
         serviceTextColor: '#3399CC',
+        serviceColor: '#E8F8FF',
+        serviceBorderColor : '#E8F8FF',
         arrowBorderColor: '#3399CC',
         arrowColor: '#3399CC',
         arrowLabelColor: 'black'
@@ -14,11 +30,13 @@ export default {
     'orange' :{
         nodeGroupTextColor : '#002A4A',
         nodeGroupColor : 'white',
-        borderColor : '#D64700',
+        nodeGroupBorderColor : '#D64700',
         nodeTextColor : '#002A4A',
         nodeColor : '#17607D',
-        serviceColor : '#ED8910',
+        nodeBorderColor : '#17607D',
         serviceTextColor : '#FFFEED',
+        serviceColor : '#ED8910',
+        serviceBorderColor : '#ED8910',
         arrowBorderColor : '#002A4A',
         arrowColor : '#002A4A',
         arrowLabelColor: 'black'
@@ -26,11 +44,13 @@ export default {
     'forrest' :{
         nodeGroupTextColor : '#36231B',
         nodeGroupColor : 'white',
-        borderColor : '#60311F',
+        nodeGroupBorderColor : '#60311F',
         nodeTextColor : '#36231B',
         nodeColor : '#8C5D42',
-        serviceColor : '#93A608',
+        nodeBorderColor : '#8C5D42',
         serviceTextColor : '#F0E3CA',
+        serviceColor : '#93A608',
+        serviceBorderColor : '#93A608',
         arrowBorderColor : '#36231B',
         arrowColor : '#36231B',
         arrowLabelColor: '#93A608'
@@ -38,11 +58,13 @@ export default {
     'maritim' :{
         nodeGroupTextColor : '#1D3757',
         nodeGroupColor : 'white',
-        borderColor : '#1D3757',
+        nodeGroupBorderColor : '#1D3757',
         nodeTextColor : '#1D3757',
         nodeColor : '#91BED4',
-        serviceColor : '#F29F01',
+        nodeBorderColor : '#91BED4',
         serviceTextColor : '#D9E8F5',
+        serviceColor : '#F29F01',
+        serviceBorderColor : '#F29F01',
         arrowBorderColor : '#1D3757',
         arrowColor : '#1D3757',
         arrowLabelColor: '#1D3757'
@@ -50,15 +72,15 @@ export default {
     'green' :{
         nodeGroupTextColor : '#403E21',
         nodeGroupColor : 'white',
-        borderColor : '#403E21',
+        nodeGroupBorderColor : '#403E21',
         nodeTextColor : '#403E21',
         nodeColor : '#70732F',
-        serviceColor : '#AABF8A',
+        nodeBorderColor : '#70732F',
         serviceTextColor : '#403E21',
+        serviceColor : '#AABF8A',
+        serviceBorderColor : '#AABF8A',
         arrowBorderColor : '#89888C',
         arrowColor : '#89888C',
         arrowLabelColor: '#403E21'
     }
-
-
 };

@@ -28,6 +28,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     padding-left: 10px;
     padding-bottom: 10px;
     padding-right: 10px;
+    border-width: 2px;
     text-valign: top;
     text-halign: center;
 }
@@ -39,6 +40,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 [type="node"] {
     background-color: ${variables.nodeColor};
     color: ${variables.nodeTextColor};
+    border-color: ${variables.nodeBorderColor};
     font-weight: bold;
 
 }
@@ -46,6 +48,9 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 [type="serviceInstance"] {
     background-color: ${variables.serviceColor};
     color: ${variables.serviceTextColor};
+    border-color: ${variables.serviceBordertColor};
+    border-style: solid;
+    border-opacity: 1;
     font-weight: bold;
     shadow-blur: 0;
     shadow-color: #000;
@@ -53,8 +58,9 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     shadow-offset-y: 2px;
     shadow-opacity: 0.5;
 }
+
 [type="communicationInstance"] {
-    color: #F4EFDC;
+    color: ${variables.arrowColor};
     line-color: ${variables.arrowBorderColor};
     target-arrow-color: ${variables.arrowColor};
 }
@@ -63,7 +69,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     color: ${variables.nodeGroupTextColor};
     background-color: ${variables.nodeGroupColor};
     border-style: dotted;
-    border-color: ${variables.borderColor};
+    border-color: ${variables.nodeGroupBorderColor};
     border-width: 2px;
     font-weight: bold;
 }
