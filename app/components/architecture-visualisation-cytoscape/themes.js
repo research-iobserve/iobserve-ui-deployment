@@ -6,8 +6,8 @@ export default {
         nodeTextColor : '#333399',
         nodeColor : 'white',
         nodeBorderColor : '#333399',
-        serviceTextColor : 'white',
-        serviceColor : '#333399',
+        serviceTextColor : '#333399',
+        serviceColor : 'white',
         serviceBorderColor : '#333399',
         arrowBorderColor : '#333399',
         arrowColor : '#333399',
@@ -82,5 +82,19 @@ export default {
         arrowBorderColor : '#89888C',
         arrowColor : '#89888C',
         arrowLabelColor: '#403E21'
+    },
+    'explorviz' :{
+        nodeGroupTextColor : 'black',
+        nodeGroupColor : '#c7c7c7',
+        nodeGroupBorderColor : '#c7c7c7',
+        nodeTextColor : 'black',
+        nodeColor : '#00bb41',
+        nodeBorderColor : '#00bb41',
+        serviceTextColor : 'white',
+        serviceColor : '#613eb4',
+        serviceBorderColor : '#613eb4',
+        arrowBorderColor : '#f2901c',
+        arrowColor : '#f2901c',
+        arrowLabelColor: 'black'
     }
 };

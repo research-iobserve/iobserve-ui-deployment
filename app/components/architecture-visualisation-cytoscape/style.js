@@ -48,7 +48,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 [type="serviceInstance"] {
     background-color: ${variables.serviceColor};
     color: ${variables.serviceTextColor};
-    border-color: ${variables.serviceBordertColor};
+    border-color: ${variables.serviceBorderColor};
     border-style: solid;
     border-opacity: 1;
     font-weight: bold;
