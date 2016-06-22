@@ -9,7 +9,7 @@ export default function(theme){
 
 
 * {
-    font-size: 10pt;
+    font-size: 15px;
 }
 
 node { /* all nodes */
@@ -63,10 +63,13 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     color: ${theme.arrowColor};
     line-color: ${theme.arrowColor};
     target-arrow-color: ${theme.arrowColor};
-    text-background-color: ${theme.arrowLineColor};
-    text-background-opacity: 1;
-    text-background-shape: roundrectangle;
+    /*text-background-color: ${theme.arrowLineColor};
+    text-background-opacity: 1;*/
+    /*text-background-shape: roundrectangle;*/
+    text-outline-color: ${theme.arrowColor};
+    text-outline-width: 1px;
     font-size: 12pt;
+    width: data(workload);
 }
 
 [type="nodeGroup"] {
@@ -84,8 +87,6 @@ edge {
     font-weight: bold;
     target-arrow-shape: triangle-backcurve;
     curve-style: bezier; /* supports arrows */
-    width: data(workload);
-
 }
 
 :selected {
