@@ -29,6 +29,8 @@ public class CommunicationInstance extends Measurable{
     @XmlTransient
     private Communication communication;
 
+    private long workload;
+
     public CommunicationInstance() {
     }
 
@@ -72,5 +74,13 @@ public class CommunicationInstance extends Measurable{
 
     public void setCommunication(Communication communication) {
         this.communication = communication;
+    }
+
+    public long getWorkload() {
+        return workload;
+    }
+
+    public void setWorkload(long workload) {
+        this.workload = workload;
     }
 }

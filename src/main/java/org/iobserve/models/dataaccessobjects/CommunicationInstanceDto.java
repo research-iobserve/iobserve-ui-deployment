@@ -22,6 +22,8 @@ public class CommunicationInstanceDto extends MeasurableDataTrasferObject {
 
     String communicationId;
 
+    long workload;
+
     public String getSourceId() {
         return sourceId;
     }
@@ -44,5 +46,13 @@ public class CommunicationInstanceDto extends MeasurableDataTrasferObject {
 
     public void setCommunicationId(String communicationId) {
         this.communicationId = communicationId;
+    }
+
+    public long getWorkload() {
+        return workload;
+    }
+
+    public void setWorkload(long workload) {
+        this.workload = workload;
     }
 }
