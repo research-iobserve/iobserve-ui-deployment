@@ -4,12 +4,12 @@ import Themes from './architecture-visualisation-cytoscape/themes';
 export default Ember.Component.extend({
     graph: null,
     entityDetails: null,
-    layoutAlgorithm: 'cose',
+    layoutAlgorithm: 'cose-bilkent',
     theme: Themes[Object.keys(Themes)[0]], // first theme
     themes: Object.keys(Themes),
     layoutAlgorithms: [
         'cose',
-        //'cose-bilkent', // broken - see https://github.com/cytoscape/cytoscape.js-cose-bilkent/issues/18
+        'cose-bilkent',
         'cola',
         'grid',
         'concentric',
