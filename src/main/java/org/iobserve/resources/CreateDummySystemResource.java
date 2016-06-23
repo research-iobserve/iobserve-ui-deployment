@@ -86,7 +86,7 @@ public class CreateDummySystemResource {
 
         // node group - has both nodes
         NodeGroup nodeGroup1 = prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
-        nodeGroup1.setName("CoCoMe");
+        nodeGroup1.setName("CoCoME");
         nodeGroup1.setNodes(Arrays.asList(node1, node2, node3, node4));
         node1.setNodeGroup(nodeGroup1);
         node2.setNodeGroup(nodeGroup1);
