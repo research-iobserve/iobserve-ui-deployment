@@ -11,6 +11,7 @@ module.exports = function(environment) {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
       }
+      //EXTEND_PROTOTYPES: true // (true is default) See avoidEnumerableNativeExtensions in app.js
     },
 
     APP: {
@@ -18,6 +19,7 @@ module.exports = function(environment) {
       // when it is created
     }
   };
+
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;

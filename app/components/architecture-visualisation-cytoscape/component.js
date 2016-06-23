@@ -41,6 +41,7 @@ export default Ember.Component.extend({
             // padding: 6,
             // ungrabifyWhileSimulating: true,
             // infinite: false
+            // TODO: avoidOverlap: true has shaky behavior (enabled by default). Find workaround
           }
         });
 

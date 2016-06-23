@@ -4,7 +4,10 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    // cose-bilkent breaks upon minification, see https://github.com/cytoscape/cytoscape.js-cose-bilkent/issues/4
+    minifyJS: {
+      enabled: false
+    },
     'ember-cli-bootstrap-sassy': {
         'js': []
     }
