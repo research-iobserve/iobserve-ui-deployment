@@ -10,10 +10,7 @@ export default Ember.Component.extend({
     layoutAlgorithms: [
         'cose-bilkent',
         'cose',
-<<<<<<< HEAD
         // 'cose-bilkent', // broken - see https://github.com/cytoscape/cytoscape.js-cose-bilkent/issues/18
-=======
->>>>>>> da62a369c3eb11a12b3b712bdb1628f3f87bf94a
         'cola',
         'grid',
         'concentric',
