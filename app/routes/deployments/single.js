@@ -38,7 +38,7 @@ export default Ember.Route.extend({
         /* I would love to not generate the url first, but there seem to be unknown (to me) assumptions about
         * passing object parameters to transitionTo which break with the current path variables.
         */
-        const url = this.router.generate('architectures.single.details', {
+        const url = this.router.generate('deployments.single.details', {
             systemId: this.get('session.systemId'),
             entityType,
             entityId

@@ -1,0 +1,9 @@
+{{model.length}}
+
+<ul>
+{{#each model as |system| }}
+    <li>{{#link-to 'deployments.single' system.id}}{{system.name}}{{/link-to}}</li>
+{{/each}}
+</ul>
+
+{{outlet}}
