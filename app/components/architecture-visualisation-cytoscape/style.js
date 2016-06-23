@@ -42,6 +42,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     color: ${theme.nodeTextColor};
     border-color: ${theme.nodeBorderColor};
     font-weight: bold;
+    z-index: 100;
 
 }
 
@@ -64,6 +65,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     line-color: ${theme.arrowColor};
     target-arrow-color: ${theme.arrowColor};
     text-background-color: ${theme.arrowLineColor};
+    text-outline-color:${theme.arrowLineColor};
     text-background-opacity: 1;
     text-background-shape: roundrectangle;
     font-size: 12pt;
@@ -76,6 +78,7 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     border-color: ${theme.nodeGroupBorderColor};
     border-width: 2px;
     font-weight: bold;
+    z-index: 100;
 }
 
 edge {
@@ -83,7 +86,11 @@ edge {
     color: ${theme.arrowLabelColor};
     font-weight: bold;
     target-arrow-shape: triangle-backcurve;
-    curve-style: bezier; /* supports arrows */
+    curve-style: bezier;/* supports arrow heads*/
+    edge-distances: node-position;
+    z-index: 0;
+
+
     width: data(workload);
 
 }

@@ -1,6 +1,21 @@
-id: {{entity.id}}
-name: {{entity.name}}
-type: {{entity.type}}
-systemId: {{entity.systemId}}
 
-{{log 'entity-details' entity}}
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>id</td>
+        <td>{{entity.id}}</td>
+    </tr>
+    {{#each filteredProperties as |property|}}
+    <tr>
+      <td>{{property.key}}</td>
+      <td>{{property.value}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
