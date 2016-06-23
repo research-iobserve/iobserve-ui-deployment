@@ -14,7 +14,7 @@ Model.reopenClass({
           "lastUpdate":"2016-06-20T12:46:29.818+02:00",
           "revisionNumber":0,
           "systemId":"system123",
-          "name":"CoCoMe"
+          "name":"CoCoME"
        }
     ]
 });
