@@ -1,9 +1,10 @@
-{{model.length}}
-
-<ul>
-{{#each model as |system| }}
-    <li>{{#link-to 'deployments.single' system.id}}{{system.name}}{{/link-to}}</li>
-{{/each}}
-</ul>
+<div class="container">
+    <h3>Available Deployments</h3>
+    <ul>
+    {{#each model as |system| }}
+        <li>{{#link-to 'deployments.single' system.id}}{{system.name}}{{/link-to}}</li>
+    {{/each}}
+    </ul>
+</div>
 
 {{outlet}}

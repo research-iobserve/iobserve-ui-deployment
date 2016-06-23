@@ -12,6 +12,8 @@ Router.map(function() {
             this.route('details', {path: '/:entityType/:entityId'}); // use model properties for automatic matching
         });
     });
+
+    this.route('not-found', { path: '*path' });
 });
 
 export default Router;
