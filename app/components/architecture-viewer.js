@@ -8,8 +8,8 @@ export default Ember.Component.extend({
     theme: Themes[Object.keys(Themes)[0]], // first theme
     themes: Object.keys(Themes),
     layoutAlgorithms: [
-        'cose',
         'cose-bilkent',
+        'cose',
         'cola',
         'grid',
         'concentric',
