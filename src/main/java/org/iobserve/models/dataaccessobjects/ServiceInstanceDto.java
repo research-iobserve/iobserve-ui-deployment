@@ -1,12 +1,16 @@
 package org.iobserve.models.dataaccessobjects;
 
 
+import org.iobserve.models.ServiceInstance;
+import org.iobserve.models.annotations.ModelClassOfDto;
+
 import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.ServiceInstance
  */
+@ModelClassOfDto(ServiceInstance.class)
 @XmlType(name = "serviceInstance")
 public class ServiceInstanceDto extends MeasurableDataTrasferObject {
     private String name;

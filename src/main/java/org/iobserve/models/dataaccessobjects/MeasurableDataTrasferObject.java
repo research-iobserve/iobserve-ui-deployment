@@ -3,13 +3,12 @@ package org.iobserve.models.dataaccessobjects;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
-public class MeasurableDataTrasferObject extends SystemIdDataTransportObject {
+public class MeasurableDataTrasferObject extends RevisionedBeanDataTransportObject {
     private List<StatusInfo> statusInformations;
 
     private List<TimeSeries> timeSeries;

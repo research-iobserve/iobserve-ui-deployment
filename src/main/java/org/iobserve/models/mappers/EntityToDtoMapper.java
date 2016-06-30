@@ -3,6 +3,8 @@ package org.iobserve.models.mappers;
 import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
+import org.iobserve.models.util.TimeSeries;
+import org.iobserve.models.util.TimeSeriesDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -21,7 +23,7 @@ import org.mapstruct.factory.Mappers;
 public interface EntityToDtoMapper { // TODO: ignore measureable
 
     EntityToDtoMapper INSTANCE = Mappers.getMapper(EntityToDtoMapper.class);
-    
+
     SystemDto transform(System system);
 
     @Mapping(source = "source.id", target = "sourceId") // TODO: http://stackoverflow.com/a/32556026/1249001
@@ -55,6 +57,11 @@ public interface EntityToDtoMapper { // TODO: ignore measureable
     @Mapping(target = "timeSeries", ignore=true)
     @Mapping(target = "statusInformations", ignore=true)
     ServiceInstanceDto transform(ServiceInstance node);
+
+    @Mapping(source = "parent", target = "parentId")
+    TimeSeriesDto transform(TimeSeries series);
+
+    ChangelogDto transform(Changelog changelog);
 
 
 }

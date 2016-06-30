@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
-public abstract class SystemIdDataTransportObject extends DataTransportObject {
+public abstract class RevisionedBeanDataTransportObject extends DataTransportObject {
     String systemId;
 
     private Long revisionNumber;
