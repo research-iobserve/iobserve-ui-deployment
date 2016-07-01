@@ -1,23 +1,30 @@
 package org.iobserve.models;
 
+
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
-import org.iobserve.models.util.BaseEntity;
+import org.iobserve.models.util.ChangelogOperation;
 import org.iobserve.models.util.RevisionedBean;
+
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
+@XmlType(name = "changelog")
 public class Changelog extends RevisionedBean {
-    public enum OPERATION {CREATE,DELETE,UPDATE,APPEND}
 
-    private OPERATION operation;
+
+    private ChangelogOperation operation;
     private DataTransportObject data;
 
-    public OPERATION getOperation() {
+    public Changelog() {
+    }
+
+    public ChangelogOperation  getOperation() {
         return operation;
     }
 
-    public void setOperation(OPERATION operation) {
+    public void setOperation(ChangelogOperation  operation) {
         this.operation = operation;
     }
 
