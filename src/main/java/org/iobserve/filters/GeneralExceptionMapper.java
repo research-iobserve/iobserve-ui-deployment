@@ -4,6 +4,7 @@ package org.iobserve.filters;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import java.util.HashMap;
@@ -15,9 +16,18 @@ import java.util.Map;
 public class GeneralExceptionMapper implements ExceptionMapper<Throwable> {
     @Override
     public Response toResponse(Throwable exception) {
-        String message = "Unknown Server Error";
-        exception.printStackTrace();
 
+        Response.ResponseBuilder response = Response.status(500)
+                .header("Content-Type", "application/json");
+
+        String message = "Unknown Server Error";
+
+        if(exception instanceof NotFoundException) {
+            response = response.status(404);
+            message = "404 - not found";
+        } else {
+            exception.printStackTrace();
+        }
 
         Map<String, Object> error = new HashMap<>();
 
@@ -33,9 +43,7 @@ public class GeneralExceptionMapper implements ExceptionMapper<Throwable> {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return Response
-                .status(500)
-                .header("Content-Type", "application/json")
+        return response
                 .entity(message)
                 .build();
     }
