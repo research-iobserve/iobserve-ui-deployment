@@ -30,13 +30,16 @@ public class ServiceInstance extends Measurable {
     private Service service;
 
     public ServiceInstance() {
+        super();
     }
 
     public ServiceInstance(String name) {
+        super();
         this.name = name;
     }
 
     public ServiceInstance(String name, Node node, Service service) {
+        super();
         this.name = name;
         this.node = node;
         this.service = service;

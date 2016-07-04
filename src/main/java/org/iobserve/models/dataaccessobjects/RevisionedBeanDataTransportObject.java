@@ -12,6 +12,10 @@ public abstract class RevisionedBeanDataTransportObject extends DataTransportObj
     private Long changelogSequence;
     private Date lastUpdate;
 
+    public RevisionedBeanDataTransportObject() {
+        super();
+    }
+
     public String getSystemId() {
         return systemId;
     }

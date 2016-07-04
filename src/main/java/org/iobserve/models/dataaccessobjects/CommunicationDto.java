@@ -26,6 +26,10 @@ public class CommunicationDto extends MeasurableDataTrasferObject {
      */
     String targetId;
 
+    public CommunicationDto() {
+        super();
+    }
+
     public String getSourceId() {
         return sourceId;
     }

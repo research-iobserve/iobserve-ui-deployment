@@ -28,6 +28,10 @@ public class CommunicationInstanceDto extends MeasurableDataTrasferObject {
 
     long workload;
 
+    public CommunicationInstanceDto() {
+        super();
+    }
+
     public String getSourceId() {
         return sourceId;
     }

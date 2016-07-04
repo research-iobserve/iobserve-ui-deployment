@@ -19,14 +19,17 @@ public class NodeGroup extends Measurable{
     private String name;
 
     public NodeGroup() {
+        super();
     }
 
     public NodeGroup(String name, List<Node> nodes) {
+        super();
         this.nodes = nodes;
         this.name = name;
     }
 
     public NodeGroup(String name) {
+        super();
         this.name = name;
     }
 

@@ -3,6 +3,7 @@ package org.iobserve.models.mappers;
 import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
+import org.iobserve.models.util.BaseEntity;
 import org.iobserve.models.util.TimeSeries;
 import org.iobserve.models.util.TimeSeriesDto;
 import org.mapstruct.Mapper;
@@ -61,7 +62,7 @@ public interface EntityToDtoMapper { // TODO: ignore measureable
     @Mapping(source = "parent", target = "parentId")
     TimeSeriesDto transform(TimeSeries series);
 
-    ChangelogDto transform(Changelog changelog);
+    //ChangelogDto transform(Changelog changelog);
 
 
 }

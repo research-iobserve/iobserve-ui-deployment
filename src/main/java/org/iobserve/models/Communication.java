@@ -21,6 +21,7 @@ public class Communication extends Measurable{
     private List<CommunicationInstance> instances;
 
     public Communication() {
+        super();
     }
 
     public Communication(Service target, Service source, List<CommunicationInstance> instances, String technology) {

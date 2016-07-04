@@ -17,6 +17,9 @@ public class ServiceInstanceDto extends MeasurableDataTrasferObject {
     private String nodeId;
     private String serviceId;
 
+    public ServiceInstanceDto() {
+        super();
+    }
 
     public String getName() {
         return name;

@@ -20,9 +20,11 @@ public class Service extends Measurable{
     private List<ServiceInstance> instances;
 
     public Service() {
+        super();
     }
 
     public Service(String name, String description) {
+        super();
         this.name = name;
         this.description = description;
     }

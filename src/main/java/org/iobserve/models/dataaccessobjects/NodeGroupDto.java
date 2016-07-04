@@ -15,6 +15,10 @@ public class NodeGroupDto extends MeasurableDataTrasferObject {
 
     private String name;
 
+    public NodeGroupDto() {
+        super();
+    }
+
     public String getName() {
         return name;
     }

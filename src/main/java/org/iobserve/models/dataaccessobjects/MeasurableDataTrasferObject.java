@@ -13,6 +13,9 @@ public class MeasurableDataTrasferObject extends RevisionedBeanDataTransportObje
 
     private List<TimeSeries> timeSeries;
 
+    public MeasurableDataTrasferObject() {
+        super();
+    }
 
     public List<StatusInfo> getStatusInformations() {
         return statusInformations;

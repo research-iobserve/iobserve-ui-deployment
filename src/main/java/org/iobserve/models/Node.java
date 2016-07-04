@@ -33,6 +33,7 @@ public class Node extends Measurable {
 
 
     public Node() {
+        super();
     }
 
     public Node(String name, String ip, String hostname) {

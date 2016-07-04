@@ -15,14 +15,17 @@ import java.util.List;
  */
 @Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class ChangelogResource {
     @Inject
     private ChangelogService service;
 
     @POST
     @Path("/systems/{systemId}/changelogs")
-    public void postChangelog(@PathParam("systemId") String id, List<Changelog> changelogs) {
-        service.addChangelogs(changelogs);
-        return;
+    public String postChangelog(@PathParam("systemId") String id, List<Changelog> changelogs) {
+        return "true";
+        //System.out.println(changelogs);
+        //service.addChangelogs(changelogs);
+        //return;
     }
 }

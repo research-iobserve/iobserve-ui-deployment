@@ -23,7 +23,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     @Override
     protected ChangelogDto transformModelToDto(Changelog changelog) {
-           return this.modelToDtoMapper.transform(changelog);
+           return null;//this.modelToDtoMapper.transform(changelog);
     }
 
     public void addChangelogs(List<Changelog> changelogs){
@@ -92,6 +92,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         BaseEntity entity = DtoToBaseEntityMapper.transform(changelog.getData());
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
+        System.out.println("Entity created");
     }
 
 

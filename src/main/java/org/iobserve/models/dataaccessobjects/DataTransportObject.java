@@ -1,5 +1,7 @@
 package org.iobserve.models.dataaccessobjects;
 
+import javax.xml.bind.annotation.XmlType;
+
 /**
  * DataTransportObjects represent a lightweight version of a corresponding model instance.
  * By convention these should have the same name as their model appended with "Dto".
@@ -13,8 +15,12 @@ package org.iobserve.models.dataaccessobjects;
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.mappers.EntityToDtoMapper
  */
+@XmlType(name = "baseEntity")
 public abstract class DataTransportObject {
     String id;
+
+    public DataTransportObject() {
+    }
 
     public String getId() {
         return id;

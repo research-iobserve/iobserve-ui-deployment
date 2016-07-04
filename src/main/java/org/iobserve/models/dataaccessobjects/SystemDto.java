@@ -14,6 +14,10 @@ import javax.xml.bind.annotation.XmlType;
 public class SystemDto extends DataTransportObject {
     String name;
 
+    public SystemDto() {
+        super();
+    }
+
     public String getName() {
         return name;
     }

@@ -16,4 +16,8 @@ public class ServiceDto extends MeasurableDataTrasferObject {
 
     private String name;
     private String description;
+
+    public ServiceDto() {
+        super();
+    }
 }

@@ -32,6 +32,7 @@ public class CommunicationInstance extends Measurable{
     private long workload;
 
     public CommunicationInstance() {
+        super();
     }
 
     public CommunicationInstance(ServiceInstance source, ServiceInstance target, Communication communication) {

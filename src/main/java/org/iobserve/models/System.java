@@ -39,6 +39,7 @@ public class System extends BaseEntity {
     private List<ServiceInstance> serviceInstances;
 
     public System(){
+        super();
     }
 
     public String getName() {
