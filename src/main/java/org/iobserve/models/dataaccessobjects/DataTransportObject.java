@@ -1,5 +1,10 @@
 package org.iobserve.models.dataaccessobjects;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.iobserve.models.Changelog;
+import org.iobserve.models.ServiceInstance;
+
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -16,6 +21,19 @@ import javax.xml.bind.annotation.XmlType;
  * @see org.iobserve.models.mappers.EntityToDtoMapper
  */
 @XmlType(name = "baseEntity")
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type",
+        visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ServiceDto.class, name = "service"),
+        @JsonSubTypes.Type(value = ServiceInstanceDto.class, name = "serviceInstance"),
+        @JsonSubTypes.Type(value = NodeDto.class, name = "node"),
+        @JsonSubTypes.Type(value = NodeGroupDto.class, name = "nodeGroup"),
+        @JsonSubTypes.Type(value = ChangelogDto.class, name = "changelog"),
+        @JsonSubTypes.Type(value = CommunicationDto.class, name = "communication"),
+        @JsonSubTypes.Type(value = CommunicationInstanceDto.class, name = "communicationInstance") })
 public abstract class DataTransportObject {
     String id;
 

@@ -1,5 +1,6 @@
 package org.iobserve.models.dataaccessobjects;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.iobserve.models.util.ChangelogOperation;
 
 import javax.xml.bind.annotation.XmlType;

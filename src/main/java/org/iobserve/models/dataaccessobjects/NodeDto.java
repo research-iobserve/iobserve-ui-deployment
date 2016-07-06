@@ -1,6 +1,7 @@
 package org.iobserve.models.dataaccessobjects;
 
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.iobserve.models.Node;
 import org.iobserve.models.annotations.ModelClassOfDto;
 

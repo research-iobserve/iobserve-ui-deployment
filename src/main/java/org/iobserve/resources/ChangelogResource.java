@@ -1,6 +1,7 @@
 package org.iobserve.resources;
 
 import org.iobserve.models.Changelog;
+import org.iobserve.models.dataaccessobjects.ChangelogDto;
 import org.iobserve.models.dataaccessobjects.ServiceInstanceDto;
 import org.iobserve.services.ChangelogService;
 import org.iobserve.services.CommunicationInstanceService;
@@ -22,7 +23,7 @@ public class ChangelogResource {
 
     @POST
     @Path("/systems/{systemId}/changelogs")
-    public String postChangelog(@PathParam("systemId") String id, List<Changelog> changelogs) {
+    public String postChangelog(@PathParam("systemId") String id, List<ChangelogDto> changelogs) {
         return "true";
         //System.out.println(changelogs);
         //service.addChangelogs(changelogs);
