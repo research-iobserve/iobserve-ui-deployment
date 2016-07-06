@@ -237,27 +237,27 @@ public class CreateDummySystemResource {
 
         communicationInstance1.setCommunication(communication1);
         communicationInstance1.addStatusInformation(createInfo("connectrions", "10"));
-        communicationInstance1.setWorkload(10);
+        communicationInstance1.setWorkload(10L);
 
         communicationInstance2.setCommunication(communication2);
         communicationInstance2.addStatusInformation(createInfo("connections", "20"));
-        communicationInstance2.setWorkload(20);
+        communicationInstance2.setWorkload(20L);
 
         communicationInstance3.setCommunication(communication3);
         communicationInstance3.addStatusInformation(createInfo("connections", "10"));
-        communicationInstance3.setWorkload(10);
+        communicationInstance3.setWorkload(10L);
 
         communicationInstance4.setCommunication(communication4);
         communicationInstance4.addStatusInformation(createInfo("connections", "15"));
-        communicationInstance4.setWorkload(15);
+        communicationInstance4.setWorkload(15L);
 
         communicationInstance5.setCommunication(communication5);
         communicationInstance5.addStatusInformation(createInfo("connections", "10"));
-        communicationInstance5.setWorkload(10);
+        communicationInstance5.setWorkload(10L);
 
         communicationInstance6.setCommunication(communication6);
         communicationInstance6.addStatusInformation(createInfo("connections", "15"));
-        communicationInstance6.setWorkload(15);
+        communicationInstance6.setWorkload(15L);
 
 
         system.setCommunications(Arrays.asList(communication1, communication2, communication3,communication4,communication5, communication6));

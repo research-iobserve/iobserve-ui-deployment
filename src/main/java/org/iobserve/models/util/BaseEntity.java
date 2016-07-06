@@ -13,6 +13,10 @@ public abstract class  BaseEntity implements Serializable{
     @Column(name="id")
     private String id;
 
+    public BaseEntity() {
+
+    }
+
     public String getId() {
         return id;
     }

@@ -36,8 +36,11 @@
             <artifactId>jersey-container-servlet</artifactId>
         </dependency>
          <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-moxy</artifactId>
+             <!--<groupId>org.glassfish.jersey.media</groupId>-->
+             <!--<artifactId>jersey-media-moxy</artifactId>-->
+             <!--<version>${jersey.version}</version>-->
+             <groupId>org.glassfish.jersey.media</groupId>
+             <artifactId>jersey-media-json-jackson</artifactId>
              <version>${jersey.version}</version>
         </dependency>
         <dependency>

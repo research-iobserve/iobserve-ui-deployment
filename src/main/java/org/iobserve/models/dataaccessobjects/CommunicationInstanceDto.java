@@ -3,6 +3,7 @@ package org.iobserve.models.dataaccessobjects;
 import org.iobserve.models.CommunicationInstance;
 import org.iobserve.models.annotations.ModelClassOfDto;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -26,7 +27,7 @@ public class CommunicationInstanceDto extends MeasurableDataTrasferObject {
 
     String communicationId;
 
-    long workload;
+    Long workload;
 
     public CommunicationInstanceDto() {
         super();
@@ -56,11 +57,13 @@ public class CommunicationInstanceDto extends MeasurableDataTrasferObject {
         this.communicationId = communicationId;
     }
 
-    public long getWorkload() {
+    public Long getWorkload() {
         return workload;
     }
 
-    public void setWorkload(long workload) {
+    public void setWorkload(Long workload) {
         this.workload = workload;
     }
+
+
 }

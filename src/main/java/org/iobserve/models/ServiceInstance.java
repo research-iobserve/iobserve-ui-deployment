@@ -1,6 +1,5 @@
 package org.iobserve.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
@@ -25,7 +24,6 @@ public class ServiceInstance extends Measurable {
     private Node node;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference
     @XmlTransient
     private Service service;
 

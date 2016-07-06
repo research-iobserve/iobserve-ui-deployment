@@ -18,6 +18,7 @@ public class Changelog extends RevisionedBean {
     private DataTransportObject data;
 
     public Changelog() {
+        super();
     }
 
     public ChangelogOperation  getOperation() {

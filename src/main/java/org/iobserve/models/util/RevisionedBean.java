@@ -20,6 +20,7 @@ public abstract class RevisionedBean extends BaseEntity {
     private Date lastUpdate;
 
     public RevisionedBean() {
+        super();
     }
 
     public Long getRevisionNumber() {

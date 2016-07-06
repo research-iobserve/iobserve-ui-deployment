@@ -48,8 +48,7 @@ public class ChangelogServiceTest extends JerseyTest {
 
         changelogs.add(changelog);
 
-        Entity<List<Changelog>> entity = new Entity<>(changelogs, MediaType.APPLICATION_JSON_TYPE);
-        final Response response = target("v1/systems/system123/changelogs").request().post(entity);
+
     }
 
 

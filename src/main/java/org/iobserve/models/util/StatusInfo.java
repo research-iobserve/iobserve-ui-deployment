@@ -15,6 +15,7 @@ public class StatusInfo extends BaseEntity {
     private String value;
 
     public StatusInfo() {
+        super();
     }
 
     public StatusInfo(Long timestamp, String key, String value) {

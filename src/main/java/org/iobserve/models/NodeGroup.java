@@ -1,6 +1,5 @@
 package org.iobserve.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
@@ -14,7 +13,6 @@ import java.util.List;
 @Entity
 public class NodeGroup extends Measurable{
     @OneToMany(mappedBy = "nodeGroup",cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<Node> nodes;
     private String name;
 

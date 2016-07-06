@@ -20,6 +20,7 @@ public class TimeSeries extends BaseEntity{
     private List<SeriesElement> series;
 
     public TimeSeries() {
+        super();
     }
 
     public TimeSeries(String label, Long intervalStart, Long intervalEnd, List<SeriesElement> series) {

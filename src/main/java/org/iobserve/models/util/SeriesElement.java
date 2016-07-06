@@ -12,6 +12,7 @@ public class SeriesElement extends BaseEntity{
     private Integer value;
 
     public SeriesElement() {
+        super();
     }
 
     public String getSeries() {

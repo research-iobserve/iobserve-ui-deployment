@@ -19,9 +19,11 @@ public abstract class Measurable extends RevisionedBean {
     private List<TimeSeries> timeSeries = new LinkedList<>();
 
     public Measurable() {
+        super();
     }
 
     public Measurable(List<StatusInfo> statusInformations, List<TimeSeries> timeSeries) {
+        super();
         this.statusInformations = statusInformations;
         this.timeSeries = timeSeries;
     }

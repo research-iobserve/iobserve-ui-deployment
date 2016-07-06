@@ -20,6 +20,8 @@ public class TimeSeriesDto extends DataTransportObject {
 
     private List<SeriesElement> series;
 
+    public TimeSeriesDto() {
+    }
 
     public String getParentId() {
         return parentId;
