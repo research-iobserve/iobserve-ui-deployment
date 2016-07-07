@@ -1,15 +1,11 @@
 package org.iobserve.services.websocket;
 
-import org.eclipse.persistence.jaxb.MarshallerProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.iobserve.models.dataaccessobjects.ChangelogDto;
 
 import javax.validation.constraints.NotNull;
 import javax.websocket.Session;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.transform.stream.StreamResult;
-import java.io.StringWriter;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -38,23 +34,14 @@ public class ChangelogStreamService {
     }
 
     public void broadcastChangelog(String systemId, ChangelogDto message) {
+
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(ChangelogDto.class);
-
-            Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.setProperty(MarshallerProperties.MEDIA_TYPE, "application/json");
-
-
-            StringWriter outWriter = new StringWriter();
-            StreamResult result = new StreamResult(outWriter);
-
-            marshaller.marshal(message, result);
-            String json = outWriter.getBuffer().toString();
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(message);
             System.out.printf("json for socket "+ json);
             sessionsBySystem.get(systemId).broadcast(json);
-        } catch (JAXBException e) {
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
     }
 }
