@@ -11,10 +11,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-/**
+/** instanciated by jetty
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
-@ServerEndpoint(value = "/v1/changelogstream/{systemId}")
+@ServerEndpoint(
+        value = "/v1/changelogstream/{systemId}",
+        decoders = ChangelogCoder.class,
+        encoders = ChangelogCoder.class
+)
 public class ChangelogStreamWebsocket {
 
     private static final Map<String, Set<Session>> sessionsPerSystem = new HashMap<>();

@@ -1,7 +1,5 @@
 package org.iobserve.services.websocket;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.iobserve.models.dataaccessobjects.ChangelogDto;
 
 import javax.validation.constraints.NotNull;
@@ -34,14 +32,6 @@ public class ChangelogStreamService {
     }
 
     public void broadcastChangelog(String systemId, ChangelogDto message) {
-
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            String json = objectMapper.writeValueAsString(message);
-            System.out.printf("json for socket "+ json);
-            sessionsBySystem.get(systemId).broadcast(json);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        sessionsBySystem.get(systemId).broadcast(message);
     }
 }
