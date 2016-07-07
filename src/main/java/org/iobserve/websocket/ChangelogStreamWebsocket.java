@@ -1,6 +1,5 @@
 package org.iobserve.websocket;
 
-import org.iobserve.models.dataaccessobjects.ChangelogDto;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
 import javax.websocket.OnOpen;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-/** instanciated by jetty
+/** loaded by jetty
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
 @ServerEndpoint(
@@ -26,10 +25,6 @@ public class ChangelogStreamWebsocket {
 
     @OnOpen
     public void onOpen(@PathParam("systemId") String systemId, Session session) {
-        System.out.println("socket connection for system "+systemId);
         streamService.subscribe(systemId, session);
-        ChangelogDto changelogDto = new ChangelogDto();
-        changelogDto.setId("test");
-        streamService.broadcastChangelog(systemId, changelogDto);
     }
 }

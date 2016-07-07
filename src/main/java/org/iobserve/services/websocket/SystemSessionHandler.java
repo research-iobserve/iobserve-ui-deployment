@@ -25,7 +25,7 @@ public class SystemSessionHandler {
     public synchronized void broadcast(ChangelogDto changelog) {
         // no need to block, only the iterator has to be synchronized.
         sessions.forEach((session) -> {
-            session.getAsyncRemote().sendObject(changelog);
+            session.getAsyncRemote().sendObject(changelog); // see ChangelogCoder
         });
 
     }
