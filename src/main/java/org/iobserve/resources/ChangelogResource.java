@@ -24,9 +24,7 @@ public class ChangelogResource {
     @POST
     @Path("/systems/{systemId}/changelogs")
     public String postChangelog(@PathParam("systemId") String id, List<ChangelogDto> changelogs) {
-        return "true";
-        //System.out.println(changelogs);
-        //service.addChangelogs(changelogs);
-        //return;
+        service.addChangelogs(id, changelogs);
+        return "Done";
     }
 }

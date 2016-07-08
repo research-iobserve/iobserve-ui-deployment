@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlType;
 public class ChangelogDto extends RevisionedBeanDataTransportObject {
 
     private ChangelogOperation operation;
-    private NodeDto data;
+    private DataTransportObject data;
 
     public ChangelogDto() {
         super();
@@ -28,11 +28,11 @@ public class ChangelogDto extends RevisionedBeanDataTransportObject {
         this.operation = operation;
     }
 
-    public NodeDto getData() {
+    public DataTransportObject getData() {
         return data;
     }
 
-    public void setData(NodeDto data) {
+    public void setData(DataTransportObject data) {
         this.data = data;
     }
 }

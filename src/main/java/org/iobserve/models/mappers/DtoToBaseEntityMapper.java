@@ -17,13 +17,14 @@ import java.util.List;
  */
 public class DtoToBaseEntityMapper {
 
-    private static final DtoToBasePropertyEntityMapper dtoToBasePropertyMapper = DtoToBasePropertyEntityMapper.INSTANCE;
+    private final DtoToBasePropertyEntityMapper dtoToBasePropertyMapper = DtoToBasePropertyEntityMapper.INSTANCE;
 
     @Inject
-    private static EntityManager entityManager;
+    private EntityManager entityManager;
 
     //TODO find proper solution
-    public static BaseEntity transform(DataTransportObject dto){
+    public BaseEntity transform(DataTransportObject dto){
+
 
         if(dto instanceof NodeGroupDto){
             return transform((NodeGroupDto) dto);
@@ -57,13 +58,13 @@ public class DtoToBaseEntityMapper {
         }
     }
 
-    public static System transform(SystemDto systemDto) {
+    public System transform(SystemDto systemDto) {
         final System system = dtoToBasePropertyMapper.transform(systemDto);
 
         return system;
     }
 
-    public static Communication transform(CommunicationDto communicationDto) {
+    public Communication transform(CommunicationDto communicationDto) {
         final Communication communication = dtoToBasePropertyMapper.transform(communicationDto);
 
         communication.setSource(entityManager.find(Service.class, communicationDto.getSourceId()));
@@ -73,7 +74,7 @@ public class DtoToBaseEntityMapper {
     }
 
 
-    public static CommunicationInstance transform(CommunicationInstanceDto communicationInstanceDto) {
+    public CommunicationInstance transform(CommunicationInstanceDto communicationInstanceDto) {
         final CommunicationInstance communicationInstance = dtoToBasePropertyMapper.transform(communicationInstanceDto);
 
         communicationInstance.setCommunication(entityManager.find(Communication.class, communicationInstanceDto.getCommunicationId()));
@@ -84,30 +85,31 @@ public class DtoToBaseEntityMapper {
     }
 
 
-    public static NodeGroup transform(NodeGroupDto nodeGroupDto) {
+    public NodeGroup transform(NodeGroupDto nodeGroupDto) {
         final NodeGroup nodeGroup = dtoToBasePropertyMapper.transform(nodeGroupDto);
 
         return nodeGroup;
     }
 
 
-    public static Node transform(NodeDto nodeDto) {
+    public Node transform(NodeDto nodeDto) {
         final Node node = dtoToBasePropertyMapper.transform(nodeDto);
+        final NodeGroup nodeGroup = entityManager.find(NodeGroup.class, nodeDto.getNodeGroupId());
 
-        node.setNodeGroup(entityManager.find(NodeGroup.class, nodeDto.getNodeGroupId()));
+        node.setNodeGroup(nodeGroup);
 
         return node;
     }
 
 
-    public static Service transform(ServiceDto serviceDto) {
+    public Service transform(ServiceDto serviceDto) {
         final Service service = dtoToBasePropertyMapper.transform(serviceDto);
 
         return service;
     }
 
 
-    public static ServiceInstance transform(ServiceInstanceDto serviceInstanceDto) {
+    public ServiceInstance transform(ServiceInstanceDto serviceInstanceDto) {
         final ServiceInstance serviceInstance = dtoToBasePropertyMapper.transform(serviceInstanceDto);
 
         serviceInstance.setNode(entityManager.find(Node.class, serviceInstanceDto.getNodeId()));
@@ -116,12 +118,12 @@ public class DtoToBaseEntityMapper {
         return serviceInstance;
     }
 
-    public static Changelog transform(ChangelogDto changelogDto) {
-        final Changelog changelog = dtoToBasePropertyMapper.transform(changelogDto);
-        return changelog;
-    }
+//    public static Changelog transform(ChangelogDto changelogDto) {
+//        final Changelog changelog = dtoToBasePropertyMapper.transform(changelogDto);
+//        return changelog;
+//    }
 
-    public static TimeSeries transform(TimeSeriesDto seriesDto){
+    public TimeSeries transform(TimeSeriesDto seriesDto){
         final TimeSeries series = dtoToBasePropertyMapper.transform(seriesDto);
         return series;
     }

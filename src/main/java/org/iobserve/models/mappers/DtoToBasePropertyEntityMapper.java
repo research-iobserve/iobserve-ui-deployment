@@ -40,7 +40,7 @@ public interface DtoToBasePropertyEntityMapper  { // TODO: ignore measureable
 
     ServiceInstance transform(ServiceInstanceDto nodeDto);
 
-    Changelog transform(ChangelogDto changelogDto);
+    //Changelog transform(ChangelogDto changelogDto);
 
     @Mapping(source = "parentId", target = "parent")
     TimeSeries transform(TimeSeriesDto seriesDto);

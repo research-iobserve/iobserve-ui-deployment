@@ -2,6 +2,7 @@ package org.iobserve.injection;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
+import org.iobserve.models.mappers.DtoToBaseEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.services.*;
 import org.iobserve.services.websocket.ChangelogStreamService;
@@ -37,6 +38,7 @@ public class DependencyInjectionBinder extends AbstractBinder {
         this.bind(CommunicationService.class).to(CommunicationService.class).in(Singleton.class);
         this.bind(CommunicationInstanceService.class).to(CommunicationInstanceService.class).in(Singleton.class);
         this.bind(ChangelogService.class).to(ChangelogService.class).in(Singleton.class);
+        this.bind(DtoToBaseEntityMapper.class).to(DtoToBaseEntityMapper.class).in(Singleton.class);
         // this.bind(ChangelogStreamService.class).to(ChangelogStreamService.class).in(Singleton.class); // TODO via injection
     }
 }

@@ -5,17 +5,19 @@ import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.util.ChangelogOperation;
 import org.iobserve.models.util.RevisionedBean;
 
+import javax.json.Json;
+import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
-@XmlType(name = "changelog")
+@Entity
 public class Changelog extends RevisionedBean {
 
 
     private ChangelogOperation operation;
-    private DataTransportObject data;
+    private String data;
 
     public Changelog() {
         super();
@@ -29,11 +31,11 @@ public class Changelog extends RevisionedBean {
         this.operation = operation;
     }
 
-    public DataTransportObject getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(DataTransportObject data) {
+    public void setData(String data) {
         this.data = data;
     }
 }
