@@ -17,7 +17,7 @@ public abstract class RevisionedBean extends BaseEntity {
 
     private Long revisionNumber;
     private Long changelogSequence;
-    private Date lastUpdate;
+    private Date lastUpdate; // TODO: set automatically!
 
     public RevisionedBean() {
         super();

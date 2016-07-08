@@ -3,6 +3,7 @@ package org.iobserve.services.websocket;
 import org.iobserve.models.dataaccessobjects.ChangelogDto;
 
 import javax.websocket.Session;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,5 +33,20 @@ public class SystemSessionHandler {
 
     public String getSystemId() {
         return systemId;
+    }
+
+
+    public synchronized void unsubscribe(Session session) {
+        if(session.isOpen()) {
+            try {
+                session.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        boolean didRemove = sessions.remove(session);
+        if(!didRemove) {
+            System.out.println("could not remove session " + session);
+        }
     }
 }
