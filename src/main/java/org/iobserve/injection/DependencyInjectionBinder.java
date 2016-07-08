@@ -2,9 +2,9 @@ package org.iobserve.injection;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
-import org.iobserve.models.Changelog;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.services.*;
+import org.iobserve.services.websocket.ChangelogStreamService;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
@@ -25,6 +25,7 @@ public class DependencyInjectionBinder extends AbstractBinder {
         this.bindFactory(EMFFactory.EMFactory.class).to(EntityManager.class).in(RequestScoped.class);
 
         this.bindFactory(EntityToDtoMapperFactory.class).to(EntityToDtoMapper.class).in(Singleton.class);
+        this.bindFactory(ChangelogStreamServiceFactory.class).to(ChangelogStreamService.class).in(Singleton.class);
 
         // bind all services
         // TODO: possibility to use only generic services?
@@ -36,5 +37,6 @@ public class DependencyInjectionBinder extends AbstractBinder {
         this.bind(CommunicationService.class).to(CommunicationService.class).in(Singleton.class);
         this.bind(CommunicationInstanceService.class).to(CommunicationInstanceService.class).in(Singleton.class);
         this.bind(ChangelogService.class).to(ChangelogService.class).in(Singleton.class);
+        // this.bind(ChangelogStreamService.class).to(ChangelogStreamService.class).in(Singleton.class); // TODO via injection
     }
 }
