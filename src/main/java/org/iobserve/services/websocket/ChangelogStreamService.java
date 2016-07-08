@@ -31,7 +31,17 @@ public class ChangelogStreamService {
         }
     }
 
+    public void unsubscribe(String systemId, Session session) {
+        SystemSessionHandler systemSessionHandler = sessionsBySystem.get(systemId);
+        if(systemSessionHandler != null) {
+            sessionsBySystem.get(systemId).unsubscribe(session);
+        }
+    }
+
     public void broadcastChangelog(String systemId, ChangelogDto message) {
-        sessionsBySystem.get(systemId).broadcast(message);
+        SystemSessionHandler systemSessionHandler = sessionsBySystem.get(systemId);
+        if(systemSessionHandler != null) {
+            systemSessionHandler.broadcast(message);
+        }
     }
 }
