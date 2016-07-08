@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import EmberData from 'ember-data';
 import Resolver from './resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
@@ -21,6 +22,11 @@ App = Ember.Application.extend({
 loadInitializers(App, config.modulePrefix);
 
 export default App;
+
+// TODO: just for development purposes
+window.App = App;
+window.Ember = Ember;
+window.EmberData = EmberData;
 
 // ember (via ember-runtime) sets native prototype enhancements like .property/.observer, but as enumerable
 // we need to fix enumerability since it breaks cose-bilkent and sometimes cytoscape

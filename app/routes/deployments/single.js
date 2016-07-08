@@ -3,8 +3,13 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   session: Ember.inject.service(), // loads services/session.js
   graphingService: Ember.inject.service(),
+  changelogStream: Ember.inject.service(),
   model(params) {
-    this.set('session.systemId', params.systemId); // add the system to all requests
+    const systemId = params.systemId;
+    this.set('session.systemId', systemId); // add the system to all requests
+    const changelogStream = this.get('changelogStream'); // lazy loaded, requires session id
+    changelogStream.connect(systemId);
+
     const graphingService = this.get('graphingService');
     const createGraph = graphingService.createGraph.bind(graphingService);
 
@@ -44,6 +49,9 @@ export default Ember.Route.extend({
             entityId
         });
         this.transitionTo(url);
+    },
+    willTransition() {
+        this.get('changelogStream').disconnect();
     }
   }
 });
