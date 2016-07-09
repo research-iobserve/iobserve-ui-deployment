@@ -50,8 +50,11 @@ export default Ember.Route.extend({
         });
         this.transitionTo(url);
     },
-    willTransition() { // FIXME: do not disconnect for subpages!
-        this.get('changelogStream').disconnect();
+    willTransition(transition) {
+        // do not disconnect if transitioning to a child route (details)
+        if (transition.targetName.indexOf(this.get('routeName')) !== 0) {
+            this.get('changelogStream').disconnect();
+        }
     }
   }
 });
