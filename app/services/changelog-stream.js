@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
     shouldClose: false,
+    changelogParser: Ember.inject.service(),
     init() {
         this._super(...arguments);
         this.debug('session', this.get('systemId'));
@@ -51,7 +52,7 @@ export default Ember.Service.extend({
             this.debug('new changelog received', changelogJson);
             try {
                 const changelog = JSON.parse(changelogJson);
-                this.debug('changelog converted', changelog);
+                this.get('changelogParser').parse(changelog);
             } catch (e) {
                 console.error('could not parse changelog json', e, changelogJson);
             }
