@@ -42,13 +42,19 @@ public class ChangelogStreamWebsocket {
         Thread thread = new Thread(() -> {
             try {
                 long sequence = 0L;
+                ChangelogOperation operation = ChangelogOperation.UPDATE;
                 while (true) {
                     ChangelogDto changelog = new ChangelogDto();
                     changelog.setId("test-changelog-" + sequence);
-                    changelog.setOperation(ChangelogOperation.CREATE);
+                    changelog.setOperation(operation);
                     NodeDto nodeDto = new NodeDto();
-                    nodeDto.setName("Node " + sequence);
-                    nodeDto.setId("test-node-" + sequence);
+                    nodeDto.setName("SOCKET Node " + sequence);
+
+                    if(operation.equals(ChangelogOperation.CREATE)) {
+                        nodeDto.setId("test-node-" + sequence);
+                    } else {
+                        nodeDto.setId("test-system123-node-1");
+                    }
                     nodeDto.setHostname("localhost");
                     nodeDto.setIp("10.0.0.1");
                     nodeDto.setRevisionNumber(sequence);
