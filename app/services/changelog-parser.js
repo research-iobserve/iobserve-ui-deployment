@@ -8,11 +8,38 @@ export default Ember.Service.extend({
         changelogs.forEach(this.parseSingle.bind(this));
     },
     parseSingle(changelog) {
-        const data = changelog.data;
-        const store = this.get('store');
-        const normalized = store.normalize('node', data); // using application serializer
-
-        this.debug('normalized', normalized);
-        store.push(normalized);
+        const operation = this.get(`operations.${changelog.operation}`);
+        if(!operation) {
+            throw new Error(`received an invalid changelog, unknown operation: ${changelog.operation}`);
+        }
+        operation.call(this, changelog);
+    },
+    operations: {
+        CREATE(changelog) {
+            const store = this.get('store');
+            const data = changelog.data;
+            const normalized = store.normalize(data.type, data); // using application serializer
+            store.push(normalized);
+        },
+        UPDATE(changelog) { // FIXME: does not update view!
+            const data = changelog.data;
+            const oldRecord = this.get('store').peekRecord(data.type, data.id);
+            this.debug('oldRecord', oldRecord);
+            if(!oldRecord) {
+                throw new Error(`old record for update operation not found! Id: ${data.id}`);
+            }
+            oldRecord.setProperties(data);
+        },
+        DELETE(changelog) {
+            const data = changelog.data;
+            const oldRecord = this.get('store').peekRecord(data.type, data.id);
+            if(!oldRecord) {
+                throw new Error(`old record for update operation not found! Id: ${data.id}`);
+            }
+            this.get('store').unloadRecord(oldRecord);
+        },
+        APPEND(changelog) {
+            throw new Error('not yet implemented');
+        }
     }
 });
