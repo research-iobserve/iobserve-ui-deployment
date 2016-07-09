@@ -19,7 +19,10 @@ export default Ember.Service.extend({
     available: Ember.computed('empty', function() {
         return !this.get('empty');
     }),
+    size: Ember.computed('_private.queue.[]', function() {
+        return this.get('_private.queue.length');
+    }),
     empty: Ember.computed('_private.queue.[]', function() {
-        return this.get('_private.queue.length') === 0;
+        return this.get('size') === 0;
     })
 });
