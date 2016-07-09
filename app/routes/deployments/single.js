@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   session: Ember.inject.service(), // loads services/session.js
-  graphingService: Ember.inject.service(),
   changelogStream: Ember.inject.service(),
   model(params) {
     const systemId = params.systemId;
@@ -10,22 +9,31 @@ export default Ember.Route.extend({
     const changelogStream = this.get('changelogStream'); // lazy loaded, requires session id
     changelogStream.connect(systemId);
 
-    const graphingService = this.get('graphingService');
-    const createGraph = graphingService.createGraph.bind(graphingService);
+    /*
+     * note that findAll returns an Observable Array which automatically
+     * update whenever new records are pushed into the store.
+     * The controller can observe this.
+     * Also note that since we changed the behavior of findAll() to use the systemId
+     * Ember will probably also update for other systems. These are filtered in the controller
+     */
+    const load = (type) => this.store.findAll(type);
 
-    this.set('loading', true);
     return Ember.RSVP.hash({
-        nodes: this.store.findAll('node'),
-        nodeGroups: this.store.findAll('nodegroup'),
-        services: this.store.findAll('service'),
-        serviceInstances: this.store.findAll('serviceinstance'),
-        communications: this.store.findAll('communication'),
-        communicationInstances: this.store.findAll('communicationinstance')
-    }).then(createGraph).then((graph) => {
-      this.set('loading', false);
-      return graph;
+        nodes: load('node'),
+        nodeGroups: load('nodegroup'),
+        services: load('service'),
+        serviceInstances: load('serviceinstance'),
+        communications: load('communication'),
+        communicationInstances: load('communicationinstance')
+    }).then((models) => {
+        this.debug('loaded models', models);
+        return {
+            systemId: systemId,
+            instances: models
+        };
     });
   },
+
   actions: {
     loadDetails(rawEntity) {
         this.debug('loadDetails action', rawEntity);
@@ -42,7 +50,7 @@ export default Ember.Route.extend({
         });
         this.transitionTo(url);
     },
-    willTransition() {
+    willTransition() { // FIXME: do not disconnect for subpages!
         this.get('changelogStream').disconnect();
     }
   }
