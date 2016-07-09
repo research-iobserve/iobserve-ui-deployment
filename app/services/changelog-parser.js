@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
+// TODO: update cytoscape instead of complete rerender
 export default Ember.Service.extend({
     store: Ember.inject.service(),
     parse(changelogs) {
@@ -21,7 +22,7 @@ export default Ember.Service.extend({
             const normalized = store.normalize(data.type, data); // using application serializer
             store.push(normalized);
         },
-        UPDATE(changelog) { // FIXME: does not update view!
+        UPDATE(changelog) {
             const data = changelog.data;
             const oldRecord = this.get('store').peekRecord(data.type, data.id);
             this.debug('oldRecord', oldRecord);
@@ -29,6 +30,7 @@ export default Ember.Service.extend({
                 throw new Error(`old record for update operation not found! Id: ${data.id}`);
             }
             oldRecord.setProperties(data);
+            oldRecord.notifyPropertyChange('_updated'); // notify about pseudo property, can be listened on (see deployments/single controller)
         },
         DELETE(changelog) {
             const data = changelog.data;

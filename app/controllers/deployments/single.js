@@ -14,8 +14,9 @@ export default Ember.Controller.extend({
     init() {
         this.debug('initializing controller');
     },
-    // gets automatically updated when any of the instances changes (updated from changelog stream)
-    graphModel: Ember.computed(`model.instances.{${observables.join(',')}}.[]`, function() {
+    // gets automatically updated when any of the instances changes, changes are notified via a pseudo property 'updated'
+    // using @each will also listen if the array itself changes. Can be quite expensive.
+    graphModel: Ember.computed(`model.instances.{${observables.join(',')}}.@each._updated`, function() {
         const systemId = this.get('model.systemId');
         const instances = this.get('model.instances');
         /*
