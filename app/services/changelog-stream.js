@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Service.extend({
+    changelogQueue: Ember.inject.service(),
     shouldClose: false,
-    changelogParser: Ember.inject.service(),
     init() {
         this._super(...arguments);
         this.debug('session', this.get('systemId'));
@@ -11,7 +11,7 @@ export default Ember.Service.extend({
         this.set('shouldClose', false);
 
         this.debug('setting up websocket', systemId);
-        const socket = new WebSocket(`ws://localhost:8080/v1/changelogstream/${systemId}`);
+        const socket = new WebSocket(`ws://localhost:8080/v1/changelogstream/${systemId}`); // TODO: from environment!
         this.set('socket', socket);
 
         socket.onopen = this.get('events.onOpen').bind(this);
@@ -33,6 +33,7 @@ export default Ember.Service.extend({
         window.onbeforeunload = this.get('disconnect').bind(this);
     },
     disconnect() {
+        this.get('changelogQueue').reset();
         this.debug('disconnect');
         this.set('shouldClose', true);
         this.get('socket').close();
@@ -49,12 +50,12 @@ export default Ember.Service.extend({
         },
         onMessage(message) {
             const changelogsJson = message.data;
-            this.debug('new changelog received', changelogsJson);
+            this.debug('new changelogs received', changelogsJson);
             try {
-                const changelog = JSON.parse(changelogsJson);
-                this.get('changelogParser').parse(changelog);
+                const changelogs = JSON.parse(changelogsJson);
+                this.get('changelogQueue').append(changelogs);
             } catch (e) {
-                console.error('could not parse changelog json', e, changelogsJson);
+                console.error('could not parse changelogs json', e, changelogsJson);
             }
         }
     }

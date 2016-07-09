@@ -1,4 +1,9 @@
 {{#architecture-viewer graph=graphModel}}
+
+    <button {{action 'applyQueueUpdates'}} type="button" class="btn {{if changelogQueue.empty 'btn-default' 'btn-warning'}}" disabled={{ changelogQueue.empty }} title="Updates are possible when the deployment changed and new information is ready to get visualized!">
+        <i class="glyphicon glyphicon-refresh"></i> Apply Updates
+    </button>
+
     {{!-- show entity details in sidebar if subroute (details) is used --}}
     {{outlet}}
 {{/architecture-viewer}}

@@ -9,6 +9,7 @@ const observables = [
 
 export default Ember.Controller.extend({
     graphingService: Ember.inject.service(),
+    changelogQueue: Ember.inject.service(),
 
     init() {
         this.debug('initializing controller');
@@ -31,4 +32,9 @@ export default Ember.Controller.extend({
         this.debug('creating graph', filteredInstances);
         return this.get('graphingService').createGraph(filteredInstances); // TODO: update instead of complete recalculation?
     }),
+    actions: {
+        applyQueueUpdates() {
+            this.get('changelogQueue').apply();
+        }
+    }
 });
