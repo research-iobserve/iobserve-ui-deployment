@@ -11,16 +11,16 @@ import java.io.Writer;
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
-public class ChangelogCoder implements Encoder.TextStream<ChangelogDto>, Decoder.TextStream<ChangelogDto>{
+public class ChangelogCoder implements Encoder.TextStream<ChangelogDto[]>, Decoder.TextStream<ChangelogDto[]>{
 
     @Override
-    public ChangelogDto decode(Reader reader) throws DecodeException, IOException {
+    public ChangelogDto[] decode(Reader reader) throws DecodeException, IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return  mapper.readValue(reader, ChangelogDto.class);
+        return mapper.readValue(reader, ChangelogDto[].class);
     }
 
     @Override
-    public void encode(ChangelogDto changelogDto, Writer writer) throws EncodeException, IOException {
+    public void encode(ChangelogDto[] changelogDto, Writer writer) throws EncodeException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         writer.append(objectMapper.writeValueAsString(changelogDto));
     }

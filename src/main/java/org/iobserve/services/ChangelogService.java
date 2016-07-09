@@ -9,10 +9,8 @@ import org.iobserve.models.util.TimeSeries;
 import org.iobserve.models.util.TimeSeriesDto;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
-
 import javax.inject.Inject;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 import java.util.Date;
 import java.util.List;
 
@@ -55,8 +53,8 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
             changelog.setLastUpdate(date);
 
             applyChangelog(changelog);
-            changelogStreamService.broadcastChangelog(systemId,changelog);
         }
+        changelogStreamService.broadcastChangelogs(systemId, changelogs);
 
         //Todo send to socket
         //entityManager.persist(changelogs);

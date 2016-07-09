@@ -10,7 +10,9 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /** loaded by jetty
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
@@ -59,7 +61,8 @@ public class ChangelogStreamWebsocket {
 
                     System.out.println("sending dummy changelog " + sequence);
 
-                    streamService.broadcastChangelog(systemId, changelog);
+                    List<ChangelogDto> changelogs = Arrays.asList(changelog);
+                    streamService.broadcastChangelogs(systemId, changelogs);
 
                     sequence++;
                     Thread.sleep(5000);
