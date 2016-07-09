@@ -48,13 +48,13 @@ export default Ember.Service.extend({
             this.debug('connection established');
         },
         onMessage(message) {
-            const changelogJson = message.data;
-            this.debug('new changelog received', changelogJson);
+            const changelogsJson = message.data;
+            this.debug('new changelog received', changelogsJson);
             try {
-                const changelog = JSON.parse(changelogJson);
+                const changelog = JSON.parse(changelogsJson);
                 this.get('changelogParser').parse(changelog);
             } catch (e) {
-                console.error('could not parse changelog json', e, changelogJson);
+                console.error('could not parse changelog json', e, changelogsJson);
             }
         }
     }

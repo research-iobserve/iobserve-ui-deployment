@@ -51,6 +51,7 @@ export default Ember.Route.extend({
         this.transitionTo(url);
     },
     willTransition(transition) {
+        this.debug('transition', transition.targetName, this.get('routeName'));
         // do not disconnect if transitioning to a child route (details)
         if (transition.targetName.indexOf(this.get('routeName')) !== 0) {
             this.get('changelogStream').disconnect();

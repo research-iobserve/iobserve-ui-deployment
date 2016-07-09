@@ -17,10 +17,8 @@ export default Ember.Service.extend({
       edges: []
     };
 
-    this.debug('loaded instances', serviceInstances);
-
     nodeGroups.forEach(instance => {
-        const data = instance.toJSON({includeId: true});
+        const data = instance.serialize();
         data.label = data.name;
 
       network.nodes.push({
@@ -28,7 +26,7 @@ export default Ember.Service.extend({
     });});
 
     nodes.forEach(instance => {
-        const data = instance.toJSON({includeId: true});
+        const data = instance.serialize();
         data.label = data.name;
         data.parent = data.nodeGroupId;
 
@@ -37,7 +35,7 @@ export default Ember.Service.extend({
     });});
 
     serviceInstances.forEach(instance => {
-        const data = instance.toJSON({includeId: true});
+        const data = instance.serialize();
         data.label = data.name;
         data.parent = data.nodeId;
 
@@ -46,16 +44,14 @@ export default Ember.Service.extend({
     });});
 
     communicationInstances.forEach(instance => {
-        const data = instance.toJSON({includeId: true});
+        const data = instance.serialize();
         data.source = data.sourceId;
         data.target = data.targetId;
         data.technology = instance.store.peekRecord('communication', data.communicationId).get('technology');
         data.label = data.technology;
-        this.debug('technology', data.technology);
 
-      network.edges.push({
-        data: data
-    });});
+        network.edges.push({ data });
+    });
 
     return network;
   }
