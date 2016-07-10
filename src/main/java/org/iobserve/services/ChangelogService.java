@@ -58,9 +58,12 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
             changelog.setRevisionNumber(revision);
             changelog.setChangelogSequence(new Long(i));
             changelog.setLastUpdate(date);
+
             applyChangelog(changelog);
-            changelogStreamService.broadcastChangelog(systemId,changelog);
+            //Todo persist Changelog
+
         }
+        changelogStreamService.broadcastChangelogs(systemId, changelogs);
 
     }
 

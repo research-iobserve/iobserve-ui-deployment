@@ -4,6 +4,7 @@ import org.iobserve.models.dataaccessobjects.ChangelogDto;
 
 import javax.validation.constraints.NotNull;
 import javax.websocket.Session;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -38,10 +39,10 @@ public class ChangelogStreamService {
         }
     }
 
-    public void broadcastChangelog(String systemId, ChangelogDto message) {
+    public void broadcastChangelogs(String systemId, List<ChangelogDto> changelogs) {
         SystemSessionHandler systemSessionHandler = sessionsBySystem.get(systemId);
         if(systemSessionHandler != null) {
-            systemSessionHandler.broadcast(message);
+            systemSessionHandler.broadcast(changelogs);
         }
     }
 }

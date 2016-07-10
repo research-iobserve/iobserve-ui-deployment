@@ -5,6 +5,7 @@ import org.iobserve.models.dataaccessobjects.ChangelogDto;
 import javax.websocket.Session;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,10 +24,11 @@ public class SystemSessionHandler {
         sessions.add(session);
     }
 
-    public synchronized void broadcast(ChangelogDto changelog) {
+    public synchronized void broadcast(List<ChangelogDto> changelogs) {
         // no need to block, only the iterator has to be synchronized.
+        ChangelogDto[] changelogDtos = changelogs.toArray(new ChangelogDto[changelogs.size()]);
         sessions.forEach((session) -> {
-            session.getAsyncRemote().sendObject(changelog); // see ChangelogCoder
+            session.getAsyncRemote().sendObject(changelogDtos); // see ChangelogCoder
         });
 
     }
