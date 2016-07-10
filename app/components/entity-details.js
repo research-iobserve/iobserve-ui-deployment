@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     entity: null,
 
-    filteredProperties: function(){
+    filteredProperties: Ember.computed('entity', 'entity._updated', function(){
         this.debug('entity', this.get('entity'));
         const properties = [];
         const entity = this.get('entity');
@@ -15,6 +15,6 @@ export default Ember.Component.extend({
                 });
         this.debug('properties', properties);
         return properties;
-    }.property('entity')
+    })
 
 });
