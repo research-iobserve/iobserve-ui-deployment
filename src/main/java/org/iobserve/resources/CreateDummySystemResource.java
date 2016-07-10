@@ -9,7 +9,9 @@ import org.iobserve.models.util.TimeSeries;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.transaction.Transactional;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -23,7 +25,7 @@ public class CreateDummySystemResource {
     Random random = new Random();
 
     @Inject
-    private EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
 
     @POST
     @Path("systems/createDummy")
@@ -50,7 +52,9 @@ public class CreateDummySystemResource {
         }
     }
 
+    @Transactional
     private void createTestSystem(String systemId) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         System oldSystem = entityManager.find(System.class, systemId);
         if(oldSystem != null) {
             EntityTransaction tx = entityManager.getTransaction();
@@ -266,8 +270,9 @@ public class CreateDummySystemResource {
 
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
-        this.entityManager.persist(system); // saves all thanks to cascading
+        entityManager.persist(system); // saves all thanks to cascading
         tx.commit();
+        entityManager.close();
     }
 
     private <Bean extends RevisionedBean> Bean prepareDummy(Bean bean, String systemId, String prefix, int counter) {
@@ -284,7 +289,9 @@ public class CreateDummySystemResource {
     }
 
     // might look a bit weird, was Java->Scala->Java in the past
+    @Transactional
     private String createBoostrapData(String id){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         final Integer numObj = 100;
 
         //Nodes

@@ -8,7 +8,9 @@ import org.iobserve.models.util.Measurable;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +23,7 @@ import java.util.stream.Collectors;
 public abstract class AbstractService<Model extends BaseEntity, ModelDto extends DataTransportObject> implements Service<ModelDto> {
 
     @Inject
-    protected EntityManager entityManager;
+    protected EntityManagerFactory entityManagerFactory;
 
     @Inject
     protected EntityToDtoMapper modelToDtoMapper;
@@ -29,13 +31,19 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
     protected final  Class<Model> persistentClass = (Class<Model>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
     // TODO: implement generic methods to simplify subclasses
+    @Transactional
     public List<ModelDto> findAll(){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         Query query = entityManager.createQuery("Select t from " + persistentClass.getSimpleName() +" t");
-        return transformModelToDto((List<Model>) query.getResultList());
+        List<ModelDto> resultList = transformModelToDto((List<Model>) query.getResultList());
+        entityManager.close();
+        return resultList;
     }
 
+    @Transactional
     public ModelDto findById(String id){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         Model result = entityManager.find(persistentClass,id);
         ModelDto dto = transformModelToDto(result);
 
@@ -46,6 +54,7 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
             measurableDto.setStatusInformations(measurable.getStatusInformations());
         }
 
+        entityManager.close();
         // enhance dto with measureable data from result
         return dto;
     }

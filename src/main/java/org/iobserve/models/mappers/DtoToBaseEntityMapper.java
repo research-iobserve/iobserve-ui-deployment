@@ -10,6 +10,7 @@ import org.mapstruct.factory.Mappers;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class DtoToBaseEntityMapper {
     private final DtoToBasePropertyEntityMapper dtoToBasePropertyMapper = DtoToBasePropertyEntityMapper.INSTANCE;
 
     @Inject
-    private EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
 
     //TODO find proper solution
     public BaseEntity transform(DataTransportObject dto){
@@ -65,21 +66,26 @@ public class DtoToBaseEntityMapper {
     }
 
     public Communication transform(CommunicationDto communicationDto) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         final Communication communication = dtoToBasePropertyMapper.transform(communicationDto);
 
         communication.setSource(entityManager.find(Service.class, communicationDto.getSourceId()));
         communication.setTarget(entityManager.find(Service.class, communicationDto.getTargetId()));
+        entityManager.close();
 
         return communication;
     }
 
 
     public CommunicationInstance transform(CommunicationInstanceDto communicationInstanceDto) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         final CommunicationInstance communicationInstance = dtoToBasePropertyMapper.transform(communicationInstanceDto);
 
         communicationInstance.setCommunication(entityManager.find(Communication.class, communicationInstanceDto.getCommunicationId()));
         communicationInstance.setSource(entityManager.find(ServiceInstance.class, communicationInstanceDto.getSourceId()));
         communicationInstance.setTarget(entityManager.find(ServiceInstance.class, communicationInstanceDto.getTargetId()));
+
+        entityManager.close();
 
         return communicationInstance;
     }
@@ -93,10 +99,13 @@ public class DtoToBaseEntityMapper {
 
 
     public Node transform(NodeDto nodeDto) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         final Node node = dtoToBasePropertyMapper.transform(nodeDto);
-        final NodeGroup nodeGroup = entityManager.find(NodeGroup.class, nodeDto.getNodeGroupId());
 
+        final NodeGroup nodeGroup = entityManager.find(NodeGroup.class, nodeDto.getNodeGroupId());
         node.setNodeGroup(nodeGroup);
+
+        entityManager.close();
 
         return node;
     }
@@ -110,10 +119,13 @@ public class DtoToBaseEntityMapper {
 
 
     public ServiceInstance transform(ServiceInstanceDto serviceInstanceDto) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         final ServiceInstance serviceInstance = dtoToBasePropertyMapper.transform(serviceInstanceDto);
 
         serviceInstance.setNode(entityManager.find(Node.class, serviceInstanceDto.getNodeId()));
         serviceInstance.setService(entityManager.find(Service.class, serviceInstanceDto.getServiceId()));
+
+        entityManager.close();
 
         return serviceInstance;
     }
