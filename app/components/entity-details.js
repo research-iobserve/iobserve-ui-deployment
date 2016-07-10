@@ -7,12 +7,11 @@ export default Ember.Component.extend({
         this.debug('entity', this.get('entity'));
         const properties = [];
         const entity = this.get('entity');
-        this.get('entity').eachAttribute(
-            (property) => {
-                if(!(property.indexOf('Id') >= 0)){
-                    properties.push({key: property, value: entity.get(property)});
-                }
-                });
+        entity.eachAttribute(property => {
+            if(property.indexOf('Id') < 0) {
+                properties.push({key: property, value: entity.get(property)});
+            }
+        });
         this.debug('properties', properties);
         return properties;
     })
