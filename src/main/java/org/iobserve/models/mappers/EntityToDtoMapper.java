@@ -62,7 +62,8 @@ public interface EntityToDtoMapper { // TODO: ignore measureable
     @Mapping(source = "parent", target = "parentId")
     TimeSeriesDto transform(TimeSeries series);
 
-    //ChangelogDto transform(Changelog changelog);
+    @Mapping(target = "data", ignore=true)
+    ChangelogDto transform(Changelog changelog);
 
 
 }

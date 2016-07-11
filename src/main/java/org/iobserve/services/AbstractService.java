@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.stream.Collectors;

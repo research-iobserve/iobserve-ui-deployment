@@ -24,7 +24,7 @@ import java.util.List;
 )
 public class ChangelogStreamWebsocket {
 
-    private static final Thread dummyThread = createDummyThread("system123");
+    //private static final Thread dummyThread = createDummyThread("system123");
     private static ChangelogStreamService streamService = ChangelogStreamService.INSTANCE;
 
     @OnOpen

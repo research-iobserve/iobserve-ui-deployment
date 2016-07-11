@@ -17,15 +17,15 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CommunicationInstance extends Measurable{
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @XmlTransient
     private ServiceInstance source;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @XmlTransient
     private ServiceInstance target;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @XmlTransient
     private Communication communication;
 

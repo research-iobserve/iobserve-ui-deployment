@@ -13,9 +13,9 @@ import java.util.List;
 @Entity
 public class Communication extends Measurable{
     private String technology;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Service source;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Service target;
     @OneToMany(mappedBy = "communication", cascade = CascadeType.ALL)
     private List<CommunicationInstance> instances;

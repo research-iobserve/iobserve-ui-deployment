@@ -27,7 +27,7 @@ public class Node extends Measurable {
     private String ip;
     private String hostname;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @XmlTransient
     private NodeGroup nodeGroup;
 

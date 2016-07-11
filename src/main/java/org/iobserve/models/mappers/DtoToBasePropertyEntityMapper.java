@@ -22,7 +22,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface DtoToBasePropertyEntityMapper  { // TODO: ignore measureable
 
-    //TODO Maybe ignre for ids
+    //TODO Maybe ignore for ids
 
     DtoToBasePropertyEntityMapper INSTANCE = Mappers.getMapper(DtoToBasePropertyEntityMapper.class);
     
@@ -40,7 +40,8 @@ public interface DtoToBasePropertyEntityMapper  { // TODO: ignore measureable
 
     ServiceInstance transform(ServiceInstanceDto nodeDto);
 
-    //Changelog transform(ChangelogDto changelogDto);
+    @Mapping(target = "data", ignore=true)
+    Changelog transform(ChangelogDto changelogDto);
 
     @Mapping(source = "parentId", target = "parent")
     TimeSeries transform(TimeSeriesDto seriesDto);

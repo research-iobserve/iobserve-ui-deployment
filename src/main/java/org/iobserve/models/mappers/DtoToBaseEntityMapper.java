@@ -1,9 +1,12 @@
 package org.iobserve.models.mappers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
 import org.iobserve.models.util.BaseEntity;
+import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.TimeSeries;
 import org.iobserve.models.util.TimeSeriesDto;
 import org.mapstruct.factory.Mappers;
@@ -25,8 +28,6 @@ public class DtoToBaseEntityMapper {
 
     //TODO find proper solution
     public BaseEntity transform(DataTransportObject dto){
-
-
         if(dto instanceof NodeGroupDto){
             return transform((NodeGroupDto) dto);
 
@@ -102,8 +103,11 @@ public class DtoToBaseEntityMapper {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         final Node node = dtoToBasePropertyMapper.transform(nodeDto);
 
-        final NodeGroup nodeGroup = entityManager.find(NodeGroup.class, nodeDto.getNodeGroupId());
-        node.setNodeGroup(nodeGroup);
+        if(nodeDto.getNodeGroupId() != null){
+            final NodeGroup nodeGroup = entityManager.find(NodeGroup.class, nodeDto.getNodeGroupId());
+            node.setNodeGroup(nodeGroup);
+        }
+
 
         entityManager.close();
 
@@ -130,13 +134,26 @@ public class DtoToBaseEntityMapper {
         return serviceInstance;
     }
 
-//    public static Changelog transform(ChangelogDto changelogDto) {
-//        final Changelog changelog = dtoToBasePropertyMapper.transform(changelogDto);
-//        return changelog;
-//    }
+    public Changelog transform(ChangelogDto changelogDto) {
+        final Changelog changelog = dtoToBasePropertyMapper.transform(changelogDto);
+
+        final ObjectMapper objectMapper = new ObjectMapper();
+        String data = "";
+
+        try {
+            data = objectMapper.writeValueAsString(changelogDto.getData());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        changelog.setData(data);
+
+        return changelog;
+    }
 
     public TimeSeries transform(TimeSeriesDto seriesDto){
         final TimeSeries series = dtoToBasePropertyMapper.transform(seriesDto);
+
         return series;
     }
 }

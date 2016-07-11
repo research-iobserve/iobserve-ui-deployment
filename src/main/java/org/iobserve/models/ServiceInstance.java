@@ -23,7 +23,7 @@ public class ServiceInstance extends Measurable {
     @XmlTransient
     private Node node;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @XmlTransient
     private Service service;
 

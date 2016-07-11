@@ -16,6 +16,8 @@ public abstract class AbstractSystemComponentService<Model extends BaseEntity, M
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("Select t from " + persistentClass.getSimpleName() + " t where systemId = :systemId")
                 .setParameter("systemId", systemId);
-        return transformModelToDto((List<Model>) query.getResultList());
+        List<Model> result = query.getResultList();
+        entityManager.close();
+        return transformModelToDto(result);
     }
 }

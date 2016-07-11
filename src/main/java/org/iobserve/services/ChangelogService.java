@@ -1,8 +1,10 @@
 package org.iobserve.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.iobserve.models.Changelog;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.dataaccessobjects.ChangelogDto;
+import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.mappers.DtoToBaseEntityMapper;
 import org.iobserve.models.util.BaseEntity;
 import org.iobserve.models.util.RevisionedBean;
@@ -16,9 +18,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.transaction.Transaction;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -35,16 +40,34 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
     @Inject
     private DtoToBaseEntityMapper dtoToBaseEntityMapper;
 
-    public ChangelogService() {
-        //TODO
-        //Query query = entityManager.createQuery("select changelog from Changelog changelog order by changelog.revisionNumber desc");
-        revisionNumber = 0L;
-        //dtoToBaseEntityMapper = new DtoToBaseEntityMapper();
+    @Inject
+    public ChangelogService(EntityManager entityManager) {
+        Query query = entityManager.createQuery("select changelog from Changelog changelog order by changelog.revisionNumber desc");
+        List<Changelog> results = query.getResultList();
+        if(results.isEmpty()){
+            this.revisionNumber = 0L;
+        }else{
+            this.revisionNumber = results.get(0).getRevisionNumber();
+        }
+
+
+        entityManager.close();
     }
 
     @Override
     protected ChangelogDto transformModelToDto(Changelog changelog) {
-           return null;//this.modelToDtoMapper.transform(changelog);
+        ChangelogDto changelogDto = this.modelToDtoMapper.transform(changelog);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        DataTransportObject data = null;
+        try {
+            data = objectMapper.readValue(changelog.getData(),DataTransportObject.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        changelogDto.setData(data);
+
+        return changelogDto;
     }
 
     public synchronized void addChangelogs(final String systemId, List<ChangelogDto> changelogs){
@@ -55,15 +78,31 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         for (int i = 0; i < changelogs.size(); i++) {
             final ChangelogDto changelog = changelogs.get(i);
 
+            changelog.setId(generateId());
+            changelog.setSystemId(systemId);
             changelog.setRevisionNumber(revision);
             changelog.setChangelogSequence(new Long(i));
             changelog.setLastUpdate(date);
 
             applyChangelog(changelog);
-            //Todo persist Changelog
+            persistChangelog(changelog);
 
         }
-        changelogStreamService.broadcastChangelogs(systemId, changelogs);
+        this.changelogStreamService.broadcastChangelogs(systemId, changelogs);
+
+    }
+
+    @Transactional
+    private void persistChangelog(ChangelogDto changelogDto){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Changelog changelog = this.dtoToBaseEntityMapper.transform(changelogDto);
+
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        if(!transaction.isActive()) transaction.begin();
+        entityManager.persist(changelog);
+        transaction.commit();
+        entityManager.close();
 
     }
 
@@ -88,11 +127,11 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     @Transactional
     private void updateEntity(ChangelogDto changelog) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
 
-        BaseEntity entity = dtoToBaseEntityMapper.transform(changelog.getData());
+        BaseEntity entity = this.dtoToBaseEntityMapper.transform(changelog.getData());
 
-        setRevidionOfEntity(entity, changelog);
+        setRevisionOfEntity(entity, changelog);
 
         final EntityTransaction transaction = entityManager.getTransaction();
         if(!transaction.isActive()) transaction.begin();
@@ -108,7 +147,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         //TODO Append more than timeseries only
         if(changelog.getData() instanceof TimeSeriesDto){
             TimeSeriesDto seriesDto = (TimeSeriesDto) changelog.getData();
-            TimeSeries series = dtoToBaseEntityMapper.transform(seriesDto);
+            TimeSeries series = this.dtoToBaseEntityMapper.transform(seriesDto);
             //TODO
         }
 
@@ -116,12 +155,12 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     @Transactional
     private void deleteEntity(ChangelogDto changelog) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         ModelClassOfDto modelClass = changelog.getData().getClass().getAnnotation(ModelClassOfDto.class);
 
         BaseEntity entity = entityManager.find(modelClass.value(), changelog.getData().getId());
 
-        setRevidionOfEntity(entity, changelog);
+        setRevisionOfEntity(entity, changelog);
 
         final EntityTransaction transaction = entityManager.getTransaction();
         if(!transaction.isActive()) transaction.begin();
@@ -133,10 +172,10 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     @Transactional
     private void createEntity(ChangelogDto changelog) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        BaseEntity entity = dtoToBaseEntityMapper.transform(changelog.getData());
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+        BaseEntity entity = this.dtoToBaseEntityMapper.transform(changelog.getData());
 
-        setRevidionOfEntity(entity, changelog);
+        setRevisionOfEntity(entity, changelog);
 
         final EntityTransaction transaction = entityManager.getTransaction();
         if(!transaction.isActive()) transaction.begin();
@@ -145,7 +184,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         entityManager.close();
     }
 
-    private void setRevidionOfEntity(BaseEntity entity, ChangelogDto changelog){
+    private void setRevisionOfEntity(BaseEntity entity, ChangelogDto changelog){
         if(entity instanceof RevisionedBean){
             setRevisionOfEntity((RevisionedBean) entity, changelog);
         }
@@ -158,13 +197,17 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
     }
 
     public Long getLatestRevisionNumber(){
-     return revisionNumber;
+     return this.revisionNumber;
     }
 
     public Long getNewRevisionNumber(){
-        synchronized (revisionNumber){
-            revisionNumber++;
-            return revisionNumber;
+        synchronized (this.revisionNumber){
+            this.revisionNumber++;
+            return this.revisionNumber;
         }
+    }
+
+    public String generateId(){
+        return UUID.randomUUID().toString();
     }
 }
