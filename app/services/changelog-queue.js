@@ -1,5 +1,13 @@
 import Ember from 'ember';
 
+/**
+ * Stores changelogs which were received via ChangelogStreamService and applies the {ChangelogParserService} if triggered externally
+ *
+ * @class ChangelogQueueService
+ * @extends {Ember.Service}
+ * @uses ChangelogStreamService
+ * @uses ChangelogParserService
+ */
 export default Ember.Service.extend({
     changelogParser: Ember.inject.service(),
     _private: {

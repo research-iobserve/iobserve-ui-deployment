@@ -1,13 +1,35 @@
 import Ember from 'ember';
 
 // TODO: update cytoscape instead of complete rerender
+/**
+ * The changelog parser takes a changelog (as a plain JS object) and updates the internal
+ * state of the Ember Data store automatically. Supports CREATE, UPDATE, DELETE and APPEND operations
+ *
+ * @class ChangelogParserService
+ * @extends {Ember.Service}
+ */
 export default Ember.Service.extend({
     store: Ember.inject.service(),
+
+    /**
+     * Parse a list of changelogs
+     * @param  {Array} changelogs List of changelogs, as plain JavaScript objects
+     * @method parse
+     * @public
+     */
     parse(changelogs) {
         this.debug('store', this.get('store'));
         this.debug('parsing changelogs', changelogs);
         changelogs.forEach(this.parseSingle.bind(this));
     },
+
+    /**
+     * Parse a single changelog
+     *
+     * @param  {Object} changelog changelog as plain JavaScript object, see backend documentation for data structure
+     * @method parseSingle
+     * @public
+     */
     parseSingle(changelog) {
         const operation = this.get(`operations.${changelog.operation}`);
         if(!operation) {

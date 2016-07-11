@@ -8,7 +8,6 @@ import Ember from 'ember';
  *
  * @class VisualisationEventsService
  * @extends {Ember.Service}
- * @public
  */
 export default Ember.Service.extend(Ember.Evented, {
     /**
