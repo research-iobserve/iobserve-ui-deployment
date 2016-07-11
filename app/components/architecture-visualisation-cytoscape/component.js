@@ -19,7 +19,12 @@ export default Ember.Component.extend({
         this.debug('loaded', this.get('graph'));
 
         // we only need to listen to :end since opacity changes are done via css, since architecture-viewer adds a resizing class
-        this.get('visualisationEvents').on('resize:end', this.resize.bind(this));
+        const visualisationEvents = this.get('visualisationEvents');
+        const resizeListener = this.resize.bind(this);
+        visualisationEvents.on('resize:end', resizeListener);
+        this.on('willDestroyElement', () => {
+            visualisationEvents.off('resize:start', resizeListener);
+        });
     },
     willDestroyElement() {
         clearInterval(this.interval);
