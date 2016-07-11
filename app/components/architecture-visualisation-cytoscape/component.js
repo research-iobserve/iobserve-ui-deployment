@@ -9,6 +9,7 @@ import coseBilkent from 'npm:cytoscape-cose-bilkent';
 coseBilkent(cytoscape); // register
 
 export default Ember.Component.extend({
+    visualisationEvents: Ember.inject.service(),
     theme: null, // set by architecture-viewer
     layoutAlgorithm: null, // set by architecture-viewer
     classNames: ['cytoscapeRenderingSpace'],
@@ -16,6 +17,9 @@ export default Ember.Component.extend({
         cycola( cytoscape, window.cola );
         this._super();
         this.debug('loaded', this.get('graph'));
+
+        // we only need to listen to :end since opacity changes are done via css, since architecture-viewer adds a resizing class
+        this.get('visualisationEvents').on('resize:end', this.resize.bind(this));
     },
     willDestroyElement() {
         clearInterval(this.interval);
@@ -65,5 +69,11 @@ export default Ember.Component.extend({
         // just for development purposes - TODO: remove
         window.cy = cytoscape;
         window.cytoscape = this.rendering;
-    }.on('didInsertElement').observes('layoutAlgorithm', 'graph', 'theme')
+    }.on('didInsertElement').observes('layoutAlgorithm', 'graph', 'theme'),
+    resize() {
+        if(this.rendering) {
+            this.rendering.resize();
+            this.rendering.center(); // TODO: keep focus or even focus clicked element
+        }
+    }
 });

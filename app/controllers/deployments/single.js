@@ -7,6 +7,7 @@ const observables = [
     'communicationInstances'
 ];
 
+// we require the use of controllers solely because Ember does not allow routes to pass more than model() to templates
 export default Ember.Controller.extend({
     graphingService: Ember.inject.service(),
     changelogQueue: Ember.inject.service(),

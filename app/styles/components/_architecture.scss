@@ -1,43 +1,24 @@
-svg.architectureVisualisation {
-    .root {
-        g.compound {
-            &:first-child rect { // hide root compound
-                opacity: 0;
-            }
+$resizingAnimationDuration: .5s; // see deployments/detail route for property
 
-            & > rect {
-                opacity: 0.1;
+.visualisationContainer {
+    @extend .col-md-10;
+    transition: width $resizingAnimationDuration;
 
-                &:hover {
-                    stroke: white;
-                    stroke-opacity: 1;
-                    fill: red;
-                }
-            }
-        }
+    canvas {
+        max-width: 100%;
     }
-    .link {
-        stroke: #999;
-        stroke-opacity: .6;
-        fill: none;
-        stroke-width: 2px;
+}
 
-        &:hover {
-          stroke: #A000;
-          stroke-opacity: 1;
-        }
+.visualisationSidebar {
+    @extend .col-md-2;
+    transition: width $resizingAnimationDuration;
+}
+
+.extendedSidebar {
+    .visualisationContainer {
+        @extend .col-md-6
     }
-    g.leaf > rect {
-      stroke: #fff;
-      stroke-width: 1px;
-      opacity: .5;
-    }
-
-    // .node {}
-
-    .port {
-      stroke: #000;
-      width: 1px;
-      opacity: .6;
+    .visualisationSidebar {
+        @extend .col-md-6
     }
 }
