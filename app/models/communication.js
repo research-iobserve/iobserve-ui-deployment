@@ -1,7 +1,7 @@
-import BaseEntity from './baseentity';
+import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
-const Model = BaseEntity.extend({    
+const Model = Measurable.extend({
     technology: attr('string'),
     sourceId: attr('string'),
     targetId: attr('string'),

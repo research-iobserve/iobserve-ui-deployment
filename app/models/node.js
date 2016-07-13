@@ -1,7 +1,7 @@
-import BaseEntity from './baseentity';
+import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
-const Model = BaseEntity.extend({
+const Model = Measurable.extend({
     name: attr('string'),
     ip: attr('string'),
     hostname: attr('string'),
@@ -58,6 +58,6 @@ Model.reopenClass({
         "nodeGroupId":"test-system123-nodeGroup-1"
     }]
 
-})
+});
 
 export default Model;
