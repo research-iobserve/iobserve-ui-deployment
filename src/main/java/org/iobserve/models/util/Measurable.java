@@ -10,11 +10,11 @@ import java.util.List;
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Measurable extends RevisionedBean {
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="parent_id", referencedColumnName="id")
     private List<StatusInfo> statusInformations = new LinkedList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="parent_id", referencedColumnName="id")
     private List<TimeSeries> timeSeries = new LinkedList<>();
 

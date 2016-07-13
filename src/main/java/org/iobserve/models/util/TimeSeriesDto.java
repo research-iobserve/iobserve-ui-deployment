@@ -1,8 +1,10 @@
 package org.iobserve.models.util;
 
+import org.iobserve.models.CommunicationInstance;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
 
+import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
 /**
@@ -10,6 +12,7 @@ import java.util.List;
  */
 
 @ModelClassOfDto(TimeSeries.class)
+@XmlType(name = "timeSeries")
 public class TimeSeriesDto extends DataTransportObject {
 
     private String parentId;
@@ -18,7 +21,7 @@ public class TimeSeriesDto extends DataTransportObject {
     private Long intervalStart;
     private Long intervalEnd;
 
-    private List<SeriesElement> series;
+    private List<SeriesElementDto> series;
 
     public TimeSeriesDto() {
     }
@@ -55,11 +58,11 @@ public class TimeSeriesDto extends DataTransportObject {
         this.intervalEnd = intervalEnd;
     }
 
-    public List<SeriesElement> getSeries() {
+    public List<SeriesElementDto> getSeries() {
         return series;
     }
 
-    public void setSeries(List<SeriesElement> series) {
+    public void setSeries(List<SeriesElementDto> series) {
         this.series = series;
     }
 }

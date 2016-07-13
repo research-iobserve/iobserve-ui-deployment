@@ -15,7 +15,7 @@ public class TimeSeries extends BaseEntity{
     private Long intervalStart;
     private Long intervalEnd;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="series_id", referencedColumnName="id")
     private List<SeriesElement> series;
 

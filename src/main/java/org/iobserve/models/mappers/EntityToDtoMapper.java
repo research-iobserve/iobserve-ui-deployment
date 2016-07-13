@@ -3,9 +3,7 @@ package org.iobserve.models.mappers;
 import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
-import org.iobserve.models.util.BaseEntity;
-import org.iobserve.models.util.TimeSeries;
-import org.iobserve.models.util.TimeSeriesDto;
+import org.iobserve.models.util.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -59,11 +57,14 @@ public interface EntityToDtoMapper { // TODO: ignore measureable
     @Mapping(target = "statusInformations", ignore=true)
     ServiceInstanceDto transform(ServiceInstance node);
 
+    @Mapping(target = "data", ignore=true)
+    ChangelogDto transform(Changelog changelog);
+
     @Mapping(source = "parent", target = "parentId")
     TimeSeriesDto transform(TimeSeries series);
 
-    @Mapping(target = "data", ignore=true)
-    ChangelogDto transform(Changelog changelog);
+    @Mapping(source = "series", target = "seriesId")
+    SeriesElementDto transform(SeriesElement seriesElement);
 
 
 }

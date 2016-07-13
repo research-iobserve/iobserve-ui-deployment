@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.iobserve.models.Changelog;
 import org.iobserve.models.ServiceInstance;
+import org.iobserve.models.util.SeriesElement;
+import org.iobserve.models.util.SeriesElementDto;
+import org.iobserve.models.util.TimeSeries;
+import org.iobserve.models.util.TimeSeriesDto;
 
 import javax.xml.bind.annotation.XmlType;
 
@@ -32,7 +36,9 @@ import javax.xml.bind.annotation.XmlType;
         @JsonSubTypes.Type(value = NodeGroupDto.class, name = "nodeGroup"),
         @JsonSubTypes.Type(value = ChangelogDto.class, name = "changelog"),
         @JsonSubTypes.Type(value = CommunicationDto.class, name = "communication"),
-        @JsonSubTypes.Type(value = CommunicationInstanceDto.class, name = "communicationInstance") })
+        @JsonSubTypes.Type(value = CommunicationInstanceDto.class, name = "communicationInstance"),
+        @JsonSubTypes.Type(value = TimeSeriesDto.class, name = "timeSeries"),
+        @JsonSubTypes.Type(value = SeriesElementDto.class, name = "seriesElement") })
 public abstract class DataTransportObject {
     String id;
 

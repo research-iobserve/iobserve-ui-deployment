@@ -144,11 +144,19 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     @Transactional
     private void appentEntity(ChangelogDto changelog) {
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         //TODO Append more than timeseries only
         if(changelog.getData() instanceof TimeSeriesDto){
             TimeSeriesDto seriesDto = (TimeSeriesDto) changelog.getData();
             TimeSeries series = this.dtoToBaseEntityMapper.transform(seriesDto);
-            //TODO
+
+            final EntityTransaction transaction = entityManager.getTransaction();
+            if(!transaction.isActive()) transaction.begin();
+            entityManager.persist(series);
+            transaction.commit();
+            entityManager.close();
+
+
         }
 
     }

@@ -1,0 +1,38 @@
+[{
+  "type":"changelog",
+  "operation":"APPEND",
+  "data":{
+    "type":"timeSeries",
+    "id": "test-system123-timeSeries-100",
+    "parentId": "test-system123-node-1",
+    "label": "TestValues",
+    "intervalStart": 1468063952447,
+    "intervalEnd": 1468063952600,
+    "series":[
+      {
+        "type":"seriesElement",
+        "id": "test-system123-seriesElement-100",
+        "seriesId":"test-system123-timeSeries-100",
+        "value":"1"
+      },
+      {
+        "type":"seriesElement",
+        "id": "test-system123-seriesElement-101",
+        "seriesId":"test-system123-timeSeries-100",
+        "value":"2"
+      },
+      {
+        "type":"seriesElement",
+        "id": "test-system123-seriesElement-102",
+        "seriesId":"test-system123-timeSeries-100",
+        "value":"3"
+      },
+      {
+        "type":"seriesElement",
+        "id": "test-system123-seriesElement-103",
+        "seriesId":"test-system123-timeSeries-100",
+        "value":"2"
+      }
+    ]
+  }
+}]

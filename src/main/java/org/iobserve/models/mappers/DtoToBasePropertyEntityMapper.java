@@ -3,6 +3,8 @@ package org.iobserve.models.mappers;
 import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
+import org.iobserve.models.util.SeriesElement;
+import org.iobserve.models.util.SeriesElementDto;
 import org.iobserve.models.util.TimeSeries;
 import org.iobserve.models.util.TimeSeriesDto;
 import org.mapstruct.Mapper;
@@ -20,7 +22,9 @@ import org.mapstruct.factory.Mappers;
  * @see <a href="http://mapstruct.org">MapStruct</a>
  */
 @Mapper
-public interface DtoToBasePropertyEntityMapper  { // TODO: ignore measureable
+public interface DtoToBasePropertyEntityMapper  {
+
+    // TODO: ignore measureable
 
     //TODO Maybe ignore for ids
 
@@ -45,6 +49,9 @@ public interface DtoToBasePropertyEntityMapper  { // TODO: ignore measureable
 
     @Mapping(source = "parentId", target = "parent")
     TimeSeries transform(TimeSeriesDto seriesDto);
+
+    @Mapping(source = "seriesId", target = "series")
+    SeriesElement transform(SeriesElementDto seriesElementDto);
 
 
 }
