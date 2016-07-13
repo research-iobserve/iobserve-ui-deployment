@@ -35,19 +35,6 @@ public class Service extends Measurable{
         this.instances = instances;
     }
 
-    public Service(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, String name, String description) {
-        super(statusInfoList, timeSeriesList);
-        this.name = name;
-        this.description = description;
-    }
-
-    public Service(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, String name, String description, List<ServiceInstance> instances) {
-        super(statusInfoList, timeSeriesList);
-        this.name = name;
-        this.description = description;
-        this.instances = instances;
-    }
-
     public String getName() {
         return name;
     }

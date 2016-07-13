@@ -2,12 +2,7 @@ package org.iobserve.models.dataaccessobjects;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import org.iobserve.models.Changelog;
-import org.iobserve.models.ServiceInstance;
-import org.iobserve.models.util.SeriesElement;
-import org.iobserve.models.util.SeriesElementDto;
-import org.iobserve.models.util.TimeSeries;
-import org.iobserve.models.util.TimeSeriesDto;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.xml.bind.annotation.XmlType;
 
@@ -24,12 +19,13 @@ import javax.xml.bind.annotation.XmlType;
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.mappers.EntityToDtoMapper
  */
-@XmlType(name = "baseEntity")
+@JsonTypeName("baseEntity")
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
         property = "type")
 @JsonSubTypes({
+        @JsonSubTypes.Type(value = MeasurableDataTrasferObject.class, name = "measurable"),
         @JsonSubTypes.Type(value = ServiceDto.class, name = "service"),
         @JsonSubTypes.Type(value = ServiceInstanceDto.class, name = "serviceInstance"),
         @JsonSubTypes.Type(value = NodeDto.class, name = "node"),

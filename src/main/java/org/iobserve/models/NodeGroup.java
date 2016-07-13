@@ -31,16 +31,6 @@ public class NodeGroup extends Measurable{
         this.name = name;
     }
 
-    public NodeGroup(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, List<Node> nodes, String name) {
-        super(statusInfoList, timeSeriesList);
-        this.nodes = nodes;
-        this.name = name;
-    }
-
-    public NodeGroup(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, String name) {
-        super(statusInfoList, timeSeriesList);
-        this.name = name;
-    }
 
     public List<Node> getNodes() {
         return nodes;

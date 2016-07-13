@@ -1,8 +1,9 @@
-package org.iobserve.models.util;
+package org.iobserve.models.dataaccessobjects;
 
-import org.iobserve.models.CommunicationInstance;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.annotations.ModelClassOfDto;
-import org.iobserve.models.dataaccessobjects.DataTransportObject;
+import org.iobserve.models.util.TimeSeries;
 
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 @ModelClassOfDto(TimeSeries.class)
-@XmlType(name = "timeSeries")
+@JsonTypeName("timeSeries")
 public class TimeSeriesDto extends DataTransportObject {
 
     private String parentId;

@@ -6,15 +6,12 @@ import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
 import org.iobserve.models.util.BaseEntity;
-import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.TimeSeries;
-import org.iobserve.models.util.TimeSeriesDto;
-import org.mapstruct.factory.Mappers;
+import org.iobserve.models.dataaccessobjects.TimeSeriesDto;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.List;
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>

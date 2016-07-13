@@ -9,16 +9,14 @@ import org.iobserve.models.mappers.DtoToBaseEntityMapper;
 import org.iobserve.models.util.BaseEntity;
 import org.iobserve.models.util.RevisionedBean;
 import org.iobserve.models.util.TimeSeries;
-import org.iobserve.models.util.TimeSeriesDto;
+import org.iobserve.models.dataaccessobjects.TimeSeriesDto;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.transaction.Transaction;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Date;
@@ -116,7 +114,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
                 deleteEntity(changelog);
                 break;
             case APPEND:
-                appentEntity(changelog);
+                appendEntity(changelog);
                 break;
             case UPDATE:
                 updateEntity(changelog);
@@ -143,7 +141,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
     }
 
     @Transactional
-    private void appentEntity(ChangelogDto changelog) {
+    private void appendEntity(ChangelogDto changelog) {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         //TODO Append more than timeseries only
         if(changelog.getData() instanceof TimeSeriesDto){

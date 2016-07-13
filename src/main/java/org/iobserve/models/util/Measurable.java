@@ -1,8 +1,10 @@
 package org.iobserve.models.util;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by cdor on 25.04.16.
@@ -12,27 +14,27 @@ import java.util.List;
 public abstract class Measurable extends RevisionedBean {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="parent_id", referencedColumnName="id")
-    private List<StatusInfo> statusInformations = new LinkedList<>();
+    private Set<StatusInfo> statusInformations = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="parent_id", referencedColumnName="id")
-    private List<TimeSeries> timeSeries = new LinkedList<>();
+    private Set<TimeSeries> timeSeries = new HashSet<>();
 
     public Measurable() {
         super();
     }
 
-    public Measurable(List<StatusInfo> statusInformations, List<TimeSeries> timeSeries) {
+    public Measurable(Set<StatusInfo> statusInformations, Set<TimeSeries> timeSeries) {
         super();
         this.statusInformations = statusInformations;
         this.timeSeries = timeSeries;
     }
 
-    public List<StatusInfo> getStatusInformations() {
+    public Set<StatusInfo> getStatusInformations() {
         return statusInformations;
     }
 
-    public void setStatusInformations(List<StatusInfo> statusInfoList) {
+    public void setStatusInformations(Set<StatusInfo> statusInfoList) {
         this.statusInformations = statusInfoList;
     }
 
@@ -40,11 +42,11 @@ public abstract class Measurable extends RevisionedBean {
         statusInformations.add(info);
     }
 
-    public List<TimeSeries> getTimeSeries() {
+    public Set<TimeSeries> getTimeSeries() {
         return timeSeries;
     }
 
-    public void setTimeSeries(List<TimeSeries> timeSeriesList) {
+    public void setTimeSeries(Set<TimeSeries> timeSeriesList) {
         this.timeSeries = timeSeriesList;
     }
 

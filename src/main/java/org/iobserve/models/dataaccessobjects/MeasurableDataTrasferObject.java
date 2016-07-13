@@ -1,27 +1,31 @@
 package org.iobserve.models.dataaccessobjects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 public class MeasurableDataTrasferObject extends RevisionedBeanDataTransportObject {
-    private List<StatusInfo> statusInformations;
+    private Set<StatusInfo> statusInformations;
 
-    private List<TimeSeries> timeSeries;
+
+    private Set<TimeSeries> timeSeries;
 
     public MeasurableDataTrasferObject() {
         super();
     }
 
-    public List<StatusInfo> getStatusInformations() {
+
+    public Set<StatusInfo> getStatusInformations() {
         return statusInformations;
     }
 
-    public void setStatusInformations(List<StatusInfo> statusInfoList) {
+    public void setStatusInformations(Set<StatusInfo> statusInfoList) {
         this.statusInformations = statusInfoList;
     }
 
@@ -29,11 +33,11 @@ public class MeasurableDataTrasferObject extends RevisionedBeanDataTransportObje
         statusInformations.add(info);
     }
 
-    public List<TimeSeries> getTimeSeries() {
+    public Set<TimeSeries> getTimeSeries() {
         return timeSeries;
     }
 
-    public void setTimeSeries(List<TimeSeries> timeSeriesList) {
+    public void setTimeSeries(Set<TimeSeries> timeSeriesList) {
         this.timeSeries = timeSeriesList;
     }
 

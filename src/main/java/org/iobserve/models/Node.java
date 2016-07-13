@@ -49,20 +49,6 @@ public class Node extends Measurable {
         this.hostname = hostname;
     }
 
-    public Node(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, String name, List<ServiceInstance> services, String ip, String hostname) {
-        super(statusInfoList, timeSeriesList);
-        this.name = name;
-        this.services = services;
-        this.ip = ip;
-        this.hostname = hostname;
-    }
-
-    public Node(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, String name, String ip, String hostname) {
-        super(statusInfoList, timeSeriesList);
-        this.name = name;
-        this.ip = ip;
-        this.hostname = hostname;
-    }
     public String getName() {
         return name;
     }

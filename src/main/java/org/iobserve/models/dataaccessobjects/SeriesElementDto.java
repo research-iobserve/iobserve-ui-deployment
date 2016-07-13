@@ -1,8 +1,11 @@
-package org.iobserve.models.util;
+package org.iobserve.models.dataaccessobjects;
 
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
+import org.iobserve.models.util.SeriesElement;
 
 import javax.xml.bind.annotation.XmlType;
 
@@ -10,7 +13,7 @@ import javax.xml.bind.annotation.XmlType;
  * Created by Christoph on 13.07.2016.
  */
 @ModelClassOfDto(SeriesElement.class)
-@XmlType(name = "seriesElement")
+@JsonTypeName("seriesElement")
 public class SeriesElementDto extends DataTransportObject{
     private String seriesId;
     private Integer value;

@@ -37,14 +37,6 @@ public class Communication extends Measurable{
         this.target = target;
     }
 
-    public Communication(List<StatusInfo> statusInfoList, List<TimeSeries> timeSeriesList, String technology, Service source, Service target, List<CommunicationInstance> instances) {
-        super(statusInfoList, timeSeriesList);
-        this.technology = technology;
-        this.source = source;
-        this.target = target;
-        this.instances = instances;
-    }
-
     public String getTechnology() {
         return technology;
     }
