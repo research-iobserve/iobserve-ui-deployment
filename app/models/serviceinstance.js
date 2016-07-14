@@ -17,6 +17,7 @@ Model.reopenClass({
           "revisionNumber":0,
           "systemId":"system123",
           "name":"Inventory",
+          "status": "warning",
           "nodeId":"test-system123-node-2",
           "serviceId":"test-system123-service-4"
        },

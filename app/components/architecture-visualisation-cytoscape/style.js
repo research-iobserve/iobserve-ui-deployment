@@ -90,7 +90,13 @@ edge {
     font-weight: bold;
     target-arrow-shape: triangle-backcurve;
     curve-style: bezier; /* supports arrows */
+}
 
+.warning {
+    background-color: yellow;
+}
+.fail {
+    background-color: red;
 }
 
 :selected {
