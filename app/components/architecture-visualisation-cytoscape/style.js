@@ -92,10 +92,10 @@ edge {
     curve-style: bezier; /* supports arrows */
 }
 
-.warning {
+.WARNING {
     background-color: yellow;
 }
-.fail {
+.FAIL {
     background-color: red;
 }
 
