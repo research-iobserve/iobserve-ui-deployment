@@ -29,6 +29,7 @@ module.exports = function(defaults) {
   app.import('bower_components/webcola/WebCola/cola.js');
   app.import('bower_components/Flot/jquery.flot.js'); // time-series-plot component
   app.import('bower_components/Flot/jquery.flot.time.js');
+  app.import('bower_components/flot-axislabels/jquery.flot.axislabels.js');
 
   return app.toTree();
 };

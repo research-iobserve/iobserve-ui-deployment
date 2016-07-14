@@ -10,11 +10,10 @@ export default Component.extend({
     timeSeries: [],
     options: {
         xaxis: {
-            mode: 'time',
+            mode: 'time'
             // timezone: 'browser' // TODO: from Server?
         },
         yaxis: {
-            label: 'test'
         }
     },
     height: 300,
@@ -50,7 +49,9 @@ export default Component.extend({
         // use Ember.get because it would work with Ember.Object and plain JS
         const plotData = this.get('timeSeries.series')
             .map((valueObj) => [get(valueObj, 'timestamp'), get(valueObj, 'value')]);
-        this.debug('plotData', plotData);
+
+        this.set('options.yaxis.axisLabel', this.get('timeSeries.valueLabel'));
+
         // wrap in additional array since flot can handle multiple graphs at once, we only need one
         const plot = $this.plot([plotData], this.get('options')).data('plot');
         this.set('plot', plot);
