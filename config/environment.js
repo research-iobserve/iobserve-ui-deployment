@@ -17,6 +17,9 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      API_ROOT: 'http://iobserve-api.herokuapp.com',
+      WEBSOCKET_ROOT: 'ws://iobserve-api.herokuapp.com',
+      WEBSOCKET_RECONNECT: false // not running on heroku/jetty-runner
     }
   };
 
@@ -27,6 +30,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.API_ROOT = 'http://localhost:8080';
+    ENV.APP.WEBSOCKET_ROOT = 'ws://localhost:8080';
+    ENV.APP.WEBSOCKET_RECONNECT = true;
+
   }
 
   if (environment === 'test') {

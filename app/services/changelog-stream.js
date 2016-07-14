@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from 'iobserve-ui/config/environment';
 
 export default Ember.Service.extend({
     changelogQueue: Ember.inject.service(),
@@ -11,7 +12,7 @@ export default Ember.Service.extend({
         this.set('shouldClose', false);
 
         this.debug('setting up websocket', systemId);
-        const socket = new WebSocket(`ws://localhost:8080/v1/changelogstream/${systemId}`); // TODO: from environment!
+        const socket = new WebSocket(`${ENV.APP.WEBSOCKET_ROOT}/v1/changelogstream/${systemId}`);
         this.set('socket', socket);
 
         socket.onopen = this.get('events.onOpen').bind(this);
@@ -19,15 +20,17 @@ export default Ember.Service.extend({
         socket.onmessage = this.get('events.onMessage').bind(this);
 
         // automatically reconnect
-        socket.onclose = () => {
-            if(!this.get('shouldClose')) {
-                this.debug('connection lost, reconnecting!');
-                this.set('reconnectionTimeout', setTimeout(() => {
-                    this.connect(systemId);
-                    this.set('reconnectionTimeout', null);
-                }, 500));
-            }
-        };
+        if(ENV.APP.WEBSOCKET_RECONNECT) {
+            socket.onclose = () => {
+                if(!this.get('shouldClose')) {
+                    this.debug('connection lost, reconnecting!');
+                    this.set('reconnectionTimeout', setTimeout(() => {
+                        this.connect(systemId);
+                        this.set('reconnectionTimeout', null);
+                    }, 500));
+                }
+            };
+        }
 
         // close socket connection when the user closes the window/tab or nagivates to a different website
         window.onbeforeunload = this.get('disconnect').bind(this);
