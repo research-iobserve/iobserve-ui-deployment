@@ -3,13 +3,9 @@ package org.iobserve.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.iobserve.models.Changelog;
 import org.iobserve.models.annotations.ModelClassOfDto;
-import org.iobserve.models.dataaccessobjects.ChangelogDto;
-import org.iobserve.models.dataaccessobjects.DataTransportObject;
+import org.iobserve.models.dataaccessobjects.*;
 import org.iobserve.models.mappers.DtoToBaseEntityMapper;
-import org.iobserve.models.util.BaseEntity;
-import org.iobserve.models.util.RevisionedBean;
-import org.iobserve.models.util.TimeSeries;
-import org.iobserve.models.dataaccessobjects.TimeSeriesDto;
+import org.iobserve.models.util.*;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
 
@@ -143,17 +139,27 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
     @Transactional
     private void appendEntity(ChangelogDto changelog) {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+        final EntityTransaction transaction = entityManager.getTransaction();
         //TODO Append more than timeseries only
         if(changelog.getData() instanceof TimeSeriesDto){
-            TimeSeriesDto seriesDto = (TimeSeriesDto) changelog.getData();
-            TimeSeries series = this.dtoToBaseEntityMapper.transform(seriesDto);
+            final TimeSeriesDto seriesDto = (TimeSeriesDto) changelog.getData();
+            final TimeSeries series = this.dtoToBaseEntityMapper.transform(seriesDto);
 
-            final EntityTransaction transaction = entityManager.getTransaction();
+
             if(!transaction.isActive()) transaction.begin();
             entityManager.persist(series);
             transaction.commit();
             entityManager.close();
 
+        }else if(changelog.getData() instanceof StatusInfoDto){
+            final StatusInfoDto infoDto = (StatusInfoDto) changelog.getData();
+            final StatusInfo info = this.dtoToBaseEntityMapper.transform(infoDto);
+
+            if(!transaction.isActive()) transaction.begin();
+            entityManager.persist(info);
+            transaction.commit();
+            entityManager.close();
+        }else if(changelog.getData() instanceof SeriesElementDto){
 
         }
 

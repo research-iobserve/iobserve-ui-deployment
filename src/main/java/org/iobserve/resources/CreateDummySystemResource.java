@@ -60,7 +60,7 @@ public class CreateDummySystemResource {
 
 
         Node node2 = prepareDummy(new Node(), systemId, "node", 2);
-        node2.setName("Logicnode");
+        node2.setName("LogicNode");
         node2.setHostname("host2");
         node2.setIp("10.0.0.2");
         node2.addTimeSeries(generateSeries("Utilization", "%"));
@@ -74,7 +74,7 @@ public class CreateDummySystemResource {
         node3.addTimeSeries(generateSeries("Power Consumption", "kWh"));
 
         Node node4 = prepareDummy(new Node(), systemId, "node", 4);
-        node4.setName("Data Center 1");
+        node4.setName("DataCenter");
         node4.setHostname("host4");
         node4.setIp("10.0.0.2");
         node4.addTimeSeries(generateSeries("Utilization", "%"));
@@ -112,7 +112,7 @@ public class CreateDummySystemResource {
 
         ServiceInstance serviceInstance4 = prepareDummy(new ServiceInstance("Inventory"), systemId, "serviceInstance", 4);
         serviceInstance4.setNode(node2);
-        serviceInstance4.setStatus(Status.FAIL);
+        serviceInstance4.setStatus(Status.WARNING);
         serviceInstance4.addTimeSeries(generateSeries("Failures","Number of Failures"));
         serviceInstance4.addTimeSeries(generateSeries("Queries","Number of Queries"));
 

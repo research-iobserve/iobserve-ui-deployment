@@ -6,6 +6,8 @@ import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
 import org.iobserve.models.util.BaseEntity;
+import org.iobserve.models.util.SeriesElement;
+import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 import org.iobserve.models.dataaccessobjects.TimeSeriesDto;
 
@@ -51,6 +53,12 @@ public class DtoToBaseEntityMapper {
 
         }else if(dto instanceof TimeSeriesDto){
             return transform((TimeSeriesDto) dto);
+
+        }else if(dto instanceof StatusInfoDto){
+            return transform((StatusInfoDto) dto);
+
+        }else if(dto instanceof SeriesElementDto){
+            return transform((SeriesElementDto) dto);
 
         }else{
             return null;
@@ -152,5 +160,16 @@ public class DtoToBaseEntityMapper {
         final TimeSeries series = dtoToBasePropertyMapper.transform(seriesDto);
 
         return series;
+    }
+
+    public SeriesElement transform(SeriesElementDto seriesElementDto){
+        final SeriesElement seriesElement = dtoToBasePropertyMapper.transform(seriesElementDto);
+        return seriesElement;
+    }
+
+    public StatusInfo transform(StatusInfoDto statusInfoDto){
+        final StatusInfo info = dtoToBasePropertyMapper.transform(statusInfoDto);
+
+        return info;
     }
 }

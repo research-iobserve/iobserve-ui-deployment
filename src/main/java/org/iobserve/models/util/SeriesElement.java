@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class SeriesElement extends BaseEntity{
     @Column(name="series_id")
-    private String series;
+    private String seriesId;
     private Integer value;
     private Long timestamp;
 
@@ -16,12 +16,12 @@ public class SeriesElement extends BaseEntity{
         super();
     }
 
-    public String getSeries() {
-        return series;
+    public String getSeriesId() {
+        return seriesId;
     }
 
-    public void setSeries(String series) {
-        this.series = series;
+    public void setSeriesId(String series) {
+        this.seriesId = series;
     }
 
     public Integer getValue() {

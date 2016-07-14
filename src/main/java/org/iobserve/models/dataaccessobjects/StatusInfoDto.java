@@ -1,27 +1,24 @@
-package org.iobserve.models.util;
+package org.iobserve.models.dataaccessobjects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.iobserve.models.annotations.ModelClassOfDto;
+import org.iobserve.models.util.StatusInfo;
 
 /**
  * Created by cdor on 25.04.16.
  */
-@Entity
-public class StatusInfo extends BaseEntity {
-    @Column(name="parent_id")
+
+@ModelClassOfDto(StatusInfo.class)
+@JsonTypeName("statusInfo")
+public class StatusInfoDto extends DataTransportObject {
     private String parentId;
     private Long timestamp;
     private String key;
     private String value;
 
-    public StatusInfo() {
+    public StatusInfoDto() {
         super();
-    }
-
-    public StatusInfo(Long timestamp, String key, String value) {
-        this.timestamp = timestamp;
-        this.key = key;
-        this.value = value;
     }
 
     public Long getTimestamp() {

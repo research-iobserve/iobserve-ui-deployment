@@ -5,6 +5,7 @@ import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.models.dataaccessobjects.SeriesElementDto;
+import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 import org.iobserve.models.dataaccessobjects.TimeSeriesDto;
 import org.mapstruct.Mapper;
@@ -47,10 +48,10 @@ public interface DtoToBasePropertyEntityMapper  {
     @Mapping(target = "data", ignore=true)
     Changelog transform(ChangelogDto changelogDto);
 
-    @Mapping(source = "parentId", target = "parent")
     TimeSeries transform(TimeSeriesDto seriesDto);
 
-    @Mapping(source = "seriesId", target = "series")
+    StatusInfo transform(StatusInfoDto statusInfo);
+
     SeriesElement transform(SeriesElementDto seriesElementDto);
 
 

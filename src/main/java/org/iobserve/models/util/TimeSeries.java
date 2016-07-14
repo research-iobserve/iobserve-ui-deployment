@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class TimeSeries extends BaseEntity{
     @Column(name="parent_id")
-    private String parent;
+    private String parentId;
 
     private String label;
     private String valueLabel;
@@ -23,12 +23,12 @@ public class TimeSeries extends BaseEntity{
         super();
     }
 
-    public String getParent() {
-        return parent;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setParent(String parent) {
-        this.parent = parent;
+    public void setParentId(String parent) {
+        this.parentId = parent;
     }
 
     public String getLabel() {
