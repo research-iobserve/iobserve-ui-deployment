@@ -49,7 +49,10 @@ export default Ember.Route.extend({
             entityType,
             entityId
         });
-        this.transitionTo(url);
+        this.replaceWith(url);
+    },
+    backToSystem() {
+        this.replaceWith(this.get('routeName'));
     },
     willTransition(transition) {
         this.debug('transition', transition.targetName, this.get('routeName'));

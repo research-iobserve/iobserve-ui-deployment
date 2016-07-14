@@ -14,8 +14,8 @@ $resizingAnimationDuration: .5s; // see deployments/detail route for property
     transition: width $resizingAnimationDuration;
 }
 
-.minimizeSidebar {
-    visibility: hidden;
+button.minimizeSidebar {
+    display: none;
 }
 .extendedSidebar { // TODO: not set by route?
     .visualisationContainer {
@@ -24,8 +24,8 @@ $resizingAnimationDuration: .5s; // see deployments/detail route for property
     .visualisationSidebar {
         @extend .col-md-4
     }
-    .minimizeSidebar {
-        visibility: visible;
+    button.minimizeSidebar {
+        display: inline-block;
     }
 }
 
