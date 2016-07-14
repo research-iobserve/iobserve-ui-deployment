@@ -353,7 +353,9 @@ public class CreateDummySystemResource {
     public TimeSeries generateSeries(String label, String axisLabel){
         final Integer numObj = 10;
         final Random random = new Random();
-        final Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        final Date yesterday = cal.getTime();
         final TimeSeries timeSeries = new TimeSeries();
         timeSeries.setId(generateId());
         timeSeries.setLabel(label);
@@ -363,7 +365,7 @@ public class CreateDummySystemResource {
             final SeriesElement elem = new SeriesElement();
             elem.setId(generateId());
             elem.setValue(random.nextInt(numObj));
-            elem.setTimestamp(date.getTime()+(j*100));
+            elem.setTimestamp(yesterday.getTime()+(j*60000));
             timeSeries.getSeries().add(elem);
         }
 
