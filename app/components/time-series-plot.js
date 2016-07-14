@@ -9,7 +9,6 @@ export default Component.extend({
     attributeBindings: ['style'],
     timeSeries: [],
     options: {
-        minTickSize: [1, 'hour'],
         xaxis: {
             mode: 'time',
             // timezone: 'browser' // TODO: from Server?
