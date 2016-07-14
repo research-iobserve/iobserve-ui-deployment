@@ -38,7 +38,7 @@ Model.reopenClass({
           "lastUpdate":"2016-06-20T12:46:29.818+02:00",
           "revisionNumber":0,
           "systemId":"system123",
-          "name":"PostgreSQL",
+          "name":"Database",
           "nodeId":"test-system123-node-4",
           "serviceId":"test-system123-service-6"
        },
@@ -49,7 +49,7 @@ Model.reopenClass({
           "lastUpdate":"2016-06-20T12:46:29.818+02:00",
           "revisionNumber":0,
           "systemId":"system123",
-          "name":"FrontEnd",
+          "name":"Frontend",
           "nodeId":"test-system123-node-1",
           "serviceId":"test-system123-service-1"
        },

@@ -42,7 +42,7 @@ Model.reopenClass({
         "systemId":"system123",
         "hostname":"host4",
         "ip":"10.0.0.2",
-        "name":"Database",
+        "name":"Data Center 1",
         "nodeGroupId":"test-system123-nodeGroup-1"
     },
     {

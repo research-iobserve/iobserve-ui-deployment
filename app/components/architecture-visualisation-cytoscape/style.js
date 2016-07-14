@@ -20,7 +20,7 @@ node { /* all nodes */
     width: 100px;
     height: 60px;
     text-wrap: wrap;
-    text-max-width: 90px;
+    text-max-width: 100px;
 }
 
 $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node that has a node instead of the node (as css would) */

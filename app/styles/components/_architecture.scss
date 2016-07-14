@@ -14,11 +14,21 @@ $resizingAnimationDuration: .5s; // see deployments/detail route for property
     transition: width $resizingAnimationDuration;
 }
 
-.extendedSidebar {
+.minimizeSidebar {
+    visibility: hidden;
+}
+.extendedSidebar { // TODO: not set by route?
     .visualisationContainer {
-        @extend .col-md-6
+        @extend .col-md-8
     }
     .visualisationSidebar {
-        @extend .col-md-6
+        @extend .col-md-4
     }
+    .minimizeSidebar {
+        visibility: visible;
+    }
+}
+
+.renderingSettings {
+    margin-top: 20px;
 }

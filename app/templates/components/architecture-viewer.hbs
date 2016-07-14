@@ -3,25 +3,32 @@
         {{architecture-visualisation-cytoscape graph=graph layoutAlgorithm=layoutAlgorithm theme=theme select=(route-action 'loadDetails')}}
     </div>
     <div class="visualisationSidebar">
-        <div class="form-group">
-          <label for="layoutAlgorithm">Layout:</label>
-          <select class="form-control" id="layoutAlgorithm" onchange={{action "selectLayoutAlgorithm" value="target.value"}}>
-            {{#each layoutAlgorithms as |algorithm|}}
-                <option>{{algorithm}}</option>
-            {{/each}}
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="layoutTheme">Theme:</label>
-          <select class="form-control" id="layoutTheme" onchange={{action "selectTheme" value="target.value"}}>
-            {{#each themes as |theme|}}
-                <option>{{theme}}</option>
-            {{/each}}
-          </select>
-        </div>
+
+        <button class="btn btn-default minimizeSidebar">
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </button>
 
         {{!-- this component can be used as a block, show content --}}
         {{yield}}
+
+        <div class="renderingSettings">
+            <div class="form-group">
+              <label for="layoutAlgorithm">Layout:</label>
+              <select class="form-control" id="layoutAlgorithm" onchange={{action "selectLayoutAlgorithm" value="target.value"}}>
+                {{#each layoutAlgorithms as |algorithm|}}
+                    <option>{{algorithm}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="layoutTheme">Theme:</label>
+              <select class="form-control" id="layoutTheme" onchange={{action "selectTheme" value="target.value"}}>
+                {{#each themes as |theme|}}
+                    <option>{{theme}}</option>
+                {{/each}}
+              </select>
+            </div>
+        </div>
     </div>
 </div>
 
