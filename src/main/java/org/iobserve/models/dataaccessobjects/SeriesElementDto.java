@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
 public class SeriesElementDto extends DataTransportObject{
     private String seriesId;
     private Integer value;
+    private Long timestamp;
 
     public SeriesElementDto() {
         super();
@@ -36,5 +37,13 @@ public class SeriesElementDto extends DataTransportObject{
 
     public void setValue(Integer value) {
         this.value = value;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

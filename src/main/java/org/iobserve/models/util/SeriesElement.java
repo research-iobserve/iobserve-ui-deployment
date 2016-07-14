@@ -10,6 +10,7 @@ public class SeriesElement extends BaseEntity{
     @Column(name="series_id")
     private String series;
     private Integer value;
+    private Long timestamp;
 
     public SeriesElement() {
         super();
@@ -29,5 +30,13 @@ public class SeriesElement extends BaseEntity{
 
     public void setValue(Integer value) {
         this.value = value;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }

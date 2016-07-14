@@ -1,6 +1,7 @@
 package org.iobserve.models.util;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,22 +13,14 @@ public class TimeSeries extends BaseEntity{
     private String parent;
 
     private String label;
-    private Long intervalStart;
-    private Long intervalEnd;
+    private String valueLabel;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="series_id", referencedColumnName="id")
-    private List<SeriesElement> series;
+    private List<SeriesElement> series = new LinkedList<>();
 
     public TimeSeries() {
         super();
-    }
-
-    public TimeSeries(String label, Long intervalStart, Long intervalEnd, List<SeriesElement> series) {
-        this.label = label;
-        this.intervalStart = intervalStart;
-        this.intervalEnd = intervalEnd;
-        this.series = series;
     }
 
     public String getParent() {
@@ -46,21 +39,6 @@ public class TimeSeries extends BaseEntity{
         this.label = label;
     }
 
-    public Long getIntervalStart() {
-        return intervalStart;
-    }
-
-    public void setIntervalStart(Long start) {
-        this.intervalStart = start;
-    }
-
-    public Long getIntervalEnd() {
-        return intervalEnd;
-    }
-
-    public void setIntervalEnd(Long end) {
-        this.intervalEnd = end;
-    }
 
     public List<SeriesElement> getSeries() {
         return series;
@@ -70,4 +48,11 @@ public class TimeSeries extends BaseEntity{
         this.series = series;
     }
 
+    public String getValueLabel() {
+        return valueLabel;
+    }
+
+    public void setValueLabel(String valueLabel) {
+        this.valueLabel = valueLabel;
+    }
 }

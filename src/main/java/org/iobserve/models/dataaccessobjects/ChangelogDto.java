@@ -1,6 +1,7 @@
 package org.iobserve.models.dataaccessobjects;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.util.ChangelogOperation;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -10,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @XmlType(name = "changelog")
-@XmlRootElement(name = "changelog")
+@JsonTypeName("changelog")
 public class ChangelogDto extends RevisionedBeanDataTransportObject {
 
     private ChangelogOperation operation;

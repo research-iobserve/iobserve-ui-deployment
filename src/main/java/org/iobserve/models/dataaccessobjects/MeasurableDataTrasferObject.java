@@ -1,6 +1,7 @@
 package org.iobserve.models.dataaccessobjects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.iobserve.models.util.Status;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
@@ -15,6 +16,9 @@ public class MeasurableDataTrasferObject extends RevisionedBeanDataTransportObje
 
 
     private Set<TimeSeries> timeSeries;
+
+    private Status status = Status.NORMAL;
+
 
     public MeasurableDataTrasferObject() {
         super();
@@ -43,5 +47,13 @@ public class MeasurableDataTrasferObject extends RevisionedBeanDataTransportObje
 
     public void addTimeSeries(TimeSeries series){
         timeSeries.add(series);
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

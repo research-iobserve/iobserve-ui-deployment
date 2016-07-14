@@ -20,6 +20,8 @@ public abstract class Measurable extends RevisionedBean {
     @JoinColumn(name="parent_id", referencedColumnName="id")
     private Set<TimeSeries> timeSeries = new HashSet<>();
 
+    private Status status = Status.NORMAL;
+
     public Measurable() {
         super();
     }
@@ -52,5 +54,13 @@ public abstract class Measurable extends RevisionedBean {
 
     public void addTimeSeries(TimeSeries series){
         timeSeries.add(series);
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

@@ -1,5 +1,6 @@
 package org.iobserve.models.dataaccessobjects;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.NodeGroup;
 import org.iobserve.models.annotations.ModelClassOfDto;
 
@@ -10,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
  * @see org.iobserve.models.NodeGroup
  */
 @ModelClassOfDto(NodeGroup.class)
-@XmlType(name = "nodeGroup")
+@JsonTypeName("nodeGroup")
 public class NodeGroupDto extends MeasurableDataTrasferObject {
 
     private String name;

@@ -19,8 +19,7 @@ public class TimeSeriesDto extends DataTransportObject {
     private String parentId;
 
     private String label;
-    private Long intervalStart;
-    private Long intervalEnd;
+    private String valueLabel;
 
     private List<SeriesElementDto> series;
 
@@ -43,21 +42,6 @@ public class TimeSeriesDto extends DataTransportObject {
         this.label = label;
     }
 
-    public Long getIntervalStart() {
-        return intervalStart;
-    }
-
-    public void setIntervalStart(Long intervalStart) {
-        this.intervalStart = intervalStart;
-    }
-
-    public Long getIntervalEnd() {
-        return intervalEnd;
-    }
-
-    public void setIntervalEnd(Long intervalEnd) {
-        this.intervalEnd = intervalEnd;
-    }
 
     public List<SeriesElementDto> getSeries() {
         return series;
@@ -65,5 +49,13 @@ public class TimeSeriesDto extends DataTransportObject {
 
     public void setSeries(List<SeriesElementDto> series) {
         this.series = series;
+    }
+
+    public String getValueLabel() {
+        return valueLabel;
+    }
+
+    public void setValueLabel(String valueLabel) {
+        this.valueLabel = valueLabel;
     }
 }
