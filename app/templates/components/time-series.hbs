@@ -1,4 +1,3 @@
-Series:
 <ul class="nav nav-tabs">
     {{#each timeSeries as |series index| }}
         <li class="{{if (eq currentTab index) 'active'}}"><a {{action 'clickTab' index}} href="javascript:void()">{{series.label}}</a></li>
