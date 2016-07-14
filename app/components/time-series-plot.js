@@ -48,8 +48,10 @@ export default Component.extend({
         }
         const $this = this.$();
         // flot data points are tuples/arrays [x,y], graphs are arrays of these
-        // TODO: index is not enough, should show timestamp or other x-axis label
-        const plotData = this.get('timeSeries.series').map((valueObj, index) => [(Date.now() + index*10000), get(valueObj, 'value')]); // FIXME use timestamp from server
+        // converts unix timestamps to javascript timestamps (*1000)
+        // use Ember.get because it would work with Ember.Object and plain JS
+        const plotData = this.get('timeSeries.series')
+            .map((valueObj) => [get(valueObj, 'timestamp')*1000, get(valueObj, 'value')]);
         this.debug('plotData', plotData);
         // wrap in additional array since flot can handle multiple graphs at once, we only need one
         const plot = $this.plot([plotData], this.get('options')).data('plot');
