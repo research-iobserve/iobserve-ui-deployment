@@ -136,33 +136,24 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     }
 
+    /**
+     * Universal append for TimeSeries, StatusInfo and SeriesElement
+     * Due to the uni-directional mapping of the models, the objects only
+     * have to be persisted.
+     * @param changelog
+     */
     @Transactional
     private void appendEntity(ChangelogDto changelog) {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         final EntityTransaction transaction = entityManager.getTransaction();
-        //TODO Append more than timeseries only
-        if(changelog.getData() instanceof TimeSeriesDto){
-            final TimeSeriesDto seriesDto = (TimeSeriesDto) changelog.getData();
-            final TimeSeries series = this.dtoToBaseEntityMapper.transform(seriesDto);
 
+        final DataTransportObject dto = changelog.getData();
+        final BaseEntity entity = this.dtoToBaseEntityMapper.transform(dto);
 
-            if(!transaction.isActive()) transaction.begin();
-            entityManager.persist(series);
-            transaction.commit();
-            entityManager.close();
-
-        }else if(changelog.getData() instanceof StatusInfoDto){
-            final StatusInfoDto infoDto = (StatusInfoDto) changelog.getData();
-            final StatusInfo info = this.dtoToBaseEntityMapper.transform(infoDto);
-
-            if(!transaction.isActive()) transaction.begin();
-            entityManager.persist(info);
-            transaction.commit();
-            entityManager.close();
-        }else if(changelog.getData() instanceof SeriesElementDto){
-
-        }
-
+        if(!transaction.isActive()) transaction.begin();
+        entityManager.persist(entity);
+        transaction.commit();
+        entityManager.close();
     }
 
     @Transactional
