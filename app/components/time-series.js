@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
-const { Component, computed } = Ember;
+const { Component, computed, observer } = Ember;
 
 export default Component.extend({
     timeSeries: null,
     currentTab: 0,
-    isCurrentTab: computed('currentTab', function(index) {
+    isCurrentTab: observer('currentTab', function(index) {
         return this.get('currentTab') === index;
     }),
     currentSeries: computed('timeSeries', 'currentTab', function() {
