@@ -1,3 +1,7 @@
 {{entity-details entity=model}}
 
-{{time-series timeSeries=model.timeSeries}}
+{{#if model.timeSeries}}
+    {{time-series timeSeries=model.timeSeries}}
+{{else}}
+    No plot data available
+{{/if}}
