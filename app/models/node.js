@@ -18,7 +18,7 @@ Model.reopenClass({
         "systemId":"system123",
         "hostname":"host2",
         "ip":"10.0.0.2",
-        "name":"Logicnode",
+        "name":"LogicNode",
         "nodeGroupId":"test-system123-nodeGroup-1"
     },
     {
@@ -42,7 +42,7 @@ Model.reopenClass({
         "systemId":"system123",
         "hostname":"host4",
         "ip":"10.0.0.2",
-        "name":"Data Center 1",
+        "name":"DataCenter",
         "nodeGroupId":"test-system123-nodeGroup-1"
     },
     {
