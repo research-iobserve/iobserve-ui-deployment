@@ -9,7 +9,7 @@ export default Ember.Component.extend({
         const entity = this.get('entity');
         entity.eachAttribute(property => {
             // do not show internal relations, also timeSeries gets plotted
-            if(property.indexOf('Id') < 0 && property !== 'timeSeries') {
+            if(property.indexOf('Id') < 0 && property !== 'timeSeries' && property !== 'statusInformations') {
                 properties.push({key: property, value: entity.get(property)});
             }
         });
