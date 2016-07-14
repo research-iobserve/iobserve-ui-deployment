@@ -1,11 +1,11 @@
 package org.iobserve.injection;
 
 import org.glassfish.hk2.api.Factory;
+import org.iobserve.EntityManagerSetup;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  * A factory for EntityManagerFactories which is provided to avoid scoping issues,
@@ -16,9 +16,7 @@ import javax.persistence.Persistence;
  */
 public class EMFFactory implements Factory<EntityManagerFactory> { // TODO: use CloseableService
 
-    private final String PERSISTENCE_UNIT = "postgres";
-
-    private final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+    private final EntityManagerFactory factory = EntityManagerSetup.getEntityManagerFactory();
 
     @Override
     public EntityManagerFactory provide() {

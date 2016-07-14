@@ -21,6 +21,7 @@ public class IObserveApplication extends ResourceConfig{
         packages("org.iobserve.resources");
 
         DependencyInjectionBinder dependencyBinder = new DependencyInjectionBinder();
+        register(EntityManagerSetup.class);
         register(dependencyBinder);
         register(CORSResponseFilter.class);
         register(GeneralExceptionMapper.class);
