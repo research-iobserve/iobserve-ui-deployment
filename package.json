@@ -1,7 +1,7 @@
 {
-  "name": "frontend-prototype",
+  "name": "iobserve-ui",
   "version": "0.0.0",
-  "description": "Small description for frontend-prototype goes here",
+  "description": "Web based user interface for the iObserve project",
   "private": true,
   "directories": {
     "doc": "doc",
