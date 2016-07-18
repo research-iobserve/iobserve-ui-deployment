@@ -25,9 +25,6 @@ public class IObserveApplication extends ResourceConfig{
         register(dependencyBinder);
         register(CORSResponseFilter.class);
         register(GeneralExceptionMapper.class);
-
-//        changelogStreamService = (ChangelogStreamService) this.getInstances().stream().filter(o -> o instanceof ChangelogStreamService).findFirst().get();
-        System.out.println("Singletons "+this.getApplication().getSingletons());
     }
 
     public static ChangelogStreamService getChangelogStreamService() {
