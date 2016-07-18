@@ -12,4 +12,11 @@ public class NodeGroupService extends AbstractSystemComponentService<NodeGroup,N
     protected NodeGroupDto transformModelToDto(NodeGroup nodeGroup) {
         return this.modelToDtoMapper.transform(nodeGroup);
     }
+
+    @Override
+    protected NodeGroup transformDtoToModel(NodeGroupDto nodeGroupDto) {
+        final NodeGroup nodeGroup = dtoToBasePropertyEntityMapper.transform(nodeGroupDto);
+
+        return nodeGroup;
+    }
 }

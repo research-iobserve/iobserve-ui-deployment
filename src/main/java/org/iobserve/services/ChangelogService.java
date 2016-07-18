@@ -1,10 +1,10 @@
 package org.iobserve.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.iobserve.models.Changelog;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.dataaccessobjects.*;
-import org.iobserve.models.mappers.DtoToBaseEntityMapper;
 import org.iobserve.models.util.*;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
@@ -30,9 +30,6 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     @Inject
     private ChangelogStreamService changelogStreamService;
-
-    @Inject
-    private DtoToBaseEntityMapper dtoToBaseEntityMapper;
 
     @Inject
     public ChangelogService(EntityManager entityManager) {
@@ -64,6 +61,25 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         return changelogDto;
     }
 
+    @Override
+    protected Changelog transformDtoToModel(ChangelogDto changelogDto) {
+        final Changelog changelog = dtoToBasePropertyEntityMapper.transform(changelogDto);
+
+        final ObjectMapper objectMapper = new ObjectMapper();
+        String data = "";
+
+        try {
+            data = objectMapper.writeValueAsString(changelogDto.getData());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        changelog.setData(data);
+
+        return changelog;
+    }
+
+
     public synchronized void addChangelogs(final String systemId, List<ChangelogDto> changelogs){
 
         final long revision = getNewRevisionNumber();
@@ -89,7 +105,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
     @Transactional
     private void persistChangelog(ChangelogDto changelogDto){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Changelog changelog = this.dtoToBaseEntityMapper.transform(changelogDto);
+        Changelog changelog = this.transformDtoToModel(changelogDto);
 
         EntityTransaction transaction = entityManager.getTransaction();
 
@@ -121,9 +137,14 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     @Transactional
     private void updateEntity(ChangelogDto changelog) {
-        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
 
-        BaseEntity entity = this.dtoToBaseEntityMapper.transform(changelog.getData());
+        final EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+
+        final DataTransportObject dto = changelog.getData();
+        final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
+        final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
+
+        final BaseEntity entity = service.transformDtoToModel(dto);
 
         setRevisionOfEntity(entity, changelog);
 
@@ -148,7 +169,10 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         final EntityTransaction transaction = entityManager.getTransaction();
 
         final DataTransportObject dto = changelog.getData();
-        final BaseEntity entity = this.dtoToBaseEntityMapper.transform(dto);
+        final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
+        final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
+
+        final BaseEntity entity = service.transformDtoToModel(dto);
 
         if(!transaction.isActive()) transaction.begin();
         entityManager.persist(entity);
@@ -176,7 +200,12 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
     @Transactional
     private void createEntity(ChangelogDto changelog) {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
-        BaseEntity entity = this.dtoToBaseEntityMapper.transform(changelog.getData());
+
+        final DataTransportObject dto = changelog.getData();
+        final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
+        final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
+
+        final BaseEntity entity = service.transformDtoToModel(dto);
 
         setRevisionOfEntity(entity, changelog);
 

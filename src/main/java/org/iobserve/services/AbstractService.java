@@ -1,7 +1,9 @@
 package org.iobserve.services;
 
+import org.glassfish.hk2.api.ServiceLocator;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.dataaccessobjects.MeasurableDataTrasferObject;
+import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.models.util.BaseEntity;
 import org.iobserve.models.util.Measurable;
@@ -28,6 +30,12 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
 
     @Inject
     protected EntityToDtoMapper modelToDtoMapper;
+
+    @Inject
+    protected ServiceLocator serviceLocator;
+
+    @Inject
+    protected DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper;
 
     protected final  Class<Model> persistentClass = (Class<Model>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
@@ -71,7 +79,15 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
      */
     protected abstract ModelDto transformModelToDto(Model model);
 
+    protected abstract Model transformDtoToModel(ModelDto model);
+
     protected List<ModelDto> transformModelToDto(List<Model> models) {
         return models.stream().map(this::transformModelToDto).collect(Collectors.toList());
     }
+
+    protected List<Model> transformDtoToModel(List<ModelDto> models) {
+        return models.stream().map(this::transformDtoToModel).collect(Collectors.toList());
+    }
 }
+
+

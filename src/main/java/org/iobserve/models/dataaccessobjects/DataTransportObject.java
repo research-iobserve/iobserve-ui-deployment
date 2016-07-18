@@ -3,6 +3,9 @@ package org.iobserve.models.dataaccessobjects;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.iobserve.models.Service;
+import org.iobserve.models.annotations.ModelClassOfDto;
+import org.iobserve.models.util.BaseEntity;
 
 import javax.xml.bind.annotation.XmlType;
 
@@ -19,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.mappers.EntityToDtoMapper
  */
+
 @JsonTypeName("baseEntity")
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,

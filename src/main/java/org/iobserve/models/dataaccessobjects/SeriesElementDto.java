@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.util.SeriesElement;
+import org.iobserve.services.SeriesElementService;
 
 import javax.xml.bind.annotation.XmlType;
 
 /**
  * Created by Christoph on 13.07.2016.
  */
-@ModelClassOfDto(SeriesElement.class)
+@ModelClassOfDto(value = SeriesElement.class, service = SeriesElementService.class)
 @JsonTypeName("seriesElement")
 public class SeriesElementDto extends DataTransportObject{
     private String seriesId;

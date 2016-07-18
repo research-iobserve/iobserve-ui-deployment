@@ -5,6 +5,8 @@ import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.List;
 
 /**
@@ -58,4 +60,6 @@ public class Service extends Measurable{
     public void setInstances(List<ServiceInstance> instances) {
         this.instances = instances;
     }
+
+
 }

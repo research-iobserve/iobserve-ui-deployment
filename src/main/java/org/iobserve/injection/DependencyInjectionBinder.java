@@ -2,8 +2,11 @@ package org.iobserve.injection;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
-import org.iobserve.models.mappers.DtoToBaseEntityMapper;
+import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
+import org.iobserve.models.util.SeriesElement;
+import org.iobserve.models.util.StatusInfo;
+import org.iobserve.models.util.TimeSeries;
 import org.iobserve.services.*;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
@@ -26,6 +29,8 @@ public class DependencyInjectionBinder extends AbstractBinder {
         this.bindFactory(EMFFactory.EMFactory.class).to(EntityManager.class).in(RequestScoped.class);
 
         this.bindFactory(EntityToDtoMapperFactory.class).to(EntityToDtoMapper.class).in(Singleton.class);
+        this.bindFactory(DtoToBasePropertyEntityMapperFactory.class).to(DtoToBasePropertyEntityMapper.class).in(Singleton.class);
+
         this.bindFactory(ChangelogStreamServiceFactory.class).to(ChangelogStreamService.class).in(Singleton.class);
 
         // bind all services
@@ -38,7 +43,9 @@ public class DependencyInjectionBinder extends AbstractBinder {
         this.bind(CommunicationService.class).to(CommunicationService.class).in(Singleton.class);
         this.bind(CommunicationInstanceService.class).to(CommunicationInstanceService.class).in(Singleton.class);
         this.bind(ChangelogService.class).to(ChangelogService.class).in(Singleton.class);
-        this.bind(DtoToBaseEntityMapper.class).to(DtoToBaseEntityMapper.class).in(Singleton.class);
+        this.bind(TimeSeriesService.class).to(TimeSeriesService.class).in(Singleton.class);
+        this.bind(SeriesElementService.class).to(SeriesElementService.class).in(Singleton.class);
+        this.bind(StatusInfoService.class).to(StatusInfoService.class).in(Singleton.class);
         // this.bind(ChangelogStreamService.class).to(ChangelogStreamService.class).in(Singleton.class); // TODO via injection
     }
 }

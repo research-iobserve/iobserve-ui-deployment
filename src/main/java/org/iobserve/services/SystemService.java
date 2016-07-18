@@ -25,4 +25,11 @@ public class SystemService extends AbstractService<System,SystemDto> {
     protected SystemDto transformModelToDto(System system) {
         return this.modelToDtoMapper.transform(system);
     }
+
+    @Override
+    protected System transformDtoToModel(SystemDto systemDto) {
+        final System system = dtoToBasePropertyEntityMapper.transform(systemDto);
+
+        return system;
+    }
 }

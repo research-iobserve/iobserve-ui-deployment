@@ -1,10 +1,14 @@
 package org.iobserve.models.dataaccessobjects;
 
+import org.iobserve.models.annotations.ModelClassOfDto;
+import org.iobserve.models.util.RevisionedBean;
+
 import java.util.Date;
 
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
+
 public abstract class RevisionedBeanDataTransportObject extends DataTransportObject {
     String systemId;
 

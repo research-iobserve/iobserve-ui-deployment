@@ -10,4 +10,11 @@ public class ServiceService extends AbstractSystemComponentService<Service,Servi
     protected ServiceDto transformModelToDto(Service service) {
         return this.modelToDtoMapper.transform(service);
     }
+
+    @Override
+    protected Service transformDtoToModel(ServiceDto serviceDto) {
+        final Service service = dtoToBasePropertyEntityMapper.transform(serviceDto);
+
+        return service;
+    }
 }

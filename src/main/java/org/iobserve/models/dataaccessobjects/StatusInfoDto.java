@@ -4,12 +4,13 @@ package org.iobserve.models.dataaccessobjects;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.util.StatusInfo;
+import org.iobserve.services.StatusInfoService;
 
 /**
  * Created by cdor on 25.04.16.
  */
 
-@ModelClassOfDto(StatusInfo.class)
+@ModelClassOfDto(value = StatusInfo.class, service = StatusInfoService.class)
 @JsonTypeName("statusInfo")
 public class StatusInfoDto extends DataTransportObject {
     private String parentId;

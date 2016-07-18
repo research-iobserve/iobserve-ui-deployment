@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.util.TimeSeries;
+import org.iobserve.services.TimeSeriesService;
 
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 
-@ModelClassOfDto(TimeSeries.class)
+@ModelClassOfDto(value = TimeSeries.class, service = TimeSeriesService.class)
 @JsonTypeName("timeSeries")
 public class TimeSeriesDto extends DataTransportObject {
 

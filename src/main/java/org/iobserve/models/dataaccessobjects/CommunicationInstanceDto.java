@@ -3,6 +3,7 @@ package org.iobserve.models.dataaccessobjects;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.CommunicationInstance;
 import org.iobserve.models.annotations.ModelClassOfDto;
+import org.iobserve.services.CommunicationInstanceService;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -11,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.CommunicationInstance
  */
-@ModelClassOfDto(CommunicationInstance.class)
+@ModelClassOfDto(value = CommunicationInstance.class, service = CommunicationInstanceService.class)
 @JsonTypeName("communicationInstance")
 public class CommunicationInstanceDto extends MeasurableDataTrasferObject {
 
