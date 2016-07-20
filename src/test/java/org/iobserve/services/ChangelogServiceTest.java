@@ -4,25 +4,32 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 
 import org.iobserve.models.Changelog;
+import org.iobserve.models.Node;
+import org.iobserve.models.NodeGroup;
+import org.iobserve.models.dataaccessobjects.ChangelogDto;
 import org.iobserve.models.util.ChangelogOperation;
 import org.iobserve.resources.ChangelogResource;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import javax.ws.rs.client.Entity;
+
 import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
+
+
+
 
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
+
 public class ChangelogServiceTest extends JerseyTest {
 
     @Before
@@ -39,16 +46,30 @@ public class ChangelogServiceTest extends JerseyTest {
 
     @Test
     public void addChangelogs() throws Exception {
-        final List<Changelog> changelogs = new LinkedList<>();
 
-        final Changelog changelog = new Changelog();
-        changelog.setId("changelog-123");
-        changelog.setOperation(ChangelogOperation.CREATE);
+    }
 
 
-        changelogs.add(changelog);
+    private List<ChangelogDto> generateChangelogList(){
+        final List<ChangelogDto> changelogs = new LinkedList<>();
 
 
+        return changelogs;
+    }
+
+
+    private ChangelogDto generateCreateChangelog(){
+        final ChangelogDto changelog = new ChangelogDto();
+
+        return changelog;
+    }
+
+
+
+
+
+    private  String generateId(){
+        return UUID.randomUUID().toString();
     }
 
 
