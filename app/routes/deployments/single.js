@@ -32,7 +32,8 @@ export default Ember.Route.extend({
         this.debug('loaded models', models);
         return {
             systemId: systemId,
-            instances: models
+            instances: models,
+            mode: this.get('routeName').split('.')[0]
         };
     });
   },

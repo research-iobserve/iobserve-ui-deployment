@@ -43,7 +43,15 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     border-color: ${theme.nodeBorderColor};
     font-weight: bold;
     z-index: 100;
+}
 
+[type="service"] {
+    background-color: ${theme.serviceColor};
+    color: ${theme.nodeTextColor};
+    border-color: ${theme.nodeBorderColor};
+    border-width: 2px;
+    font-weight: bold;
+    z-index: 100;
 }
 
 [type="serviceInstance"] {
@@ -61,6 +69,20 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
 }
 
 [type="communicationInstance"] {
+    color: ${theme.arrowColor};
+    line-color: ${theme.arrowColor};
+    target-arrow-color: ${theme.arrowColor};
+
+    /*text-background-color: ${theme.arrowLineColor};
+    text-background-opacity: 1;*/
+    /*text-background-shape: roundrectangle;*/
+    text-outline-color: ${theme.arrowColor};
+    text-outline-width: 1px;
+    font-size: 12pt;
+    width: data(workload);
+}
+
+[type="communication"] {
     color: ${theme.arrowColor};
     line-color: ${theme.arrowColor};
     target-arrow-color: ${theme.arrowColor};

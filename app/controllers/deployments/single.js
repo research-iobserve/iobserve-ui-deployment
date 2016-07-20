@@ -4,12 +4,15 @@ const observables = [
     'nodes',
     'nodeGroups',
     'serviceInstances',
-    'communicationInstances'
+    'communicationInstances',
+    'communications',
+    'services',
 ];
 
 // we require the use of controllers solely because Ember does not allow routes to pass more than model() to templates
 export default Ember.Controller.extend({
-    graphingService: Ember.inject.service(),
+    deploymentGraphingService: Ember.inject.service(),
+    architectureGraphingService: Ember.inject.service(),
     changelogQueue: Ember.inject.service(),
 
     init() {
@@ -17,7 +20,7 @@ export default Ember.Controller.extend({
     },
     // gets automatically updated when any of the instances changes, changes are notified via a pseudo property 'updated'
     // using @each will also listen if the array itself changes. Can be quite expensive.
-    graphModel: Ember.computed(`model.instances.{${observables.join(',')}}.@each._updated`, function() {
+    graphModel: Ember.computed(`model.instances.{${observables.join(',')}}.@each._updated`, 'model.mode', function() {
         const systemId = this.get('model.systemId');
         const instances = this.get('model.instances');
         /*
@@ -30,9 +33,14 @@ export default Ember.Controller.extend({
         Object.keys(instances).map((key) => {
             filteredInstances[key] = instances[key].filterBy('systemId', systemId);
         });
-
+        let graphingService;
+        if(this.get('model.mode') === 'architectures') {
+            graphingService = this.get('architectureGraphingService');
+        } else {
+            graphingService = this.get('deploymentGraphingService');
+        }
         this.debug('creating graph', filteredInstances);
-        return this.get('graphingService').createGraph(filteredInstances); // TODO: update instead of complete recalculation?
+        return graphingService.createGraph(filteredInstances); // TODO: update instead of complete recalculation?
     }),
     actions: {
         applyQueueUpdates() {
