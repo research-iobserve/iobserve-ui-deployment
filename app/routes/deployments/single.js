@@ -14,7 +14,10 @@ export default Ember.Route.extend({
      * update whenever new records are pushed into the store.
      * The controller can observe this.
      * Also note that since we changed the behavior of findAll() to use the systemId
-     * Ember will probably also update for other systems. These are filtered in the controller
+     * Ember will probably also update for other systems. These are filtered in the controller.
+     *
+     * We also load all the data, so that the transformation strategies can assume that the whole
+     * meta model is cached. This also allowes that the architecture view is only an alias
      */
     const load = (type) => this.store.findAll(type);
 
@@ -44,7 +47,7 @@ export default Ember.Route.extend({
         * passing object parameters to transitionTo which break with the current path variables.
         * Otherwise this would use transitionTo('deployments.single.details', {...})
         */
-        const url = this.router.generate('deployments.single.details', {
+        const url = this.router.generate(`${this.get('routeName')}.details`, { // use routeName to support architectures alias
             systemId: this.get('session.systemId'),
             entityType,
             entityId

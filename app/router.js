@@ -13,6 +13,8 @@ Router.map(function() {
         });
     });
 
+    this.alias('architectures', '/architectures', 'deployments'); // uses ember-route-alias, inherits nested routes
+
     this.route('not-found', { path: '*path' });
 });
 

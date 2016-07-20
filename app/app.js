@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import EmberData from 'ember-data';
-import Resolver from './resolver';
+import Resolver from './resolver'; // uses ember-route-alias
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 
