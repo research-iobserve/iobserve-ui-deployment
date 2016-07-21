@@ -19,7 +19,7 @@ export default Ember.Service.extend({
     });
 
     // services not used in current view
-    const {services, serviceInstances, communications} = prepared;
+    const {services, /* serviceInstances,*/ communications} = prepared;
 
     var network = {
       nodes: [],

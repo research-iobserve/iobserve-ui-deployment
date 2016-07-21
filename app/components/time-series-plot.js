@@ -1,7 +1,7 @@
 import Ember from 'ember';
 // requires flot.js to be included in vendor.js (via ember-cli-build.js)
 
-const { Component, on, observer, computed, String, get} = Ember;
+const { Component, on, observer, computed, get} = Ember;
 
 export default Component.extend({
     visualisationEvents: Ember.inject.service(),
@@ -25,7 +25,7 @@ export default Component.extend({
         this._super(...arguments);
     },
     style: computed('height', function () { // flot requires a fix height
-        return String.htmlSafe(`height: ${this.get('height')}px;`);
+        return Ember.String.htmlSafe(`height: ${this.get('height')}px;`);
     }),
     resize() {
         const plot = this.get('plot');

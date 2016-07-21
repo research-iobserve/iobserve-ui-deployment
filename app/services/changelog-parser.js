@@ -62,7 +62,7 @@ export default Ember.Service.extend({
             }
             this.get('store').unloadRecord(oldRecord);
         },
-        APPEND(changelog) {
+        APPEND(/*changelog*/) {
             throw new Error('not yet implemented');
         }
     }

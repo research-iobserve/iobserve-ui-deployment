@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import RESTAdapter from 'ember-data/adapters/rest';
-import FixtureAdapter from 'ember-data-fixture-adapter';
+// import FixtureAdapter from 'ember-data-fixture-adapter';
 import ENV from 'iobserve-ui/config/environment';
 
 export default RESTAdapter.extend({
