@@ -4,6 +4,7 @@
         <i class="glyphicon glyphicon-refresh"></i> Apply Updates {{#if changelogQueue.available}}({{ changelogQueue.size }}){{/if}}
     </button>
 
+    {{!-- sidebar will be closed since both views do not contain the same elements --}}
     {{#if (eq model.mode 'architectures')}}
         {{#link-to 'deployments.single' model.systemId tagName='button' class='btn btn-default'}}
             Deployments
