@@ -26,7 +26,10 @@ import java.util.UUID;
 public class ChangelogService extends AbstractSystemComponentService<Changelog,ChangelogDto> {
     //TODO Concurencey issues with different revisions
 
-    private volatile Long revisionNumber;
+    // TODO: revision number per System!
+    private volatile Long revisionNumber; // TODO: synchronization necessary? addChangelogs is already synchronized
+    private long changelogSequence;
+    private Date lastUpdate;
 
     @Inject
     private ChangelogStreamService changelogStreamService;
@@ -82,17 +85,19 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     public synchronized void addChangelogs(final String systemId, List<ChangelogDto> changelogs){
 
-        final long revision = getNewRevisionNumber();
+        final long revision = getIncreasedRevisionNumber();
         final Date date = new Date();
+        this.lastUpdate = date;
 
         for (int i = 0; i < changelogs.size(); i++) {
             final ChangelogDto changelog = changelogs.get(i);
-
+            Long changelogSequence = (long) i;
             changelog.setId(generateId());
             changelog.setSystemId(systemId);
             changelog.setRevisionNumber(revision);
-            changelog.setChangelogSequence(new Long(i));
+            changelog.setChangelogSequence(changelogSequence);
             changelog.setLastUpdate(date);
+            this.changelogSequence = i;
 
             applyChangelog(changelog);
             persistChangelog(changelog);
@@ -232,7 +237,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
      return this.revisionNumber;
     }
 
-    public Long getNewRevisionNumber(){
+    public Long getIncreasedRevisionNumber(){
         synchronized (this.revisionNumber){
             this.revisionNumber++;
             return this.revisionNumber;
@@ -241,5 +246,14 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     public String generateId(){
         return UUID.randomUUID().toString();
+    }
+
+    public synchronized RevisionDto getLatestRevision() {
+        RevisionDto revisionDto = new RevisionDto();
+        // no need to synchronize, since addChangelogs is synchronized
+        revisionDto.setRevisionNumber(this.getLatestRevisionNumber());
+        revisionDto.setLastUpdate(this.lastUpdate);
+        revisionDto.setChangelogSequence(this.changelogSequence);
+        return revisionDto;
     }
 }

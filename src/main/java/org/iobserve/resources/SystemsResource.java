@@ -1,6 +1,8 @@
 package org.iobserve.resources;
 
+import org.iobserve.models.dataaccessobjects.RevisionDto;
 import org.iobserve.models.dataaccessobjects.SystemDto;
+import org.iobserve.services.ChangelogService;
 import org.iobserve.services.SystemService;
 
 import javax.inject.Inject;
@@ -14,6 +16,8 @@ public class SystemsResource {
     @Inject
     private SystemService service;
 
+    @Inject
+    ChangelogService changelogService;
 
     @GET
     @Path("/systems")
@@ -25,6 +29,12 @@ public class SystemsResource {
     @Path("/systems/{systemId}")
     public SystemDto getSystem(@PathParam("systemId") String id) {
         return this.service.findById(id);
+    }
+
+    @GET
+    @Path("/systems/{systemId}/revision")
+    public RevisionDto getLatestRevision(@PathParam("systemId") String id) {
+        return changelogService.getLatestRevision();
     }
 
 }
