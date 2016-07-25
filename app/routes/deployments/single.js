@@ -1,22 +1,29 @@
 import Ember from 'ember';
 
+/**
+ * Loads all necessary data for any visualisation types
+ *
+ * @class SingleDeploymentsRoute
+ * @extends {Ember.Route}
+ * @public
+ * @module routes
+ */
 export default Ember.Route.extend({
   session: Ember.inject.service(), // loads services/session.js
   changelogStream: Ember.inject.service(),
+
+  /**
+   * prepares data for route which will be passed to the controller
+   *
+   * @method model
+   * @param  {Object} params, handled by Embers routing
+   * @return {Promise|Object} Object containing the systemId, revision, mode (deployments/architectures) and the instances
+   * @public
+   */
   model(params) {
     const systemId = params.systemId;
 
 
-    /*
-     * note that findAll returns an Observable Array which automatically
-     * update whenever new records are pushed into the store.
-     * The controller can observe this.
-     * Also note that since we changed the behavior of findAll() to use the systemId
-     * Ember will probably also update for other systems. These are filtered in the controller.
-     *
-     * We also load all the data, so that the transformation strategies can assume that the whole
-     * meta model is cached. This also allowes that the architecture view is only an alias
-     */
     return this.loadSystem(systemId)
         .then(this.loadRevision.bind(this))
         .then((revision) => {
@@ -43,8 +50,14 @@ export default Ember.Route.extend({
             throw err; // TODO: handle errors in UI
         });
   },
+  /**
+   * load the current system record
+   * @param  {String} systemId id of the system (from URL)
+   * @return {Promise|SystemRecord}
+   * @public
+   */
   loadSystem(systemId) {
-    return this.store.findRecord('system', systemId)
+    return this.store.findRecord('system', systemId) // cached if user comes via navigation
         .then((system) => {
             this.debug('loaded system', system);
             this.set('session.system', system); // add the system to all requests
@@ -53,10 +66,30 @@ export default Ember.Route.extend({
             return system;
         });
   },
+  /**
+   * Loads the current revision from API (without caching)
+   * @param  {SystemRecord}
+   * @return {Object} API response, containing changelogSequence, revisionNumber and the lastUpdated date
+   * @public
+   */
   loadRevision(system) {
     return system.getRevision();
   },
-  loadMetaModel(system) {
+
+  /**
+   * note that findAll returns an Observable Array which automatically
+   * update whenever new records are pushed into the store.
+   * The controller can observe this.
+   * Also note that since we changed the behavior of findAll() to use the systemId
+   * Ember will probably also update for other systems. These are filtered in the controller.
+   *
+   * We also load all the data, so that the transformation strategies can assume that the whole
+   * meta model is cached. This also allowes that the architecture view is only an alias
+   *
+   * @method loadMetaModel
+   * @return {Promise|Object} Promise for an object containing the model records in lists, where the keys are the pluralized model names
+   */
+  loadMetaModel() {
     const load = (type) => this.store.findAll(type);
     return Ember.RSVP.hash({
         nodes: load('node'),
@@ -67,8 +100,16 @@ export default Ember.Route.extend({
         communicationInstances: load('communicationinstance')
     });
   },
-  verifyRevision(revision, models) {
 
+  /**
+   * checks whether any of the loaded instances from the API where created while the requests still in progress.
+   *
+   * @method verifyRevision
+   * @param  {Object} revision Revision Object directly from the API (no Ember record, but plain Object)
+   * @param  {Object} models   Object with all instances of a model, keys are the pluralized identiefers
+   * @return {Promise|Object} promise that is rejected with 'outdated' if any instance is newer than expected, otherwise resolves models
+   */
+  verifyRevision(revision, models) {
     const outdatedRecords = Object
         .keys(models)
         .map(key => models[key])

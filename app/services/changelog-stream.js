@@ -29,7 +29,7 @@ export default Ember.Service.extend({
                 this.set('reconnectionTimeout', setTimeout(() => {
                     this.connect(systemId);
                     this.set('reconnectionTimeout', null);
-                }, 500));
+                }, 500)); // TODO: exponential backoff or even reload page?
             };
         }
 
