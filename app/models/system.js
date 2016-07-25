@@ -4,22 +4,20 @@ import { memberAction } from 'ember-api-actions';
 
 /**
  * Model for a system which encapsulates all
- * @class System
- * @extends BaseEntity
- * @public
+ * @class SystemModel
+ * @extends BaseEntityModel
  */
 const Model = BaseEntity.extend({
     /**
      * name of the system
      * @type {String}
      * @property name
-     * @public
      */
     name: attr('string'),
     /**
      * loads the current revision for the system instance from the server (without caching)
      * @method getRevision
-     * @return {Promise|RevisionResponse} plain JS object containing the revisionNumber (number), lastUpdate (Date string), changelogSequence (number)
+     * @return {Promise|RevisionResponse} the current revision of the system
      */
     getRevision: memberAction({ path: 'revision', type: 'GET', urlType: 'findRecord'})
 });
@@ -38,7 +36,6 @@ export default Model;
 /**
  * Response object from a revision class. This is only for improving the documentation, there is no real class existing.
  * @class RevisionResponse
- * @public
  */
 const Revision = {
     // jshint unused:false

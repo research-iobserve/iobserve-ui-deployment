@@ -1,13 +1,10 @@
-/**
- * @modules services
- */
 import Ember from 'ember';
 
 /**
  * this service stores the global state of the system.
  *
- * @class  SessionService
- * @extends {Ember.Service}
+ * @class SessionService
+ * @extends Ember.Service
  * @public
  */
 export default Ember.Service.extend({

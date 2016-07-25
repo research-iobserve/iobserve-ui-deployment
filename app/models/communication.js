@@ -4,6 +4,7 @@ import attr from 'ember-data/attr';
 /**
  * represents an abstract communication which groups multiple CommunicationInstances
  * @class Communication
+ * @extends Measurable
  */
 const Model = Measurable.extend({
     /**

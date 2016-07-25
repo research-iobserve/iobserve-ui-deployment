@@ -1,10 +1,41 @@
 import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
+
+/**
+ * represents a single instance of a `Communication`.
+ *
+ * @class CommunicationInstance
+ * @extends Measurable
+ */
 const Model = Measurable.extend({
-    sourceId: attr('string'),
-    targetId: attr('string'),
+    /**
+     * id of the `Communication` which this is an instance of
+     *
+     * @property communicationId
+     * @type {String}
+     */
     communicationId: attr('string'),
+
+    /**
+     * id of the sending ServiceInstance
+     * @property sourceId
+     * @type String
+     */
+    sourceId: attr('string'),
+
+    /**
+     * id of the receiving ServiceInstance
+     * @property targetId
+     * @type String
+     */
+    targetId: attr('string'),
+
+    /**
+     * The amount of workload. Shows how many requests where sent via this connection
+     * @property workload
+     * @type Number
+     */
     workload: attr('number')
 });
 

@@ -1,8 +1,27 @@
 import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
+/**
+ * A software application fullfilling a function for the system.
+ *
+ * @class ServiceModel
+ * @extends MeasurableModel
+ */
 const Model = Measurable.extend({
+    /**
+     * Label for the service
+     *
+     * @property name
+     * @type {String}
+     */
     name: attr('string'),
+
+    /**
+     * Description of the function that this service fullfulls
+     *
+     * @property description
+     * @type {String}
+     */
     description: attr('string')
 });
 

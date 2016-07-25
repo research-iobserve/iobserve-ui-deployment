@@ -1,10 +1,41 @@
 import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
+/**
+ * A `Node` is a execution environment for `Service`s
+ * @class NodeModel
+ * @extends MeasurableModel
+ */
 const Model = Measurable.extend({
+    /**
+     * Label for the the node
+     *
+     * @property name
+     * @type {String}
+     */
     name: attr('string'),
+    /**
+     * IP adress for this node
+     *
+     * @property ip
+     * @type {String}
+     */
     ip: attr('string'),
+
+    /**
+     * Hostname for this node
+     *
+     * @property hostname
+     * @type {String}
+     */
     hostname: attr('string'),
+
+    /**
+     * Id of the `NodeGroup` the node is contained in
+     *
+     * @property nodeGroupId
+     * @type {String}
+     */
     nodeGroupId: attr('string')
 });
 

@@ -8,7 +8,7 @@ import attr from 'ember-data/attr';
 
 /**
  * Model for a system which encapsulates all other models
- * @class BaseEntity
+ * @class BaseEntityModel
  * @extends DS.Model
  * @public
  */

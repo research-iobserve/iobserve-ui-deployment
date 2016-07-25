@@ -1,9 +1,34 @@
 import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
+/**
+ * Represenation of a process of a `Service` running on a `Node`.
+ * @class ServiceInstanceModel
+ * @extends MeasurableModel
+ */
 const Model = Measurable.extend({
+    /**
+     * Name for the instance (same as from `Service`)
+     *
+     * @property name
+     * @type {String}
+     */
     name: attr('string'),
+
+    /**
+     * Id of the `Node` the service instance is running on
+     *
+     * @property nodeId
+     * @type {String}
+     */
     nodeId: attr('string'),
+
+    /**
+     * Id of the `Service` the instance is spawned for
+     *
+     * @property serviceId
+     * @type {String}
+     */
     serviceId: attr('string')
 });
 

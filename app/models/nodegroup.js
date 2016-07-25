@@ -1,7 +1,19 @@
 import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
+/**
+ * Arbitrary logical grouping of several nodes.
+ *
+ * @class NodeGroupModel
+ * @extends MeasurableModel
+ */
 const Model = Measurable.extend({
+    /**
+     * Label for this group
+     *
+     * @property name
+     * @type {String}
+     */
     name: attr('string')
 });
 
