@@ -1,6 +1,6 @@
 {
   "name": "iobserve-ui",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Web based user interface for the iObserve project",
   "private": true,
   "directories": {
@@ -13,7 +13,8 @@
     "test": "npm run lint-docs && ember test",
     "lint-docs": "./node_modules/.bin/yuidoc --lint app",
     "dev-docs": "./node_modules/.bin/yuidoc --server 5000 app",
-    "build-docs": "./node_modules/.bin/yuidoc app"
+    "build-docs": "./node_modules/.bin/yuidoc app",
+    "postinstall": "npm run build-docs"
   },
   "repository": "",
   "engines": {
