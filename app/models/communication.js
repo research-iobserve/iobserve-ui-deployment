@@ -1,9 +1,29 @@
 import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
+/**
+ * represents an abstract communication which groups multiple CommunicationInstances
+ * @class Communication
+ */
 const Model = Measurable.extend({
+    /**
+     * name of the technology used for communication
+     * @property technology
+     * @type String
+     */
     technology: attr('string'),
+    /**
+     * id of the ServiceInstance which is the sender
+     * @property sourceId
+     * @type String
+     */
     sourceId: attr('string'),
+
+    /**
+     * id of the ServiceInstance which is the sender
+     * @property sourceId
+     * @type String
+     */
     targetId: attr('string'),
     workload: attr('number')
 });

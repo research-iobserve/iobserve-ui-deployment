@@ -1,3 +1,6 @@
+/**
+ * @modules services
+ */
 import Ember from 'ember';
 
 /**

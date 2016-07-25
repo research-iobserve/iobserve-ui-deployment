@@ -5,8 +5,8 @@ import Ember from 'ember';
  *
  * @class SingleDeploymentsRoute
  * @extends {Ember.Route}
- * @public
  * @module routes
+ * @public
  */
 export default Ember.Route.extend({
   session: Ember.inject.service(), // loads services/session.js
