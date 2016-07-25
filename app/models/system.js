@@ -13,13 +13,13 @@ const Model = BaseEntity.extend({
      * name of the system
      * @type {String}
      * @property name
-     * @for System
      * @public
      */
     name: attr('string'),
     /**
      * loads the current revision for the system instance from the server (without caching)
-     * @type {Promise|RevisionResponse} plain JS object containing the revisionNumber (number), lastUpdate (Date string), changelogSequence (number)
+     * @method getRevision
+     * @return {Promise|RevisionResponse} plain JS object containing the revisionNumber (number), lastUpdate (Date string), changelogSequence (number)
      */
     getRevision: memberAction({ path: 'revision', type: 'GET', urlType: 'findRecord'})
 });
@@ -34,6 +34,7 @@ Model.reopenClass({
 
 export default Model;
 
+// FOR DOCUMENTATION ONLY
 /**
  * Response object from a revision class. This is only for improving the documentation, there is no real class existing.
  * @class RevisionResponse
@@ -42,22 +43,25 @@ export default Model;
 const Revision = {
     // jshint unused:false
     /**
-     *
+     * the revision which was used when creating the entity
      * @property revisionNumber
-     * @type {Number}
+     * @type Number
      * @readonly
      */
     revisionNumber: null,
 
     /**
+     * The date (as a String) when the revision was changed the last time (server time)
+     *
      * @property lastUpdate
-     * @type {String|Date}
+     * @type String|Date
      * @readonly
      */
     lastUpdate: null,
     /**
+     * The sequence number, at which position of the applied list of changelogs was the last update
      * @property changelogSequence
-     * @type {Number}
+     * @type Number
      * @readonly
      */
     changelogSequence: null

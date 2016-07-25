@@ -13,18 +13,24 @@ const Model = Measurable.extend({
      */
     technology: attr('string'),
     /**
-     * id of the ServiceInstance which is the sender
+     * id of the sending ServiceInstance
      * @property sourceId
      * @type String
      */
     sourceId: attr('string'),
 
     /**
-     * id of the ServiceInstance which is the sender
-     * @property sourceId
+     * id of the receiving ServiceInstance
+     * @property targetId
      * @type String
      */
     targetId: attr('string'),
+
+    /**
+     * The amount of workload. Shows how many requests where sent via this connection
+     * @property workload
+     * @type Number
+     */
     workload: attr('number')
 });
 

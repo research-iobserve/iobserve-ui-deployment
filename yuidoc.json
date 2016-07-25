@@ -21,7 +21,7 @@
           "json": "http://builds.emberjs.com/tags/v2.4.0/ember-docs.json"
         },
         {
-          "base": "http://emberjs.com/api/",
+          "base": "http://emberjs.com/api/data/",
           "json": "http://builds.emberjs.com/tags/v2.4.0/ember-data-docs.json"
         }
       ]
