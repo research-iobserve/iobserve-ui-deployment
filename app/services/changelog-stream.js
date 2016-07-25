@@ -3,18 +3,16 @@ import ENV from 'iobserve-ui/config/environment';
 
 export default Ember.Service.extend({
     changelogQueue: Ember.inject.service(),
-    shouldClose: false,
     init() {
         this._super(...arguments);
         this.debug('session', this.get('systemId'));
     },
     connect(systemId) {
-        if(this.get('socket')) {
+        const oldSocket = this.get('socket');
+        if(oldSocket) {
             this.debug('already connected, disconnecting first');
             this.disconnect();
         }
-
-        this.set('shouldClose', false);
 
         this.debug('setting up websocket', systemId);
         const socket = new WebSocket(`${ENV.APP.WEBSOCKET_ROOT}/v1/changelogstream/${systemId}`);
@@ -27,13 +25,11 @@ export default Ember.Service.extend({
         // automatically reconnect
         if(ENV.APP.WEBSOCKET_RECONNECT) {
             socket.onclose = () => {
-                if(!this.get('shouldClose')) {
-                    this.debug('connection lost, reconnecting!');
-                    this.set('reconnectionTimeout', setTimeout(() => {
-                        this.connect(systemId);
-                        this.set('reconnectionTimeout', null);
-                    }, 500));
-                }
+                this.debug('connection lost, reconnecting!');
+                this.set('reconnectionTimeout', setTimeout(() => {
+                    this.connect(systemId);
+                    this.set('reconnectionTimeout', null);
+                }, 500));
             };
         }
 
@@ -43,7 +39,12 @@ export default Ember.Service.extend({
     disconnect() {
         this.get('changelogQueue').reset();
         this.debug('disconnect');
-        this.set('shouldClose', true);
+         // remove handlers to avoid reconnects and unexpected message handling
+        this.set('socket.onclose', null);
+        this.set('socket.onerror', null);
+        this.set('socket.onopen', null);
+        this.set('socket.onmessage', null);
+
         this.get('socket').close();
         this.set('socket', null);
 
