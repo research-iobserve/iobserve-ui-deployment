@@ -12,7 +12,7 @@ export default BaseAdapter.extend(UrlTemplates, {
 
     urlSegments: {
         systemId() {
-          return this.get('session.systemId');
+          return this.get('session.system.id');
         }
     }
 });

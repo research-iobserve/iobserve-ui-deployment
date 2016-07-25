@@ -8,10 +8,10 @@ import Ember from 'ember';
  * @public
  */
 export default Ember.Service.extend({
-    /** systemId store the id of the system which is currently used for
+    /** system stores the system which is currently used for
      * loading metamodel components
-     * @type {String}
-     * @property systemId
+     * @type {System}
+     * @property system
      */
-    systemId: null
+    system: null
 });

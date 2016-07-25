@@ -5,9 +5,7 @@ export default Ember.Route.extend({
   changelogStream: Ember.inject.service(),
   model(params) {
     const systemId = params.systemId;
-    this.set('session.systemId', systemId); // add the system to all requests
-    const changelogStream = this.get('changelogStream'); // lazy loaded, requires session id
-    changelogStream.connect(systemId);
+
 
     /*
      * note that findAll returns an Observable Array which automatically
@@ -19,8 +17,47 @@ export default Ember.Route.extend({
      * We also load all the data, so that the transformation strategies can assume that the whole
      * meta model is cached. This also allowes that the architecture view is only an alias
      */
+    return this.loadSystem(systemId)
+        .then(this.loadRevision.bind(this))
+        .then((revision) => {
+            return Ember.RSVP.resolve()
+                .then(this.loadMetaModel.bind(this))
+                .then(models => this.verifyRevision(revision, models))
+                .then((models) => {
+                    this.debug('loaded models', models);
+                    return {
+                        systemId: systemId,
+                        revision: revision,
+                        instances: models,
+                        mode: this.get('routeName').split('.')[0] // deployments/architectures
+                    };
+                });
+        })
+        .catch(err => {
+            if(err === 'outdated') {
+                // wait a bit to avoid DDOS, TODO: exponential backoff?
+                this.refresh();
+            } else {
+                console.error('could not load models', err);
+            }
+            throw err; // TODO: handle errors in UI
+        });
+  },
+  loadSystem(systemId) {
+    return this.store.findRecord('system', systemId)
+        .then((system) => {
+            this.debug('loaded system', system);
+            this.set('session.system', system); // add the system to all requests
+            const changelogStream = this.get('changelogStream'); // lazy loaded, requires session id
+            changelogStream.connect(system.id);
+            return system;
+        });
+  },
+  loadRevision(system) {
+    return system.getRevision();
+  },
+  loadMetaModel(system) {
     const load = (type) => this.store.findAll(type);
-
     return Ember.RSVP.hash({
         nodes: load('node'),
         nodeGroups: load('nodegroup'),
@@ -28,16 +65,25 @@ export default Ember.Route.extend({
         serviceInstances: load('serviceinstance'),
         communications: load('communication'),
         communicationInstances: load('communicationinstance')
-    }).then((models) => {
-        this.debug('loaded models', models);
-        return {
-            systemId: systemId,
-            instances: models,
-            mode: this.get('routeName').split('.')[0]
-        };
     });
   },
+  verifyRevision(revision, models) {
 
+    const outdatedRecords = Object
+        .keys(models)
+        .map(key => models[key])
+        .filter(instances => {
+            return instances.filter(record =>
+                record.get('revisionNumber') >= revision.revisionNumber && record.get('changelogSequence') > revision.changelogSequence
+            ).length > 0;
+        });
+    if(outdatedRecords.length > 0) {
+        this.debug('records loaded from server seem to have changed during loading, refreshing data!', revision, models);
+        return Ember.RSVP.Promise.reject('outdated');
+    }
+
+    return models;
+  },
   actions: {
     loadDetails(rawEntity) {
         this.debug('loadDetails action', rawEntity);
@@ -63,6 +109,7 @@ export default Ember.Route.extend({
         // do not disconnect if transitioning to a child route (details)
         if (transition.targetName.indexOf(this.get('routeName')) !== 0) {
             this.get('changelogStream').disconnect();
+            clearTimeout(this.get('refreshTimeout'));
         }
     }
   }

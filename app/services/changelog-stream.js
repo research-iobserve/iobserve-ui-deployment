@@ -9,6 +9,11 @@ export default Ember.Service.extend({
         this.debug('session', this.get('systemId'));
     },
     connect(systemId) {
+        if(this.get('socket')) {
+            this.debug('already connected, disconnecting first');
+            this.disconnect();
+        }
+
         this.set('shouldClose', false);
 
         this.debug('setting up websocket', systemId);
@@ -40,6 +45,7 @@ export default Ember.Service.extend({
         this.debug('disconnect');
         this.set('shouldClose', true);
         this.get('socket').close();
+        this.set('socket', null);
 
         // just in case it disconnected right before disconnect() was called.
         clearTimeout(this.get('reconnectionTimeout'));
