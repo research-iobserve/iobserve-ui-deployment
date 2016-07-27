@@ -7,10 +7,9 @@ export default Component.extend({
     currentSeriesTab: 0,
     currentMode: 'series',
     init() {
-        if(!this.get('entity.statusInformations')) {
-            this.set('currentMode', 'series');
+        if(this.get('entity.statusInformations')) {
+            this.set('currentMode', 'statusInformations');
         }
-        setInterval(() => this.debug('statusInformations', this.get('entity.statusInformations')), 1000);
         this._super(...arguments);
     },
     updateDefaultTab: observer('entity.statusInformations', function() {
