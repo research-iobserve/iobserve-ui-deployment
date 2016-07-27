@@ -12,9 +12,11 @@ export default Ember.Component.extend({
         'changelogSequence'
     ],
     filteredProperties: Ember.computed('entity', 'entity._updated', function(){
-        this.debug('entity', this.get('entity'));
-        const properties = [];
         const entity = this.get('entity');
+        this.debug('entity', entity);
+        const properties = [
+            {key: 'id', value: entity.get('id')}
+        ];
         entity.eachAttribute(property => {
             // do not show internal relations, also timeSeries gets plotted
             if(!this.get('ignoredRegexp').some(regex => regex.test(property))) {

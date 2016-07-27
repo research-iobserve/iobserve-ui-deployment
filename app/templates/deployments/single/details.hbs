@@ -1,7 +1,3 @@
 {{entity-details entity=model}}
 
-{{#if model.timeSeries}}
-    {{time-series timeSeries=model.timeSeries}}
-{{else}}
-    No time series
-{{/if}}
+{{dynamic-entity-details entity=model}}

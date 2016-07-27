@@ -1,0 +1,19 @@
+{{#if isDataAvailable}}
+    <ul class="nav nav-tabs">
+        {{#if entity.statusInformations}}
+            <li class="{{if (eq currentMode 'statusInformations') 'active'}}"><a {{action 'clickStatusInfosTab'}} href="javascript:void()">Status</a></li>
+        {{/if}}
+        {{#each entity.timeSeries as |series index| }}
+            <li class="{{if (eq currentSeries series) 'active'}}"><a {{action 'clickSeriesTab' index}} href="javascript:void()">{{series.label}}</a></li>
+        {{/each}}
+    </ul>
+    {{#if currentSeries}}
+        {{time-series-plot timeSeries=currentSeries}}
+    {{/if}}
+    {{#if statusInformationsSelected}}
+        {{!-- statusInformations is already a tuple-like list --}}
+        {{key-value-table tuples=entity.statusInformations showHeader=false}}
+    {{/if}}
+{{else}}
+    No time series or status info available
+{{/if}}

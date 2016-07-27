@@ -1,0 +1,19 @@
+
+<table class="table table-hover table-striped">
+  {{#if showHeader}}
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  {{/if}}
+  <tbody>
+    {{#each tuples as |tuple|}}
+        <tr>
+          <td>{{tuple.key}}</td>
+          <td>{{tuple.value}}</td>
+        </tr>
+    {{/each}}
+  </tbody>
+</table>
