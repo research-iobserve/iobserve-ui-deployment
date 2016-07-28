@@ -1,3 +1,9 @@
+/**
+ * Controllers can be considered components that are directly connected
+ * to a route. They hold the state for the routes template
+ *
+ * @module controllers
+ */
 import Ember from 'ember';
 
 const observables = [
@@ -9,16 +15,25 @@ const observables = [
     'services',
 ];
 
-// we require the use of controllers solely because Ember does not allow routes to pass more than model() to templates
+/**
+ * The use of this controller is required solely because Ember does not allow routes
+ * to pass more than `model()` to templates, but we need to apply graph transformations.
+ * @class SingleDeploymentController
+ * @extends Ember.Controller
+ * @uses SingleDeploymentRoute
+ */
 export default Ember.Controller.extend({
     deploymentGraphingService: Ember.inject.service(),
     architectureGraphingService: Ember.inject.service(),
     changelogQueue: Ember.inject.service(),
 
-    init() {
-        this.debug('initializing controller');
-    },
-    // gets automatically updated when any of the instances changes, changes are notified via a pseudo property 'updated'
+    /**
+     * A computed property which returns the current system in a cytoscape-compatble format.
+     * Gets automatically updated when any of the instances changes, changes are notified via a pseudo property 'updated'
+     *
+     * @property graphModel
+     * @type {CytoscapeGraph}
+     */
     // using @each will also listen if the array itself changes. Can be quite expensive.
     graphModel: Ember.computed(`model.instances.{${observables.join(',')}}.@each._updated`, 'model.mode', function() {
         const systemId = this.get('model.systemId');
@@ -43,6 +58,11 @@ export default Ember.Controller.extend({
         return graphingService.createGraph(filteredInstances); // TODO: update instead of complete recalculation?
     }),
     actions: {
+        /**
+         * Apply the latest changes that are in queue for to update the visualisation.
+         * Called from user interation
+         * @method actions.applyQueueUpdates
+         */
         applyQueueUpdates() {
             this.get('changelogQueue').apply();
         }

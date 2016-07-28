@@ -4,8 +4,7 @@ import Ember from 'ember';
  * Loads all necessary data for any visualisation types
  *
  * @class SingleDeploymentsRoute
- * @extends {Ember.Route}
- * @module routes
+ * @extends Ember.Route
  * @public
  */
 export default Ember.Route.extend({

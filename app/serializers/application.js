@@ -1,3 +1,7 @@
+/**
+ * Serializers are handling the (de)serialization of Model data.
+ * @module serializers
+ */
 import JSONSerializer from 'ember-data/serializers/json';
 
 /**
