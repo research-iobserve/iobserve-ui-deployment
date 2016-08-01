@@ -1,5 +1,12 @@
 import Ember from 'ember';
 
+/**
+ * Loads the details for a specific entity.
+ *
+ * @class SingleDeploymentDetails
+ * @extends Ember.Route
+ * @module routes
+ */
 export default Ember.Route.extend({
     visualisationEvents: Ember.inject.service(),
     /**

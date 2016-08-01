@@ -10,6 +10,13 @@ const { Component, inject, observer, on } = Ember;
 
 coseBilkent(cytoscape); // register
 
+/**
+ * renders a cytoscape compatible graph structure in a canvas
+ *
+ * @class CytoscapeVisualisationComponent
+ * @extends Ember.Component
+ * @uses Cytoscape
+ */
 export default Component.extend({
     visualisationEvents: inject.service(),
     visualisationSettings: inject.service(),
@@ -27,9 +34,10 @@ export default Component.extend({
             visualisationEvents.off('resize:start', resizeListener);
         });
     },
-    layoutChanged: observer('visualisationSettings.layout', function(newLayout) {
-        this.debug('layout changed!', newLayout);
-    }),
+    /**
+     * Observer method that renders the visualisation in a canvas using Cytoscape
+     * @method renderGraph
+     */
     renderGraph: on('didInsertElement', observer('visualisationSettings.{layoutAlgorithm,theme}', 'graph', function() {
         this.debug('graph', this.get('visualisationSettings.theme'), this.get('visualisationSettings.layoutAlgorithm'), this.get('graph'));
         this.rendering = cytoscape({

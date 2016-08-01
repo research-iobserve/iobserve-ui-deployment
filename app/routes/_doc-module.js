@@ -3,4 +3,5 @@
  * They return a `model` which is passed down to controllers and templates
  *
  * @module routes
+ * @main routes
  */
