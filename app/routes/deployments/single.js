@@ -12,6 +12,21 @@ export default Ember.Route.extend({
   changelogStream: Ember.inject.service(),
 
   /**
+   * Renders the default template and global actions. Called by Ember
+   *
+   * @method renderTemplate
+   * @private
+   */
+  renderTemplate() {
+    this.render(); // default template
+
+    this.render('deployments.globalActions', { // templates/deployments/global-actions.hbs
+        outlet: 'globalActions',
+        into: 'application'
+    });
+  },
+
+  /**
    * prepares data for route which will be passed to the controller
    *
    * @method model

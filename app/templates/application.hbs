@@ -20,9 +20,13 @@
             {{#link-to 'deployments'}}Deployments{{/link-to}}
         {{/link-to}}
       </ul>
+
+      <div class="nav navbar-nav navbar-right globalActions">
+        {{outlet 'globalActions'}}
+      </div>
     </div><!--/.nav-collapse -->
   </div>
 </nav>
 <div class="container-fluid">
-    {{outlet}}
+    {{outlet body}}
 </div>

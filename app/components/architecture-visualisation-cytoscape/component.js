@@ -6,12 +6,13 @@ import cytoscapeStyle from './style';
 import _ from 'npm:lodash';
 import coseBilkent from 'npm:cytoscape-cose-bilkent';
 
+const { Component, inject, observer, on } = Ember;
+
 coseBilkent(cytoscape); // register
 
-export default Ember.Component.extend({
-    visualisationEvents: Ember.inject.service(),
-    theme: null, // set by architecture-viewer
-    layoutAlgorithm: null, // set by architecture-viewer
+export default Component.extend({
+    visualisationEvents: inject.service(),
+    visualisationSettings: inject.service(),
     classNames: ['cytoscapeRenderingSpace'],
     init: function() {
         cycola( cytoscape, window.cola );
@@ -26,26 +27,23 @@ export default Ember.Component.extend({
             visualisationEvents.off('resize:start', resizeListener);
         });
     },
-    willDestroyElement() {
-        clearInterval(this.interval);
-    },
-    layoutChanged: function(newLayout) {
+    layoutChanged: observer('visualisationSettings.layout', function(newLayout) {
         this.debug('layout changed!', newLayout);
-    }.observes('layout'),
-    renderGraph: function() {
-        this.debug('graph',this.get('theme'), this.get('graph'));
+    }),
+    renderGraph: on('didInsertElement', observer('visualisationSettings.{layoutAlgorithm,theme}', 'graph', function() {
+        this.debug('graph', this.get('visualisationSettings.theme'), this.get('visualisationSettings.layoutAlgorithm'), this.get('graph'));
         this.rendering = cytoscape({
           container: this.element,
 
           boxSelectionEnabled: false,
           autounselectify: true,
 
-          style: cytoscapeStyle(this.get('theme')),
+          style: cytoscapeStyle(this.get('visualisationSettings.theme')),
 
           elements: _.cloneDeep(this.get('graph')),
 
           layout: {
-            name: this.get('layoutAlgorithm'),
+            name: this.get('visualisationSettings.layoutAlgorithm'),
             // maxSimulationTime: 1000,
             // padding: 6,
             // ungrabifyWhileSimulating: true,
@@ -74,7 +72,7 @@ export default Ember.Component.extend({
         // just for development purposes - TODO: remove
         window.cy = cytoscape;
         window.cytoscape = this.rendering;
-    }.on('didInsertElement').observes('layoutAlgorithm', 'graph', 'theme'),
+    })),
     resize() {
         if(this.rendering) {
             this.rendering.resize();

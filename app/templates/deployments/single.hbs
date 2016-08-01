@@ -1,20 +1,4 @@
 {{#architecture-viewer graph=graphModel}}
-
-    <button {{action 'applyQueueUpdates'}} type="button" class="btn {{if changelogQueue.empty 'btn-default' 'btn-warning'}} btn-sm" disabled={{ changelogQueue.empty }} title="Updates are possible when the deployment changed and new information is ready to get visualized!">
-        {{!-- <i class="glyphicon glyphicon-refresh"></i> --}} Apply Updates {{#if changelogQueue.available}}({{ changelogQueue.size }}){{/if}}
-    </button>
-
-    {{!-- sidebar will be closed since both views do not contain the same elements --}}
-    {{#if (eq model.mode 'architectures')}}
-        {{#link-to 'deployments.single' model.systemId tagName='button' class='btn btn-default btn-sm'}}
-            Deployments
-        {{/link-to}}
-    {{else}}
-        {{#link-to 'architectures.single' model.systemId tagName='button' class='btn btn-default btn-sm'}}
-            Architecture
-        {{/link-to}}
-    {{/if}}
-
     {{!-- show entity details in sidebar if subroute (details) is used --}}
     {{outlet}}
 {{/architecture-viewer}}

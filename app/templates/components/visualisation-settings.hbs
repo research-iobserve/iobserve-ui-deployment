@@ -1,0 +1,18 @@
+<div class="renderingSettings">
+    <div class="form-group">
+      <label for="layoutAlgorithm">Layout:</label>
+      <select class="form-control" id="layoutAlgorithm" onchange={{action "selectLayoutAlgorithm" value="target.value"}}>
+        {{#each visualisationSettings.layoutAlgorithms as |algorithm|}}
+            <option>{{algorithm}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="layoutTheme">Theme:</label>
+      <select class="form-control" id="layoutTheme" onchange={{action "selectTheme" value="target.value"}}>
+        {{#each visualisationSettings.themes as |theme|}}
+            <option>{{theme}}</option>
+        {{/each}}
+      </select>
+    </div>
+</div>
