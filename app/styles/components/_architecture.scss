@@ -1,7 +1,7 @@
 $resizingAnimationDuration: .5s; // see deployments/detail route for property
 
 .visualisationContainer {
-    @extend .col-md-10;
+    @extend .col-md-12;
     transition: width $resizingAnimationDuration;
 
     canvas {
@@ -10,8 +10,9 @@ $resizingAnimationDuration: .5s; // see deployments/detail route for property
 }
 
 .visualisationSidebar {
-    @extend .col-md-2;
-    transition: width $resizingAnimationDuration;
+    display:none;
+    opacity: 0; // for animation
+    transition: width opacity $resizingAnimationDuration;
 }
 
 button.minimizeSidebar {
@@ -22,6 +23,8 @@ button.minimizeSidebar {
         @extend .col-md-8
     }
     .visualisationSidebar {
+        display: block;
+        opacity: 1; // for slight animation
         @extend .col-md-4
     }
     button.minimizeSidebar {
