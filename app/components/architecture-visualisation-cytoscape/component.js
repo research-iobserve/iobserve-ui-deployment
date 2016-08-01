@@ -2,7 +2,6 @@ import Ember from 'ember';
 import cytoscape from 'npm:cytoscape';
 import cycola from 'npm:cytoscape-cola';
 import cytoscapeStyle from './style';
-// import cola from 'npm:webcola';
 import _ from 'npm:lodash';
 import coseBilkent from 'npm:cytoscape-cose-bilkent';
 
@@ -46,7 +45,7 @@ export default Component.extend({
           boxSelectionEnabled: false,
           autounselectify: true,
 
-          style: cytoscapeStyle(this.get('visualisationSettings.theme')),
+          style: cytoscapeStyle(this.get('visualisationSettings.themeStyle')),
 
           elements: _.cloneDeep(this.get('graph')),
 

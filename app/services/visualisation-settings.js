@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import Themes from '../components/architecture-visualisation-cytoscape/themes';
+import Themes from '../utils/visualisation-themes';
 
-const { Service } = Ember;
+const { Service, computed } = Ember;
 
 /**
  * Stores the settings for visualisations for a user.
@@ -41,8 +41,17 @@ export default Service.extend({ // TODO: load and save to localstorage
      * @property theme
      * @type {String}
      */
-    theme: Themes[Object.keys(Themes)[0]], // first theme // TODO use a "default: true" flag, order is not fixed for browsers
+    theme: 'iObserve',
 
+    /**
+     * Computed property that returns the CSS style object of the current theme.
+     * @property themeStyle
+     * @type {Object | CytoscapeCSS}
+     * @readOnly
+     */
+    themeStyle: computed('theme', function() {
+        return Themes[this.get('theme')];
+    }),
     /**
      * List of available themes.
      *
@@ -50,8 +59,5 @@ export default Service.extend({ // TODO: load and save to localstorage
      * @type {Array|String}
      * @readOnly
      */
-    themes: Object.keys(Themes),
-    setThemeByName(name) {
-        this.set('theme', Themes[name]);
-    }
+    themes: Object.keys(Themes)
 });

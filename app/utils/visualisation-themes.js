@@ -41,7 +41,7 @@ export default {
         arrowColor : '#002A4A',
         arrowLabelColor: '#FFFEED'
     },
-    'forrest' :{
+    'forest' :{
         nodeGroupTextColor : '#36231B',
         nodeGroupColor : 'white',
         nodeGroupBorderColor : '#60311F',

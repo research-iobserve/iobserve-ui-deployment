@@ -7,3 +7,7 @@ $light-orange: #ff8c00;
 $navbar-default-color: $light-orange;
 
 @import "custom_bootstrap";
+
+.globalActions > li {
+    margin: 15px 3px; // 15 from $nav-link-padding
+}

@@ -9,7 +9,7 @@ module.exports = function(defaults) {
       enabled: false
     },
     'ember-cli-bootstrap-sassy': {
-        'js': []
+        'js': ['dropdown'] // dropdown used by visualisation-settings
     }
   });
 
