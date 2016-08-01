@@ -1,15 +1,14 @@
 package org.iobserve.models.util;
 
-import javax.persistence.Column;
+import org.iobserve.models.NestedMeasurement;
+
 import javax.persistence.Entity;
 
 /**
  * Created by cdor on 25.04.16.
  */
 @Entity
-public class StatusInfo extends BaseEntity {
-    @Column(name="parent_id")
-    private String parentId;
+public class StatusInfo extends NestedMeasurement {
     private Long timestamp;
     private String key;
     private String value;
@@ -48,11 +47,4 @@ public class StatusInfo extends BaseEntity {
         this.value = value;
     }
 
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
 }

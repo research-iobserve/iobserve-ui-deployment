@@ -1,5 +1,7 @@
 package org.iobserve.models.util;
 
+import org.iobserve.models.NestedMeasurement;
+
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,10 +10,7 @@ import java.util.List;
  * Created by cdor on 25.04.16.
  */
 @Entity
-public class TimeSeries extends BaseEntity{
-    @Column(name="parent_id")
-    private String parentId;
-
+public class TimeSeries extends NestedMeasurement {
     private String label;
     private String valueLabel;
 
@@ -23,14 +22,6 @@ public class TimeSeries extends BaseEntity{
         super();
     }
 
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parent) {
-        this.parentId = parent;
-    }
-
     public String getLabel() {
         return label;
     }
@@ -38,7 +29,6 @@ public class TimeSeries extends BaseEntity{
     public void setLabel(String label) {
         this.label = label;
     }
-
 
     public List<SeriesElement> getSeries() {
         return series;
