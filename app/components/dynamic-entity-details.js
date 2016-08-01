@@ -14,7 +14,7 @@ export default Component.extend({
         }
         this._super(...arguments);
     },
-    updateDefaultTab: observer('entity.statusInformations', 'entity.timeSeries', function() {
+    updateDefaultTab: observer('entity.statusInformations', function() {
         const statusInfo = this.get('entity.statusInformations');
         if(statusInfo && statusInfo.length > 0) { // will load asynchronously (findRecord)
             this.set('currentMode', 'statusInformations');
