@@ -7,6 +7,8 @@ const { Component, computed, observer /*, on */ } = Ember;
  *
  * @class DynamicEntityDetailsComponent
  * @extends Ember.Component
+ * @uses KeyValueTableComponent
+ * @uses EntityDetailsComponent
  */
 export default Component.extend({
     /**
@@ -62,7 +64,7 @@ export default Component.extend({
      * Computed property which returns the currently selected series element, if open.
      *
      * @property currentSeries
-     * @return {TimeSeriesElement} `undefined` if no series selected
+     * @return {TimeSeries} `undefined` if no series selected
      * @private
      * @readOnly
      */
