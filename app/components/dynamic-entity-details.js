@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { Component, computed, observer, on } = Ember;
+const { Component, computed, observer /*, on */ } = Ember;
 
 export default Component.extend({
     entity: null,
@@ -9,12 +9,17 @@ export default Component.extend({
     init() {
         if(this.get('entity.statusInformations')) {
             this.set('currentMode', 'statusInformations');
+        } else {
+            this.set('currentMode', 'series');
         }
         this._super(...arguments);
     },
-    updateDefaultTab: observer('entity.statusInformations', function() {
-        if(this.get('entity.statusInformations')) { // will load asynchronously (findRecord)
+    updateDefaultTab: observer('entity.statusInformations', 'entity.timeSeries', function() {
+        const statusInfo = this.get('entity.statusInformations');
+        if(statusInfo && statusInfo.length > 0) { // will load asynchronously (findRecord)
             this.set('currentMode', 'statusInformations');
+        } else {
+            this.set('currentMode', 'series');
         }
     }),
     isCurrentSeriesTab: observer('currentSeriesTab', 'currentMode', function(index) {
