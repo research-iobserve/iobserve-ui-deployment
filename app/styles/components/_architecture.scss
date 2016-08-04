@@ -31,3 +31,11 @@ button.minimizeSidebar {
         display: inline-block;
     }
 }
+.resizing {
+    // sidebar might appear below the visualisation, hide it
+    .visualisationSidebar {
+        opacity: 0; // for slight animation
+        display: none;
+
+    }
+}
