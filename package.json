@@ -41,7 +41,7 @@
     "ember-cli-sass": "5.3.1",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.4.0",
+    "ember-data": "2.7.0",
     "ember-data-fixture-adapter": "1.13.0",
     "ember-data-url-templates": "0.1.1",
     "ember-debug-logger": "0.2.0",
@@ -55,8 +55,8 @@
     "loader.js": "^4.0.0",
     "lodash": "^4.11.1",
     "node-sass": "^3.8.0",
-    "yuidocjs": "~0.10.2",
-    "yuidoc-bootstrap-theme": "^1.0.6"
+    "yuidoc-bootstrap-theme": "^1.0.6",
+    "yuidocjs": "~0.10.2"
   },
   "dependencies": {
     "cytoscape": "^2.7.3",
