@@ -1,5 +1,6 @@
 export default {
-    'iObserve' :{
+    // this is the default theme, others can override properties, partial overrides are supported
+    'iObserve': {
         nodeGroupTextColor : '#333399',
         nodeGroupColor : 'white',
         nodeGroupBorderColor : '#333399',
@@ -11,7 +12,9 @@ export default {
         serviceBorderColor : '#AAA',
         arrowLineColor : '#AAA',
         arrowColor : '#AAA',
-        arrowLabelColor: '#333399'
+        arrowLabelColor: '#333399',
+        statusWARNcolor: 'yellow',
+        statusFAILcolor: 'red'
     },
     'arctic': {
         nodeGroupTextColor: '#3399CC',

@@ -115,10 +115,10 @@ edge {
 }
 
 .WARNING {
-    background-color: yellow;
+    background-color: ${theme.statusWARNcolor};
 }
 .FAIL {
-    background-color: red;
+    background-color: ${theme.statusFAILcolor};
 }
 
 :selected {

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Themes from '../utils/visualisation-themes';
 
-const { Service, computed } = Ember;
+const { Service, computed, copy, merge } = Ember;
 
 /**
  * Stores the settings for visualisations for a user.
@@ -45,12 +45,15 @@ export default Service.extend({ // TODO: load and save to localstorage
 
     /**
      * Computed property that returns the CSS style object of the current theme.
+     * Themes can override each property of the `iObserve` Theme
+     *
      * @property themeStyle
      * @type {Object | CytoscapeCSS}
      * @readOnly
      */
     themeStyle: computed('theme', function() {
-        return Themes[this.get('theme')];
+        const defaultCopy = copy(Themes.iObserve);
+        return merge(defaultCopy, Themes[this.get('theme')]);
     }),
     /**
      * List of available themes.
