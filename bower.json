@@ -1,7 +1,7 @@
 {
   "name": "iobserve-ui",
   "dependencies": {
-    "ember": "~2.4.1",
+    "ember": "2.7.0",
     "ember-cli-shims": "0.1.0",
     "ember-cli-test-loader": "0.2.2",
     "ember-qunit-notifications": "0.1.0",
@@ -10,5 +10,8 @@
     "bootstrap-sass": "^3.3.6",
     "Flot": "flot#^0.8.3",
     "flot-axislabels": "https://github.com/markrcote/flot-axislabels.git"
+  },
+  "resolutions": {
+    "ember": "2.7.0"
   }
 }

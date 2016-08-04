@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Themes from '../utils/visualisation-themes';
 
-const { Service, computed, copy, merge } = Ember;
+const { Service, computed, assign } = Ember;
 
 /**
  * Stores the settings for visualisations for a user.
@@ -52,8 +52,7 @@ export default Service.extend({ // TODO: load and save to localstorage
      * @readOnly
      */
     themeStyle: computed('theme', function() {
-        const defaultCopy = copy(Themes.iObserve);
-        return merge(defaultCopy, Themes[this.get('theme')]);
+        return assign({}, Themes.iObserve, Themes[this.get('theme')]);
     }),
     /**
      * List of available themes.
