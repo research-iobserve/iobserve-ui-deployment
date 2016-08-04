@@ -1,10 +1,27 @@
 <div class="container">
-    <h3>Available Deployments</h3>
-    <ul>
-    {{#each model as |system| }}
-        <li>{{#link-to 'deployments.single' system.id}}{{system.name}}{{/link-to}}</li>
-    {{/each}}
-    </ul>
+    <h3>Available Systems</h3>
+    <div class="row systems">
+        {{#each model as |system| }}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{system.name}}
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group" role="group" aria-label="...">
+                            {{#link-to 'deployments.single' system.id class='btn btn-default'}}
+                                Deployments
+                            {{/link-to}}
+
+                            {{#link-to 'architectures.single' system.id class='btn btn-default'}}
+                                Architecture
+                            {{/link-to}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
 </div>
 
 {{outlet}}
