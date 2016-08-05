@@ -16,6 +16,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,87 +25,35 @@ import java.util.UUID;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 public class ChangelogService extends AbstractSystemComponentService<Changelog,ChangelogDto> {
-    //TODO Concurencey issues with different revisions
 
-    // TODO: revision number per System!
-    private volatile Long revisionNumber; // TODO: synchronization necessary? addChangelogs is already synchronized
-    private long changelogSequence;
-    private Date lastUpdate;
+    private HashMap<String,Revision> revisions = new HashMap<>();
 
     @Inject
     private ChangelogStreamService changelogStreamService;
 
-    @Inject
-    public ChangelogService(EntityManager entityManager) {
-        Query query = entityManager.createQuery("select changelog from Changelog changelog order by changelog.revisionNumber desc");
-        List<Changelog> results = query.getResultList();
-        if(results.isEmpty()){
-            this.revisionNumber = 0L;
-        }else{
-            this.revisionNumber = results.get(0).getRevisionNumber();
-        }
-
-
-        entityManager.close();
-    }
-
-    @Override
-    protected ChangelogDto transformModelToDto(Changelog changelog) {
-        ChangelogDto changelogDto = this.modelToDtoMapper.transform(changelog);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        DataTransportObject data = null;
-        try {
-            data = objectMapper.readValue(changelog.getData(),DataTransportObject.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        changelogDto.setData(data);
-
-        return changelogDto;
-    }
-
-    @Override
-    protected Changelog transformDtoToModel(ChangelogDto changelogDto) {
-        final Changelog changelog = dtoToBasePropertyEntityMapper.transform(changelogDto);
-
-        final ObjectMapper objectMapper = new ObjectMapper();
-        String data = "";
-
-        try {
-            data = objectMapper.writeValueAsString(changelogDto.getData());
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        changelog.setData(data);
-
-        return changelog;
-    }
-
-
     public synchronized void addChangelogs(final String systemId, List<ChangelogDto> changelogs){
 
-        final long revision = getIncreasedRevisionNumber();
         final Date date = new Date();
-        this.lastUpdate = date;
+        final Revision revision = getNextRevision(systemId);
+        revision.setLastUpdate(date);
+
 
         for (int i = 0; i < changelogs.size(); i++) {
             final ChangelogDto changelog = changelogs.get(i);
-            Long changelogSequence = (long) i;
+            final Long changelogSequence = (long) i;
+
             changelog.setId(generateId());
             changelog.setSystemId(systemId);
-            changelog.setRevisionNumber(revision);
             changelog.setChangelogSequence(changelogSequence);
             changelog.setLastUpdate(date);
-            this.changelogSequence = i;
+            changelog.setRevisionNumber(revision.getRevisionNumber());
 
             applyChangelog(changelog);
             persistChangelog(changelog);
 
+            revision.setChangelogSequence(changelogSequence);
         }
         this.changelogStreamService.broadcastChangelogs(systemId, changelogs);
-
     }
 
     @Transactional
@@ -221,6 +170,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         entityManager.close();
     }
 
+
     private void setRevisionOfEntity(BaseEntity entity, ChangelogDto changelog){
         if(entity instanceof RevisionedBean){
             setRevisionOfEntity((RevisionedBean) entity, changelog);
@@ -231,29 +181,93 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         revisionedBean.setRevisionNumber(changelog.getRevisionNumber());
         revisionedBean.setChangelogSequence(changelog.getChangelogSequence());
         revisionedBean.setLastUpdate(changelog.getLastUpdate());
-    }
 
-    public Long getLatestRevisionNumber(){
-     return this.revisionNumber;
-    }
-
-    public Long getIncreasedRevisionNumber(){
-        synchronized (this.revisionNumber){
-            this.revisionNumber++;
-            return this.revisionNumber;
+        if(revisionedBean.getSystemId() == null){
+            revisionedBean.setSystemId(changelog.getSystemId());
         }
+    }
+
+    private Revision loadRevisionFromDatabase(String systemId){
+        final Revision revision = new Revision();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createQuery("select changelog from Changelog changelog where systemId = :systemId order by changelog.revisionNumber desc")
+                .setParameter("systemId", systemId);
+        List<Changelog> results = query.getResultList();
+
+        if(!results.isEmpty()){
+            Changelog changelog = results.get(0);
+            revision.setRevisionNumber(changelog.getRevisionNumber());
+            revision.setChangelogSequence(changelog.getChangelogSequence());
+        }
+        entityManager.close();
+
+        this.revisions.put(systemId,revision);
+
+        return revision;
+    }
+
+    public Revision getNextRevision(String systemId){
+        Revision revision;
+        if(this.revisions.get(systemId) == null){
+            loadRevisionFromDatabase(systemId);
+        }
+        revision = this.revisions.get(systemId);
+
+        revision.setRevisionNumber(revision.getRevisionNumber()+1);
+        revision.setChangelogSequence(0L);
+
+        this.revisions.put(systemId, revision);
+
+        return revision;
     }
 
     public String generateId(){
         return UUID.randomUUID().toString();
     }
 
-    public synchronized RevisionDto getLatestRevision() {
-        RevisionDto revisionDto = new RevisionDto();
-        // no need to synchronize, since addChangelogs is synchronized
-        revisionDto.setRevisionNumber(this.getLatestRevisionNumber());
-        revisionDto.setLastUpdate(this.lastUpdate);
-        revisionDto.setChangelogSequence(this.changelogSequence);
+    public synchronized RevisionDto getLatestRevision(String systemId) {
+        Revision revision  = revisions.get(systemId);
+        if(revision == null){
+            revision = loadRevisionFromDatabase(systemId);
+        }
+
+        RevisionDto revisionDto = modelToDtoMapper.transform(revision);
+
         return revisionDto;
     }
+
+    @Override
+    protected ChangelogDto transformModelToDto(Changelog changelog) {
+        ChangelogDto changelogDto = this.modelToDtoMapper.transform(changelog);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        DataTransportObject data = null;
+        try {
+            data = objectMapper.readValue(changelog.getData(),DataTransportObject.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        changelogDto.setData(data);
+
+        return changelogDto;
+    }
+
+    @Override
+    protected Changelog transformDtoToModel(ChangelogDto changelogDto) {
+        final Changelog changelog = dtoToBasePropertyEntityMapper.transform(changelogDto);
+
+        final ObjectMapper objectMapper = new ObjectMapper();
+        String data = "";
+
+        try {
+            data = objectMapper.writeValueAsString(changelogDto.getData());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        changelog.setData(data);
+
+        return changelog;
+    }
+
 }

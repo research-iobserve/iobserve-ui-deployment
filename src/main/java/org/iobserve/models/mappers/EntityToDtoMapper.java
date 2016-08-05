@@ -66,5 +66,7 @@ public interface EntityToDtoMapper { // TODO: ignore measureable
 
     SeriesElementDto transform(SeriesElement seriesElement);
 
+    RevisionDto transform(Revision revision);
+
 
 }

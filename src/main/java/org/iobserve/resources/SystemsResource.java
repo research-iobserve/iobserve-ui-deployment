@@ -34,7 +34,7 @@ public class SystemsResource {
     @GET
     @Path("/systems/{systemId}/revision")
     public RevisionDto getLatestRevision(@PathParam("systemId") String id) {
-        return changelogService.getLatestRevision();
+        return changelogService.getLatestRevision(id);
     }
 
 }

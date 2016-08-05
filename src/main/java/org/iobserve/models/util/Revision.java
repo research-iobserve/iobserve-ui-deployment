@@ -1,19 +1,42 @@
 package org.iobserve.models.util;
 
-import org.iobserve.models.System;
-
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import java.util.Date;
 
-//FIXME
+
 @Entity
-public class Revision {
-  @Id
-  private Long id;
-  private Long architectureId;
-  private Long timestamp;
-  @OneToOne
-  private System system;
+public class Revision extends BaseEntity {
+  private Long revisionNumber;
+  private Date lastUpdate;
+  private Long changelogSequence;
 
+  public Revision(){
+    revisionNumber = 0L;
+    changelogSequence = 0L;
+    lastUpdate = new Date();
+  }
+
+  public Long getRevisionNumber() {
+    return revisionNumber;
+  }
+
+  public void setRevisionNumber(Long revisionNumber) {
+    this.revisionNumber = revisionNumber;
+  }
+
+  public Date getLastUpdate() {
+    return lastUpdate;
+  }
+
+  public void setLastUpdate(Date lastUpdate) {
+    this.lastUpdate = lastUpdate;
+  }
+
+  public Long getChangelogSequence() {
+    return changelogSequence;
+  }
+
+  public void setChangelogSequence(Long changelogSequence) {
+    this.changelogSequence = changelogSequence;
+  }
 }

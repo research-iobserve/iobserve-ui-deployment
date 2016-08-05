@@ -3,6 +3,7 @@ package org.iobserve.models.mappers;
 import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.dataaccessobjects.*;
+import org.iobserve.models.util.Revision;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.models.dataaccessobjects.SeriesElementDto;
 import org.iobserve.models.util.StatusInfo;
@@ -53,6 +54,9 @@ public interface DtoToBasePropertyEntityMapper  {
     StatusInfo transform(StatusInfoDto statusInfo);
 
     SeriesElement transform(SeriesElementDto seriesElementDto);
+
+    Revision transform(RevisionDto revisionDto);
+
 
 
 }
