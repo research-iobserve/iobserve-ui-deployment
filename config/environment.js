@@ -17,8 +17,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      API_ROOT: 'http://iobserve-api.herokuapp.com',
-      WEBSOCKET_ROOT: 'ws://iobserve-api.herokuapp.com',
+      API_ROOT: 'https://iobserve-api.herokuapp.com',
+      WEBSOCKET_ROOT: 'wss://iobserve-api.herokuapp.com',
       WEBSOCKET_RECONNECT: false // not running on heroku/jetty-runner
     }
   };
