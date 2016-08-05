@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { Route, inject, RSVP } = Ember;
+
 /**
  * Loads all necessary data for any visualisation types
  *
@@ -7,9 +9,10 @@ import Ember from 'ember';
  * @extends Ember.Route
  * @public
  */
-export default Ember.Route.extend({
-  session: Ember.inject.service(), // loads services/session.js
-  changelogStream: Ember.inject.service(),
+export default Route.extend({
+  session: inject.service(), // loads services/session.js
+  changelogStream: inject.service(),
+  flashMessages: inject.service(), // from addon
 
   /**
    * Renders the default template and global actions. Called by Ember
@@ -36,12 +39,12 @@ export default Ember.Route.extend({
    */
   model(params) {
     const systemId = params.systemId;
-
+    this.set('systemId', systemId);
 
     return this.loadSystem(systemId)
         .then(this.loadRevision.bind(this))
         .then((revision) => {
-            return Ember.RSVP.resolve()
+            return RSVP.resolve()
                 .then(this.loadMetaModel.bind(this))
                 .then(models => this.verifyRevision(revision, models))
                 .then((models) => {
@@ -105,7 +108,7 @@ export default Ember.Route.extend({
    */
   loadMetaModel() {
     const load = (type) => this.store.findAll(type);
-    return Ember.RSVP.hash({
+    return RSVP.hash({
         nodes: load('node'),
         nodeGroups: load('nodegroup'),
         services: load('service'),
@@ -134,12 +137,17 @@ export default Ember.Route.extend({
         });
     if(outdatedRecords.length > 0) {
         this.debug('records loaded from server seem to have changed during loading, refreshing data!', revision, models);
-        return Ember.RSVP.Promise.reject('outdated');
+        return RSVP.Promise.reject('outdated');
     }
 
     return models;
   },
   actions: {
+    error: function(reason, transition) {
+        this.debug('error', ...arguments);
+        this.transitionTo('deployments');
+        this.get('flashMessages').danger(`Could not find system with id "${this.get('systemId')}"`);
+    },
     loadDetails(rawEntity) {
         this.debug('loadDetails action', rawEntity);
         const entityType = rawEntity.type.toLowerCase();

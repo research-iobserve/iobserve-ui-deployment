@@ -11,3 +11,11 @@ $navbar-default-color: $light-orange;
 .globalActions > li {
     margin: 15px 3px; // 15 from $nav-link-padding
 }
+
+.alert {
+    transition: opacity 1s;
+
+    &.exiting { // flashMessages addon
+        opacity: 0;
+    }
+}

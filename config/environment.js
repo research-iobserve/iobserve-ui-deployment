@@ -1,30 +1,38 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var ENV = {
-    modulePrefix: 'iobserve-ui',
-    environment: environment,
-    baseURL: '/',
-    locationType: 'auto',
-    EmberENV: {
-      FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
-      }
-      //EXTEND_PROTOTYPES: true // (true is default) See avoidEnumerableNativeExtensions in app.js
-    },
+    const ENV = {
+        modulePrefix: 'iobserve-ui',
+        environment: environment,
+        baseURL: '/',
+        locationType: 'auto',
+        EmberENV: {
+          FEATURES: {
+            // Here you can enable experimental features on an ember canary build
+            // e.g. 'with-controller': true
+          }
+          //EXTEND_PROTOTYPES: true // (true is default) See avoidEnumerableNativeExtensions in app.js
+        },
 
-    APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-      API_ROOT: 'https://iobserve-api.herokuapp.com',
-      WEBSOCKET_ROOT: 'wss://iobserve-api.herokuapp.com',
-      WEBSOCKET_RECONNECT: false // not running on heroku/jetty-runner
-    }
-  };
+        APP: {
+            // Here you can pass flags/options to your application instance
+            // when it is created
+            API_ROOT: 'https://iobserve-api.herokuapp.com',
+            WEBSOCKET_ROOT: 'wss://iobserve-api.herokuapp.com',
+            WEBSOCKET_RECONNECT: false // not running on heroku/jetty-runner
+        },
+        flashMessageDefaults: {
+            // flash message defaults
+            timeout: 5000,
+            extendedTimeout: 1000,
+            priority: 200,
+            sticky: false,
+            showProgress: true
+        }
+    };
 
 
-  if (environment === 'development') {
+    if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -34,9 +42,9 @@ module.exports = function(environment) {
     ENV.APP.WEBSOCKET_ROOT = 'ws://localhost:8080';
     ENV.APP.WEBSOCKET_RECONNECT = true;
 
-  }
+    }
 
-  if (environment === 'test') {
+    if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
@@ -46,11 +54,11 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-  }
+    }
 
-  if (environment === 'production') {
+    if (environment === 'production') {
 
-  }
+    }
 
-  return ENV;
+    return ENV;
 };
