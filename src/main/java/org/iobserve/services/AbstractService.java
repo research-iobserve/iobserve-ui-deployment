@@ -1,12 +1,17 @@
 package org.iobserve.services;
 
 import org.glassfish.hk2.api.ServiceLocator;
+
+import java.util.Collections;
+import java.util.Set;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.dataaccessobjects.MeasurableDataTrasferObject;
 import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.models.util.BaseEntity;
 import org.iobserve.models.util.Measurable;
+import org.iobserve.models.util.SeriesElement;
+import org.iobserve.models.util.TimeSeries;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -15,6 +20,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,11 +63,24 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
         ModelDto dto = transformModelToDto(result);
 
         if(result instanceof Measurable ){
-           final Measurable measurable =  (Measurable) result;
-           final MeasurableDataTrasferObject measurableDto =  (MeasurableDataTrasferObject) dto;
-            measurableDto.setTimeSeries(measurable.getTimeSeries());
+            final Measurable measurable =  (Measurable) result;
+            final MeasurableDataTrasferObject measurableDto =  (MeasurableDataTrasferObject) dto;
+            final Set<TimeSeries> timeSeriesSet = measurable.getTimeSeries();
+            //TODO improve efficiency
+            //sort timeseries Data by date
+            for (TimeSeries timeSeries  : timeSeriesSet) {
+
+                final List<SeriesElement> seriesList = timeSeries.getSeries();
+                Collections.sort(seriesList,
+                        (series1, series2) -> series1.getTimestamp().compareTo(series2.getTimestamp()));
+            }
+
+            measurableDto.setTimeSeries(timeSeriesSet);
             measurableDto.setStatusInformations(measurable.getStatusInformations());
+
+
         }
+
 
         entityManager.close();
         // enhance dto with measureable data from result
