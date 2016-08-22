@@ -19,3 +19,31 @@ $navbar-default-color: $light-orange;
         opacity: 0;
     }
 }
+
+.invisible {
+    opacity: 0;
+    pointer-events: none; // invisible elements should not block clicking
+}
+
+.loadingIndicator {
+    opacity: 1;
+    transition: opacity 500ms ease-in; // .invisible will get toggled FIXME
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #EEE;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.rotationAnimation {
+    transition: transform 1s;
+    animation: rotate 2s infinite linear;
+}
+
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}

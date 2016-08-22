@@ -13,5 +13,13 @@ export default Controller.extend({
      * @property flashMessage
      * @type {FlashMessageService}
      */
-    flashMessages: inject.service()
+    flashMessages: inject.service(),
+
+    /**
+     * Injected LoadingState service to handle loading. Set from route
+     *
+     * @property loadingState
+     * @type {LoadingStateService}
+     */
+    loadingState: inject.service()
 });

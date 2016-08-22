@@ -1,4 +1,7 @@
-{{loading-slider isLoading=loading duration=250}}
+<div class="loadingIndicator {{if loadingState.isNotLoading 'invisible'}}">
+    <i class="glyphicon glyphicon-refresh rotationAnimation"></i>
+    Loading...
+</div>
 
 <nav class="navbar">
   <div class="container">
