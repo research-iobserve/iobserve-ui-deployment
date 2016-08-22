@@ -51,6 +51,7 @@ export default Component.extend({
 
           layout: {
             name: this.get('visualisationSettings.layoutAlgorithm'),
+            randomize: false // kose-bilkent will randomize node positions
             // maxSimulationTime: 1000,
             // padding: 6,
             // ungrabifyWhileSimulating: true,
