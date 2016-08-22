@@ -26,6 +26,7 @@ export default Ember.Controller.extend({
     deploymentGraphingService: Ember.inject.service(),
     architectureGraphingService: Ember.inject.service(),
     changelogQueue: Ember.inject.service(),
+    loadingState: Ember.inject.service(),
 
     /**
      * A computed property which returns the current system in a cytoscape-compatble format.
@@ -65,6 +66,9 @@ export default Ember.Controller.extend({
          */
         applyQueueUpdates() {
             this.get('changelogQueue').apply();
+        },
+        loading(transition) {
+            this.get('loadingState').loadPromise(transition.promise);
         }
     }
 });

@@ -23,7 +23,7 @@ $navbar-default-color: $light-orange;
 .loadingIndicator {
     opacity: 1;
     transition: all 100ms ease-in; // .invisible will get toggled FIXME
-    position: absolute;
+    position: fixed;
     top: 10px;
     left: 10px;
     background-color: #EEE;

@@ -9,6 +9,7 @@ import Ember from 'ember';
  */
 export default Ember.Route.extend({
     visualisationEvents: Ember.inject.service(),
+    loadingState: Ember.inject.service(),
     /**
      * the duration of the extending sidebar animation, which is configured as transition in _architecture.scss.
      * Since we apparently cannot listen to css transitionEnd events, we have to manually wait the time.
@@ -19,7 +20,10 @@ export default Ember.Route.extend({
      */
     animationDuration: 600, // ms
     model(params) {
-        return this.store.findRecord(params.entityType.toLowerCase(), params.entityId); // TODO: match entity.type with model names
+        // will load data from cache and then update it, therefore the loading state is probably not visible
+        const loading = this.store.findRecord(params.entityType.toLowerCase(), params.entityId); // TODO: match entity.type with model names
+        this.get('loadingState').loadPromise(loading);
+        return loading; // do not use returned promise from loadPromise since it will not change data
     },
     activate() {
         this.debug('route activated');
