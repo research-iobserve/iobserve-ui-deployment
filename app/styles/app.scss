@@ -20,14 +20,9 @@ $navbar-default-color: $light-orange;
     }
 }
 
-.invisible {
-    opacity: 0;
-    pointer-events: none; // invisible elements should not block clicking
-}
-
 .loadingIndicator {
     opacity: 1;
-    transition: opacity 500ms ease-in; // .invisible will get toggled FIXME
+    transition: all 100ms ease-in; // .invisible will get toggled FIXME
     position: absolute;
     top: 10px;
     left: 10px;
@@ -35,7 +30,14 @@ $navbar-default-color: $light-orange;
     padding: 10px;
     border-radius: 10px;
     z-index: 1000;
+    pointer-events: none; // should not block clicking
+
+    &.fadeOut {
+        opacity: 0;
+        top: -40px;
+    }
 }
+
 
 .rotationAnimation {
     transition: transform 1s;
