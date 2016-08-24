@@ -59,9 +59,8 @@ export default Service.extend({
      */
     loadPromise(promise) {
         this.startLoading();
-        return promise.finally(() => {
-            this.stopLoading();
-        });
+        const stop = this.stopLoading.bind(this);
+        return promise.then(stop,stop);
     },
 
     /**
