@@ -26,11 +26,13 @@
   </div>
 </nav>
 <div class="container-fluid">
-    <div class="alert alert-danger">
-        There seems to be a problem loading information from the server.
-    </div>
+    <div class="container">
+        <div class="alert alert-danger">
+            There seems to be a problem loading information from the server.
+        </div>
 
-    {{#link-to 'home' class="btn btn-default" activeClass=""}}Go back to the homepage{{/link-to}}
+        {{#link-to 'home' class="btn btn-default" activeClass=""}}<i class="glyphicon glyphicon-chevron-left"></i> back home{{/link-to}}
+    </div>
 
     {{outlet body}}
 </div>
