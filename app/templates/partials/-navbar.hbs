@@ -11,6 +11,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        {{! duplicate link-to, because link-to will automatically add .active for the current URL, will highlight current menu item via bootstrap }}
         {{#link-to 'home' tagName='li'}}
             {{#link-to 'home'}}Home{{/link-to}}
         {{/link-to}}
