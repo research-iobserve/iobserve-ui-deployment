@@ -20,6 +20,7 @@ export default Component.extend({
     visualisationEvents: inject.service(),
     visualisationSettings: inject.service(),
     classNames: ['cytoscapeRenderingSpace'],
+    _clickedElement: null,
     init: function() {
         cycola( cytoscape, window.cola );
         this._super();
@@ -63,6 +64,7 @@ export default Component.extend({
         this.rendering.on('click', (event) => {
             const target = event.cyTarget;
             const data = target && target.data && target.data();
+            this.set('_clickedElement', target);
             if(data && data.id) {
                 this.debug('clicked on element in graph', data, event);
                 const action = this.get('select');
@@ -84,7 +86,7 @@ export default Component.extend({
     resize() {
         if(this.rendering) {
             this.rendering.resize();
-            this.rendering.center(); // TODO: keep focus or even focus clicked element
+            this.rendering.center(this.get('_clickedElement')); // TODO: keep focus or even focus clicked element
         }
     }
 });
