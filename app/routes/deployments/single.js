@@ -60,7 +60,8 @@ export default Route.extend({
         .catch(err => {
             if(err === 'outdated') {
                 // wait a bit to avoid DDOS, TODO: exponential backoff?
-                this.refresh();
+                this.debug('data is outdated, refreshing data');
+                setTimeout(this.refresh.bind(this)); // refresh asynchronously to avoid infinite recursions
             } else {
                 console.error('could not load models', err);
             }
@@ -143,7 +144,7 @@ export default Route.extend({
     return models;
   },
   actions: {
-    error: function(reason, transition) {
+    error: function() {
         this.debug('error', ...arguments);
         this.transitionTo('deployments');
         this.get('flashMessages').danger(`Could not find system with id "${this.get('systemId')}"`);
@@ -168,11 +169,22 @@ export default Route.extend({
         this.replaceWith(this.get('routeName'));
     },
     willTransition(transition) {
-        this.debug('transition', transition.targetName, this.get('routeName'));
-        // do not disconnect if transitioning to a child route (details)
-        if (transition.targetName.indexOf(this.get('routeName')) !== 0) {
+        const currentRoute = this.get('routeName');
+        const allowedRoutes = [ // support route aliases
+            currentRoute.replace(/^deployments/, 'architectures'),
+            currentRoute.replace(/^architectures/, 'deployments')
+        ];
+        const target = transition.targetName;
+        const keepSocketConnection = target.indexOf(allowedRoutes[0]) === 0 || target.indexOf(allowedRoutes[1]) === 0;
+
+        this.debug('transition', transition.targetName, currentRoute, allowedRoutes);
+
+        // do not disconnect if transitioning to a child route (details) or alias
+        if (!keepSocketConnection) {
+            this.debug('disconnecting from changelogStream: leaving .single route');
             this.get('changelogStream').disconnect();
-            clearTimeout(this.get('refreshTimeout'));
+        } else {
+            this.debug('keeping changelogStream connection open: navigating to subpage or alias');
         }
     }
   }

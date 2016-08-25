@@ -1,40 +1,55 @@
 import Ember from 'ember';
 import ENV from 'iobserve-ui/config/environment';
 
-export default Ember.Service.extend({
-    changelogQueue: Ember.inject.service(),
+const { Service, inject, RSVP } = Ember;
+
+export default Service.extend({
+    changelogQueue: inject.service(),
     init() {
         this._super(...arguments);
         this.debug('session', this.get('systemId'));
     },
     connect(systemId) {
-        const oldSocket = this.get('socket');
-        if(oldSocket) {
-            this.debug('already connected, disconnecting first');
-            this.disconnect();
-        }
+        return new RSVP.Promise((resolve, reject) => {
+            const oldSocket = this.get('socket');
+            if(oldSocket) {
+                if(this.get('systemId') === systemId) {
+                    this.debug('already connected to the current system, doing nothing');
+                    return;
+                }
+                this.debug('already connected, disconnecting first');
+                this.disconnect();
+            }
 
-        this.debug('setting up websocket', systemId);
-        const socket = new WebSocket(`${ENV.APP.WEBSOCKET_ROOT}/v1/changelogstream/${systemId}`);
-        this.set('socket', socket);
+            this.debug('setting up websocket', systemId);
+            const socket = new WebSocket(`${ENV.APP.WEBSOCKET_ROOT}/v1/changelogstream/${systemId}`);
+            this.set('socket', socket);
+            this.set('systemId', systemId);
 
-        socket.onopen = this.get('events.onOpen').bind(this);
-        socket.onerror = this.get('events.onError').bind(this);
-        socket.onmessage = this.get('events.onMessage').bind(this);
-
-        // automatically reconnect
-        if(ENV.APP.WEBSOCKET_RECONNECT) {
-            socket.onclose = () => {
-                this.debug('connection lost, reconnecting!');
-                this.set('reconnectionTimeout', setTimeout(() => {
-                    this.connect(systemId);
-                    this.set('reconnectionTimeout', null);
-                }, 500)); // TODO: exponential backoff or even reload page?
+            socket.onopen = () => {
+                resolve();
+                return this.events.onOpen.call(this);
             };
-        }
+            socket.onerror = () => {
+                reject();
+                return this.events.onError.call(this);
+            };
+            socket.onmessage = this.get('events.onMessage').bind(this);
 
-        // close socket connection when the user closes the window/tab or nagivates to a different website
-        window.onbeforeunload = this.get('disconnect').bind(this);
+            // automatically reconnect
+            if(ENV.APP.WEBSOCKET_RECONNECT) {
+                socket.onclose = () => {
+                    this.debug('connection lost, reconnecting!');
+                    this.set('reconnectionTimeout', setTimeout(() => {
+                        this.connect(systemId);
+                        this.set('reconnectionTimeout', null);
+                    }, 500)); // TODO: exponential backoff or even reload page?
+                };
+            }
+
+            // close socket connection when the user closes the window/tab or nagivates to a different website
+            window.onbeforeunload = this.get('disconnect').bind(this);
+        });
     },
     disconnect() {
         this.get('changelogQueue').reset();
@@ -45,7 +60,12 @@ export default Ember.Service.extend({
         this.set('socket.onopen', null);
         this.set('socket.onmessage', null);
 
-        this.get('socket').close();
+        try{
+            this.get('socket').close();
+        } catch(e) {
+            // probably because connection was not yet established
+            console.error('could not close connection', e);
+        }
         this.set('socket', null);
 
         // just in case it disconnected right before disconnect() was called.
