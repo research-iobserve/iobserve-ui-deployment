@@ -12,7 +12,8 @@ $resizingAnimationDuration: .5s; // see deployments/detail route for property
 .visualisationSidebar {
     display:none;
     opacity: 0; // for animation
-    transition: width opacity $resizingAnimationDuration;
+    height: 100%;
+    transition: width height opacity $resizingAnimationDuration;
 }
 
 button.minimizeSidebar {
@@ -35,7 +36,6 @@ button.minimizeSidebar {
     // sidebar might appear below the visualisation, hide it
     .visualisationSidebar {
         opacity: 0; // for slight animation
-        display: none;
-
+        // display: none; // display none will set width for flot rendering to null, which breaks flot - FIXME will force scrollbar
     }
 }

@@ -24,21 +24,23 @@ export default Component.extend({
     style: computed('height', function () { // flot requires a fix height
         return Ember.String.htmlSafe(`height: ${this.get('height')}px;`);
     }),
-    resize: observer('visualisationEvents.resizing', () => {
+    resize() {
         const plot = this.get('plot');
         if(plot) {
             plot.resize();
             plot.setupGrid();
             plot.draw();
         }
-    }),
+    },
     willDestroy() {
         this.set('plot', null);
         this._super(...arguments);
     },
-    renderPlot: on('didInsertElement', observer('timeSeries.[]', function () {
+    // also observe visualisation settings as resizing will apply display:none, leading to flot not rendering since it requires a width
+    renderPlot: on('didRender', observer('timeSeries.[]', 'visualisationEvents.resizing', function () {
         this.debug('rendering plot');
-        if(!this.element) {
+        const isResizing = this.get('visualisationEvents.resizing');
+        if(!this.element || isResizing) {
             return;
         }
         const $this = this.$();

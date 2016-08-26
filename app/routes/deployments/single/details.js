@@ -43,6 +43,8 @@ export default Route.extend({
             this.endAnimation();
         }
         this.set('visualisationEvents.resizing', true);
+
+        // triggers deprecation that properties where updated in didInsertElement through the classNameBinding in ArchitectureViewer
         this.animationTimeout = run.later(this, this.endAnimation, this.animationDuration);
     },
     endAnimation() {
