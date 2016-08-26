@@ -1,5 +1,7 @@
 import Ember from 'ember';
 
+const { Route, inject, run, $ } = Ember;
+
 /**
  * Loads the details for a specific entity.
  *
@@ -7,9 +9,9 @@ import Ember from 'ember';
  * @extends Ember.Route
  * @module routes
  */
-export default Ember.Route.extend({
-    visualisationEvents: Ember.inject.service(),
-    loadingState: Ember.inject.service(),
+export default Route.extend({
+    visualisationEvents: inject.service(),
+    loadingState: inject.service(),
     /**
      * the duration of the extending sidebar animation, which is configured as transition in _architecture.scss.
      * Since we apparently cannot listen to css transitionEnd events, we have to manually wait the time.
@@ -27,23 +29,24 @@ export default Ember.Route.extend({
     },
     activate() {
         this.debug('route activated');
-        Ember.$('body').addClass('extendedSidebar');
+        $('body').addClass('extendedSidebar');
         this.notifyResize();
     },
     deactivate() {
         this.debug('route deactivated');
-        Ember.$('body').removeClass('extendedSidebar');
+        $('body').removeClass('extendedSidebar');
         this.notifyResize();
     },
     notifyResize() {
         if(this.animationTimeout) { // in case a user navigated too fast
+            run.cancel(this.animationTimeout);
             this.endAnimation();
         }
-        this.get('visualisationEvents').trigger('resize:start');
-        this.animationTimeout = setTimeout(this.endAnimation.bind(this), this.animationDuration);
+        this.set('visualisationEvents.resizing', true);
+        this.animationTimeout = run.later(this, this.endAnimation, this.animationDuration);
     },
     endAnimation() {
-        this.get('visualisationEvents').trigger('resize:end');
+        this.set('visualisationEvents.resizing', false);
         this.animationTimeout = null;
     }
 });

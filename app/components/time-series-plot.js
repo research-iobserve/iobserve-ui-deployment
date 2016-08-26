@@ -19,22 +19,19 @@ export default Component.extend({
     height: 300,
     plot: null,
     init() {
-        const visualisationEvents = this.get('visualisationEvents');
-        const resizeListener = this.resize.bind(this);
-        visualisationEvents.on('resize:end', resizeListener);
         this._super(...arguments);
     },
     style: computed('height', function () { // flot requires a fix height
         return Ember.String.htmlSafe(`height: ${this.get('height')}px;`);
     }),
-    resize() {
+    resize: observer('visualisationEvents.resizing', () => {
         const plot = this.get('plot');
         if(plot) {
             plot.resize();
             plot.setupGrid();
             plot.draw();
         }
-    },
+    }),
     willDestroy() {
         this.set('plot', null);
         this._super(...arguments);
@@ -50,7 +47,7 @@ export default Component.extend({
         const plotData = this.get('timeSeries.series')
             .map((valueObj) => [get(valueObj, 'timestamp'), get(valueObj, 'value')]);
 
-        this.set('options.yaxis.axisLabel', this.get('timeSeries.valueLabel'));
+        // this.set('options.yaxis.axisLabel', this.get('timeSeries.valueLabel'));
 
         // wrap in additional array since flot can handle multiple graphs at once, we only need one
         const plot = $this.plot([plotData], this.get('options')).data('plot');

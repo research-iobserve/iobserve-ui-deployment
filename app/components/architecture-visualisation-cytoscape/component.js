@@ -25,14 +25,6 @@ export default Component.extend({
         cycola( cytoscape, window.cola );
         this._super();
         this.debug('loaded', this.get('graph'));
-
-        // we only need to listen to :end since opacity changes are done via css, since architecture-viewer adds a resizing class
-        const visualisationEvents = this.get('visualisationEvents');
-        const resizeListener = this.resize.bind(this);
-        visualisationEvents.on('resize:end', resizeListener);
-        this.on('willDestroyElement', () => {
-            visualisationEvents.off('resize:start', resizeListener);
-        });
     },
     /**
      * Observer method that renders the visualisation in a canvas using Cytoscape
@@ -83,10 +75,11 @@ export default Component.extend({
         window.cy = cytoscape;
         window.cytoscape = this.rendering;
     })),
-    resize() {
+    // TODO: we only need to listen to :end since opacity changes are done via css, since architecture-viewer adds a resizing class
+    resize: observer('visualisationEvents.resizing', () => {
         if(this.rendering) {
             this.rendering.resize();
-            this.rendering.center(this.get('_clickedElement')); // TODO: keep focus or even focus clicked element
+            this.rendering.center(this.get('_clickedElement'));
         }
-    }
+    })
 });

@@ -145,7 +145,7 @@ export default Route.extend({
   },
   actions: {
     error: function() {
-        this.debug('error', ...arguments);
+        console.error('error', ...arguments);
         this.transitionTo('deployments');
         this.get('flashMessages').danger(`Could not find system with id "${this.get('systemId')}"`);
     },

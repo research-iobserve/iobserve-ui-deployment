@@ -9,46 +9,12 @@ import Ember from 'ember';
  * @class VisualisationEventsService
  * @extends {Ember.Service}
  */
-export default Ember.Service.extend(Ember.Evented, {
+export default Ember.Service.extend({
     /**
-     * forces listing of allowed events to improve documentations.
-     * Currently only resizing, used by deployments/single route (triggers events),
-     * cytoscape and architecture viewer component.
+     * Property that signlas if the visualisation is currently expanding/contracting.
+     * Use observers to subscribe to changes
      *
-     * @type {Array}
-     * @property allowedEvents
-     * @default resize:start, resize:end
+     * @type {Boolean}
      */
-    allowedEvents: [
-        'resize:start',
-        'resize:end'
-    ],
-    /**
-     * triggers an events, see Ember docs.
-     *
-     * @method trigger
-     * @parameter {String} eventName
-     * @throws {Error} exception if an unknown event name was used.
-     */
-    trigger(eventName) {
-        if(this.get('allowedEvents').indexOf(eventName) < 0) {
-            throw new Error(`unknown event "${eventName}"`);
-        } else {
-            this._super(...arguments);
-        }
-    },
-    /**
-     * Subscribes to an event, see Ember docs.
-     *
-     * @method on
-     * @parameter {String} eventName
-     * @throws {Error} exception if an unknown event name was used.
-     */
-    on(eventName) {
-        if(this.get('allowedEvents').indexOf(eventName) < 0) {
-            throw new Error(`unknown event "${eventName}"`);
-        } else {
-            this._super(...arguments);
-        }
-    },
+    isResizing: false
 });
