@@ -3,7 +3,7 @@
     [
         {
             "path": ".",
-            "folder_exclude_patterns": ["docs"]
+            "folder_exclude_patterns": ["docs", "dist", "tmp"]
         }
     ]
 }
