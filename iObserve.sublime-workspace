@@ -1,0 +1,3412 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"debug",
+				"debugger〔keyword〕"
+			],
+			[
+				"visualisationEvent",
+				"visualisationEvents.resizing"
+			],
+			[
+				"ob",
+				"observer"
+			],
+			[
+				"_",
+				"_clickedElement"
+			],
+			[
+				"gif",
+				"gif-prototype.js"
+			],
+			[
+				"video",
+				"video.js"
+			],
+			[
+				"loadin",
+				"loadingState"
+			],
+			[
+				"trans",
+				"transition"
+			],
+			[
+				"destroy",
+				"destroyDef"
+			],
+			[
+				"destr",
+				"destroyDef"
+			],
+			[
+				"un",
+				"unregisterKeyHandler"
+			],
+			[
+				"searc",
+				"searchText"
+			],
+			[
+				"nextR",
+				"nextRowIndex〔variable〕"
+			],
+			[
+				"keyco",
+				"keycodes〔variable〕"
+			],
+			[
+				"key",
+				"keyboard"
+			],
+			[
+				"keyb",
+				"keyboard-dark.css"
+			],
+			[
+				"nav",
+				"jquery.keyboard.extension-navigation.min.js"
+			],
+			[
+				"vide",
+				"videoLength"
+			],
+			[
+				"toggle",
+				"togglePlayerControls"
+			],
+			[
+				"cure",
+				"currentTime"
+			],
+			[
+				"debu",
+				"debugger"
+			],
+			[
+				"impressi",
+				"impressions"
+			],
+			[
+				"to",
+				"toDelete"
+			],
+			[
+				"remove",
+				"removeXMLNode"
+			],
+			[
+				"sour",
+				"sourceXML"
+			],
+			[
+				"Evne",
+				"EventType"
+			],
+			[
+				"_set",
+				"_setupAdsManager"
+			],
+			[
+				"list",
+				"listeners"
+			],
+			[
+				"listen",
+				"listeners"
+			],
+			[
+				"videoJs",
+				"videoJsPromise"
+			],
+			[
+				"file",
+				"fileURL"
+			],
+			[
+				"media",
+				"mediaFile"
+			],
+			[
+				"supported",
+				"supportedMediaFiles"
+			],
+			[
+				"source",
+				"sourceURL"
+			],
+			[
+				"req",
+				"require"
+			],
+			[
+				"post",
+				"posterImage"
+			],
+			[
+				"error",
+				"errorPopup"
+			],
+			[
+				"plat",
+				"platform"
+			],
+			[
+				"plato",
+				"platforms〔variable〕"
+			],
+			[
+				"hide",
+				"hidePageNavLoader〔function〕"
+			],
+			[
+				"has",
+				"hasPreviousPage"
+			],
+			[
+				"col",
+				"columns〔variable〕"
+			],
+			[
+				"smart",
+				"smarttv"
+			],
+			[
+				"smartt",
+				"smarttv-alliance.js"
+			],
+			[
+				"ex",
+				"executeAutoFocus"
+			],
+			[
+				"requ",
+				"requestAnimationFrame〔argument〕"
+			],
+			[
+				"page",
+				"pageToLoad"
+			],
+			[
+				"homepag",
+				"homepageRelated"
+			],
+			[
+				"relate",
+				"relatedLoadingError"
+			],
+			[
+				"homep",
+				"homepageRelated"
+			],
+			[
+				"home",
+				"homepageCategories"
+			],
+			[
+				"de",
+				"debugger"
+			],
+			[
+				"con",
+				"constructor"
+			],
+			[
+				"paginat",
+				"paginationMixin〔argument〕"
+			],
+			[
+				"main",
+				"mainFixture〔variable〕"
+			],
+			[
+				"param",
+				"paramsWithoutId"
+			],
+			[
+				"count",
+				"countPerPage"
+			],
+			[
+				"fak",
+				"fakePagination"
+			],
+			[
+				"func",
+				"function〔keyword〕"
+			],
+			[
+				"params",
+				"paramsCopy"
+			],
+			[
+				"load",
+				"loadPreviousPage"
+			],
+			[
+				"is",
+				"isLeftColumn"
+			],
+			[
+				"pre",
+				"prepareMovies"
+			],
+			[
+				"view",
+				"viewModel"
+			],
+			[
+				"cate",
+				"category"
+			],
+			[
+				"cat",
+				"category"
+			],
+			[
+				"possible",
+				"possibleRelatedCategories"
+			],
+			[
+				"curre",
+				"currentTime"
+			],
+			[
+				"revis",
+				"revisionNumber〔variable〕"
+			],
+			[
+				"refre",
+				"refresh"
+			],
+			[
+				"arch",
+				"architectures"
+			],
+			[
+				"depl",
+				"deployments"
+			],
+			[
+				"extend",
+				"extendDeep"
+			],
+			[
+				"op",
+				"onopen"
+			],
+			[
+				"pro",
+				"provideData"
+			],
+			[
+				"R",
+				"RouteAliasResolver"
+			],
+			[
+				"va",
+				"valueObj"
+			],
+			[
+				"node",
+				"nodes"
+			],
+			[
+				"comm",
+				"communicationInstances"
+			],
+			[
+				"ser",
+				"serviceInstances"
+			],
+			[
+				"vi",
+				"visualisationEvents"
+			],
+			[
+				"proper",
+				"property"
+			],
+			[
+				"plot",
+				"plotData〔variable〕"
+			],
+			[
+				"m",
+				"measurable.js"
+			],
+			[
+				"render",
+				"renderPlot〔variable〕"
+			],
+			[
+				"flot",
+				"jquery.flot.js"
+			],
+			[
+				"opti",
+				"optionsChanged"
+			],
+			[
+				"res",
+				"resize:start"
+			],
+			[
+				"resi",
+				"resizing"
+			],
+			[
+				"fa",
+				"fadeinAndResizeGraph"
+			],
+			[
+				"event",
+				"eventName"
+			],
+			[
+				"resize",
+				"resize:start"
+			],
+			[
+				"set",
+				"setTimeout〔function〕"
+			],
+			[
+				"an",
+				"animationEventsService"
+			],
+			[
+				"ani",
+				"animationTimeout"
+			],
+			[
+				"change",
+				"changelogQueue.empty"
+			],
+			[
+				"old",
+				"oldRecord"
+			],
+			[
+				"ch",
+				"changelog"
+			],
+			[
+				"chang",
+				"changelog"
+			],
+			[
+				"chn",
+				"changelogQueue"
+			],
+			[
+				"cha",
+				"changelogs"
+			],
+			[
+				"parse",
+				"parseSingle"
+			],
+			[
+				"rou",
+				"routeName"
+			],
+			[
+				"filte",
+				"filteredInstances"
+			],
+			[
+				"instan",
+				"instances"
+			],
+			[
+				"inst",
+				"instances"
+			],
+			[
+				"syste",
+				"systemId〔variable〕"
+			],
+			[
+				"Ember",
+				"Ember.Object"
+			],
+			[
+				"gra",
+				"graphModel"
+			],
+			[
+				"mo",
+				"models"
+			],
+			[
+				"grap",
+				"graphingService"
+			],
+			[
+				"typ",
+				"typesToLoad"
+			],
+			[
+				"norm",
+				"normalized"
+			],
+			[
+				"reconne",
+				"reconnectionTimeout"
+			],
+			[
+				"clear",
+				"clearTimeout〔function〕"
+			],
+			[
+				"reconn",
+				"reconnectionTimeout"
+			],
+			[
+				"sho",
+				"shouldClose"
+			],
+			[
+				"sys",
+				"systemId〔variable〕"
+			],
+			[
+				"addPl",
+				"addPlaceholderImageToListing"
+			],
+			[
+				"Jo",
+				"JobListing"
+			],
+			[
+				"after",
+				"afterRemote"
+			],
+			[
+				"externa",
+				"externalCounter〔variable〕"
+			],
+			[
+				"exter",
+				"externalCounter〔variable〕"
+			],
+			[
+				"extern",
+				"externalCounter"
+			],
+			[
+				"docu",
+				"documentFormat"
+			],
+			[
+				"Permission",
+				"PermissionProcessor"
+			],
+			[
+				"acc",
+				"accessToken〔variable〕"
+			],
+			[
+				"call",
+				"callbackURL"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/templates/components/architecture-viewer.hbs",
+			"settings":
+			{
+				"buffer_size": 537,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/application-error.hbs",
+			"settings":
+			{
+				"buffer_size": 408,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/application.hbs",
+			"settings":
+			{
+				"buffer_size": 347,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/partials/-navbar.hbs",
+			"settings":
+			{
+				"buffer_size": 1140,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/components/architecture-visualisation-cytoscape/component.js",
+			"settings":
+			{
+				"buffer_size": 3852,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/components/time-series-plot.js",
+			"settings":
+			{
+				"buffer_size": 2332,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 3023,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/components/architecture-viewer.js",
+			"settings":
+			{
+				"buffer_size": 715,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/routes/deployments/single/details.js",
+			"settings":
+			{
+				"buffer_size": 2087,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/routes/application.js",
+			"settings":
+			{
+				"buffer_size": 422,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/services/loading-state.js",
+			"settings":
+			{
+				"buffer_size": 1991,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"packag",
+				"Package Control: List Packages"
+			],
+			[
+				"ss js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ss jav",
+				"Set Syntax: Java"
+			],
+			[
+				"ss mark",
+				"Set Syntax: Markdown"
+			],
+			[
+				"ss mar",
+				"Set Syntax: Markdown"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ss jsn",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ss css",
+				"Set Syntax: CSS"
+			],
+			[
+				"ss handle",
+				"Set Syntax: Handlebars"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"ss api",
+				"Set Syntax: API Blueprint"
+			],
+			[
+				"ss javs",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"ss md",
+				"Set Syntax: Markdown"
+			],
+			[
+				"ss xml",
+				"Set Syntax: XML"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: di",
+				"Package Control: Disable Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"ss Mar",
+				"Set Syntax: Markdown"
+			],
+			[
+				"ss markdo",
+				"Set Syntax: Markdown GFM"
+			],
+			[
+				"ss handl",
+				"Set Syntax: Handlebars"
+			],
+			[
+				"markdo",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"ss musta",
+				"Set Syntax: HTML with mustaches"
+			],
+			[
+				"linter to",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"ss jaa",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"trailing Spaces",
+				"Trailing Spaces: Toggle Trailing Spaces Highlighting"
+			],
+			[
+				"ss e",
+				"Set Syntax: EJS (<% and %>)"
+			],
+			[
+				"ss c++",
+				"Set Syntax: C++"
+			],
+			[
+				"ss java",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"ss te",
+				"Set Syntax: Textile"
+			],
+			[
+				"mar",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"marke",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Itemize"
+			],
+			[
+				"ss lat",
+				"Set Syntax: LaTeX"
+			],
+			[
+				"ss next",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"list p",
+				"Package Control: List Packages"
+			],
+			[
+				"ss ya",
+				"Set Syntax: YAML"
+			],
+			[
+				"remove pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ss javas",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"remove p",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"packages",
+				"Package Control: List Packages"
+			],
+			[
+				"latex",
+				"LaTeXTools: View PDF"
+			],
+			[
+				"latext",
+				"LaTeXTools: Jump to PDF"
+			],
+			[
+				"browse ",
+				"Preferences: Browse Packages"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"Snippet: can",
+				"Snippet: canjs-module"
+			],
+			[
+				"ss html",
+				"Set Syntax: HTML with mustaches"
+			],
+			[
+				"s",
+				"Set Syntax: HTML"
+			],
+			[
+				"ss stache",
+				"Set Syntax: HTML with mustaches"
+			],
+			[
+				"ss must",
+				"Set Syntax: HTML with mustaches"
+			],
+			[
+				"ss gro",
+				"Set Syntax: Groovy"
+			],
+			[
+				"indent",
+				"Bracketeer: Indent Text"
+			],
+			[
+				"ss ejs",
+				"Set Syntax: EJS (<% and %>)"
+			],
+			[
+				"linter",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"disable pac",
+				"Package Control: Disable Package"
+			],
+			[
+				"ss elix",
+				"Set Syntax: Elixir"
+			],
+			[
+				"instlal",
+				"Package Control: Install Package"
+			],
+			[
+				"ss h",
+				"Set Syntax: HTML"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"ss ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"ss groo",
+				"Set Syntax: Groovy"
+			],
+			[
+				"command",
+				"Text Pastry: Command-Line"
+			],
+			[
+				"pastry",
+				"Text Pastry: From 0 To X"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"markd",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"ss javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ss json",
+				"Set Syntax: JSON"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"markdown",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"instll",
+				"Package Control: Install Package"
+			],
+			[
+				"lint",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"list pack",
+				"Package Control: List Packages"
+			],
+			[
+				"ss sass",
+				"Set Syntax: Sass"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 470.0,
+		"history":
+		[
+			"ls",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Volumes/Masterprojekt/frontend-prototype",
+		"/Volumes/Masterprojekt/frontend-prototype/app",
+		"/Volumes/Masterprojekt/frontend-prototype/app/components",
+		"/Volumes/Masterprojekt/frontend-prototype/app/components/architecture-visualisation-cytoscape",
+		"/Volumes/Masterprojekt/frontend-prototype/app/templates",
+		"/Volumes/Masterprojekt/frontend-prototype/app/templates/components",
+		"/Volumes/Masterprojekt/frontend-prototype/app/templates/partials",
+		"/Volumes/Masterprojekt/frontend-prototype/vendor"
+	],
+	"file_history":
+	[
+		"/Volumes/Masterprojekt/frontend-prototype/dist/assets/iobserve-ui.js",
+		"/Volumes/Masterprojekt/frontend-prototype/dist/assets/iobserve-ui.map",
+		"/Volumes/Masterprojekt/frontend-prototype/dist/docs/files/app_components_architecture-visualisation-cytoscape_component.js.html",
+		"/Volumes/Masterprojekt/frontend-prototype/dist/docs/files/app_routes_deployments_single_details.js.html",
+		"/Volumes/Masterprojekt/frontend-prototype/public/docs/files/app_components_architecture-visualisation-cytoscape_component.js.html",
+		"/Volumes/Masterprojekt/frontend-prototype/public/docs/files/app_routes_deployments_single_details.js.html",
+		"/Volumes/Masterprojekt/frontend-prototype/app/services/visualisation-events.js",
+		"/Volumes/Masterprojekt/frontend-prototype/ember-cli-build.js",
+		"/Volumes/Visono/src/m3-web-application/source/index.html",
+		"/Volumes/simpleTechs/weinre/node_modules/.bin/weinre",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/models/search.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/watch/watch.js",
+		"/Volumes/simpleTechs/Keyboard/js/jquery.keyboard.extension-navigation.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/bower_components/keyboard/dist/js/jquery.keyboard.extension-navigation.min.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/search/search.mustache",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/stylesheets/app.css",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/platform.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/index.src.html",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/platforms/tizen.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/watch/watch.mustache",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/platforms/entertain.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/overview/overview.js",
+		"/Volumes/simpleTechs/avoplayer/src/models/adScheduleItem.coffee",
+		"/Volumes/simpleTechs/avoplayer/src/lib/vast-client-js/src/response.coffee",
+		"/Volumes/simpleTechs/avoplayer/src/lib/vast-client-js/src/parser.coffee",
+		"/Volumes/simpleTechs/avoplayer/package.json",
+		"/Volumes/simpleTechs/avoplayer/test/public/ads/adcall_vpaid-javascript.xml",
+		"/Volumes/simpleTechs/avoplayer/test/playScheduleManager.coffee",
+		"/Volumes/Visono/src/m3ops/install/lib/initDb/testUser.bulk",
+		"/Volumes/simpleTechs/avoplayer/test/public/schedules/schedule_vpaid-pre-rolls-live.json",
+		"/Users/maddis/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Volumes/simpleTechs/avoplayer/src/player/flowPlayer.coffee",
+		"/Volumes/simpleTechs/avoplayer/src/lib/vast-client-js/test/vpaid.xml",
+		"/Volumes/simpleTechs/avoplayer/src/modules/playScheduleManager.coffee",
+		"/Volumes/simpleTechs/avoplayer/test/public/ads/adconf.json",
+		"/Volumes/simpleTechs/avoplayer/src/lib/vast-client-js/src/util.coffee",
+		"/Volumes/simpleTechs/avoplayer/src/index.coffee",
+		"/Volumes/simpleTechs/avoplayer/test/public/schedules/schedule_vpaid-pre-rolls.json",
+		"/Volumes/simpleTechs/avoplayer/src/lib/videojs-with-plugins.coffee",
+		"/Volumes/simpleTechs/avoplayer/src/modules/featureDetector.coffee",
+		"/Volumes/simpleTechs/avoplayer/test/public/ads/adcall-vpaid-javascript.xml",
+		"/Volumes/simpleTechs/avoplayer/test/public/ads/adcall-vpaid-flash.xml",
+		"/Volumes/simpleTechs/avoplayer/src/lib/vast-client-js/test/util.coffee",
+		"/Volumes/simpleTechs/avoplayer/src/player/abstractPlayer.coffee",
+		"/Volumes/simpleTechs/netzkino_smarttv/build/index.html",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/Router.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/search/search.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/categories/categories.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/gulpfile.js",
+		"/Volumes/simpleTechs/avoplayer/public/20160722_151713/avoplayer-html5-dbg.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/config.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/components/cover-grid/cover-grid.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/stylesheets/less/app.less",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/stylesheets/less/search.less",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/components/cover-grid/cover-grid.mustache",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/stylesheets/less/cover-grid.less",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/movie/movie.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/movie/movie.mustache",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/CustomControl.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/models/category.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/category/category.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/app.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/models/cached-pagination-model.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/models/movie.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/category/category.mustache",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/pagination-mixin.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/CachedModel.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/utils.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/overview/overview.mustache",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/KeyHandler.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/fixtures/category.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/age-verification/age-verification-choose-pin.mustache",
+		"/Volumes/simpleTechs/greylabelz/src/js/models/setcard.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/components/scrollable-row/scrollable-row.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/lib/platforms/xbox.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/age-verification/age-verification.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/node_modules/express/node_modules/debug/debug.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript/controls/menu/menu.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/node_modules/grunt/lib/grunt/config.js",
+		"/Volumes/simpleTechs/netzkino_smarttv/WebContent/index.html",
+		"/Volumes/Masterprojekt/frontend-prototype/package.json",
+		"/Users/maddis/Library/Application Support/Sublime Text 3/Packages/User/Base File.sublime-settings",
+		"/Users/maddis/Library/Application Support/Sublime Text 3/Packages/DocBlockr/Base File.sublime-settings",
+		"/Users/maddis/Library/Application Support/Sublime Text 3/Packages/DocBlockr/README.md",
+		"/Volumes/Masterprojekt/frontend-prototype/app/models/system.js",
+		"/Volumes/Masterprojekt/frontend-prototype/yuidoc.json",
+		"/Volumes/Masterprojekt/frontend-prototype/app/models/revision.js",
+		"/Volumes/Masterprojekt/frontend-prototype/app/services/changelog-stream.js",
+		"/Volumes/Masterprojekt/frontend-prototype/app/adapters/_baseAdapter.js",
+		"/Volumes/Masterprojekt/frontend-prototype/app/components/time-series-plot.js",
+		"/Volumes/Masterprojekt/frontend-prototype/app/services/architecture-graphing-service.js",
+		"/Volumes/Masterprojekt/frontend-prototype/app/services/changelog-parser.js",
+		"/Volumes/simpleTechs/avoplayer/test/browser-deploy/public/browser-deploy.html",
+		"/Volumes/simpleTechs/avoplayer/public/avoplayer-html5-dbg.js",
+		"/Volumes/simpleTechs/avoplayer/bower.json",
+		"/Volumes/simpleTechs/avoplayer/src/lib/vast-client-js/src/urlhandlers/xmlhttprequest.coffee",
+		"/Volumes/Masterprojekt/frontend-prototype/app/templates/deployments/index.hbs",
+		"/Volumes/simpleTechs/sixtysixseconds-backend/server/models/file.js",
+		"/Volumes/Masterprojekt/frontend-prototype/app/routes/architectures/index.js",
+		"/Volumes/Masterprojekt/frontend-prototype/app/routes/architectures/single.js",
+		"/Volumes/Masterprojekt/frontend-prototype/app/templates/home.hbs",
+		"/Volumes/Masterprojekt/frontend-prototype/app/services/graphing-service.js",
+		"/Users/maddis/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/websocket-driver/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/websocket-extensions/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/which/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/window-size/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/wordwrap/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/wrap-ansi/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/wrappy/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/write-file-atomic/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/ws/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/xdg-basedir/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/xmldom/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/xmlhttprequest-ssl/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/xtend/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/y18n/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yallist/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yam/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yam/node_modules/fs-extra/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yam/node_modules/graceful-fs/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yam/node_modules/lodash.isplainobject/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yam/node_modules/lodash.keysin/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yam/node_modules/lodash.merge/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yargs/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yargs-parser/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yargs-parser/node_modules/camelcase/package.json",
+		"/Volumes/Masterprojekt/frontend-prototype/node_modules/yargs-parser/node_modules/lodash.assign/package.json"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"<project>",
+			"./app/",
+			"./",
+			"./app",
+			"./src/",
+			"./src/*",
+			"src/*",
+			"sr/*",
+			"app/*",
+			"WebContent/*",
+			"src/*",
+			"./*",
+			"src/*",
+			"src",
+			"WebContent/app/javascript",
+			"<project>",
+			"WebContent/app/",
+			"WebContent/app/controls",
+			"WebContent/",
+			"<project>",
+			"./",
+			"./src",
+			"./src/*",
+			"src/*",
+			"src/",
+			"<project>",
+			"./scripts",
+			"<project>/scripts",
+			"<project>",
+			"./app",
+			"<project>",
+			"**.hbs",
+			"<project>/**.hbs",
+			"<project>",
+			"*.md",
+			"./src/*.md",
+			"./src",
+			"./src/*",
+			"src/*",
+			"src/",
+			"src",
+			"<project>/src",
+			"<project>",
+			"src/",
+			"app/",
+			"node_modules/drakov/lib",
+			"node_modules/drakov",
+			"scripts/",
+			"<project>",
+			"",
+			"./scripts/*",
+			"./scripts",
+			"",
+			"src/",
+			"",
+			"<project>,-example/node_modules/*",
+			"<project>,-example/node_modules/*,-source/bower_components/*,-lib/*",
+			"<project>,-example/node_modules/*,-source/bower_components/*",
+			"<project>,-node_modules/*,-example/node_modules/*,-source/bower_components/*",
+			"<project>,-node_modules/*,-example/node_modules/*,source/bower_components/*",
+			"<project>,-node_modules/*,-example/node_modules/*",
+			"<project>",
+			"",
+			".node_modules/*",
+			"",
+			"./",
+			"./node_modules",
+			"./",
+			"",
+			"./*.js",
+			"./*",
+			"/Volumes/simpleTechs/66seconds-website/app/",
+			"/Volumes/simpleTechs/66seconds-website/app/styles",
+			"/Volumes/simpleTechs/66seconds-website/app/js",
+			"/Volumes/simpleTechs/66seconds-website/app",
+			"/Volumes/simpleTechs/greylabelz/src/js/setcards/",
+			"/Volumes/simpleTechs/greylabelz/src/js/setcards/views",
+			"/Volumes/simpleTechs/66seconds-website/app/",
+			"/Volumes/simpleTechs/66seconds-website/app/js",
+			"<open folders>",
+			"/Volumes/simpleTechs/sixtysixseconds-backend/server/principals/meome",
+			"<open folders>,-./node_modules/*",
+			"<open folders>",
+			"<open files>",
+			"/Volumes/simpleTechs/sixtysixseconds-backend/server/principals/66seconds/email-templates",
+			"<open folders>,-node_modules/*",
+			"<open folders>",
+			"<open folders>,-node_modules/*",
+			"<open folders>",
+			"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/stylesheets/less",
+			"<open folders>",
+			"WebContent/app/stylesheets",
+			"<open folders>",
+			"<open folders>,+node_modules/*",
+			"<open folders>,-node_modules/*",
+			"<open folders>,-",
+			"<open folders>",
+			"<open folders>,-node_modules/*",
+			"<open folders>,-./node_modules/*",
+			"<open folders>",
+			"/Volumes/simpleTechs/sixtysixseconds-backend/common/models,,/Volumes/simpleTechs/sixtysixseconds-backend/server/models",
+			"<open folders>",
+			"<open folders>,,-node_modules/*",
+			"<open folders>",
+			"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/stylesheets",
+			"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/javascript",
+			"/Volumes/simpleTechs/netzkino_smarttv/WebContent/app/stylesheets/",
+			"/Volumes/simpleTechs/netzkino-samsung-smart-tv/src",
+			"/Volumes/simpleTechs/netzkino-samsung-smart-tv/src/javascript",
+			"<open folders>,/Volumes/simpleTechs/netzkino-samsung-smart-tv/src",
+			"<open folders>",
+			"/Volumes/simpleTechs/netzkino_smarttv/",
+			"/Volumes/simpleTechs/netzkino_smarttv/*/*.less",
+			"/Volumes/simpleTechs/netzkino_smarttv",
+			"/Volumes/simpleTechs/samsung-js-framework",
+			"/Volumes/simpleTechs/netzkino-samsung-smart-tv/src/app",
+			"/Volumes/simpleTechs/netzkino-samsung-smart-tv/src",
+			"./",
+			"/Volumes/simpleTechs/sixtysixseconds-backend/",
+			"/Volumes/simpleTechs/sixtysixseconds-backend/node_modules/loopback",
+			"/Volumes/simpleTechs/sixtysixseconds-backend",
+			"/Volumes/simpleTechs/dpd-passport",
+			"/Volumes/simpleTechs/grocli-dpd/",
+			"/Volumes/simpleTechs/grocli-dpd/*",
+			"/Volumes/simpleTechs/grocli-dpd/",
+			"/Volumes/simpleTechs/grocli-dpd/resources",
+			"<project>",
+			"/Users/maddis/Documents/rbtv-server-merged/client/,-/Users/maddis/Documents/rbtv-server-merged/client/libraries/*"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"visualisationEvents.resizing",
+			"resizing",
+			"visualisationEvents",
+			"this.get",
+			"this.rendering",
+			"didInsertElement",
+			"this.set",
+			"didInsertElement",
+			"coseBil",
+			"Cytoscape",
+			"cytoscape",
+			"718",
+			"height",
+			"?ts=CACHE_TIMESTAMP",
+			"bower_",
+			"bower",
+			"random",
+			"positionNodesRandomly",
+			"random",
+			"error",
+			"statusInformations",
+			"timeseries",
+			"api-actions",
+			"navigate",
+			"keydown",
+			"blur",
+			"setupKeyboard",
+			"keyboard.",
+			"registerKeyHandler",
+			"listener",
+			"listeners",
+			"event",
+			"addEvent",
+			"return false",
+			"setup",
+			"setupKeyboard",
+			"$searc",
+			"search:",
+			"maxIndx",
+			"kbKeysetChange",
+			"elementsInRow",
+			"row",
+			"neighbours",
+			"\"",
+			"blur",
+			"platform.keyboard",
+			"isVisible",
+			"0",
+			"1",
+			"0",
+			"1",
+			"toggleClass",
+			"base.$keyboard.toggleClass",
+			"0",
+			"customFouc",
+			"jquery.keyboard.languages.german",
+			"language",
+			"layout.",
+			"',",
+			"keyboard/",
+			"keyboard",
+			"jquery.keyboard-private",
+			"jquery.keyboard.navigation",
+			"jquery.keyboard.languages.de",
+			"language.",
+			"language",
+			"'jquery.keyboard'",
+			"console.error",
+			"navigateableVirtualKeyboard",
+			"jquery.germanVirtualKeyboard",
+			"jquery.virtualKeyboard",
+			"virtualKeyboard",
+			"VirtualKeyboard",
+			"virtualKeyboard",
+			"VirtualKeyboard",
+			"virtualKeyboard",
+			"keyboard.isActive",
+			"isActive",
+			"can.$",
+			"isSamsung",
+			"keyboard",
+			"platform.keyboard",
+			"setPosition",
+			"keyboard",
+			"platform.keyboard",
+			"\nplatform.keyboard",
+			"platform.keyboard",
+			"keyboard",
+			"keyboard.css",
+			"css",
+			"},",
+			"{'deps'",
+			"entertain",
+			"build-tizen",
+			"videoLength",
+			"maxTime",
+			"togglePlayer",
+			"togglePlayerControls",
+			"toggle",
+			"hide",
+			"isSeeking",
+			"seekVideo",
+			"this.seekVideo",
+			"GETCURRENTTIME",
+			"TIMEUPDATE",
+			"interva",
+			"onLoadingStart",
+			"startTimeUpdate",
+			"setInterval",
+			"interval",
+			"getCurrent",
+			"getCurrentTime",
+			"_timeUpdateDebounceInterval",
+			"interval",
+			"current",
+			"interval",
+			"timeUpdateDebounceInterval",
+			"_timeUpdateDebounceInterval",
+			"interval",
+			"getCurrentTime",
+			"currentTime",
+			"log",
+			"removeListeners",
+			"getCurrentTime",
+			"interval",
+			"videoJSDef",
+			"player.controls",
+			"of"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"visualisationEvents.isResizing",
+			"iobserve-ui",
+			"ServiceInstance",
+			"Service",
+			"NodeGroup",
+			"Node",
+			"CommunicationInstance",
+			"Communication",
+			"test-system123-serviceInstance-1",
+			"test-system123-nodeGroup-1",
+			"test-system123-node-1",
+			"test-system123-service-1",
+			"test-system123-node-1",
+			"test-system123-communicationInstance-1",
+			"test-system123-communication-1",
+			"system123",
+			"import BaseEntity from './baseentity';",
+			"/systems/",
+			"'",
+			"getFormat",
+			"instrument",
+			"message-sending",
+			"omain-specific",
+			"sec:daniel",
+			"Polly",
+			"debug",
+			"43759_max",
+			"24387_43758",
+			"0_24386",
+			"52_max",
+			"35_51",
+			"0_34",
+			"MEOME",
+			"meome.de",
+			"Meome",
+			"meome.com",
+			"flatss",
+			"<% include ../_layout/footer %>",
+			"<% include ../_layout/header %>",
+			"<% include ../_layout/footer %>",
+			"<% include ../_layout/header %>",
+			"FlatListing",
+			"flatListing",
+			"$flatApplication:OwnerOrUser",
+			"flatApplication",
+			"Model",
+			"FlatApplication",
+			"FlatListing",
+			"flatListing",
+			"onEntering",
+			"movie",
+			"PATH",
+			"debug",
+			"===",
+			"debug",
+			");",
+			"dpd.todos2"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/templates/components/architecture-viewer.hbs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								537,
+								537
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										533,
+										536
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/tag.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										216,
+										219
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/templates/application-error.hbs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 408,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										375,
+										378
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/tag.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										66,
+										69
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"open_with_edit": true,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/templates/application.hbs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 347,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								192,
+								192
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										191,
+										192
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										163,
+										164
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/templates/partials/-navbar.hbs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1140,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								731,
+								731
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"open_with_edit": true,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/components/architecture-visualisation-cytoscape/component.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3852,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3495,
+								3505
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3505,
+										3506
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/single_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										3474,
+										3475
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 845.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/components/time-series-plot.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2332,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								771,
+								771
+							],
+							[
+								893,
+								893
+							],
+							[
+								1382,
+								1382
+							],
+							[
+								1466,
+								1466
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										771,
+										772
+									],
+									"2":
+									[
+										893,
+										894
+									],
+									"3":
+									[
+										1382,
+										1383
+									],
+									"4":
+									[
+										1466,
+										1467
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/single_quote.png",
+										"brackethighlighter.default"
+									],
+									"2":
+									[
+										"Packages/BracketHighlighter/icons/single_quote.png",
+										"brackethighlighter.default"
+									],
+									"3":
+									[
+										"Packages/BracketHighlighter/icons/single_quote.png",
+										"brackethighlighter.default"
+									],
+									"4":
+									[
+										"Packages/BracketHighlighter/icons/single_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										740,
+										741
+									],
+									"2":
+									[
+										862,
+										863
+									],
+									"3":
+									[
+										1351,
+										1352
+									],
+									"4":
+									[
+										1435,
+										1436
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 99.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3023,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2055,
+								1992
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2055,
+										2056
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/double_quote.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1991,
+										1992
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JSON (JavaScriptNext).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 627.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/components/architecture-viewer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 715,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/routes/deployments/single/details.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2087,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app/routes/application.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 422,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								311,
+								318
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										329,
+										330
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										318,
+										319
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "app/services/loading-state.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1991,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1646,
+								1646
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1646,
+										1647
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1641,
+										1642
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 112.0
+	},
+	"pinned_build_system": "",
+	"project": "iObserve.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"visualisat",
+				"app/services/visualisation-events.js"
+			],
+			[
+				"cycomponent.js",
+				"app/components/architecture-visualisation-cytoscape/component.js"
+			],
+			[
+				"pac",
+				"package.json"
+			],
+			[
+				"compplot",
+				"app/components/time-series-plot.js"
+			],
+			[
+				"cytocomponent",
+				"app/components/architecture-visualisation-cytoscape/component.js"
+			],
+			[
+				"ember",
+				"ember-cli-build.js"
+			],
+			[
+				"componentscycomponent.js",
+				"app/components/architecture-visualisation-cytoscape/component.js"
+			],
+			[
+				"routesapplic",
+				"app/routes/application.js"
+			],
+			[
+				"loading-st",
+				"app/services/loading-state.js"
+			],
+			[
+				"watch",
+				"views/watchfolder.html"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"random",
+				"src/Layout/RandomSeed.js"
+			],
+			[
+				"kose-bil",
+				"node_modules/cytoscape-cose-bilkent/cytoscape-cose-bilkent.js"
+			],
+			[
+				"route",
+				"app/router.js"
+			],
+			[
+				"routessingle",
+				"app/routes/deployments/single.js"
+			],
+			[
+				"contrsingle",
+				"app/controllers/deployments/single.js"
+			],
+			[
+				"enterta",
+				"netzkino_smarttv/WebContent/app/javascript/lib/platforms/entertain.js"
+			],
+			[
+				"platform.js",
+				"netzkino_smarttv/WebContent/app/javascript/lib/platform.js"
+			],
+			[
+				"enter",
+				"netzkino_smarttv/WebContent/app/javascript/lib/platforms/entertain.js"
+			],
+			[
+				"app.js",
+				"netzkino_smarttv/WebContent/app/javascript/app.js"
+			],
+			[
+				"keyhand",
+				"netzkino_smarttv/WebContent/app/javascript/lib/KeyHandler.js"
+			],
+			[
+				"age",
+				"netzkino_smarttv/WebContent/app/javascript/controls/age-verification/age-verification.js"
+			],
+			[
+				"search",
+				"netzkino_smarttv/WebContent/app/javascript/controls/search/search.js"
+			],
+			[
+				"consearc",
+				"netzkino_smarttv/WebContent/app/javascript/controls/search/search.js"
+			],
+			[
+				"extensionnav",
+				"WebContent/app/bower_components/keyboard/dist/js/jquery.keyboard.extension-navigation.min.js"
+			],
+			[
+				"app.less",
+				"WebContent/app/stylesheets/less/app.less"
+			],
+			[
+				"search.mus",
+				"WebContent/app/javascript/controls/search/search.mustache"
+			],
+			[
+				"requirecon",
+				"WebContent/app/javascript/requireConfig.js"
+			],
+			[
+				"controlssearch",
+				"WebContent/app/javascript/controls/search/search.js"
+			],
+			[
+				"plat",
+				"WebContent/app/javascript/lib/platform.js"
+			],
+			[
+				"samsung.js",
+				"WebContent/app/javascript/lib/platforms/samsung.js"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"requireconf",
+				"WebContent/app/javascript/requireConfig.js"
+			],
+			[
+				"entert",
+				"WebContent/app/javascript/lib/platforms/entertain.js"
+			],
+			[
+				"index.sr",
+				"WebContent/index.src.html"
+			],
+			[
+				"platformtize",
+				"WebContent/app/javascript/lib/platforms/tizen.js"
+			],
+			[
+				"watch.mu",
+				"WebContent/app/javascript/controls/watch/watch.mustache"
+			],
+			[
+				"platformenter",
+				"WebContent/app/javascript/lib/platforms/entertain.js"
+			],
+			[
+				"overview",
+				"WebContent/app/javascript/controls/overview/overview.js"
+			],
+			[
+				"native",
+				"src/player/nativePlayer.coffee"
+			],
+			[
+				"flow",
+				"src/player/flowPlayer.coffee"
+			],
+			[
+				"playsc",
+				"test/playScheduleManager.coffee"
+			],
+			[
+				"abstra",
+				"src/player/abstractPlayer.coffee"
+			],
+			[
+				"adsc",
+				"src/models/adScheduleItem.coffee"
+			],
+			[
+				"abstr",
+				"src/player/abstractPlayer.coffee"
+			],
+			[
+				"ads",
+				"src/models/adScheduleItem.coffee"
+			],
+			[
+				"pakc",
+				"package.json"
+			],
+			[
+				"",
+				"src/player/videoJsPlayer.coffee"
+			],
+			[
+				"browser",
+				"test/browser-deploy/public/browser-deploy.html"
+			],
+			[
+				"flowpl",
+				"src/player/flowPlayer.coffee"
+			],
+			[
+				"plays",
+				"test/playScheduleManager.coffee"
+			],
+			[
+				"feature",
+				"src/modules/featureDetector.coffee"
+			],
+			[
+				"browser-de",
+				"test/browser-deploy/public/browser-deploy.html"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"packa",
+				"package.json"
+			],
+			[
+				"package",
+				"package.json"
+			],
+			[
+				"abstrac",
+				"src/player/abstractPlayer.coffee"
+			],
+			[
+				"playsche",
+				"test/playScheduleManager.coffee"
+			],
+			[
+				"play",
+				"src/modules/playScheduleManager.coffee"
+			],
+			[
+				"adconf",
+				"test/public/ads/adconf.json"
+			],
+			[
+				"browser-",
+				"test/browser-deploy/public/browser-deploy.html"
+			],
+			[
+				"adscheduleitem",
+				"src/models/adScheduleItem.coffee"
+			],
+			[
+				"abstract",
+				"src/player/abstractPlayer.coffee"
+			],
+			[
+				"videojs",
+				"src/player/videoJsPlayer.coffee"
+			],
+			[
+				"tizen",
+				"WebContent/app/javascript/lib/platforms/tizen.js"
+			],
+			[
+				"config",
+				"WebContent/config.src.xml"
+			],
+			[
+				"loader",
+				"WebContent/app/javascript/lib/loader.js"
+			],
+			[
+				"keyhan",
+				"WebContent/app/javascript/lib/KeyHandler.js"
+			],
+			[
+				"config.s",
+				"WebContent/config.src.xml"
+			],
+			[
+				"ager-ver",
+				"WebContent/app/javascript/controls/age-verification/age-verification.js"
+			],
+			[
+				"cover-",
+				"WebContent/app/javascript/components/cover-grid/cover-grid.js"
+			],
+			[
+				"gu",
+				"gulpfile.js"
+			],
+			[
+				"inde",
+				"WebContent/index.src.html"
+			],
+			[
+				"app",
+				"WebContent/app/javascript/app.js"
+			],
+			[
+				"watch.js",
+				"WebContent/app/javascript/controls/watch/watch.js"
+			],
+			[
+				"ap",
+				"WebContent/app/javascript/app.js"
+			],
+			[
+				"g",
+				"gulpfile.js"
+			],
+			[
+				"app.",
+				"WebContent/app/javascript/app.js"
+			],
+			[
+				"keyha",
+				"WebContent/app/javascript/lib/KeyHandler.js"
+			],
+			[
+				"load",
+				"WebContent/app/javascript/lib/loader.js"
+			],
+			[
+				".git",
+				".gitignore"
+			],
+			[
+				"router",
+				"WebContent/app/javascript/lib/Router.js"
+			],
+			[
+				"categ",
+				"WebContent/app/javascript/controls/category/category.js"
+			],
+			[
+				"cover-grid",
+				"WebContent/app/javascript/components/cover-grid/cover-grid.mustache"
+			],
+			[
+				"entertain",
+				"WebContent/app/javascript/lib/platforms/entertain.js"
+			],
+			[
+				"custom",
+				"WebContent/app/javascript/lib/CustomControl.js"
+			],
+			[
+				"controlscate",
+				"WebContent/app/javascript/controls/category/category.js"
+			],
+			[
+				"categor",
+				"WebContent/app/javascript/controls/categories/categories.js"
+			],
+			[
+				"consearch.",
+				"WebContent/app/javascript/controls/search/search.js"
+			],
+			[
+				"searh",
+				"WebContent/app/javascript/models/search.js"
+			],
+			[
+				"index.src",
+				"WebContent/index.src.html"
+			],
+			[
+				"cover-gr",
+				"WebContent/app/javascript/components/cover-grid/cover-grid.mustache"
+			],
+			[
+				"movie.js",
+				"WebContent/app/javascript/controls/movie/movie.js"
+			],
+			[
+				"over",
+				"WebContent/app/javascript/controls/overview/overview.js"
+			],
+			[
+				"cached",
+				"WebContent/app/javascript/models/cached-pagination-model.js"
+			],
+			[
+				"app.j",
+				"WebContent/app/javascript/app.js"
+			],
+			[
+				"movie.must",
+				"WebContent/app/javascript/controls/movie/movie.mustache"
+			],
+			[
+				"movie",
+				"WebContent/app/javascript/controls/movie/movie.js"
+			],
+			[
+				"overiv",
+				"WebContent/app/javascript/controls/overview/overview.js"
+			],
+			[
+				"overi",
+				"WebContent/app/javascript/controls/overview/overview.js"
+			],
+			[
+				"appsearch",
+				"WebContent/app/javascript/models/search.js"
+			],
+			[
+				"search.les",
+				"WebContent/app/stylesheets/less/search.less"
+			],
+			[
+				"cate",
+				"WebContent/app/javascript/controls/category/category.js"
+			],
+			[
+				"category",
+				"WebContent/app/javascript/controls/category/category.js"
+			],
+			[
+				"category.mu",
+				"WebContent/app/javascript/controls/category/category.mustache"
+			],
+			[
+				"paginati",
+				"WebContent/app/javascript/lib/pagination-mixin.js"
+			],
+			[
+				"config.",
+				"WebContent/app/javascript/lib/config.js"
+			],
+			[
+				"cachem",
+				"WebContent/app/javascript/lib/CachedModel.js"
+			],
+			[
+				"controlsearch",
+				"WebContent/app/javascript/controls/search/search.js"
+			],
+			[
+				"category.",
+				"WebContent/app/javascript/models/category.js"
+			],
+			[
+				"search.",
+				"WebContent/app/javascript/models/search.js"
+			],
+			[
+				"confi",
+				"WebContent/app/javascript/lib/config.js"
+			],
+			[
+				"conf",
+				"WebContent/app/javascript/lib/config.js"
+			],
+			[
+				"modecategory",
+				"WebContent/app/javascript/models/category.js"
+			],
+			[
+				"search.js",
+				"WebContent/app/javascript/controls/search/search.js"
+			],
+			[
+				"modelcategory.",
+				"WebContent/app/javascript/models/category.js"
+			],
+			[
+				"index.",
+				"WebContent/index.src.html"
+			],
+			[
+				"category.m",
+				"WebContent/app/javascript/controls/category/category.mustache"
+			],
+			[
+				"overv",
+				"WebContent/app/javascript/controls/overview/overview.js"
+			],
+			[
+				"age-",
+				"WebContent/app/javascript/controls/age-verification/age-verification-choose-pin.mustache"
+			],
+			[
+				"s",
+				"WebContent/app/javascript/controls/search/search.js"
+			],
+			[
+				"controlcate",
+				"WebContent/app/javascript/controls/category/category.js"
+			],
+			[
+				"cachedmo",
+				"WebContent/app/javascript/lib/CachedModel.js"
+			],
+			[
+				"category.js",
+				"WebContent/app/javascript/controls/category/category.js"
+			],
+			[
+				"config.js",
+				"WebContent/app/javascript/lib/config.js"
+			],
+			[
+				"cover-grid.",
+				"WebContent/app/javascript/components/cover-grid/cover-grid.mustache"
+			],
+			[
+				"cover-grid.l",
+				"WebContent/app/stylesheets/less/cover-grid.less"
+			],
+			[
+				"cover-r",
+				"WebContent/app/javascript/components/cover-grid/cover-grid.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 364.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
