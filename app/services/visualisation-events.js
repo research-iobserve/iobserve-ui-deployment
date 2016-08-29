@@ -9,7 +9,7 @@ const START_EVENT = 'resizeStart';
 /**
  * @event resizeEnd
  */
-const END_EVENT = 'resizeStart';
+const END_EVENT = 'resizeEnd';
 /**
  * This service allows to bind global events which influence a visualisation.
  * Since cytoscape visualisations are not behaving like regular DOM elements,
