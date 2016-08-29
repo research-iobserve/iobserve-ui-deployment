@@ -1,10 +1,11 @@
 import Ember from 'ember';
 // requires flot.js to be included in vendor.js (via ember-cli-build.js)
 
-const { Component, on, observer, computed, get} = Ember;
+const { Component, on, observer, computed, get, inject} = Ember;
 
+// FIXME docs!
 export default Component.extend({
-    visualisationEvents: Ember.inject.service(),
+    visualisationEvents: inject.service(),
     tagName: 'div',
     attributeBindings: ['style'],
     timeSeries: [],
@@ -20,26 +21,36 @@ export default Component.extend({
     plot: null,
     init() {
         this._super(...arguments);
+        const visualisationEvents = this.get('visualisationEvents');
+
+        const resizeListener = this.resize.bind(this);
+        visualisationEvents.on('resizeEnd', resizeListener);
+        this.on('willDestroyElement', function() {
+            visualisationEvents.off('resizeEnd', resizeListener);
+        });
     },
     style: computed('height', function () { // flot requires a fix height
         return Ember.String.htmlSafe(`height: ${this.get('height')}px;`);
     }),
-    resize: observer('visualisationEvents.resizing', function() {
+    resize: function() {
+
         const plot = this.get('plot');
-        const isResizing = this.get('visualisationEvents.resizing');
-        if(plot && !isResizing) { // trigger after resize is done
+        if(plot) { // trigger after resize is done
+            this.debug('resizing plot');
             plot.resize();
             plot.setupGrid();
             plot.draw();
+        } else if(!plot) {
+            this.renderPlot();
         }
-    }),
+    },
     willDestroy() {
         this.set('plot', null);
         this._super(...arguments);
     },
     // also observe visualisation settings as resizing will apply display:none, leading to flot not rendering since it requires a width
-    renderPlot: on('didRender', observer('timeSeries.[]', 'visualisationEvents.resizing', function () {
-        const isResizing = this.get('visualisationEvents.resizing');
+    renderPlot: on('didRender', observer('timeSeries.[]', function () {
+        const isResizing = this.get('visualisationEvents.isResizing');
         if(!this.element || isResizing) {
             return;
         }

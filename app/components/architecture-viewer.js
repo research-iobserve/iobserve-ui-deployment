@@ -6,9 +6,9 @@ export default Component.extend({
     visualisationEvents: inject.service(),
     graph: null,
     entityDetails: null,
-    classNameBindings: ['resizing'], // triggers deprecation warning for visualisationEvents.resizing from SingleDeploymentDetails.endAnimation
-    resizing: computed('visualisationEvents.resizing', function() {
-        return this.get('visualisationEvents.resizing');
+    classNameBindings: ['resizing'], // triggers deprecation warning for visualisationEvents.isResizing from SingleDeploymentDetails.endAnimation
+    resizing: computed('visualisationEvents.isResizing', function() {
+        return this.get('visualisationEvents.isResizing');
     }),
     init() {
         this._super();

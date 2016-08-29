@@ -42,13 +42,15 @@ export default Route.extend({
             run.cancel(this.animationTimeout);
             this.endAnimation();
         }
-        this.set('visualisationEvents.resizing', true);
 
+        // apparently we have to use events instead of regular property binding, because the cytoscape component won't subscribe correctly
+        // this is probably because the component is already rendered
+        this.get('visualisationEvents').startResizing();
         // triggers deprecation that properties where updated in didInsertElement through the classNameBinding in ArchitectureViewer
         this.animationTimeout = run.later(this, this.endAnimation, this.animationDuration);
     },
     endAnimation() {
-        this.set('visualisationEvents.resizing', false);
+        this.get('visualisationEvents').endResizing();
         this.animationTimeout = null;
     }
 });

@@ -14,6 +14,8 @@ coseBilkent(cytoscape); // register
  *
  * @class CytoscapeVisualisationComponent
  * @extends Ember.Component
+ * @uses VisualisationEventsService
+ * @uses VisualisationSettingsService
  * @uses Cytoscape
  */
 export default Component.extend({
@@ -25,6 +27,15 @@ export default Component.extend({
         cycola( cytoscape, window.cola );
         this._super();
         this.debug('loaded', this.get('graph'));
+
+        // we only need to listen to resizeEnd since opacity changes are done via css, since architecture-viewer adds a resizing class
+        const visualisationEvents = this.get('visualisationEvents');
+
+        const resizeListener = this.resize.bind(this);
+        visualisationEvents.on('resizeEnd', resizeListener);
+        this.on('willDestroyElement', function() {
+            visualisationEvents.off('resizeEnd', resizeListener);
+        });
     },
     /**
      * Observer method that renders the visualisation in a canvas using Cytoscape
@@ -32,7 +43,9 @@ export default Component.extend({
      */
     renderGraph: on('didInsertElement', observer('visualisationSettings.{layoutAlgorithm,theme}', 'graph', function() {
         this.debug('graph', this.get('visualisationSettings.theme'), this.get('visualisationSettings.layoutAlgorithm'), this.get('graph'));
-        this.rendering = cytoscape({
+
+        // do not use this.set('rendering') since it would trigger rendering updates within didInsertElement
+        this._rendering = cytoscape({
           container: this.element,
 
           boxSelectionEnabled: false,
@@ -60,9 +73,10 @@ export default Component.extend({
           }
         });
 
-        this.rendering.on('click', (event) => {
+        this._rendering.on('click', (event) => {
             const target = event.cyTarget;
             const data = target && target.data && target.data();
+
             this.set('_clickedElement', target);
             if(data && data.id) {
                 this.debug('clicked on element in graph', data, event);
@@ -80,13 +94,15 @@ export default Component.extend({
 
         // just for development purposes - TODO: remove
         window.cy = cytoscape;
-        window.cytoscape = this.rendering;
+        window.cytoscape = this._rendering;
     })),
-    // TODO: we only need to listen to :end since opacity changes are done via css, since architecture-viewer adds a resizing class
-    resize: observer('visualisationEvents.resizing', () => {
-        if(this.rendering) {
-            this.rendering.resize();
-            this.rendering.center(this.get('_clickedElement'));
+    resize() {
+        if(this._rendering) {
+            this._rendering.resize();
+            const clickTarget = this.get('_clickedElement');
+            this.debug('focusing on clicked element', clickTarget);
+            this._rendering.center(clickTarget);
+            this.set('_clickedElement', null);
         }
-    })
+    }
 });
