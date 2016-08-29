@@ -44,12 +44,19 @@ export default Component.extend({
 
           layout: {
             name: this.get('visualisationSettings.layoutAlgorithm'),
-            randomize: false // kose-bilkent will randomize node positions
+            randomize: false, // kose-bilkent will randomize node positions
             // maxSimulationTime: 1000,
             // padding: 6,
             // ungrabifyWhileSimulating: true,
             // infinite: false
             // TODO: avoidOverlap: true has shaky behavior (enabled by default). Find workaround
+
+            // webcola options
+            avoidOverlap: true,
+            edgeLength: 250, // should be at least two times the diagonal of a block, blocks are 100x60, therefore around 2*116
+            unconstrIter: 100, // unconstrained initial layout iterations
+            userConstIter: 0, // initial layout iterations with user-specified constraints - we don't have any user constraints
+            allConstIter: 10 // initial layout iterations with all constraints including non-overlap
           }
         });
 

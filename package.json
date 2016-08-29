@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "cytoscape": "^2.7.3",
-    "cytoscape-cola": "^1.4.0",
+    "cytoscape-cola": "git+https://github.com/EyMaddis/cytoscape.js-cola.git#5c0957e60726def6d7e849956939079c5a491ba2",
     "cytoscape-cose-bilkent": "^1.3.6",
     "ember-cli": "^2.7.0",
     "yuidocjs": "^0.10.1"
