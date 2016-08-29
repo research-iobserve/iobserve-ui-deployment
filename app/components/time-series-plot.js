@@ -24,25 +24,26 @@ export default Component.extend({
     style: computed('height', function () { // flot requires a fix height
         return Ember.String.htmlSafe(`height: ${this.get('height')}px;`);
     }),
-    resize() {
+    resize: observer('visualisationEvents.resizing', function() {
         const plot = this.get('plot');
-        if(plot) {
+        const isResizing = this.get('visualisationEvents.resizing');
+        if(plot && !isResizing) { // trigger after resize is done
             plot.resize();
             plot.setupGrid();
             plot.draw();
         }
-    },
+    }),
     willDestroy() {
         this.set('plot', null);
         this._super(...arguments);
     },
     // also observe visualisation settings as resizing will apply display:none, leading to flot not rendering since it requires a width
     renderPlot: on('didRender', observer('timeSeries.[]', 'visualisationEvents.resizing', function () {
-        this.debug('rendering plot');
         const isResizing = this.get('visualisationEvents.resizing');
         if(!this.element || isResizing) {
             return;
         }
+        this.debug('rendering plot');
         const $this = this.$();
         // flot data points are tuples/arrays [x,y], graphs are arrays of these
         // use Ember.get because it would work with Ember.Object and plain JS
@@ -52,7 +53,11 @@ export default Component.extend({
         // this.set('options.yaxis.axisLabel', this.get('timeSeries.valueLabel'));
 
         // wrap in additional array since flot can handle multiple graphs at once, we only need one
-        const plot = $this.plot([plotData], this.get('options')).data('plot');
-        this.set('plot', plot);
+        try{
+            const plot = $this.plot([plotData], this.get('options')).data('plot');
+            this.set('plot', plot);
+        } catch(e) {
+            console.error('flot setup encountered an issue', e);
+        }
     }))
 });
