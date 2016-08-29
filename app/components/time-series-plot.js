@@ -50,7 +50,7 @@ export default Component.extend({
         const plotData = this.get('timeSeries.series')
             .map((valueObj) => [get(valueObj, 'timestamp'), get(valueObj, 'value')]);
 
-        // this.set('options.yaxis.axisLabel', this.get('timeSeries.valueLabel'));
+        this.set('options.yaxis.axisLabel', this.get('timeSeries.valueLabel'));
 
         // wrap in additional array since flot can handle multiple graphs at once, we only need one
         try{
