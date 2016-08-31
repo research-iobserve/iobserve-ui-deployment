@@ -46,31 +46,31 @@ export default Component.extend({
 
         // do not use this.set('rendering') since it would trigger rendering updates within didInsertElement
         this._rendering = cytoscape({
-          container: this.element,
+            container: this.element,
 
-          boxSelectionEnabled: false,
-          autounselectify: true,
+            boxSelectionEnabled: false,
+            autounselectify: true,
 
-          style: cytoscapeStyle(this.get('visualisationSettings.themeStyle')),
+            style: cytoscapeStyle(this.get('visualisationSettings.themeStyle')),
 
-          elements: _.cloneDeep(this.get('graph')),
+            elements: _.cloneDeep(this.get('graph')),
 
-          layout: {
-            name: this.get('visualisationSettings.layoutAlgorithm'),
-            randomize: false, // kose-bilkent will randomize node positions
-            // maxSimulationTime: 1000,
-            // padding: 6,
-            // ungrabifyWhileSimulating: true,
-            // infinite: false
-            // TODO: avoidOverlap: true has shaky behavior (enabled by default). Find workaround
+            layout: {
+                name: this.get('visualisationSettings.layoutAlgorithm'),
+                randomize: false, // kose-bilkent will randomize node positions
+                // maxSimulationTime: 1000,
+                // padding: 6,
+                // ungrabifyWhileSimulating: true,
+                // infinite: false
 
-            // webcola options
-            avoidOverlap: true,
-            edgeLength: 250, // should be at least two times the diagonal of a block, blocks are 100x60, therefore around 2*116
-            unconstrIter: 100, // unconstrained initial layout iterations
-            userConstIter: 0, // initial layout iterations with user-specified constraints - we don't have any user constraints
-            allConstIter: 10 // initial layout iterations with all constraints including non-overlap
-          }
+                // webcola options
+                refresh: 4, // fast animation
+                avoidOverlap: true,
+                edgeLength: 250, // should be at least two times the diagonal of a block, blocks are 100x60, therefore around 2*116
+                unconstrIter: 100, // unconstrained initial layout iterations
+                userConstIter: 0, // initial layout iterations with user-specified constraints - we don't have any user constraints
+                allConstIter: 10 // initial layout iterations with all constraints including non-overlap
+            }
         });
 
         this._rendering.on('click', (event) => {
