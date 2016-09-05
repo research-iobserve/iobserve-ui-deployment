@@ -64,7 +64,7 @@ export default Component.extend({
                 // infinite: false
 
                 // webcola options
-                refresh: 4, // fast animation
+                refresh: 5, // fast animation
                 avoidOverlap: true,
                 edgeLength: 250, // should be at least two times the diagonal of a block, blocks are 100x60, therefore around 2*116
                 unconstrIter: 100, // unconstrained initial layout iterations
@@ -99,10 +99,13 @@ export default Component.extend({
     resize() {
         if(this._rendering) {
             this._rendering.resize();
+
             const clickTarget = this.get('_clickedElement');
-            this.debug('focusing on clicked element', clickTarget);
-            this._rendering.center(clickTarget);
-            this.set('_clickedElement', null);
+            if(clickTarget) { // TODO: only focus on clicked element is sidebar was not open before!
+                this.debug('focusing on clicked element', clickTarget);
+                this._rendering.center(clickTarget);
+                this.set('_clickedElement', null);
+            }
         }
     }
 });

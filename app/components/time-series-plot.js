@@ -49,7 +49,7 @@ export default Component.extend({
         this._super(...arguments);
     },
     // also observe visualisation settings as resizing will apply display:none, leading to flot not rendering since it requires a width
-    renderPlot: on('didRender', observer('timeSeries.[]', function () {
+    renderPlot: on('didRender', observer('timeSeries.[]', 'visualisationEvents.isResizing', function () {
         const isResizing = this.get('visualisationEvents.isResizing');
         if(!this.element || isResizing) {
             return;

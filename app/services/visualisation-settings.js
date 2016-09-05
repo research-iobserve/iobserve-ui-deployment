@@ -9,7 +9,7 @@ const { Service, computed, assign, observer } = Ember;
  * @class VisualisationSettingsService
  * @extends Ember.Service
  */
-export default Service.extend({ // TODO: load and save to localstorage
+export default Service.extend({
 
     /**
      * Initializes the service by loading the settings from `localStorage` (if possible)
@@ -59,7 +59,7 @@ export default Service.extend({ // TODO: load and save to localstorage
      * @property layoutAlgorithm
      * @type {String}
      */
-    layoutAlgorithm: 'cose-bilkent',
+    layoutAlgorithm: 'cola',
 
     /**
      * list of supported layout algorithms
@@ -69,9 +69,9 @@ export default Service.extend({ // TODO: load and save to localstorage
      * @readOnly
      */
     layoutAlgorithms: [
+        'cola',
         'cose-bilkent',
         'cose',
-        'cola',
         'grid',
         'concentric',
         'breadthfirst'
