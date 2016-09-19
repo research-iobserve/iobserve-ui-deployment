@@ -5,7 +5,7 @@ import org.iobserve.models.Communication;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.CommunicationService;
 
-import javax.xml.bind.annotation.XmlType;
+
 
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>

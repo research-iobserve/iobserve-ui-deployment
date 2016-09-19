@@ -2,6 +2,7 @@ package org.iobserve.models.util;
 
 import org.iobserve.models.NestedMeasurement;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -10,6 +11,7 @@ import javax.persistence.Entity;
 @Entity
 public class StatusInfo extends NestedMeasurement {
     private Long timestamp;
+    @Column(name="`key`") //since key is keyword in derby, the word has to be  escaped for table creation
     private String key;
     private String value;
 

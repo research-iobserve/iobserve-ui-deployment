@@ -66,6 +66,7 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
             final Measurable measurable =  (Measurable) result;
             final MeasurableDataTrasferObject measurableDto =  (MeasurableDataTrasferObject) dto;
             final Set<TimeSeries> timeSeriesSet = measurable.getTimeSeries();
+
             //TODO improve efficiency
             //sort timeseries Data by date
             for (TimeSeries timeSeries  : timeSeriesSet) {

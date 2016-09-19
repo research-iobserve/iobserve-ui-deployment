@@ -6,6 +6,7 @@ import org.iobserve.models.util.RevisionedBean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
@@ -16,7 +17,8 @@ public class Changelog extends RevisionedBean {
 
     private ChangelogOperation operation;
 
-    @Column(columnDefinition = "TEXT")
+    //@Column(columnDefinition = "TEXT")
+    @Lob
     private String data;
 
     public Changelog() {
