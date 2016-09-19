@@ -2,15 +2,19 @@ package org.iobserve.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.glassfish.hk2.api.ServiceLocator;
 import org.iobserve.models.Changelog;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.dataaccessobjects.*;
+import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
+import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.models.util.*;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -28,8 +32,17 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     private HashMap<String,Revision> revisions = new HashMap<>();
 
-    @Inject
     private ChangelogStreamService changelogStreamService;
+
+    @Inject
+    public ChangelogService(EntityManagerFactory entityManagerFactory, EntityToDtoMapper modelToDtoMapper,
+                            ServiceLocator serviceLocator, DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper,
+                            ChangelogStreamService changelogStreamService) {
+
+        super(entityManagerFactory, modelToDtoMapper, serviceLocator, dtoToBasePropertyEntityMapper);
+
+        this.changelogStreamService = changelogStreamService;
+    }
 
     public synchronized void addChangelogs(final String systemId, List<ChangelogDto> changelogs){
 
@@ -156,8 +169,8 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
 
         final DataTransportObject dto = changelog.getData();
-        final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
-        final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
+        final Class dtoServiceClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
+        final AbstractService service = (AbstractService) serviceLocator.getService(dtoServiceClass);
 
         final BaseEntity entity = service.transformDtoToModel(dto);
 

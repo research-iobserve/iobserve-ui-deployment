@@ -19,6 +19,7 @@ public class Changelog extends RevisionedBean {
 
     //@Column(columnDefinition = "TEXT")
     @Lob
+    @Column(length=10000)
     private String data;
 
     public Changelog() {
@@ -32,6 +33,7 @@ public class Changelog extends RevisionedBean {
     public void setOperation(ChangelogOperation  operation) {
         this.operation = operation;
     }
+
 
     public String getData() {
         return data;

@@ -31,17 +31,23 @@ import java.util.stream.Collectors;
  */
 public abstract class AbstractService<Model extends BaseEntity, ModelDto extends DataTransportObject> implements Service<ModelDto> {
 
-    @Inject
     protected EntityManagerFactory entityManagerFactory;
 
-    @Inject
     protected EntityToDtoMapper modelToDtoMapper;
 
-    @Inject
     protected ServiceLocator serviceLocator;
 
-    @Inject
     protected DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper;
+
+    @Inject
+    public AbstractService(EntityManagerFactory entityManagerFactory, EntityToDtoMapper modelToDtoMapper,
+                           ServiceLocator serviceLocator, DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
+
+        this.entityManagerFactory = entityManagerFactory;
+        this.modelToDtoMapper = modelToDtoMapper;
+        this.serviceLocator = serviceLocator;
+        this.dtoToBasePropertyEntityMapper = dtoToBasePropertyEntityMapper;
+    }
 
     protected final  Class<Model> persistentClass = (Class<Model>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
