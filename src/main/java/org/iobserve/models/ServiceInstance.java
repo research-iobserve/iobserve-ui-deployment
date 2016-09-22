@@ -18,8 +18,8 @@ import java.util.List;
 public class ServiceInstance extends Measurable {
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "node")
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    //@JoinColumn(name = "node")
     @XmlTransient
     private Node node;
 

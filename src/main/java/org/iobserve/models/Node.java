@@ -20,12 +20,16 @@ public class Node extends Measurable {
 
     @OneToMany(mappedBy="node",cascade = CascadeType.ALL)
     private List<ServiceInstance> services;
-    private String ip;
-    private String hostname;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @XmlTransient
     private NodeGroup nodeGroup;
+
+
+    private String ip;
+    private String hostname;
+
+
 
 
     public Node() {

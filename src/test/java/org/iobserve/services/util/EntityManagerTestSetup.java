@@ -13,6 +13,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.transaction.Transactional;
 import java.net.URI;
+import java.sql.DriverManager;
 import java.util.*;
 
 /**
@@ -25,6 +26,7 @@ public class EntityManagerTestSetup {
 
     private static void createFactory() {
         try {
+
 
             Map<String, String> properties = new HashMap<>();
             String dbUrl = "jdbc:derby:memory:playprototype;create=true";

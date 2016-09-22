@@ -7,6 +7,7 @@ import org.iobserve.models.util.TimeSeries;
 import org.iobserve.services.TimeSeriesService;
 
 import javax.xml.bind.annotation.XmlType;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -25,6 +26,7 @@ public class TimeSeriesDto extends DataTransportObject {
     private List<SeriesElementDto> series;
 
     public TimeSeriesDto() {
+        series = new LinkedList<>();
     }
 
     public String getParentId() {

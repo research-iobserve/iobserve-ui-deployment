@@ -137,7 +137,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
         final DataTransportObject dto = changelog.getData();
         final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
-        final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
+        final AbstractService service = (AbstractService) this.serviceLocator.getService(dtoClass);
 
         final BaseEntity entity = service.transformDtoToModel(dto);
 
@@ -170,7 +170,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
         final DataTransportObject dto = changelog.getData();
         final Class dtoServiceClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
-        final AbstractService service = (AbstractService) serviceLocator.getService(dtoServiceClass);
+        final AbstractService service = (AbstractService) this.serviceLocator.getService(dtoServiceClass);
 
         final BaseEntity entity = service.transformDtoToModel(dto);
 
@@ -202,7 +202,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
     private Revision loadRevisionFromDatabase(String systemId){
         final Revision revision = new Revision();
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         Query query = entityManager.createQuery("select changelog from Changelog changelog where systemId = :systemId order by changelog.revisionNumber desc")
                 .setParameter("systemId", systemId);
         List<Changelog> results = query.getResultList();

@@ -1,7 +1,5 @@
 package org.iobserve.models.util;
 
-import org.iobserve.models.NestedMeasurement;
-
 import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
