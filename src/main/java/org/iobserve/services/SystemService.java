@@ -8,8 +8,6 @@ import org.iobserve.models.mappers.EntityToDtoMapper;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import java.util.List;
 
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>

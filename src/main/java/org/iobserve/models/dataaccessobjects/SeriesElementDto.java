@@ -1,14 +1,11 @@
 package org.iobserve.models.dataaccessobjects;
 
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.services.SeriesElementService;
-
-import javax.xml.bind.annotation.XmlType;
 
 /**
  * Created by Christoph on 13.07.2016.

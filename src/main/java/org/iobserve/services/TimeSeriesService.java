@@ -26,7 +26,6 @@ public class TimeSeriesService extends AbstractSystemComponentService<TimeSeries
 
     @Override
     protected TimeSeries transformDtoToModel(TimeSeriesDto timeSeriesDto) {
-        final TimeSeries series = dtoToBasePropertyEntityMapper.transform(timeSeriesDto);
-        return series;
+        return dtoToBasePropertyEntityMapper.transform(timeSeriesDto);
     }
 }

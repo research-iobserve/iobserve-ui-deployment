@@ -15,18 +15,18 @@ import org.iobserve.services.CommunicationService;
 @JsonTypeName("communication")
 public class CommunicationDto extends MeasurableDataTrasferObject {
 
-    String technology;
+    private String technology;
 
     /**
      * id of the source service
      */
-    String sourceId;
+    private String sourceId;
 
 
     /**
      * id of the target service
      */
-    String targetId;
+    private String targetId;
 
     public CommunicationDto() {
         super();

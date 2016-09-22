@@ -1,13 +1,9 @@
 package org.iobserve.models.dataaccessobjects;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.iobserve.models.annotations.ModelClassOfDto;
-import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.Status;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 
-import java.util.List;
 import java.util.Set;
 
 /**

@@ -4,7 +4,6 @@ import org.glassfish.hk2.api.ServiceLocator;
 
 import org.iobserve.models.*;
 
-import org.iobserve.models.Service;
 import org.iobserve.models.dataaccessobjects.*;
 import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
@@ -28,8 +27,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
 
@@ -42,9 +39,9 @@ public class ChangelogServiceTest {
     private static final String testSystem = "system123";
 
 
-    EntityManagerFactory entityManagerFactory = EntityManagerTestSetup.getEntityManagerFactory();
-    EntityToDtoMapper entityToDtoMapper = EntityToDtoMapper.INSTANCE;
-    DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper = DtoToBasePropertyEntityMapper.INSTANCE;
+    private final EntityManagerFactory entityManagerFactory = EntityManagerTestSetup.getEntityManagerFactory();
+    private final EntityToDtoMapper entityToDtoMapper = EntityToDtoMapper.INSTANCE;
+    private final DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper = DtoToBasePropertyEntityMapper.INSTANCE;
 
     @Mock
     ServiceLocator mockedServiceLocator;
@@ -52,12 +49,12 @@ public class ChangelogServiceTest {
     @Mock
     ChangelogStreamService mockedChangelogStreamService;
 
-    ChangelogService changelogService;
-    NodeService nodeService;
-    ServiceInstanceService serviceInstanceService;
-    CommunicationInstanceService communicationInstanceService;
-    TimeSeriesService timeSeriesService;
-    SeriesElementService seriesElementService;
+    private ChangelogService changelogService;
+    private NodeService nodeService;
+    private ServiceInstanceService serviceInstanceService;
+    private CommunicationInstanceService communicationInstanceService;
+    private TimeSeriesService timeSeriesService;
+    private SeriesElementService seriesElementService;
 
     @Before
     public void setUp(){
@@ -90,7 +87,7 @@ public class ChangelogServiceTest {
 
         changelogDtoList.add(createChangelog);
 
-        this.changelogService.addChangelogs(this.testSystem,changelogDtoList);
+        this.changelogService.addChangelogs(testSystem,changelogDtoList);
 
         //assert that the changelog is correctly progressed
         EntityManager em = this.entityManagerFactory.createEntityManager();
@@ -125,7 +122,7 @@ public class ChangelogServiceTest {
         changelogDtoList.add(deleteChangelog);
         em.close();
 
-        this.changelogService.addChangelogs(this.testSystem,changelogDtoList);
+        this.changelogService.addChangelogs(testSystem,changelogDtoList);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -158,7 +155,7 @@ public class ChangelogServiceTest {
         changelogDtoList.add(createChangelog);
 
         em.close();
-        this.changelogService.addChangelogs(this.testSystem,changelogDtoList);
+        this.changelogService.addChangelogs(testSystem,changelogDtoList);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -171,7 +168,6 @@ public class ChangelogServiceTest {
         assertFalse(updateNode.getHostname().equals(oldNode.getHostname()));
         assertNotSame(updateNode.getStatus(),oldNode.getStatus());
 
-
         em.close();
     }
 
@@ -181,25 +177,25 @@ public class ChangelogServiceTest {
 
         List<ChangelogDto> changelogDtoList = new LinkedList<>();
 
-        TimeSeriesDto newTimeseriesDto = createTimeseries();
+        TimeSeriesDto newTimeSeriesDto = createTimeSeries();
 
         ChangelogDto appendChangelogDto = new ChangelogDto();
         appendChangelogDto.setOperation(ChangelogOperation.APPEND);
-        appendChangelogDto.setData(newTimeseriesDto);
+        appendChangelogDto.setData(newTimeSeriesDto);
         changelogDtoList.add(appendChangelogDto);
 
-        Node oldNode = em.find(Node.class,newTimeseriesDto.getParentId());
+        Node oldNode = em.find(Node.class,newTimeSeriesDto.getParentId());
 
 
         em.close();
-        this.changelogService.addChangelogs(this.testSystem,changelogDtoList);
+        this.changelogService.addChangelogs(testSystem,changelogDtoList);
 
         em = this.entityManagerFactory.createEntityManager();
 
-        Node updatedNode = em.find(Node.class,newTimeseriesDto.getParentId());
-        TimeSeries newTimeseries = em.find(TimeSeries.class,newTimeseriesDto.getId());
+        Node updatedNode = em.find(Node.class,newTimeSeriesDto.getParentId());
+        TimeSeries newTimeSeries = em.find(TimeSeries.class,newTimeSeriesDto.getId());
 
-        assertNotNull(newTimeseries);
+        assertNotNull(newTimeSeries);
         assertNotSame(updatedNode.getTimeSeries(),oldNode.getTimeSeries());
 
 
@@ -233,7 +229,7 @@ public class ChangelogServiceTest {
         return updateNode;
     }
 
-    private TimeSeriesDto createTimeseries(){
+    private TimeSeriesDto createTimeSeries(){
         TimeSeriesDto timeSeriesDto = new TimeSeriesDto();
         timeSeriesDto.setId("test-system123-timeSeries-100");
         timeSeriesDto.setParentId("test-system123-node-1");

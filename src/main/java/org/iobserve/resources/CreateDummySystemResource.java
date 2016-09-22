@@ -19,8 +19,8 @@ import java.util.*;
  */
 @Path("v1")
 public class CreateDummySystemResource {
-    private Random random;
-    private EntityManagerFactory entityManagerFactory;
+    private final Random random;
+    private final EntityManagerFactory entityManagerFactory;
 
     @Inject
     public CreateDummySystemResource(EntityManagerFactory entityManagerFactory) {
@@ -338,13 +338,12 @@ public class CreateDummySystemResource {
 
 
 
-    public String generateId(){
+    private String generateId(){
         return UUID.randomUUID().toString();
     }
 
     public List<TimeSeries> generateSeriesList(String label, String axisLabel){
         final Integer numObj = 10;
-        final Long timestamp = new Date().getTime();
         final List<TimeSeries> series = new LinkedList<>();
 
         for (int i = 0; i < numObj; i++) {
@@ -353,7 +352,7 @@ public class CreateDummySystemResource {
         return series;
     }
 
-    public TimeSeries generateSeries(String label, String axisLabel){
+    private TimeSeries generateSeries(String label, String axisLabel){
         final Integer numObj = 10;
         final Random random = new Random();
         Calendar cal = Calendar.getInstance();

@@ -14,7 +14,7 @@ public class ChangelogStreamService {
 
     public static ChangelogStreamService INSTANCE = new ChangelogStreamService(); // TODO: via dependency injection!
 
-    private ConcurrentHashMap<String, SystemSessionHandler> sessionsBySystem = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, SystemSessionHandler> sessionsBySystem = new ConcurrentHashMap<>();
 
     private ChangelogStreamService() {
 

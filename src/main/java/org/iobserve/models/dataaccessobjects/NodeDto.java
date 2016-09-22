@@ -1,13 +1,10 @@
 package org.iobserve.models.dataaccessobjects;
 
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.Node;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.NodeService;
-
-import javax.xml.bind.annotation.XmlType;
 
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>

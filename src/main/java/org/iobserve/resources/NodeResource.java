@@ -16,7 +16,7 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class NodeResource implements SystemComponentModelResource<NodeDto> {
 
-    private NodeService service;
+    private final NodeService service;
 
     @Inject
     public NodeResource(NodeService service) {

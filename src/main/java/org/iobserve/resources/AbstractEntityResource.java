@@ -2,8 +2,6 @@ package org.iobserve.resources;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.validation.constraints.Size;
-import javax.ws.rs.Path;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -11,8 +9,8 @@ import java.util.List;
  * Created by cdor on 03.06.16.
  */
 public abstract class AbstractEntityResource<T> {
-    private EntityManager entityManager;
-    protected Class<T> persistentClass;
+    private final EntityManager entityManager;
+    private Class<T> persistentClass;
 
     @Inject
     public AbstractEntityResource(EntityManager entityManager) {

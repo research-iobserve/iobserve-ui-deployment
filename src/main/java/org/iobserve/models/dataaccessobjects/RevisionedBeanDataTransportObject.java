@@ -1,8 +1,5 @@
 package org.iobserve.models.dataaccessobjects;
 
-import org.iobserve.models.annotations.ModelClassOfDto;
-import org.iobserve.models.util.RevisionedBean;
-
 import java.util.Date;
 
 /**
@@ -10,7 +7,7 @@ import java.util.Date;
  */
 
 public abstract class RevisionedBeanDataTransportObject extends DataTransportObject {
-    String systemId;
+    private String systemId;
 
     private Long revisionNumber;
     private Long changelogSequence;

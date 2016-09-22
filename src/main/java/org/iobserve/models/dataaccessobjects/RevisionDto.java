@@ -7,9 +7,9 @@ import java.util.Date;
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
 public class RevisionDto {
-    Long revisionNumber;
-    Date lastUpdate;
-    Long changelogSequence;
+    private Long revisionNumber;
+    private Date lastUpdate;
+    private Long changelogSequence;
 
 
     public Long getRevisionNumber() {

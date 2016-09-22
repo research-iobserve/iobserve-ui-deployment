@@ -2,11 +2,9 @@ package org.iobserve.services;
 
 import org.glassfish.hk2.api.ServiceLocator;
 import org.iobserve.models.dataaccessobjects.StatusInfoDto;
-import org.iobserve.models.dataaccessobjects.TimeSeriesDto;
 import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
 import org.iobserve.models.util.StatusInfo;
-import org.iobserve.models.util.TimeSeries;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
@@ -28,7 +26,6 @@ public class StatusInfoService extends AbstractSystemComponentService<StatusInfo
 
     @Override
     protected StatusInfo transformDtoToModel(StatusInfoDto statusInfoDto) {
-        final StatusInfo statusInfo = dtoToBasePropertyEntityMapper.transform(statusInfoDto);
-        return statusInfo;
+        return dtoToBasePropertyEntityMapper.transform(statusInfoDto);
     }
 }

@@ -8,7 +8,6 @@ import org.iobserve.models.util.SeriesElement;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Index;
 
 
 /**
@@ -28,7 +27,6 @@ public class SeriesElementService extends AbstractSystemComponentService<SeriesE
 
     @Override
     protected SeriesElement transformDtoToModel(SeriesElementDto seriesElementDto) {
-        final SeriesElement seriesElement = dtoToBasePropertyEntityMapper.transform(seriesElementDto);
-        return seriesElement;
+        return dtoToBasePropertyEntityMapper.transform(seriesElementDto);
     }
 }

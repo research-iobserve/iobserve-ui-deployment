@@ -1,12 +1,10 @@
 package org.iobserve.models.dataaccessobjects;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.util.TimeSeries;
 import org.iobserve.services.TimeSeriesService;
 
-import javax.xml.bind.annotation.XmlType;
 import java.util.LinkedList;
 import java.util.List;
 

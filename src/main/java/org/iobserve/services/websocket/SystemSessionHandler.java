@@ -13,8 +13,8 @@ import java.util.Set;
  */
 public class SystemSessionHandler {
 
-    private String systemId;
-    private Set<Session> sessions = new HashSet<>();
+    private final String systemId;
+    private final Set<Session> sessions = new HashSet<>();
 
     public SystemSessionHandler(String systemId) {
         this.systemId = systemId;

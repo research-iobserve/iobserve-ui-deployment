@@ -30,9 +30,9 @@ import java.util.UUID;
  */
 public class ChangelogService extends AbstractSystemComponentService<Changelog,ChangelogDto> {
 
-    private HashMap<String,Revision> revisions = new HashMap<>();
+    private final HashMap<String,Revision> revisions = new HashMap<>();
 
-    private ChangelogStreamService changelogStreamService;
+    private final ChangelogStreamService changelogStreamService;
 
     @Inject
     public ChangelogService(EntityManagerFactory entityManagerFactory, EntityToDtoMapper modelToDtoMapper,
@@ -219,7 +219,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         return revision;
     }
 
-    public Revision getNextRevision(String systemId){
+    private Revision getNextRevision(String systemId){
         Revision revision;
         if(this.revisions.get(systemId) == null){
             loadRevisionFromDatabase(systemId);
@@ -244,9 +244,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
             revision = loadRevisionFromDatabase(systemId);
         }
 
-        RevisionDto revisionDto = modelToDtoMapper.transform(revision);
-
-        return revisionDto;
+        return modelToDtoMapper.transform(revision);
     }
 
     @Override

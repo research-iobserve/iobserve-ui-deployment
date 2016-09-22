@@ -18,9 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,13 +29,13 @@ import java.util.stream.Collectors;
  */
 public abstract class AbstractService<Model extends BaseEntity, ModelDto extends DataTransportObject> implements Service<ModelDto> {
 
-    protected EntityManagerFactory entityManagerFactory;
+    protected final EntityManagerFactory entityManagerFactory;
 
-    protected EntityToDtoMapper modelToDtoMapper;
+    protected final EntityToDtoMapper modelToDtoMapper;
 
-    protected ServiceLocator serviceLocator;
+    protected final ServiceLocator serviceLocator;
 
-    protected DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper;
+    protected final DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper;
 
     @Inject
     public AbstractService(EntityManagerFactory entityManagerFactory, EntityToDtoMapper modelToDtoMapper,

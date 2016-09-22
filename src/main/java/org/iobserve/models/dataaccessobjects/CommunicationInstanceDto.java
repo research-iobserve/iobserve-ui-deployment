@@ -5,9 +5,6 @@ import org.iobserve.models.CommunicationInstance;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.CommunicationInstanceService;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.CommunicationInstance
@@ -19,17 +16,17 @@ public class CommunicationInstanceDto extends MeasurableDataTrasferObject {
     /**
      * id of the source service
      */
-    String sourceId;
+    private String sourceId;
 
 
     /**
      * id of the target service
      */
-    String targetId;
+    private String targetId;
 
-    String communicationId;
+    private String communicationId;
 
-    Long workload;
+    private Long workload;
 
     public CommunicationInstanceDto() {
         super();

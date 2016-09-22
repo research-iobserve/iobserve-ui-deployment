@@ -11,6 +11,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import java.util.List;
 public class ChangelogStreamWebsocket {
 
     //private static final Thread dummyThread = createDummyThread("system123");
-    private static ChangelogStreamService streamService = ChangelogStreamService.INSTANCE;
+    private static final ChangelogStreamService streamService = ChangelogStreamService.INSTANCE;
 
     @OnOpen
     public void onOpen(@PathParam("systemId") String systemId, Session session) {
@@ -67,7 +68,7 @@ public class ChangelogStreamWebsocket {
 
                     System.out.println("sending dummy changelog " + sequence);
 
-                    List<ChangelogDto> changelogs = Arrays.asList(changelog);
+                    List<ChangelogDto> changelogs = Collections.singletonList(changelog);
                     streamService.broadcastChangelogs(systemId, changelogs);
 
                     sequence++;

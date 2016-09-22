@@ -6,8 +6,6 @@ import org.iobserve.models.Service;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.ServiceService;
 
-import javax.xml.bind.annotation.XmlType;
-
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.Service

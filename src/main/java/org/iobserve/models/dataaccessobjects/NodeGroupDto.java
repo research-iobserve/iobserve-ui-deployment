@@ -5,8 +5,6 @@ import org.iobserve.models.NodeGroup;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.NodeGroupService;
 
-import javax.xml.bind.annotation.XmlType;
-
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  * @see org.iobserve.models.NodeGroup

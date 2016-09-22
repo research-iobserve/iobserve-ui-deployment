@@ -4,9 +4,6 @@ import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
-import org.iobserve.models.util.SeriesElement;
-import org.iobserve.models.util.StatusInfo;
-import org.iobserve.models.util.TimeSeries;
 import org.iobserve.services.*;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
