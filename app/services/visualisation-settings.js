@@ -71,7 +71,7 @@ export default Service.extend({
     layoutAlgorithms: [
         'cola',
         'cose-bilkent',
-        'cose',
+        // 'cose',
         'grid',
         'concentric',
         'breadthfirst'
