@@ -288,7 +288,7 @@ public class CreateDummySystemResource {
         communication6.setInstances(Collections.singletonList(communicationInstance6));
 
         communicationInstance1.setCommunication(communication1);
-        communicationInstance1.addStatusInformation(createInfo("connectrions", "10"));
+        communicationInstance1.addStatusInformation(createInfo("connections", "10"));
         communicationInstance1.setWorkload(10L);
 
         communicationInstance2.setCommunication(communication2);
