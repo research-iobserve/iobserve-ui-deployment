@@ -26,8 +26,13 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ChangelogResource {
-    @Inject
+
     private ChangelogService service;
+
+    @Inject
+    public ChangelogResource(ChangelogService service) {
+        this.service = service;
+    }
 
     @POST
     @Path("/systems/{systemId}/changelogs")

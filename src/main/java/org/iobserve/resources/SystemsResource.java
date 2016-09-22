@@ -13,11 +13,15 @@ import java.util.List;
 @Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
 public class SystemsResource {
-    @Inject
+
     private SystemService service;
+    private ChangelogService changelogService;
 
     @Inject
-    ChangelogService changelogService;
+    public SystemsResource(SystemService service, ChangelogService changelogService) {
+        this.service = service;
+        this.changelogService = changelogService;
+    }
 
     @GET
     @Path("/systems")

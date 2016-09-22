@@ -16,9 +16,12 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class ServiceResource implements SystemComponentModelResource<ServiceDto> {
 
-    @Inject
     private ServiceService service;
 
+    @Inject
+    public ServiceResource(ServiceService service) {
+        this.service = service;
+    }
 
     @GET
     @Path("systems/{systemId}/services")

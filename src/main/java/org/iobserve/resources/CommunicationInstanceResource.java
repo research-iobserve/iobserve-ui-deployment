@@ -18,10 +18,12 @@ import java.util.List;
 @Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
 public class CommunicationInstanceResource implements SystemComponentModelResource<CommunicationInstanceDto> {
-
-    @Inject
     private CommunicationInstanceService service;
 
+    @Inject
+    public CommunicationInstanceResource(CommunicationInstanceService service) {
+        this.service = service;
+    }
 
     @GET
     @Path("systems/{systemId}/communicationinstances")

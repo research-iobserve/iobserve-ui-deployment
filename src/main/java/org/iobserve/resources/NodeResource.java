@@ -16,9 +16,12 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class NodeResource implements SystemComponentModelResource<NodeDto> {
 
-    @Inject
     private NodeService service;
 
+    @Inject
+    public NodeResource(NodeService service) {
+        this.service = service;
+    }
 
     @GET
     @Path("/systems/{systemId}/nodes")

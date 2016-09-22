@@ -19,11 +19,14 @@ import java.util.*;
  */
 @Path("v1")
 public class CreateDummySystemResource {
-    Random random = new Random();
-
-    @Inject
+    private Random random;
     private EntityManagerFactory entityManagerFactory;
 
+    @Inject
+    public CreateDummySystemResource(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+        this.random = new Random();
+    }
 
     @POST
     @Path("systems/createTest/{id}")
