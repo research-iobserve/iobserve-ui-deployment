@@ -41,6 +41,15 @@ export default Route.extend({
     const systemId = params.systemId;
     this.set('systemId', systemId);
 
+    [
+        'node',
+        'serviceinstance',
+        'service',
+        'communication',
+        'communicationinstance',
+        'nodegroup'
+    ].forEach((modelName) => this.store.unloadAll(modelName)); // fresh start to avoid "outdated" from cached instances
+
     return this.loadSystem(systemId)
         .then(this.loadRevision.bind(this))
         .then((revision) => {
@@ -58,13 +67,7 @@ export default Route.extend({
                 });
         })
         .catch(err => {
-            if(err === 'outdated') {
-                // wait a bit to avoid DDOS, TODO: exponential backoff?
-                this.debug('data is outdated, refreshing data');
-                setTimeout(this.refresh.bind(this)); // refresh asynchronously to avoid infinite recursions
-            } else {
-                console.error('could not load models', err);
-            }
+            console.error('could not load models. Error:', err);
             throw err; // TODO: handle errors in UI
         });
   },
@@ -144,8 +147,15 @@ export default Route.extend({
     return models;
   },
   actions: {
-    error: function() {
-        console.error('error', ...arguments);
+    error: function(err) {
+        debugger
+        if(err === 'outdated') {
+            // wait a bit to avoid DDOS, TODO: exponential backoff?
+            this.debug('data is outdated, refreshing data');
+            setTimeout(this.refresh.bind(this), 100); // refresh asynchronously to avoid infinite recursions
+            return; // return otherwise transitions to this site will fail and it will go back to the home page.
+        }
+        console.error('unhandled error in deployments/single route', err);
         this.transitionTo('deployments');
         this.get('flashMessages').danger(`Could not find system with id "${this.get('systemId')}"`);
     },
