@@ -16,7 +16,7 @@ public class ServiceInstance extends Measurable {
     private String name;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    //@JoinColumn(name = "node")
+    @JoinColumn(name = "node")
     @XmlTransient
     private Node node;
 
