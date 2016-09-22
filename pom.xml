@@ -20,7 +20,7 @@
         <jackson.version>2.7.5</jackson.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.mapstruct.version>1.1.0.Beta1</org.mapstruct.version>
-        <jetty.version>9.3.9.v20160517</jetty.version>
+        <jetty.version>9.3.11.v20160721</jetty.version>
     </properties>
 
     <dependencyManagement>
@@ -39,6 +39,7 @@
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
+            <version>${jersey.version}</version>
         </dependency>
 
          <dependency>
