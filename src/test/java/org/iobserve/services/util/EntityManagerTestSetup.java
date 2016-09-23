@@ -43,16 +43,26 @@ public class EntityManagerTestSetup {
     }
 
      public static EntityManagerFactory getEntityManagerFactory() {
-        if(emf == null){
-            createFactory();
-            createTestSystem("system123");
-        }
-        return emf;
+         if(emf == null){
+             createFactory();
+         }
+         createTestSystem("system123");
+
+         return emf;
     }
 
     @Transactional
     private static void createTestSystem(String systemId) {
         EntityManager entityManager = emf.createEntityManager();
+        System oldSystem = entityManager.find(System.class, systemId);
+
+        if(oldSystem != null) {
+            EntityTransaction tx = entityManager.getTransaction();
+            tx.begin();
+            entityManager.remove(oldSystem);
+            tx.commit();
+        }
+
 
         System system = new System();
         system.setId(systemId);

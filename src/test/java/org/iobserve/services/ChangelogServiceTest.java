@@ -4,6 +4,7 @@ import org.glassfish.hk2.api.ServiceLocator;
 
 import org.iobserve.models.*;
 
+import org.iobserve.models.Service;
 import org.iobserve.models.dataaccessobjects.*;
 import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
@@ -15,6 +16,7 @@ import org.iobserve.models.util.TimeSeries;
 import org.iobserve.services.util.EntityManagerTestSetup;
 import org.iobserve.services.websocket.ChangelogStreamService;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -40,7 +42,7 @@ public class ChangelogServiceTest {
     private static final String testSystem = "system123";
 
 
-    private final EntityManagerFactory entityManagerFactory = EntityManagerTestSetup.getEntityManagerFactory();
+    private EntityManagerFactory entityManagerFactory;
     private final EntityToDtoMapper entityToDtoMapper = EntityToDtoMapper.INSTANCE;
     private final DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper = DtoToBasePropertyEntityMapper.INSTANCE;
 
@@ -58,8 +60,11 @@ public class ChangelogServiceTest {
     private SeriesElementService seriesElementService;
     private StatusInfoService statusInfoService;
 
+
     @Before
     public void setUp(){
+        this.entityManagerFactory = EntityManagerTestSetup.getEntityManagerFactory();
+
         this.changelogService = new ChangelogService(entityManagerFactory, entityToDtoMapper, mockedServiceLocator, dtoToBasePropertyEntityMapper,
                 mockedChangelogStreamService);
 
@@ -105,8 +110,15 @@ public class ChangelogServiceTest {
         em.close();
     }
 
+    /**
+     * delete a node in 3 steps:
+     * 1. delete all communications
+     * 2. delete all services
+     * 3. delete the node
+     */
     @Test
-    public void deleteChangelog(){
+    public void deleteChangelogStepByStep(){
+        /* delete the communication */
         List<ChangelogDto> changelogDtoList = new LinkedList<>();
 
         String oldCommunicationInstanceId = "test-system123-communicationInstance-1";
@@ -139,8 +151,149 @@ public class ChangelogServiceTest {
         oldCommunication.getInstances().forEach(instance -> assertFalse(instance.getId().equals(oldCommunicationInstanceId)));
 
 
+        /* delete the service */
+        changelogDtoList.clear();
+
+        String oldServiceInstanceId = "test-system123-serviceInstance-1";
+
+        ServiceInstance oldServiceInstance = em.find(ServiceInstance.class,oldServiceInstanceId);
+
+        assertNotNull(oldServiceInstance);
+
+        String oldServiceId = oldServiceInstance.getService().getId();
+
+        ServiceInstanceDto oldServiceInstanceDto = this.serviceInstanceService.transformModelToDto(oldServiceInstance);
+
+        deleteChangelog = new ChangelogDto();
+        deleteChangelog.setOperation(ChangelogOperation.DELETE);
+        deleteChangelog.setData(oldServiceInstanceDto);
+
+        changelogDtoList.add(deleteChangelog);
+        em.close();
+
+        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+
+        em = this.entityManagerFactory.createEntityManager();
+
+        oldServiceInstance = em.find(ServiceInstance.class,oldServiceInstanceId);
+        Service oldService = em.find(Service.class, oldServiceId);
+
+        assertNull(oldServiceInstance);
+        assertNotNull(oldServiceId);
+
+        oldService.getInstances().forEach(instance -> assertFalse(instance.getId().equals(oldServiceInstanceId)));
+
+
+         /* delete the node */
+        changelogDtoList.clear();
+
+        String oldNodeId = "test-system123-node-1";
+
+        Node oldNode = em.find(Node.class,oldNodeId);
+
+        assertNotNull(oldNode);
+
+        String oldNodeGroupId = oldNode.getNodeGroup().getId();
+
+        NodeDto oldNodeDto = this.nodeService.transformModelToDto(oldNode);
+
+        deleteChangelog = new ChangelogDto();
+        deleteChangelog.setOperation(ChangelogOperation.DELETE);
+        deleteChangelog.setData(oldNodeDto);
+
+        changelogDtoList.add(deleteChangelog);
+        em.close();
+
+        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+
+        em = this.entityManagerFactory.createEntityManager();
+
+        oldNode = em.find(Node.class,oldNodeId);
+        NodeGroup oldNodeGroup = em.find(NodeGroup.class, oldNodeGroupId);
+
+        assertNull(oldNode);
+        assertNotNull(oldNodeGroupId);
+
+        oldNodeGroup.getNodes().forEach(instance -> assertFalse(instance.getId().equals(oldNodeId)));
         em.close();
     }
+
+    /**
+     * delete a node with one Changeloglist
+     */
+    @Test
+    public void deleteChangelogOneStep(){
+        List<ChangelogDto> changelogDtoList = new LinkedList<>();
+        EntityManager em = this.entityManagerFactory.createEntityManager();
+
+        //set up he entities that have to be deleted
+        String oldCommunicationInstanceId = "test-system123-communicationInstance-1";
+        String oldServiceInstanceId = "test-system123-serviceInstance-1";
+        String oldNodeId = "test-system123-node-1";
+
+        CommunicationInstance oldCommunicationInstance = em.find(CommunicationInstance.class,oldCommunicationInstanceId);
+        ServiceInstance oldServiceInstance = em.find(ServiceInstance.class,oldServiceInstanceId);
+        Node oldNode = em.find(Node.class,oldNodeId);
+
+        String oldCommunicationId = oldCommunicationInstance.getCommunication().getId();
+        String oldServiceId = oldServiceInstance.getService().getId();
+        String oldNodeGroupId = oldNode.getNodeGroup().getId();
+
+        CommunicationInstanceDto oldCommunicationInstanceDto = this.communicationInstanceService.transformModelToDto(oldCommunicationInstance);
+        ServiceInstanceDto oldServiceInstanceDto = this.serviceInstanceService.transformModelToDto(oldServiceInstance);
+        NodeDto oldNodeDto = this.nodeService.transformModelToDto(oldNode);
+
+        //assert the entities exist in the system
+        assertNotNull(oldNode);
+        assertNotNull(oldCommunicationInstance);
+        assertNotNull(oldServiceInstance);
+
+        //create the changelogs
+        ChangelogDto deleteCommunicationInstanceChangelog = new ChangelogDto();
+        deleteCommunicationInstanceChangelog.setOperation(ChangelogOperation.DELETE);
+        deleteCommunicationInstanceChangelog.setData(oldCommunicationInstanceDto);
+
+        ChangelogDto deleteServiceInstanceChangelog = new ChangelogDto();
+        deleteServiceInstanceChangelog.setOperation(ChangelogOperation.DELETE);
+        deleteServiceInstanceChangelog.setData(oldServiceInstanceDto);
+
+        ChangelogDto deleteNodeChangelog = new ChangelogDto();
+        deleteNodeChangelog.setOperation(ChangelogOperation.DELETE);
+        deleteNodeChangelog.setData(oldNodeDto);
+
+        //assert order of the changelogs
+        changelogDtoList.add(0,deleteCommunicationInstanceChangelog);
+        changelogDtoList.add(1,deleteServiceInstanceChangelog);
+        changelogDtoList.add(2,deleteNodeChangelog);
+        em.close();
+
+
+        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+
+        em = this.entityManagerFactory.createEntityManager();
+
+        oldCommunicationInstance = em.find(CommunicationInstance.class,oldCommunicationInstanceId);
+        oldServiceInstance = em.find(ServiceInstance.class,oldServiceInstanceId);
+        oldNode = em.find(Node.class,oldNodeId);
+
+        Communication oldCommunication = em.find(Communication.class, oldCommunicationId);
+        Service oldService = em.find(Service.class, oldServiceId);
+        NodeGroup oldNodeGroup = em.find(NodeGroup.class, oldNodeGroupId);
+
+        assertNull(oldCommunicationInstance);
+        assertNotNull(oldCommunicationId);
+        assertNull(oldServiceInstance);
+        assertNotNull(oldServiceId);
+        assertNull(oldNode);
+        assertNotNull(oldNodeGroupId);
+
+        oldCommunication.getInstances().forEach(instance -> assertFalse(instance.getId().equals(oldCommunicationInstanceId)));
+        oldService.getInstances().forEach(instance -> assertFalse(instance.getId().equals(oldServiceInstanceId)));
+        oldNodeGroup.getNodes().forEach(instance -> assertFalse(instance.getId().equals(oldNodeId)));
+        em.close();
+    }
+
+
 
     @Test
     public void updateChangelog(){
