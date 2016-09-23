@@ -43,9 +43,6 @@
         </dependency>
 
          <dependency>
-             <!--<groupId>org.glassfish.jersey.media</groupId>-->
-             <!--<artifactId>jersey-media-moxy</artifactId>-->
-             <!--<version>${jersey.version}</version>-->
              <groupId>org.glassfish.jersey.media</groupId>
              <artifactId>jersey-media-json-jackson</artifactId>
              <version>${jersey.version}</version>
@@ -165,6 +162,12 @@
     </dependencies>
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

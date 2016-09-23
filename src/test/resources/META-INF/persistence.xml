@@ -7,7 +7,7 @@
         transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--Zum Testen muss eine Jar der main classes unter folgendem Pfad erstellt werden-->
-        <jar-file>target/artifacts/iobserve-ui-api.jar</jar-file>
+        <jar-file>target/iobserve-ui-backend-1.0-SNAPSHOT.war</jar-file>
         <properties>
             <property name="hibernate.archive.autodetection" value="class, hbm" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect" />

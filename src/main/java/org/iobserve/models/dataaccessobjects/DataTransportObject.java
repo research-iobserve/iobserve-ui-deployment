@@ -3,6 +3,7 @@ package org.iobserve.models.dataaccessobjects;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.iobserve.models.util.StatusInfo;
 
 /**
  * DataTransportObjects represent a lightweight version of a corresponding model instance.
@@ -33,7 +34,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         @JsonSubTypes.Type(value = CommunicationDto.class, name = "communication"),
         @JsonSubTypes.Type(value = CommunicationInstanceDto.class, name = "communicationInstance"),
         @JsonSubTypes.Type(value = TimeSeriesDto.class, name = "timeSeries"),
-        @JsonSubTypes.Type(value = SeriesElementDto.class, name = "seriesElement") })
+        @JsonSubTypes.Type(value = SeriesElementDto.class, name = "seriesElement"),
+        @JsonSubTypes.Type(value = StatusInfo.class, name = "statusInfo") })
 public abstract class DataTransportObject {
     private String id;
 

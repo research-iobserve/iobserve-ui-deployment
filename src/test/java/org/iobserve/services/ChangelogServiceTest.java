@@ -10,6 +10,7 @@ import org.iobserve.models.mappers.EntityToDtoMapper;
 
 import org.iobserve.models.util.ChangelogOperation;
 import org.iobserve.models.util.Status;
+import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
 import org.iobserve.services.util.EntityManagerTestSetup;
 import org.iobserve.services.websocket.ChangelogStreamService;
@@ -55,6 +56,7 @@ public class ChangelogServiceTest {
     private CommunicationInstanceService communicationInstanceService;
     private TimeSeriesService timeSeriesService;
     private SeriesElementService seriesElementService;
+    private StatusInfoService statusInfoService;
 
     @Before
     public void setUp(){
@@ -66,6 +68,7 @@ public class ChangelogServiceTest {
         this.communicationInstanceService = new CommunicationInstanceService(entityManagerFactory,entityToDtoMapper,mockedServiceLocator,dtoToBasePropertyEntityMapper);
         this.timeSeriesService = new TimeSeriesService(entityManagerFactory,entityToDtoMapper,mockedServiceLocator,dtoToBasePropertyEntityMapper);
         this.seriesElementService = new SeriesElementService(entityManagerFactory,entityToDtoMapper,mockedServiceLocator,dtoToBasePropertyEntityMapper);
+        this.statusInfoService = new StatusInfoService(entityManagerFactory,entityToDtoMapper,mockedServiceLocator,dtoToBasePropertyEntityMapper);
 
         when(mockedServiceLocator.getService(ChangelogService.class)).thenReturn(this.changelogService);
         when(mockedServiceLocator.getService(NodeService.class)).thenReturn(this.nodeService);
@@ -73,6 +76,7 @@ public class ChangelogServiceTest {
         when(mockedServiceLocator.getService(CommunicationInstanceService.class)).thenReturn(this.communicationInstanceService);
         when(mockedServiceLocator.getService(TimeSeriesService.class)).thenReturn(this.timeSeriesService);
         when(mockedServiceLocator.getService(SeriesElementService.class)).thenReturn(this.seriesElementService);
+        when(mockedServiceLocator.getService(StatusInfoService.class)).thenReturn(this.statusInfoService);
     }
 
 
@@ -172,7 +176,7 @@ public class ChangelogServiceTest {
     }
 
     @Test
-    public void appendChangelog(){
+    public void appendTimeSeriesChangelog(){
         EntityManager em = this.entityManagerFactory.createEntityManager();
 
         List<ChangelogDto> changelogDtoList = new LinkedList<>();
@@ -185,7 +189,7 @@ public class ChangelogServiceTest {
         changelogDtoList.add(appendChangelogDto);
 
         Node oldNode = em.find(Node.class,newTimeSeriesDto.getParentId());
-
+        assertNotNull(oldNode);
 
         em.close();
         this.changelogService.addChangelogs(testSystem,changelogDtoList);
@@ -197,10 +201,41 @@ public class ChangelogServiceTest {
 
         assertNotNull(newTimeSeries);
         assertNotSame(updatedNode.getTimeSeries(),oldNode.getTimeSeries());
-
-
         em.close();
     }
+
+    @Test
+    public void appendStatusInfoChangelog(){
+        EntityManager em = this.entityManagerFactory.createEntityManager();
+
+        List<ChangelogDto> changelogDtoList = new LinkedList<>();
+
+        StatusInfoDto newStatusInfoDto = createStatusInfo();
+
+        ChangelogDto appendChangelogDto = new ChangelogDto();
+        appendChangelogDto.setOperation(ChangelogOperation.APPEND);
+        appendChangelogDto.setData(newStatusInfoDto);
+        changelogDtoList.add(appendChangelogDto);
+
+        Node oldNode = em.find(Node.class,newStatusInfoDto.getParentId());
+        assertNotNull(oldNode);
+
+        em.close();
+        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+
+        em = this.entityManagerFactory.createEntityManager();
+
+        Node updatedNode = em.find(Node.class,newStatusInfoDto.getParentId());
+        StatusInfo statusInfo = em.find(StatusInfo.class,newStatusInfoDto.getId());
+
+        assertNotNull(statusInfo);
+        assertEquals(statusInfo.getValue(),newStatusInfoDto.getValue());
+        assertNotSame(updatedNode.getStatusInformations(),oldNode.getStatusInformations());
+        em.close();
+
+    }
+
+
 
 
     private NodeDto createNewNode() {
@@ -266,6 +301,16 @@ public class ChangelogServiceTest {
         timeSeriesDto.getSeries().add(seriesElementDto3);
 
         return timeSeriesDto;
+    }
+
+    private StatusInfoDto createStatusInfo() {
+        StatusInfoDto statusInfoDto = new StatusInfoDto();
+        statusInfoDto.setId("test-system123-statusInfo-100");
+        statusInfoDto.setParentId("test-system123-node-1");
+        statusInfoDto.setKey("newStatusInfo");
+        statusInfoDto.setValue("newStatusValue");
+
+        return statusInfoDto;
     }
 
 }
