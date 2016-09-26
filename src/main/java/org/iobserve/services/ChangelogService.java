@@ -18,11 +18,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import javax.validation.*;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 /**
@@ -44,30 +42,64 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         this.changelogStreamService = changelogStreamService;
     }
 
-    public synchronized void addChangelogs(final String systemId, List<ChangelogDto> changelogs){
+    public synchronized boolean addChangelogs(final String systemId, List<ChangelogDto> changelogs){
 
         final Date date = new Date();
         final Revision revision = getNextRevision(systemId);
         revision.setLastUpdate(date);
 
+        //validate ChangelogList
+        final boolean valid = validate(changelogs);
+
+        if(valid){
+            //process changelogs
+            for (int i = 0; i < changelogs.size(); i++) {
+                final ChangelogDto changelog = changelogs.get(i);
+                final Long changelogSequence = (long) i;
+
+                changelog.setId(generateId());
+                changelog.setSystemId(systemId);
+                changelog.setChangelogSequence(changelogSequence);
+                changelog.setLastUpdate(date);
+                changelog.setRevisionNumber(revision.getRevisionNumber());
+
+                applyChangelog(changelog);
+                persistChangelog(changelog);
+
+                revision.setChangelogSequence(changelogSequence);
+            }
+            this.changelogStreamService.broadcastChangelogs(systemId, changelogs);
+        }
+        return valid;
+    }
+
+    private boolean validate(List<ChangelogDto> changelogs) {
+        boolean valid = true;
 
         for (int i = 0; i < changelogs.size(); i++) {
             final ChangelogDto changelog = changelogs.get(i);
-            final Long changelogSequence = (long) i;
-
-            changelog.setId(generateId());
-            changelog.setSystemId(systemId);
-            changelog.setChangelogSequence(changelogSequence);
-            changelog.setLastUpdate(date);
-            changelog.setRevisionNumber(revision.getRevisionNumber());
-
-            applyChangelog(changelog);
-            persistChangelog(changelog);
-
-            revision.setChangelogSequence(changelogSequence);
+            valid = valid && validateChangelog(changelog);
         }
-        this.changelogStreamService.broadcastChangelogs(systemId, changelogs);
+        return valid;
     }
+
+    private boolean validateChangelog(ChangelogDto changelog) {
+        boolean valid = true;
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        DataTransportObject dto = changelog.getData();
+
+        try{
+            Set<ConstraintViolation<DataTransportObject>> constraintViolations = validator.validate(dto);
+
+            if(constraintViolations.size() > 0) valid = false;
+
+        }catch (Exception e){
+            valid = false;
+        }
+        return valid;
+    }
+
 
     @Transactional
     private void persistChangelog(ChangelogDto changelogDto){

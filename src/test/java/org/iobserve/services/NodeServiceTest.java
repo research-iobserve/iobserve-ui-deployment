@@ -1,7 +1,7 @@
 package org.iobserve.services;
 
 import org.glassfish.hk2.api.ServiceLocator;
-import org.iobserve.models.Node;
+import org.iobserve.models.*;
 import org.iobserve.models.dataaccessobjects.NodeDto;
 import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
@@ -14,8 +14,10 @@ import org.mockito.Mock;
 import org.mockito.internal.matchers.Any;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
@@ -35,6 +37,7 @@ public class NodeServiceTest {
     ServiceLocator mockedServiceLocator;
 
     NodeService nodeService;
+    ServiceInstanceService serviceInstanceService;
 
 
     Node node;
@@ -43,16 +46,44 @@ public class NodeServiceTest {
     @Before
     public void setUp(){
         when(mockedServiceLocator.getService(any())).thenReturn(NodeService.class);
+        when(mockedServiceLocator.getService(ServiceInstanceService.class)).thenReturn(this.serviceInstanceService);
 
-        nodeService = new NodeService(entityManagerFactory, entityToDtoMapper, mockedServiceLocator, dtoToBasePropertyEntityMapper);
+        this.serviceInstanceService = new ServiceInstanceService(entityManagerFactory,entityToDtoMapper,mockedServiceLocator,dtoToBasePropertyEntityMapper);
+        this.nodeService = new NodeService(entityManagerFactory, entityToDtoMapper, mockedServiceLocator, dtoToBasePropertyEntityMapper);
         node = new Node();
+
         nodeDto = new NodeDto();
     }
 
     @Test
     public void transformModelToDto() throws Exception {
-        NodeDto transformedNode = nodeService.transformModelToDto(node);
+        String id = "1234567890";
+        EntityManager em  = entityManagerFactory.createEntityManager();
 
+        Node node = new Node();
+        node.setId(id);
+
+        ServiceInstance service = new ServiceInstance();
+        service.setId(id);
+
+        EntityExistsException entityExistsException = null;
+
+        try {
+            EntityTransaction tx = em.getTransaction();
+            tx.begin();
+            em.persist(node);
+            tx.commit();
+
+            tx = em.getTransaction();
+            tx.begin();
+            em.persist(service);
+            tx.commit();
+        }catch (EntityExistsException e){
+            entityExistsException  = e;
+        }finally {
+            assertNotNull(entityExistsException);
+        }
+        em.close();
 
     }
 //
