@@ -1,6 +1,7 @@
 package org.iobserve.models.dataaccessobjects;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.iobserve.models.ModelType;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.util.TimeSeries;
 import org.iobserve.services.TimeSeriesService;
@@ -13,10 +14,8 @@ import java.util.List;
  */
 
 @ModelClassOfDto(value = TimeSeries.class, service = TimeSeriesService.class)
-@JsonTypeName("timeSeries")
-public class TimeSeriesDto extends DataTransportObject {
-
-    private String parentId;
+@JsonTypeName(ModelType.TypeName.TIME_SERIES)
+public class TimeSeriesDto extends NestedDataAccessObject {
 
     private String label;
     private String valueLabel;
@@ -25,14 +24,6 @@ public class TimeSeriesDto extends DataTransportObject {
 
     public TimeSeriesDto() {
         series = new LinkedList<>();
-    }
-
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
     }
 
     public String getLabel() {

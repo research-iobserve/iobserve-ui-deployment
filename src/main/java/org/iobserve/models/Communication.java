@@ -66,4 +66,6 @@ public class Communication extends Measurable{
     public void setInstances(List<CommunicationInstance> instances) {
         this.instances = instances;
     }
+
+
 }

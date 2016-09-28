@@ -2,6 +2,7 @@ package org.iobserve.models.dataaccessobjects;
 
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.iobserve.models.ModelType;
 import org.iobserve.models.Node;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.NodeService;
@@ -11,7 +12,7 @@ import org.iobserve.services.NodeService;
  * @see org.iobserve.models.Node
  */
 @ModelClassOfDto(value = Node.class, service = NodeService.class)
-@JsonTypeName("node")
+@JsonTypeName(ModelType.TypeName.NODE)
 public class NodeDto extends MeasurableDataTrasferObject {
 
     private String name;

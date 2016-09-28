@@ -3,6 +3,8 @@ package org.iobserve.resources;
 import org.iobserve.models.*;
 import org.iobserve.models.System;
 import org.iobserve.models.util.*;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -58,38 +60,38 @@ public class CreateDummySystemResource {
         node1.setName("WebNode");
         node1.setHostname("test hostname");
         node1.setIp("10.0.0.1");
-        node1.addTimeSeries(generateSeries("Utilization", "%"));
-        node1.addTimeSeries(generateSeries("Power Consumption", "kWh"));
+        generateSeries(node1, "Utilization", "%");
+        generateSeries(node1, "Power Consumption", "kWh");
 
 
         Node node2 = prepareDummy(new Node(), systemId, "node", 2);
         node2.setName("LogicNode");
         node2.setHostname("host2");
         node2.setIp("10.0.0.2");
-        node2.addTimeSeries(generateSeries("Utilization", "%"));
-        node2.addTimeSeries(generateSeries("Power Consumption", "kWh"));
+        generateSeries(node2, "Utilization", "%");
+        generateSeries(node2, "Power Consumption", "kWh");
 
         Node node3 = prepareDummy(new Node(), systemId, "node", 3);
         node3.setName("Adapter");
         node3.setHostname("host3");
         node3.setIp("10.0.0.2");
-        node3.addTimeSeries(generateSeries("Utilization", "%"));
-        node3.addTimeSeries(generateSeries("Power Consumption", "kWh"));
+        generateSeries(node3, "Utilization", "%");
+        generateSeries(node3, "Power Consumption", "kWh");
 
         Node node4 = prepareDummy(new Node(), systemId, "node", 4);
         node4.setName("DataCenter");
         node4.setHostname("host4");
         node4.setIp("10.0.0.2");
-        node4.addTimeSeries(generateSeries("Utilization", "%"));
-        node4.addTimeSeries(generateSeries("Power Consumption", "kWh"));
+        generateSeries(node4, "Utilization", "%");
+        generateSeries(node4, "Power Consumption", "kWh");
 
 
         // node group - has both nodes
         NodeGroup nodeGroup1 = prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
         nodeGroup1.setName("CoCoME");
         nodeGroup1.setNodes(Arrays.asList(node1, node2, node3, node4));
-        nodeGroup1.addTimeSeries(generateSeries("Sub-Nodes","Number of Sub-Nodes"));
-        nodeGroup1.addTimeSeries(generateSeries("Errors","Number of Errors"));
+        generateSeries(node3, "Sub-Nodes","Number of Sub-Nodes");
+        generateSeries(node3, "Errors","Number of Errors");
 
         node1.setNodeGroup(nodeGroup1);
         node2.setNodeGroup(nodeGroup1);
@@ -100,71 +102,71 @@ public class CreateDummySystemResource {
         // service instances
         ServiceInstance serviceInstance1 = prepareDummy(new ServiceInstance("Frontend"), systemId, "serviceInstance", 1);
         serviceInstance1.setNode(node1);
-        serviceInstance1.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        serviceInstance1.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(serviceInstance1, "Failures","Number of Failures");
+        generateSeries(serviceInstance1, "Queries","Number of Queries");
 
         ServiceInstance serviceInstance2 = prepareDummy(new ServiceInstance("WebService"), systemId, "serviceInstance", 2);
         serviceInstance2.setNode(node2);
-        serviceInstance2.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        serviceInstance2.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(serviceInstance2, "Failures","Number of Failures");
+        generateSeries(serviceInstance2, "Queries","Number of Queries");
 
         ServiceInstance serviceInstance3 = prepareDummy(new ServiceInstance("CashDesk"), systemId, "serviceInstance", 3);
         serviceInstance3.setNode(node2);
-        serviceInstance3.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        serviceInstance3.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(serviceInstance3, "Failures","Number of Failures");
+        generateSeries(serviceInstance3, "Queries","Number of Queries");
 
         ServiceInstance serviceInstance4 = prepareDummy(new ServiceInstance("Inventory"), systemId, "serviceInstance", 4);
         serviceInstance4.setNode(node2);
         serviceInstance4.setStatus(Status.WARNING);
-        serviceInstance4.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        serviceInstance4.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(serviceInstance4, "Failures","Number of Failures");
+        generateSeries(serviceInstance4, "Queries","Number of Queries");
 
         ServiceInstance serviceInstance5 = prepareDummy(new ServiceInstance("Data"), systemId, "serviceInstance", 5);
         serviceInstance5.setNode(node3);
-        serviceInstance5.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        serviceInstance5.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(serviceInstance5, "Failures","Number of Failures");
+        generateSeries(serviceInstance5, "Queries","Number of Queries");
 
         ServiceInstance serviceInstance6 = prepareDummy(new ServiceInstance("Database"), systemId, "serviceInstance", 6);
         serviceInstance6.setNode(node4);
-        serviceInstance6.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        serviceInstance6.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(serviceInstance6, "Failures","Number of Failures");
+        generateSeries(serviceInstance6, "Queries","Number of Queries");
 
         // create services
         Service service1 = prepareDummy(new Service(), systemId, "service", 1);
         service1.setName("Front End");
         service1.setDescription("A dummy description!");
-        service1.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        service1.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(service1, "Failures","Number of Failures");
+        generateSeries(service1, "Queries","Number of Queries");
 
         Service service2 = prepareDummy(new Service(), systemId, "service", 2);
         service2.setName("WebService");
         service2.setDescription("Another dummy description");
-        service2.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        service2.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(service2, "Failures","Number of Failures");
+        generateSeries(service2, "Queries","Number of Queries");
 
         Service service3 = prepareDummy(new Service(), systemId, "service", 3);
         service3.setName("CashDesk");
         service3.setDescription("Another dummy description");
-        service3.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        service3.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(service3, "Failures","Number of Failures");
+        generateSeries(service3, "Queries","Number of Queries");
 
         Service service4 = prepareDummy(new Service(), systemId, "service", 4);
         service4.setName("Inventory");
         service4.setDescription("Another dummy description");
-        service4.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        service4.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(service4, "Failures","Number of Failures");
+        generateSeries(service4, "Queries","Number of Queries");
 
         Service service5 = prepareDummy(new Service(), systemId, "service", 5);
         service5.setName("Data");
         service5.setDescription("Another dummy description");
-        service5.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        service5.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(service5, "Failures","Number of Failures");
+        generateSeries(service5, "Queries","Number of Queries");
 
         Service service6 = prepareDummy(new Service(), systemId, "service", 6);
         service6.setName("PostgreSQL");
         service6.setDescription("Another dummy description");
-        service6.addTimeSeries(generateSeries("Failures","Number of Failures"));
-        service6.addTimeSeries(generateSeries("Queries","Number of Queries"));
+        generateSeries(service6, "Failures","Number of Failures");
+        generateSeries(service6, "Queries","Number of Queries");
 
 
 
@@ -199,84 +201,84 @@ public class CreateDummySystemResource {
         CommunicationInstance communicationInstance1 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 1);
         communicationInstance1.setSource(serviceInstance1);
         communicationInstance1.setTarget(serviceInstance2);
-        communicationInstance1.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communicationInstance1.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communicationInstance1, "Connections","Number of Connections");
+        generateSeries(communicationInstance1, "Lost Packages","Number of Lost Packages");
 
         CommunicationInstance communicationInstance2 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 2);
         communicationInstance2.setSource(serviceInstance2);
         communicationInstance2.setTarget(serviceInstance3);
-        communicationInstance2.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communicationInstance2.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communicationInstance2, "Connections","Number of Connections");
+        generateSeries(communicationInstance2, "Lost Packages","Number of Lost Packages");
 
 
         CommunicationInstance communicationInstance3 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 3);
         communicationInstance3.setSource(serviceInstance3);
         communicationInstance3.setTarget(serviceInstance4);
-        communicationInstance3.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communicationInstance3.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communicationInstance3, "Connections","Number of Connections");
+        generateSeries(communicationInstance3, "Lost Packages","Number of Lost Packages");
 
         CommunicationInstance communicationInstance4 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 4);
         communicationInstance4.setSource(serviceInstance3);
         communicationInstance4.setTarget(serviceInstance5);
-        communicationInstance4.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communicationInstance4.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communicationInstance4, "Connections","Number of Connections");
+        generateSeries(communicationInstance4, "Lost Packages","Number of Lost Packages");
 
         CommunicationInstance communicationInstance5 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 5);
         communicationInstance5.setSource(serviceInstance4);
         communicationInstance5.setTarget(serviceInstance5);
-        communicationInstance5.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communicationInstance5.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communicationInstance5, "Connections","Number of Connections");
+        generateSeries(communicationInstance5, "Lost Packages","Number of Lost Packages");
 
         CommunicationInstance communicationInstance6 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 6);
         communicationInstance6.setSource(serviceInstance5);
         communicationInstance6.setTarget(serviceInstance6);
-        communicationInstance6.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communicationInstance6.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communicationInstance6, "Connections","Number of Connections");
+        generateSeries(communicationInstance6, "Lost Packages","Number of Lost Packages");
 
         // communications - duplex
         Communication communication1 = prepareDummy(new Communication(), systemId, "communication", 1);
         communication1.setSource(service1);
         communication1.setTarget(service2);
         communication1.setTechnology("REST");
-        communication1.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communication1.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communication1, "Connections","Number of Connections");
+        generateSeries(communication1, "Lost Packages","Number of Lost Packages");
 
         Communication communication2 = prepareDummy(new Communication(), systemId, "communication", 2);
         communication2.setSource(service2);
         communication2.setTarget(service3);
         communication2.setTechnology("TCP/IP");
-        communication2.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communication2.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communication2, "Connections","Number of Connections");
+        generateSeries(communication2, "Lost Packages","Number of Lost Packages");
 
         Communication communication3 = prepareDummy(new Communication(), systemId, "communication", 3);
         communication3.setSource(service3);
         communication3.setTarget(service4);
         communication3.setTechnology("TCP/IP");
-        communication3.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communication3.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communication3, "Connections","Number of Connections");
+        generateSeries(communication3, "Lost Packages","Number of Lost Packages");
 
 
         Communication communication4 = prepareDummy(new Communication(), systemId, "communication", 4);
         communication4.setSource(service3);
         communication4.setTarget(service5);
         communication4.setTechnology("TCP/IP");
-        communication4.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communication4.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communication4, "Connections","Number of Connections");
+        generateSeries(communication4, "Lost Packages","Number of Lost Packages");
 
 
         Communication communication5 = prepareDummy(new Communication(), systemId, "communication", 5);
         communication5.setSource(service4);
         communication5.setTarget(service5);
         communication5.setTechnology("TCP/IP");
-        communication5.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communication5.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communication5, "Connections","Number of Connections");
+        generateSeries(communication5, "Lost Packages","Number of Lost Packages");
 
         Communication communication6 = prepareDummy(new Communication(), systemId, "communication", 6);
         communication6.setSource(service5);
         communication6.setTarget(service6);
         communication6.setTechnology("TCP/IP");
-        communication6.addTimeSeries(generateSeries("Connections","Number of Connections"));
-        communication6.addTimeSeries(generateSeries("Lost Packages","Number of Lost Packages"));
+        generateSeries(communication6, "Connections","Number of Connections");
+        generateSeries(communication6, "Lost Packages","Number of Lost Packages");
 
 
 
@@ -342,26 +344,21 @@ public class CreateDummySystemResource {
         return UUID.randomUUID().toString();
     }
 
-    public List<TimeSeries> generateSeriesList(String label, String axisLabel){
-        final Integer numObj = 10;
-        final List<TimeSeries> series = new LinkedList<>();
 
-        for (int i = 0; i < numObj; i++) {
-            series.add(generateSeries(label+i,axisLabel+i));
-        }
-        return series;
-    }
-
-    private TimeSeries generateSeries(String label, String axisLabel){
+    private Measurable generateSeries(Measurable parent, String label, String axisLabel){
         final Integer numObj = 10;
         final Random random = new Random();
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
         final Date yesterday = cal.getTime();
         final TimeSeries timeSeries = new TimeSeries();
+
         timeSeries.setId(generateId());
         timeSeries.setLabel(label);
         timeSeries.setValueLabel(axisLabel);
+        timeSeries.setParentId(parent.getId());
+
+        timeSeries.setParentType(ModelType.getForModel(parent.getClass()).getType());
 
         for (int j = 0; j <numObj ; j++) {
             final SeriesElement elem = new SeriesElement();
@@ -370,11 +367,11 @@ public class CreateDummySystemResource {
             elem.setTimestamp(yesterday.getTime()+(j*60000));
             timeSeries.getSeries().add(elem);
         }
-
-        return timeSeries;
+        parent.addTimeSeries(timeSeries);
+        return parent;
     }
 
-    public List<StatusInfo> generateInfos(){
+    public List<StatusInfo> generateInfos(Measurable parent){
         final Integer numObj = 10;
         final Long timestamp = new Date().getTime();
         final List<StatusInfo> infos = new LinkedList<>();
@@ -383,6 +380,7 @@ public class CreateDummySystemResource {
             final StatusInfo info = new StatusInfo(timestamp, "Key", "Value");
             info.setId(generateId());
             infos.add(info);
+            addParent(info, parent);
         }
         return infos;
     }
@@ -393,11 +391,13 @@ public class CreateDummySystemResource {
         bean.setLastUpdate(new Date());
     }
 
-    private StatusInfo createCommunicationStatusInfo(){
+    private StatusInfo createCommunicationStatusInfo(Measurable parent){
         final StatusInfo info = new StatusInfo();
         info.setTimestamp(new Date().getTime());
         info.setKey("connections");
         info.setValue(random.nextInt(500) + "");
+
+        addParent(info, parent);
         return info;
     }
 
@@ -417,6 +417,11 @@ public class CreateDummySystemResource {
 
     private TimeSeries createRandomSeries() {
         return createRandomSeries(20);
+    }
+
+    private void addParent(NestedMeasurement base, Measurable parent) {
+        base.setParentId(parent.getId());
+        base.setParentType(ModelType.getForModel(parent.getClass()).getType());
     }
 
     private TimeSeries createRandomSeries(int size){
