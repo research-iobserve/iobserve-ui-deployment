@@ -2,6 +2,7 @@ package org.iobserve.models.dataaccessobjects;
 
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.iobserve.models.ModelType;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.services.StatusInfoService;
@@ -11,9 +12,8 @@ import org.iobserve.services.StatusInfoService;
  */
 
 @ModelClassOfDto(value = StatusInfo.class, service = StatusInfoService.class)
-@JsonTypeName("statusInfo")
-public class StatusInfoDto extends DataTransportObject {
-    private String parentId;
+@JsonTypeName(ModelType.TypeName.STATUS_INFO)
+public class StatusInfoDto extends NestedDataAccessObject {
     private Long timestamp;
     private String key;
     private String value;
@@ -46,11 +46,4 @@ public class StatusInfoDto extends DataTransportObject {
         this.value = value;
     }
 
-    public String getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
 }

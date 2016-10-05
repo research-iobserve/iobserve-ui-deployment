@@ -1,6 +1,7 @@
 package org.iobserve.models.dataaccessobjects;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.iobserve.models.ModelType;
 import org.iobserve.models.System;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.SystemService;
@@ -10,7 +11,7 @@ import org.iobserve.services.SystemService;
  * @see org.iobserve.models.System
  */
 @ModelClassOfDto(value = System.class, service = SystemService.class)
-@JsonTypeName("system")
+@JsonTypeName(ModelType.TypeName.SYSTEM)
 public class SystemDto extends DataTransportObject {
     private String name;
 

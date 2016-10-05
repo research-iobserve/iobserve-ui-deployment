@@ -2,8 +2,8 @@ package org.iobserve.models.dataaccessobjects;
 
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.iobserve.models.ModelType;
 import org.iobserve.models.annotations.ModelClassOfDto;
-import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.services.SeriesElementService;
 
@@ -11,7 +11,7 @@ import org.iobserve.services.SeriesElementService;
  * Created by Christoph on 13.07.2016.
  */
 @ModelClassOfDto(value = SeriesElement.class, service = SeriesElementService.class)
-@JsonTypeName("seriesElement")
+@JsonTypeName(ModelType.TypeName.SERIES_ELEMENT)
 public class SeriesElementDto extends DataTransportObject{
     private String seriesId;
     private Integer value;

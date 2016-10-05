@@ -33,6 +33,7 @@ import org.iobserve.models.util.StatusInfo;
         @JsonSubTypes.Type(value = ChangelogDto.class, name = "changelog"),
         @JsonSubTypes.Type(value = CommunicationDto.class, name = "communication"),
         @JsonSubTypes.Type(value = CommunicationInstanceDto.class, name = "communicationInstance"),
+        @JsonSubTypes.Type(value = StatusInfoDto.class, name = "statusInfo"),
         @JsonSubTypes.Type(value = TimeSeriesDto.class, name = "timeSeries"),
         @JsonSubTypes.Type(value = SeriesElementDto.class, name = "seriesElement"),
         @JsonSubTypes.Type(value = StatusInfo.class, name = "statusInfo") })
