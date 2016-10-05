@@ -14,10 +14,6 @@ public abstract class  BaseEntity implements Serializable{
     @Column(name="id")
     private String id;
 
-    public BaseEntity() {
-
-    }
-
     public String getId() {
         return id;
     }
@@ -26,7 +22,4 @@ public abstract class  BaseEntity implements Serializable{
         this.id = id;
     }
 
-    public String getTypeName() {
-
-    }
 }
