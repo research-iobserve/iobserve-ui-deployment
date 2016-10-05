@@ -273,27 +273,27 @@ public class TestSystemCreator {
         communication6.setInstances(Collections.singletonList(communicationInstance6));
 
         communicationInstance1.setCommunication(communication1);
-        communicationInstance1.addStatusInformation(createInfo("connections", "10"));
+        communicationInstance1.addStatusInformation(createInfo(communication1,"connections", "10"));
         communicationInstance1.setWorkload(10L);
 
         communicationInstance2.setCommunication(communication2);
-        communicationInstance2.addStatusInformation(createInfo("connections", "20"));
+        communicationInstance2.addStatusInformation(createInfo(communication2,"connections", "20"));
         communicationInstance2.setWorkload(20L);
 
         communicationInstance3.setCommunication(communication3);
-        communicationInstance3.addStatusInformation(createInfo("connections", "10"));
+        communicationInstance3.addStatusInformation(createInfo(communication2,"connections", "10"));
         communicationInstance3.setWorkload(10L);
 
         communicationInstance4.setCommunication(communication4);
-        communicationInstance4.addStatusInformation(createInfo("connections", "15"));
+        communicationInstance4.addStatusInformation(createInfo(communication4,"connections", "15"));
         communicationInstance4.setWorkload(15L);
 
         communicationInstance5.setCommunication(communication5);
-        communicationInstance5.addStatusInformation(createInfo("connections", "10"));
+        communicationInstance5.addStatusInformation(createInfo(communication5,"connections", "10"));
         communicationInstance5.setWorkload(10L);
 
         communicationInstance6.setCommunication(communication6);
-        communicationInstance6.addStatusInformation(createInfo("connections", "15"));
+        communicationInstance6.addStatusInformation(createInfo(communication6,"connections", "15"));
         communicationInstance6.setWorkload(15L);
 
 
@@ -321,12 +321,14 @@ public class TestSystemCreator {
         return "test-"+systemId+"-"+prefix+"-"+counter;
     }
 
-    private StatusInfo createInfo(String key, String value){
+    private StatusInfo createInfo(Measurable parent, String key, String value){
         final StatusInfo info = new StatusInfo();
         info.setId(generateId());
         info.setTimestamp(new Date().getTime());
         info.setKey(key);
         info.setValue(value);
+        info.setParentId(parent.getId());
+        info.setParentType(parent.getClass().toString());
         return info;
     }
 
@@ -346,6 +348,7 @@ public class TestSystemCreator {
         timeSeries.setLabel(label);
         timeSeries.setValueLabel(axisLabel);
         timeSeries.setParentId(parent.getId());
+        timeSeries.setParentType(parent.getClass().toString());
 
         timeSeries.setParentType(ModelType.getForModel(parent.getClass()).getType());
 
@@ -354,6 +357,8 @@ public class TestSystemCreator {
             elem.setId(generateId());
             elem.setValue(random.nextInt(numObj));
             elem.setTimestamp(yesterday.getTime()+(j*60000));
+            elem.setParentId(timeSeries.getId());
+            elem.setParentType(timeSeries.getClass().toString());
             timeSeries.getSeries().add(elem);
         }
         parent.addTimeSeries(timeSeries);

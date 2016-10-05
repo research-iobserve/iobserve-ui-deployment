@@ -34,7 +34,7 @@ public enum ModelType {
     }
     public static ModelType getForModel(Class<? extends BaseEntity> modelClass) {
         for (ModelType modelType : ModelType.values()) {
-            if(modelType.getClass().equals(modelClass)) {
+            if(modelType.getModelClass().equals(modelClass)) {
                 return modelType;
             }
         }
