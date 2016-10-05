@@ -98,6 +98,9 @@ public class ChangelogServiceTest {
 
         this.changelogService.addChangelogs(testSystem,changelogDtoList);
 
+        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        assertTrue(isValid);
+
         //assert that the changelog is correctly progressed
         EntityManager em = this.entityManagerFactory.createEntityManager();
 
@@ -138,7 +141,8 @@ public class ChangelogServiceTest {
         changelogDtoList.add(deleteChangelog);
         em.close();
 
-        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        assertTrue(isValid);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -171,7 +175,8 @@ public class ChangelogServiceTest {
         changelogDtoList.add(deleteChangelog);
         em.close();
 
-        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        assertTrue(isValid);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -204,7 +209,8 @@ public class ChangelogServiceTest {
         changelogDtoList.add(deleteChangelog);
         em.close();
 
-        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        assertTrue(isValid);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -267,8 +273,8 @@ public class ChangelogServiceTest {
         changelogDtoList.add(2,deleteNodeChangelog);
         em.close();
 
-
-        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        assertTrue(isValid);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -312,7 +318,9 @@ public class ChangelogServiceTest {
         changelogDtoList.add(createChangelog);
 
         em.close();
-        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+
+        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        assertTrue(isValid);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -345,7 +353,9 @@ public class ChangelogServiceTest {
         assertNotNull(oldNode);
 
         em.close();
-        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+
+        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        assertTrue(isValid);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -374,7 +384,10 @@ public class ChangelogServiceTest {
         assertNotNull(oldNode);
 
         em.close();
-        this.changelogService.addChangelogs(testSystem,changelogDtoList);
+
+        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+
+        assertTrue(isValid);
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -385,6 +398,22 @@ public class ChangelogServiceTest {
         assertEquals(statusInfo.getValue(),newStatusInfoDto.getValue());
         assertNotSame(updatedNode.getStatusInformations(),oldNode.getStatusInformations());
         em.close();
+    }
+
+    @Test
+    public void testChangelogValidation(){
+        List<ChangelogDto> changelogDtoList = new LinkedList<>();
+        NodeDto newNodeDto = createNewNode();
+        newNodeDto.setNodeGroupId(null);
+
+        ChangelogDto createChangelog = new ChangelogDto();
+        createChangelog.setOperation(ChangelogOperation.CREATE);
+        createChangelog.setData(newNodeDto);
+
+        changelogDtoList.add(createChangelog);
+
+        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        assertFalse(isValid);
 
     }
 

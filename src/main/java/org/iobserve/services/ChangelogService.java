@@ -89,8 +89,12 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         Validator validator = factory.getValidator();
         DataTransportObject dto = changelog.getData();
 
+        final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
+        final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
+        final BaseEntity entity = service.transformDtoToModel(dto);
+
         try{
-            Set<ConstraintViolation<DataTransportObject>> constraintViolations = validator.validate(dto);
+            Set<ConstraintViolation<BaseEntity>> constraintViolations = validator.validate(entity);
 
             if(constraintViolations.size() > 0) valid = false;
 

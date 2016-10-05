@@ -3,6 +3,7 @@ package org.iobserve.models;
 import org.iobserve.models.util.Measurable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
@@ -13,17 +14,19 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CommunicationInstance extends Measurable{
-
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @NotNull
     @XmlTransient
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private ServiceInstance source;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @NotNull
     @XmlTransient
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private ServiceInstance target;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @NotNull
     @XmlTransient
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Communication communication;
 
     private Long workload;

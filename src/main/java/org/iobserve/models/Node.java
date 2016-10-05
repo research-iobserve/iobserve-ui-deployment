@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
@@ -21,8 +22,9 @@ public class Node extends Measurable {
     @OneToMany(mappedBy="node",cascade = CascadeType.ALL)
     private List<ServiceInstance> services;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @NotNull
     @XmlTransient
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private NodeGroup nodeGroup;
 
 

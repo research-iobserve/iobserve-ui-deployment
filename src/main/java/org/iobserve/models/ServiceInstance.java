@@ -3,6 +3,7 @@ package org.iobserve.models;
 import org.iobserve.models.util.Measurable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlTransient;
@@ -15,9 +16,10 @@ import javax.xml.bind.annotation.XmlTransient;
 public class ServiceInstance extends Measurable {
     private String name;
 
+    @NotNull
+    @XmlTransient
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "node")
-    @XmlTransient
     private Node node;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

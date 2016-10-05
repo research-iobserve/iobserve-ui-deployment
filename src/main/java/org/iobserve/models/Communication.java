@@ -3,6 +3,8 @@ package org.iobserve.models;
 import org.iobserve.models.util.Measurable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.List;
 
 /**
@@ -11,10 +13,17 @@ import java.util.List;
 @Entity
 public class Communication extends Measurable{
     private String technology;
+
+    @NotNull
+    @XmlTransient
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Service source;
+
+    @NotNull
+    @XmlTransient
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Service target;
+
     @OneToMany(mappedBy = "communication", cascade = CascadeType.ALL)
     private List<CommunicationInstance> instances;
 
