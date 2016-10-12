@@ -1,14 +1,11 @@
 package org.iobserve.services;
 
 import org.glassfish.hk2.api.ServiceLocator;
-
 import org.iobserve.models.*;
-
 import org.iobserve.models.Service;
 import org.iobserve.models.dataaccessobjects.*;
 import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.EntityToDtoMapper;
-
 import org.iobserve.models.util.ChangelogOperation;
 import org.iobserve.models.util.Status;
 import org.iobserve.models.util.StatusInfo;
@@ -16,16 +13,14 @@ import org.iobserve.models.util.TimeSeries;
 import org.iobserve.services.util.EntityManagerTestSetup;
 import org.iobserve.services.websocket.ChangelogStreamService;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
+import javax.validation.ConstraintViolationException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -98,8 +93,11 @@ public class ChangelogServiceTest {
 
         this.changelogService.addChangelogs(testSystem,changelogDtoList);
 
-        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-        assertTrue(isValid);
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        } catch (Exception e) {
+            fail("validation failed");
+        }
 
         //assert that the changelog is correctly progressed
         EntityManager em = this.entityManagerFactory.createEntityManager();
@@ -141,8 +139,12 @@ public class ChangelogServiceTest {
         changelogDtoList.add(deleteChangelog);
         em.close();
 
-        boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-        assertTrue(isValid);
+
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        } catch (Exception e) {
+            fail("validation failed");
+        }
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -175,8 +177,12 @@ public class ChangelogServiceTest {
         changelogDtoList.add(deleteChangelog);
         em.close();
 
-        isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-        assertTrue(isValid);
+
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        } catch (Exception e) {
+            fail("validation failed");
+        }
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -209,8 +215,11 @@ public class ChangelogServiceTest {
         changelogDtoList.add(deleteChangelog);
         em.close();
 
-        isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-        assertTrue(isValid);
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        } catch (Exception e) {
+            fail("validation failed");
+        }
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -273,8 +282,12 @@ public class ChangelogServiceTest {
         changelogDtoList.add(2,deleteNodeChangelog);
         em.close();
 
-        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-        assertTrue(isValid);
+
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        } catch (Exception e) {
+            fail("validation failed");
+        }
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -319,8 +332,12 @@ public class ChangelogServiceTest {
 
         em.close();
 
-        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-        assertTrue(isValid);
+
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        } catch (Exception e) {
+            fail("validation failed");
+        }
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -354,8 +371,11 @@ public class ChangelogServiceTest {
 
         em.close();
 
-        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-        assertTrue(isValid);
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        } catch (Exception e) {
+            fail("validation failed");
+        }
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -385,9 +405,11 @@ public class ChangelogServiceTest {
 
         em.close();
 
-        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-
-        assertTrue(isValid);
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+        } catch (Exception e) {
+            fail("validation failed");
+        }
 
         em = this.entityManagerFactory.createEntityManager();
 
@@ -412,9 +434,13 @@ public class ChangelogServiceTest {
 
         changelogDtoList.add(createChangelog);
 
-        final boolean isValid = this.changelogService.addChangelogs(testSystem,changelogDtoList);
-        assertFalse(isValid);
 
+        try {
+            this.changelogService.addChangelogs(testSystem,changelogDtoList);
+            fail("validation did not detect");
+        } catch (Exception e) {
+            assertTrue(e instanceof ConstraintViolationException);
+        }
     }
 
 

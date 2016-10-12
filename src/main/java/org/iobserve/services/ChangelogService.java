@@ -42,49 +42,42 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         this.changelogStreamService = changelogStreamService;
     }
 
-    public synchronized boolean addChangelogs(final String systemId, List<ChangelogDto> changelogs){
+    public synchronized void addChangelogs(final String systemId, List<ChangelogDto> changelogs) throws ConstraintViolationException {
 
         final Date date = new Date();
         final Revision revision = getNextRevision(systemId);
         revision.setLastUpdate(date);
 
         //validate ChangelogList
-        final boolean valid = validate(changelogs);
+        validate(changelogs);
 
-        if(valid){
-            //process changelogs
-            for (int i = 0; i < changelogs.size(); i++) {
-                final ChangelogDto changelog = changelogs.get(i);
-                final Long changelogSequence = (long) i;
-
-                changelog.setId(generateId());
-                changelog.setSystemId(systemId);
-                changelog.setChangelogSequence(changelogSequence);
-                changelog.setLastUpdate(date);
-                changelog.setRevisionNumber(revision.getRevisionNumber());
-
-                applyChangelog(changelog);
-                persistChangelog(changelog);
-
-                revision.setChangelogSequence(changelogSequence);
-            }
-            this.changelogStreamService.broadcastChangelogs(systemId, changelogs);
-        }
-        return valid;
-    }
-
-    private boolean validate(List<ChangelogDto> changelogs) {
-        boolean valid = true;
-
+        //process changelogs
         for (int i = 0; i < changelogs.size(); i++) {
             final ChangelogDto changelog = changelogs.get(i);
-            valid = valid && validateChangelog(changelog);
+            final Long changelogSequence = (long) i;
+
+            changelog.setId(generateId());
+            changelog.setSystemId(systemId);
+            changelog.setChangelogSequence(changelogSequence);
+            changelog.setLastUpdate(date);
+            changelog.setRevisionNumber(revision.getRevisionNumber());
+
+            applyChangelog(changelog);
+            persistChangelog(changelog);
+
+            revision.setChangelogSequence(changelogSequence);
         }
-        return valid;
+        this.changelogStreamService.broadcastChangelogs(systemId, changelogs);
     }
 
-    private boolean validateChangelog(ChangelogDto changelog) {
-        boolean valid = true;
+    private void validate(List<ChangelogDto> changelogs) throws ConstraintViolationException{
+        for (int i = 0; i < changelogs.size(); i++) {
+            final ChangelogDto changelog = changelogs.get(i);
+            validateChangelog(changelog);
+        }
+    }
+
+    private void validateChangelog(ChangelogDto changelog) throws ConstraintViolationException {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         DataTransportObject dto = changelog.getData();
@@ -93,15 +86,11 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
         final BaseEntity entity = service.transformDtoToModel(dto);
 
-        try{
-            Set<ConstraintViolation<BaseEntity>> constraintViolations = validator.validate(entity);
+        Set<ConstraintViolation<BaseEntity>> constraintViolations = validator.validate(entity);
 
-            if(constraintViolations.size() > 0) valid = false;
-
-        }catch (Exception e){
-            valid = false;
+        if(constraintViolations.size() > 0) {
+            throw new ConstraintViolationException("Changelog is invalid", constraintViolations);
         }
-        return valid;
     }
 
 
