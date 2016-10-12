@@ -8,7 +8,6 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -28,10 +27,7 @@ public class ChangelogResource {
 
     @POST
     @Path("/systems/{systemId}/changelogs")
-    public Response postChangelog(@PathParam("systemId") String id, @Valid List<ChangelogDto> changelogs) throws ConstraintViolationException {
+    public void postChangelog(@PathParam("systemId") String id, @Valid List<ChangelogDto> changelogs) throws ConstraintViolationException {
         service.addChangelogs(id, changelogs);
-
-        return Response.status(200).type("text/plain")
-                .entity("ok").build();
     }
 }
