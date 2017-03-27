@@ -12,6 +12,8 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
+* `npm install -g bower`
+* `npm install -g ember-cli`
 * `npm install`
 * `bower install`
 
