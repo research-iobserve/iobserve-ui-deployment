@@ -15,7 +15,10 @@ import java.util.*;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 public class TestSystemCreator {
-    private final Random random;
+    private static final String REST = "REST";
+    private static final String TCP = "TCP/IP";
+    
+	private final Random random;
     private final EntityManagerFactory entityManagerFactory;
 
     @Inject
@@ -39,266 +42,141 @@ public class TestSystemCreator {
         system.setName("Test System");
 
         // nodes
-        Node node1 = prepareDummy(new Node(), systemId, "node", 1);
-        node1.setName("WebNode");
-        node1.setHostname("test hostname");
-        node1.setIp("10.0.0.1");
-        generateSeries(node1, "Utilization", "%");
-        generateSeries(node1, "Power Consumption", "kWh");
-
-
-        Node node2 = prepareDummy(new Node(), systemId, "node", 2);
-        node2.setName("LogicNode");
-        node2.setHostname("host2");
-        node2.setIp("10.0.0.2");
-        generateSeries(node2, "Utilization", "%");
-        generateSeries(node2, "Power Consumption", "kWh");
-
-        Node node3 = prepareDummy(new Node(), systemId, "node", 3);
-        node3.setName("Adapter");
-        node3.setHostname("host3");
-        node3.setIp("10.0.0.2");
-        generateSeries(node3, "Utilization", "%");
-        generateSeries(node3, "Power Consumption", "kWh");
-
-        Node node4 = prepareDummy(new Node(), systemId, "node", 4);
-        node4.setName("DataCenter");
-        node4.setHostname("host4");
-        node4.setIp("10.0.0.2");
-        generateSeries(node4, "Utilization", "%");
-        generateSeries(node4, "Power Consumption", "kWh");
-
+        Node webFrontendNode = createNode(systemId, "node", 1, "Web Frontend", "web-frontend", "172.17.0.2", 20, 40);
+        Node storeServiceNode = createNode(systemId, "node", 2, "Store Service", "store1", "172.17.0.4", 40, 70);
+        Node enterpriseServiceNode = createNode(systemId, "node", 3, "Enterprise Service", "enterprise", "172.17.0.5", 2, 3);
+        Node registryServiceNode = createNode(systemId, "node", 4, "Registry Service", "register", "172.17.0.3", 0, 1);
+        Node serviceAdapterNode = createNode(systemId, "node", 5, "Service Adapter", "adapter", "172.17.0.6", 2, 7);
+        Node databaseNode = createNode(systemId, "node", 6, "Data Center", "psql1", "172.17.0.8", 1, 2);
 
         // node group - has both nodes
         NodeGroup nodeGroup1 = prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
         nodeGroup1.setName("CoCoME");
-        nodeGroup1.setNodes(Arrays.asList(node1, node2, node3, node4));
-        generateSeries(node3, "Sub-Nodes","Number of Sub-Nodes");
-        generateSeries(node3, "Errors","Number of Errors");
+        nodeGroup1.setNodes(Arrays.asList(webFrontendNode, storeServiceNode, enterpriseServiceNode, registryServiceNode, serviceAdapterNode, databaseNode));
 
-        node1.setNodeGroup(nodeGroup1);
-        node2.setNodeGroup(nodeGroup1);
-        node3.setNodeGroup(nodeGroup1);
-        node4.setNodeGroup(nodeGroup1);
-
-
+        webFrontendNode.setNodeGroup(nodeGroup1);
+        storeServiceNode.setNodeGroup(nodeGroup1);
+        enterpriseServiceNode.setNodeGroup(nodeGroup1);
+        registryServiceNode.setNodeGroup(nodeGroup1);
+        serviceAdapterNode.setNodeGroup(nodeGroup1);
+        databaseNode.setNodeGroup(nodeGroup1);
+        
         // service instances
-        ServiceInstance serviceInstance1 = prepareDummy(new ServiceInstance("Frontend"), systemId, "serviceInstance", 1);
-        serviceInstance1.setNode(node1);
-        generateSeries(serviceInstance1, "Failures","Number of Failures");
-        generateSeries(serviceInstance1, "Queries","Number of Queries");
-
-        ServiceInstance serviceInstance2 = prepareDummy(new ServiceInstance("WebService"), systemId, "serviceInstance", 2);
-        serviceInstance2.setNode(node2);
-        generateSeries(serviceInstance2, "Failures","Number of Failures");
-        generateSeries(serviceInstance2, "Queries","Number of Queries");
-
-        ServiceInstance serviceInstance3 = prepareDummy(new ServiceInstance("CashDesk"), systemId, "serviceInstance", 3);
-        serviceInstance3.setNode(node2);
-        generateSeries(serviceInstance3, "Failures","Number of Failures");
-        generateSeries(serviceInstance3, "Queries","Number of Queries");
-
-        ServiceInstance serviceInstance4 = prepareDummy(new ServiceInstance("Inventory"), systemId, "serviceInstance", 4);
-        serviceInstance4.setNode(node2);
-        serviceInstance4.setStatus(Status.WARNING);
-        generateSeries(serviceInstance4, "Failures","Number of Failures");
-        generateSeries(serviceInstance4, "Queries","Number of Queries");
-
-        ServiceInstance serviceInstance5 = prepareDummy(new ServiceInstance("Data"), systemId, "serviceInstance", 5);
-        serviceInstance5.setNode(node3);
-        generateSeries(serviceInstance5, "Failures","Number of Failures");
-        generateSeries(serviceInstance5, "Queries","Number of Queries");
-
-        ServiceInstance serviceInstance6 = prepareDummy(new ServiceInstance("Database"), systemId, "serviceInstance", 6);
-        serviceInstance6.setNode(node4);
-        generateSeries(serviceInstance6, "Failures","Number of Failures");
-        generateSeries(serviceInstance6, "Queries","Number of Queries");
-
+        /** webfrontend */
+        ServiceInstance cloudWebInstance = createServiceInstance(webFrontendNode, "org.cocome.cloud .web", 20, 40, systemId, 1);      
+        /** store service */
+        ServiceInstance storeCashdeskInstance = createServiceInstance(storeServiceNode, "org.cocome.cloud .logic.webservice .cashdeskline.cashdesk", 5, 8, systemId, 2);
+        ServiceInstance storeTradingsystemCashdesklineInstance = createServiceInstance(storeServiceNode, "org.cocome .tradingsystem .cashdeskline", 7, 9, systemId, 3);
+        ServiceInstance storeTradingsystemInventoryInstance = createServiceInstance(storeServiceNode, "org.cocome .tradingsystem .inventory", 92, 95, systemId, 4);
+        storeTradingsystemInventoryInstance.setStatus(Status.WARNING);
+        /** registry service */
+        ServiceInstance registryServiceInstance = createServiceInstance(registryServiceNode, "org.cocome.cloud .registry.service", 0, 1, systemId, 5);
+        /** enterprise service */
+        ServiceInstance enterpriseInventoryInstance = createServiceInstance(enterpriseServiceNode, "org.cocome .tradingsystem .inventory", 1, 2, systemId, 6);
+        ServiceInstance enterpriseServiceInstance = createServiceInstance(enterpriseServiceNode, "org.cocome.cloud .webservice .enterpriseservice", 0, 1, systemId, 7);
+        /** service adapter */
+        ServiceInstance serviceAdapterInstance = createServiceInstance(serviceAdapterNode, "org.cocome.cloud .sa.serviceprovider", 2, 7, systemId, 8);
+        /** database */
+        ServiceInstance databaseInstance = createServiceInstance(databaseNode, "Postgres", 1, 2, systemId, 9);
+        
         // create services
-        Service service1 = prepareDummy(new Service(), systemId, "service", 1);
-        service1.setName("Front End");
-        service1.setDescription("A dummy description!");
-        generateSeries(service1, "Failures","Number of Failures");
-        generateSeries(service1, "Queries","Number of Queries");
+        /** web frontend */
+        Service cloudWebservice = createService("org.cocome.cloud.web", "", systemId, 1);
+ 
+        /** store service */
+        Service storeCashdeskService = createService("org.cocome.cloud .logic.webservice .cashdeskline.cashdesk", "", systemId, 2);
+        Service storeTradingsystemCashdesklineService = createService("org.cocome .tradingsystem .cashdeskline", "", systemId, 3);
+        Service storeTradingsystemInventoryService = createService("org.cocome .tradingsystem .inventory", "", systemId, 4);
+       
+        /** registry service */
+        Service registryService = createService("org.cocome.cloud .registry.service", "", systemId, 5);
 
-        Service service2 = prepareDummy(new Service(), systemId, "service", 2);
-        service2.setName("WebService");
-        service2.setDescription("Another dummy description");
-        generateSeries(service2, "Failures","Number of Failures");
-        generateSeries(service2, "Queries","Number of Queries");
+        /** enterprise service */
+        Service enterpriseInventoryService = createService("org.cocome .tradingsystem .inventory", "", systemId, 6);
+        Service enterpriseService = createService("org.cocome.cloud .webservice .enterpriseservice", "", systemId, 7);
 
-        Service service3 = prepareDummy(new Service(), systemId, "service", 3);
-        service3.setName("CashDesk");
-        service3.setDescription("Another dummy description");
-        generateSeries(service3, "Failures","Number of Failures");
-        generateSeries(service3, "Queries","Number of Queries");
+        /** service adapter */
+        Service serviceAdapter = createService("org.cocome.cloud .sa.serviceprovider", "", systemId, 8);
 
-        Service service4 = prepareDummy(new Service(), systemId, "service", 4);
-        service4.setName("Inventory");
-        service4.setDescription("Another dummy description");
-        generateSeries(service4, "Failures","Number of Failures");
-        generateSeries(service4, "Queries","Number of Queries");
-
-        Service service5 = prepareDummy(new Service(), systemId, "service", 5);
-        service5.setName("Data");
-        service5.setDescription("Another dummy description");
-        generateSeries(service5, "Failures","Number of Failures");
-        generateSeries(service5, "Queries","Number of Queries");
-
-        Service service6 = prepareDummy(new Service(), systemId, "service", 6);
-        service6.setName("PostgreSQL");
-        service6.setDescription("Another dummy description");
-        generateSeries(service6, "Failures","Number of Failures");
-        generateSeries(service6, "Queries","Number of Queries");
-
-
+        /** database */
+        Service databaseService = createService("Postgres", "", systemId, 9);
 
         // link service to instances and backwards
-        serviceInstance1.setService(service1);
-        service1.setInstances(Collections.singletonList(serviceInstance1));
+        link(cloudWebInstance, cloudWebservice);
 
-        serviceInstance2.setService(service2);
-        service2.setInstances(Collections.singletonList(serviceInstance2));
+        link(storeCashdeskInstance, storeCashdeskService);
+        link(storeTradingsystemCashdesklineInstance, storeTradingsystemCashdesklineService);
+        link(storeTradingsystemInventoryInstance, storeTradingsystemInventoryService);
 
-        serviceInstance3.setService(service3);
-        service3.setInstances(Collections.singletonList(serviceInstance3));
+        link(registryServiceInstance, registryService);
 
-        serviceInstance4.setService(service4);
-        service4.setInstances(Collections.singletonList(serviceInstance4));
+        link(enterpriseInventoryInstance, enterpriseInventoryService);
+        link(enterpriseServiceInstance, enterpriseService);
 
-        serviceInstance5.setService(service5);
-        service5.setInstances(Collections.singletonList(serviceInstance5));
+        link(serviceAdapterInstance, serviceAdapter);
 
-        serviceInstance6.setService(service6);
-        service6.setInstances(Collections.singletonList(serviceInstance6));
+        link(databaseInstance, databaseService);
 
-        // write services back to node
-        node1.setServices(Collections.singletonList(serviceInstance1));
-        node2.setServices(Collections.singletonList(serviceInstance2));
-        node2.setServices(Collections.singletonList(serviceInstance3));
-        node2.setServices(Collections.singletonList(serviceInstance4));
-        node3.setServices(Collections.singletonList(serviceInstance5));
-        node4.setServices(Collections.singletonList(serviceInstance6));
+        /** write services back to node */
+        webFrontendNode.setServices(Collections.singletonList(cloudWebInstance));
+        
+        storeServiceNode.setServices(Collections.singletonList(storeCashdeskInstance));
+        storeServiceNode.setServices(Collections.singletonList(storeTradingsystemCashdesklineInstance));
+        storeServiceNode.setServices(Collections.singletonList(storeTradingsystemInventoryInstance));
 
-        // communication instances - duplex communication
-        CommunicationInstance communicationInstance1 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 1);
-        communicationInstance1.setSource(serviceInstance1);
-        communicationInstance1.setTarget(serviceInstance2);
-        generateSeries(communicationInstance1, "Connections","Number of Connections");
-        generateSeries(communicationInstance1, "Lost Packages","Number of Lost Packages");
+        registryServiceNode.setServices(Collections.singletonList(registryServiceInstance));
+        
+        enterpriseServiceNode.setServices(Collections.singletonList(enterpriseInventoryInstance));
+        enterpriseServiceNode.setServices(Collections.singletonList(enterpriseServiceInstance));
+        
+        serviceAdapterNode.setServices(Collections.singletonList(serviceAdapterInstance));
 
-        CommunicationInstance communicationInstance2 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 2);
-        communicationInstance2.setSource(serviceInstance2);
-        communicationInstance2.setTarget(serviceInstance3);
-        generateSeries(communicationInstance2, "Connections","Number of Connections");
-        generateSeries(communicationInstance2, "Lost Packages","Number of Lost Packages");
+        databaseNode.setServices(Collections.singletonList(databaseInstance));
 
+        
+        /** communication instances - duplex communication */
+        CommunicationInstance comInstance1 = createCommunication(cloudWebInstance, storeCashdeskInstance, systemId, 1);
+        
+        CommunicationInstance comInstance2 = createCommunication(storeCashdeskInstance, storeTradingsystemCashdesklineInstance, systemId, 2);
+        CommunicationInstance comInstance3 = createCommunication(storeTradingsystemCashdesklineInstance, storeTradingsystemInventoryInstance, systemId, 3);
+        CommunicationInstance comInstance4 = createCommunication(storeTradingsystemInventoryInstance, serviceAdapterInstance, systemId, 4);
+        CommunicationInstance comInstance5 = createCommunication(storeTradingsystemInventoryInstance, enterpriseInventoryInstance, systemId, 5);
 
-        CommunicationInstance communicationInstance3 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 3);
-        communicationInstance3.setSource(serviceInstance3);
-        communicationInstance3.setTarget(serviceInstance4);
-        generateSeries(communicationInstance3, "Connections","Number of Connections");
-        generateSeries(communicationInstance3, "Lost Packages","Number of Lost Packages");
+        CommunicationInstance comInstance6 = createCommunication(serviceAdapterInstance, databaseInstance, systemId, 6);
+        
+        CommunicationInstance comInstance7 = createCommunication(enterpriseInventoryInstance, enterpriseServiceInstance, systemId, 7);
+        CommunicationInstance comInstance8 = createCommunication(enterpriseServiceInstance, serviceAdapterInstance, systemId, 8);
+        
+        CommunicationInstance comInstance9 = createCommunication(storeTradingsystemInventoryInstance, registryServiceInstance, systemId, 9);
+        CommunicationInstance comInstance10 = createCommunication(enterpriseServiceInstance, registryServiceInstance, systemId, 10);
 
-        CommunicationInstance communicationInstance4 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 4);
-        communicationInstance4.setSource(serviceInstance3);
-        communicationInstance4.setTarget(serviceInstance5);
-        generateSeries(communicationInstance4, "Connections","Number of Connections");
-        generateSeries(communicationInstance4, "Lost Packages","Number of Lost Packages");
-
-        CommunicationInstance communicationInstance5 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 5);
-        communicationInstance5.setSource(serviceInstance4);
-        communicationInstance5.setTarget(serviceInstance5);
-        generateSeries(communicationInstance5, "Connections","Number of Connections");
-        generateSeries(communicationInstance5, "Lost Packages","Number of Lost Packages");
-
-        CommunicationInstance communicationInstance6 = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", 6);
-        communicationInstance6.setSource(serviceInstance5);
-        communicationInstance6.setTarget(serviceInstance6);
-        generateSeries(communicationInstance6, "Connections","Number of Connections");
-        generateSeries(communicationInstance6, "Lost Packages","Number of Lost Packages");
 
         // communications - duplex
-        Communication communication1 = prepareDummy(new Communication(), systemId, "communication", 1);
-        communication1.setSource(service1);
-        communication1.setTarget(service2);
-        communication1.setTechnology("REST");
-        generateSeries(communication1, "Connections","Number of Connections");
-        generateSeries(communication1, "Lost Packages","Number of Lost Packages");
+        Communication communication1 = createCommunication(cloudWebservice, storeCashdeskService, REST, comInstance1, systemId, 1);
+    
+        Communication communication2 = createCommunication(storeCashdeskService, storeTradingsystemCashdesklineService, TCP, comInstance2, systemId, 2);
+        Communication communication3 = createCommunication(storeTradingsystemCashdesklineService, storeTradingsystemInventoryService, TCP, comInstance3, systemId, 3);
+        Communication communication4 = createCommunication(storeTradingsystemInventoryService, serviceAdapter, TCP, comInstance4, systemId, 4);
+        Communication communication5 = createCommunication(storeTradingsystemInventoryService, serviceAdapter, TCP, comInstance5, systemId, 5);
+        
+        Communication communication6 = createCommunication(serviceAdapter, databaseService, TCP, comInstance6, systemId, 6);
+        
+        Communication communication7 = createCommunication(enterpriseInventoryService, enterpriseService, TCP, comInstance7, systemId, 7);
+        Communication communication8 = createCommunication(enterpriseService, serviceAdapter, TCP, comInstance8, systemId, 8);
+        
+        Communication communication9 = createCommunication(storeTradingsystemInventoryService, registryService, TCP, comInstance9, systemId, 9);
+        Communication communication10 = createCommunication(enterpriseService, registryService, TCP, comInstance10, systemId, 10);
 
-        Communication communication2 = prepareDummy(new Communication(), systemId, "communication", 2);
-        communication2.setSource(service2);
-        communication2.setTarget(service3);
-        communication2.setTechnology("TCP/IP");
-        generateSeries(communication2, "Connections","Number of Connections");
-        generateSeries(communication2, "Lost Packages","Number of Lost Packages");
-
-        Communication communication3 = prepareDummy(new Communication(), systemId, "communication", 3);
-        communication3.setSource(service3);
-        communication3.setTarget(service4);
-        communication3.setTechnology("TCP/IP");
-        generateSeries(communication3, "Connections","Number of Connections");
-        generateSeries(communication3, "Lost Packages","Number of Lost Packages");
-
-
-        Communication communication4 = prepareDummy(new Communication(), systemId, "communication", 4);
-        communication4.setSource(service3);
-        communication4.setTarget(service5);
-        communication4.setTechnology("TCP/IP");
-        generateSeries(communication4, "Connections","Number of Connections");
-        generateSeries(communication4, "Lost Packages","Number of Lost Packages");
-
-
-        Communication communication5 = prepareDummy(new Communication(), systemId, "communication", 5);
-        communication5.setSource(service4);
-        communication5.setTarget(service5);
-        communication5.setTechnology("TCP/IP");
-        generateSeries(communication5, "Connections","Number of Connections");
-        generateSeries(communication5, "Lost Packages","Number of Lost Packages");
-
-        Communication communication6 = prepareDummy(new Communication(), systemId, "communication", 6);
-        communication6.setSource(service5);
-        communication6.setTarget(service6);
-        communication6.setTechnology("TCP/IP");
-        generateSeries(communication6, "Connections","Number of Connections");
-        generateSeries(communication6, "Lost Packages","Number of Lost Packages");
-
-
-
-        communication1.setInstances(Collections.singletonList(communicationInstance1));
-        communication2.setInstances(Collections.singletonList(communicationInstance2));
-        communication3.setInstances(Collections.singletonList(communicationInstance3));
-        communication4.setInstances(Collections.singletonList(communicationInstance4));
-        communication5.setInstances(Collections.singletonList(communicationInstance5));
-        communication6.setInstances(Collections.singletonList(communicationInstance6));
-
-        communicationInstance1.setCommunication(communication1);
-        communicationInstance1.addStatusInformation(createInfo(communication1,"connections", "10"));
-        communicationInstance1.setWorkload(10L);
-
-        communicationInstance2.setCommunication(communication2);
-        communicationInstance2.addStatusInformation(createInfo(communication2,"connections", "20"));
-        communicationInstance2.setWorkload(20L);
-
-        communicationInstance3.setCommunication(communication3);
-        communicationInstance3.addStatusInformation(createInfo(communication2,"connections", "10"));
-        communicationInstance3.setWorkload(10L);
-
-        communicationInstance4.setCommunication(communication4);
-        communicationInstance4.addStatusInformation(createInfo(communication4,"connections", "15"));
-        communicationInstance4.setWorkload(15L);
-
-        communicationInstance5.setCommunication(communication5);
-        communicationInstance5.addStatusInformation(createInfo(communication5,"connections", "10"));
-        communicationInstance5.setWorkload(10L);
-
-        communicationInstance6.setCommunication(communication6);
-        communicationInstance6.addStatusInformation(createInfo(communication6,"connections", "15"));
-        communicationInstance6.setWorkload(15L);
-
-
-        system.setCommunications(Arrays.asList(communication1, communication2, communication3,communication4,communication5, communication6));
-        system.setServices(Arrays.asList(service1, service2, service3, service4,service5,service6));
+        system.setCommunications(Arrays.asList(communication1, communication2, communication3,communication4,communication5, communication6, communication7, communication8, communication9, communication10));
+        system.setServices(Arrays.asList(cloudWebservice, 
+        		storeCashdeskService, 
+        		storeTradingsystemCashdesklineService, 
+        		storeTradingsystemInventoryService, 
+        		enterpriseInventoryService, 
+        		enterpriseService,
+        		registryService,
+        		serviceAdapter,
+        		databaseService));
         system.setNodeGroups(Collections.singletonList(nodeGroup1));
 
         EntityTransaction tx = entityManager.getTransaction();
@@ -307,7 +185,119 @@ public class TestSystemCreator {
         tx.commit();
         entityManager.close();
     }
+    
+    /**
+     * 
+     * @param source
+     * @param target
+     * @param technology
+     * @param systemId
+     * @param counter
+     * @return
+     */
+    private Communication createCommunication(Service source, Service target, String technology, CommunicationInstance communicationInstance, String systemId, int counter) {
+	    Communication communication = prepareDummy(new Communication(), systemId, "communication", counter);
+	    communication.setSource(source);
+	    communication.setTarget(target);
+	    communication.setTechnology(technology);
+	    
+        communication.setInstances(Collections.singletonList(communicationInstance));
+        
+        communicationInstance.setCommunication(communication);
+        communicationInstance.addStatusInformation(createInfo(communication,"connections", randomNumber(5,30).toString()));
+        communicationInstance.setWorkload(10L);
+	    
+	    return communication;
+    }
 
+    
+    private Integer randomNumber(int i, int j) {
+		return random.nextInt()%(j-i)+i;
+	}
+
+	/**
+     * 
+     * @param source
+     * @param target
+     * @param systemId
+     * @param counter
+     */
+    private CommunicationInstance createCommunication(ServiceInstance source, ServiceInstance target, String systemId, int counter) {
+    	CommunicationInstance communicationInstance = prepareDummy(new CommunicationInstance(), systemId, "communicationInstance", counter);
+    	communicationInstance.setSource(source);
+    	communicationInstance.setTarget(target);
+    	
+    	return communicationInstance;
+    }
+    /**
+     * Link service to service instance.
+     * 
+     * @param instance
+     * @param service
+     */
+    private void link(ServiceInstance instance, Service service) {
+    	instance.setService(service);
+        service.setInstances(Collections.singletonList(instance));
+	}
+
+	private Service createService(String name, String description, String systemId, int counter) {
+	    Service service = prepareDummy(new Service(), systemId, "service", counter);
+	    service.setName(name);
+	    service.setDescription(description);
+        generateSeries(service, "Requests","Number of Requests", 5, 8);
+        
+        return service;
+    }
+    
+    /**
+     * Create an instance of a service.
+     * 
+     * @param node the node where the service is deployed
+     * @param instanceName name of the instance
+     * @param systemId system id
+     * @param counter counter
+     * 
+     * @return the service instance
+     */
+    private ServiceInstance createServiceInstance(Node node, String instanceName, int low, int high, String systemId, int counter) {
+    	ServiceInstance serviceInstance = prepareDummy(new ServiceInstance(instanceName), systemId, "serviceInstance", counter);
+    	serviceInstance.setNode(node);
+        generateSeries(serviceInstance, "Requests","Number of Requests", low*15, high*15);
+		return serviceInstance;
+	}
+
+	/**
+     * Create one service node.
+     * 
+     * @param systemId the id of the software system this node belongs to
+     * @param prefix 
+     * @param counter 
+     * @param name name of the node to be displayed
+     * @param hostname hostname of then node
+     * @param ip ip address of the node
+     * 
+     * @return returns a node for the visualization
+     */
+    private Node createNode(String systemId, String prefix, int counter, String name, String hostname, String ip, int low, int high) {
+    	Node node = prepareDummy(new Node(), systemId, prefix, counter);
+        node.setName(name);
+        node.setHostname(hostname);
+        node.setIp(ip);
+        generateSeries(node, "Utilization", "%", low, high);
+        
+        return node;
+    }
+
+    /**
+     * Configure a given object.
+     * 
+     * @param bean the object
+     * @param systemId the system id
+     * @param prefix the common prefix for this type of object
+     * @param counter the counter id.
+     * 
+     * @return returns the configured object
+     */
     private <Bean extends RevisionedBean> Bean prepareDummy(Bean bean, String systemId, String prefix, int counter) {
         bean.setId(generateTestId(systemId, prefix, counter));
         bean.setSystemId(systemId);
@@ -336,7 +326,7 @@ public class TestSystemCreator {
         return UUID.randomUUID().toString();
     }
 
-    private Measurable generateSeries(Measurable parent, String label, String axisLabel){
+    private Measurable generateSeries(Measurable parent, String label, String axisLabel, int low, int high) {
         final Integer numObj = 10;
         final Random random = new Random();
         Calendar cal = Calendar.getInstance();
@@ -355,7 +345,7 @@ public class TestSystemCreator {
         for (int j = 0; j <numObj ; j++) {
             final SeriesElement elem = new SeriesElement();
             elem.setId(generateId());
-            elem.setValue(random.nextInt(numObj));
+            elem.setValue(random.nextInt()%(high-low)+low);
             elem.setTimestamp(yesterday.getTime()+(j*60000));
             elem.setParentId(timeSeries.getId());
             elem.setParentType(timeSeries.getClass().toString());

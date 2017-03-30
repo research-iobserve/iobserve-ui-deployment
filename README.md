@@ -19,3 +19,12 @@ To start the server, run:
 
 
 Please note that the Heroku deployment uses `jetty-runner` which does not provide Websocket support.
+
+# Populate database with test data
+
+Before you can start the service the first time, send a post request to
+the backend to create an software system.
+
+`curl -XPOST http://localhost:8080/v1/systems/createTest/CoCoME`
+
+

@@ -205,7 +205,7 @@
                 <configuration>
                     <!--<jettyXml>${project.build.directory}/${project.build.finalName}-jetty.xml</jettyXml>-->
                     <httpConnector>
-                        <port>8080</port>
+                        <port>9090</port>
                     </httpConnector>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
                     <webApp>
