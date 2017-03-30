@@ -26,7 +26,7 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  app.import('bower_components/webcola/WebCola/cola.js');
+  app.import('bower_components/webcola/WebCola/cola.min.js');
   app.import('bower_components/Flot/jquery.flot.js'); // time-series-plot component
   app.import('bower_components/Flot/jquery.flot.time.js');
   app.import('bower_components/Flot/jquery.flot.resize.js');

@@ -17,10 +17,10 @@ node { /* all nodes */
     shape: roundrectangle;
     text-valign: center;
     text-halign: center;
-    width: 100px;
+    width: 150px;
     height: 60px;
     text-wrap: wrap;
-    text-max-width: 100px;
+    text-max-width: 150px;
 }
 
 $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node that has a node instead of the node (as css would) */
