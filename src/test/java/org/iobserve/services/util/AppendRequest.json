@@ -1,0 +1,41 @@
+[{
+  "type":"changelog",
+  "operation":"APPEND",
+  "data":{
+    "type":"timeSeries",
+    "id": "test-system123-timeSeries-100",
+    "parentId": "test-system123-node-1",
+    "label": "TestValues",
+    "valueLabel":"TestLabel",
+    "series":[
+      {
+        "type":"seriesElement",
+        "id": "test-system123-seriesElement-100",
+        "seriesId":"test-system123-timeSeries-100",
+        "value":"1",
+        "timestamp":"1468063952600"
+      },
+      {
+        "type":"seriesElement",
+        "id": "test-system123-seriesElement-101",
+        "seriesId":"test-system123-timeSeries-100",
+        "value":"2",
+        "timestamp":"1468064952600"
+      },
+      {
+        "type":"seriesElement",
+        "id": "test-system123-seriesElement-102",
+        "seriesId":"test-system123-timeSeries-100",
+        "value":"3",
+        "timestamp":"1468065952600"
+      },
+      {
+        "type":"seriesElement",
+        "id": "test-system123-seriesElement-103",
+        "seriesId":"test-system123-timeSeries-100",
+        "value":"2",
+        "timestamp":"1468066952600"
+      }
+    ]
+  }
+}]
