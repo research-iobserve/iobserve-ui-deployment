@@ -25,6 +25,6 @@ Please note that the Heroku deployment uses `jetty-runner` which does not provid
 Before you can start the service the first time, send a post request to
 the backend to create an software system.
 
-`curl -XPOST http://localhost:8080/v1/systems/createTest/CoCoME`
+`curl -XPOST http://localhost:9090/v1/systems/createTest/CoCoME`
 
 
