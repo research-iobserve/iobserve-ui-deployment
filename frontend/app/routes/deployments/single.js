@@ -148,7 +148,7 @@ export default Route.extend({
   },
   actions: {
     error: function(err) {
-        debugger
+       // debugger
         if(err === 'outdated') {
             // wait a bit to avoid DDOS, TODO: exponential backoff?
             this.debug('data is outdated, refreshing data');

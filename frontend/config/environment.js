@@ -38,8 +38,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.APP.API_ROOT = 'http://192.168.48.222:8080';
-    ENV.APP.WEBSOCKET_ROOT = 'ws://192.168.48.222:8080';
+    ENV.APP.API_ROOT = 'http://localhost:9090';
+    ENV.APP.WEBSOCKET_ROOT = 'ws://localhost:9090';
     ENV.APP.WEBSOCKET_RECONNECT = true;
 
     }
