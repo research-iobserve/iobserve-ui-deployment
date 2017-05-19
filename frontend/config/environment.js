@@ -4,7 +4,7 @@ module.exports = function(environment) {
     const ENV = {
         modulePrefix: 'iobserve-ui',
         environment: environment,
-        baseURL: '/',
+        rootURL: '/',
         locationType: 'auto',
         EmberENV: {
           FEATURES: {
