@@ -48,14 +48,41 @@ export default Ember.Service.extend({
         data.target = data.targetId;
         data.label = data.technology;
 
+
         const instanceList = this.get('store').peekAll('communicationinstance')
             .filter((instance) => instance.get('communicationId') === data.id );
 
+        //width of communication lines normalized 
+        const min_width = 1;
+        const max_width = 16;
+        var min_calls = Number.MAX_SAFE_INTEGER;
+        var max_calls = 0;
+
+        this.get('store').peekAll('communicationinstance').forEach((instance) => {
+            
+            if (instance.get('workload') > max_calls){
+                max_calls = instance.get('workload');
+            }
+
+            if (instance.get('workload') < min_calls){
+                min_calls = instance.get('workload');
+            }
+        });
+
         data.workload = instanceList.reduce((previous, instance) => previous + instance.get('workload'), 0);
+        
+        if (min_calls === max_calls){
+        data.workload = max_width;        
+        } else {
+        const a = (max_width - min_width)/(Math.log(max_calls)- Math.log(min_calls));
+        const b = max_width - a * Math.log(max_calls);
 
-        //TODO Normalize
+        data.workload = a * Math.log(data.workload) + b;
+        }
 
-        network.edges.push({
+       
+        
+    network.edges.push({
             data,
             classes: data.status || ''
         });
