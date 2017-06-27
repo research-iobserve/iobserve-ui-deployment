@@ -51,11 +51,11 @@ public class TestSystemCreator {
         final System oldSystem = entityManager.find(System.class, systemId);
         if (oldSystem != null) {
             final EntityTransaction tx = entityManager.getTransaction();
-            tx.begin();
+            tx.begin(); // fehler zurückgeben
             entityManager.remove(oldSystem);
             tx.commit();
         }
-        final System system = new System();
+        final System system = new System(); // system anhand der dto erstellen
         system.setId(systemId);
         system.setName("Test System");
 
@@ -434,7 +434,7 @@ public class TestSystemCreator {
         final Integer numObj = 10;
         final Long timestamp = new Date().getTime();
         final List<StatusInfo> infos = new LinkedList<>();
-
+    
         for (int i = 0; i < numObj ; i++) {
             final StatusInfo info = new StatusInfo(timestamp, "Key", "Value");
             info.setId(generateId());
@@ -443,44 +443,44 @@ public class TestSystemCreator {
         }
         return infos;
     }
-
+    
     public void setRevision(RevisionedBean bean){
         bean.setRevisionNumber(0L);
         bean.setChangelogSequence(0L);
         bean.setLastUpdate(new Date());
     }
-
+    
     private StatusInfo createCommunicationStatusInfo(Measurable parent){
         final StatusInfo info = new StatusInfo();
         info.setTimestamp(new Date().getTime());
         info.setKey("connections");
         info.setValue(random.nextInt(500) + "");
-
+    
         addParent(info, parent);
         return info;
     }
-
+    
     private StatusInfo createRandomInfo(){
         return createInfo("info", random.nextInt(200)+"");
     }
-
-
-
-
+    
+    
+    
+    
     private TimeSeries createRandomSeries() {
         return createRandomSeries(20);
     }
-
+    
     private void addParent(NestedMeasurement base, Measurable parent) {
         base.setParentId(parent.getId());
         base.setParentType(ModelType.getForModel(parent.getClass()).getType());
     }
-
+    
     private TimeSeries createRandomSeries(int size){
         final TimeSeries series = new TimeSeries();
         series.setId(generateId());
         final List<SeriesElement> list = new LinkedList<>();
-
+    
         for (int i = 0; i < size; i++) {
             final SeriesElement element = new SeriesElement();
             element.setValue(random.nextInt(100));
