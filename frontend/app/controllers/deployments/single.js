@@ -13,6 +13,7 @@ const observables = [
     'communicationInstances',
     'communications',
     'services',
+    'usergroups',
 ];
 
 /**

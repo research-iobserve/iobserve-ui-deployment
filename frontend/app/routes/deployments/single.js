@@ -47,7 +47,8 @@ export default Route.extend({
         'service',
         'communication',
         'communicationinstance',
-        'nodegroup'
+        'nodegroup',
+        'usergroup'
     ].forEach((modelName) => this.store.unloadAll(modelName)); // fresh start to avoid "outdated" from cached instances
 
     return this.loadSystem(systemId)
@@ -118,7 +119,8 @@ export default Route.extend({
         services: load('service'),
         serviceInstances: load('serviceinstance'),
         communications: load('communication'),
-        communicationInstances: load('communicationinstance')
+        communicationInstances: load('communicationinstance'),
+        usergroups: load('usergroup')
     });
   },
 
