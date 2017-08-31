@@ -2,9 +2,9 @@ import Measurable from './measurable';
 import attr from 'ember-data/attr';
 
 /**
- * Arbitrary logical grouping of several nodes.
+ * 
  *
- * @class NodeGroupModel
+ * @class UserGroupModel
  * @extends MeasurableModel
  */
 const Model = Measurable.extend({
