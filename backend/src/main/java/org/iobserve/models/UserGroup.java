@@ -2,22 +2,34 @@ package org.iobserve.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import org.iobserve.models.util.Measurable;
 
 @Entity
+// @XmlAccessorType(XmlAccessType.FIELD)
 public class UserGroup extends Measurable {
 
     private String name;
 
     @ElementCollection
-    private List<Service> invokedServices;
+    @OneToMany(mappedBy = "usergroup", cascade = CascadeType.ALL)
+    private List<Service> services;
+
+    private String usergroupId;
+    private String serviceId;
 
     public UserGroup() {
         super();
+    }
+
+    public UserGroup(final String name, final List<Service> calledServices) {
+        this.name = name;
+        this.services = calledServices;
     }
 
     public String getName() {
@@ -31,11 +43,27 @@ public class UserGroup extends Measurable {
     @ElementCollection
     @Column(name = "services")
     public List<Service> getServices() {
-        return this.invokedServices;
+        return this.services;
     }
 
     public void setServices(final List<Service> services) {
-        this.invokedServices = services;
+        this.services = services;
+    }
+
+    public String getUsergroupId() {
+        return this.usergroupId;
+    }
+
+    public void setUsergroupId(final String usergroupId) {
+        this.usergroupId = usergroupId;
+    }
+
+    public String getServiceId() {
+        return this.serviceId;
+    }
+
+    public void setServiceId(final String serviceId) {
+        this.serviceId = serviceId;
     }
 
 }

@@ -99,8 +99,8 @@ usergroups.forEach(data => {
 
     //connection for usergroups
     usergroups.forEach(data => {
-        const invokedServicesList = data.invokedServices;
-        invokedServicesList.forEach(service =>{
+        const calledServicesList = data.calledServices;
+        calledServicesList.forEach(service =>{
             //source: usergroupPerson, target: service
             console.log('target:', service);
             

@@ -20,20 +20,23 @@ const Model = Measurable.extend({
     /**
      * List of services invoked by the usergroup
      */
-    calledServices: attr()
+    services: attr(),
+
+    usergroupId:attr('string'),
+    serviceId:attr('string')
 });
 
 Model.reopenClass({
     FIXTURES: [
        {
-          "type":"userGroup",
+          "type":"usergroup",
           "id":"test-system123-userGroup-1",
           "changelogSequence":0,
           "lastUpdate":"2016-06-20T12:46:29.818+02:00",
           "revisionNumber":0,
           "systemId":"system123",
           "name":"CoCoME-Usergroup",
-          "calledServices": [{"targetId":"test-calledService-1"}, {"targetId":"test-calledService-2"},{"targetId":"test-calledService-3"}]
+          "calledServices": [{"usergroupId":"test-system123-userGroup-1" , "serviceId":"test-calledService-1"}, {"usergroupId":"test-system123-userGroup-1" ,"serviceId":"test-calledService-2"}]
        }
     ]
 });

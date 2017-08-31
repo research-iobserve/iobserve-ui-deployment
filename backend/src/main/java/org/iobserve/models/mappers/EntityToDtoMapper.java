@@ -70,7 +70,6 @@ public interface EntityToDtoMapper { // TODO: ignore measureable
     @Mapping(target = "statusInformations", ignore = true)
     NodeDto transform(Node node);
 
-    // TODO UserGroupGroup
     // TODO UserGroup
     // @Mapping(source = "userGroupGroup.id", target = "userGroupGroupId")
     @Mapping(target = "timeSeries", ignore = true)

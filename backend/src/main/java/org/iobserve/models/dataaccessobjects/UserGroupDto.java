@@ -8,6 +8,7 @@ import org.iobserve.models.UserGroup;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.UserGroupService;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
@@ -17,39 +18,48 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @ModelClassOfDto(value = UserGroup.class, service = UserGroupService.class)
 @JsonTypeName(ModelType.TypeName.USERGROUP)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserGroupDto extends MeasurableDataTrasferObject {
 
-    private String workload;
-    private List<Service> invokedServices;
-
-    // private String usergroupGroupId;
+    private String name;
+    private List<Service> services;
+    private String usergroupId;
+    private String serviceId;
 
     public UserGroupDto() {
         super();
     }
 
-    public String getWorkload() {
-        return this.workload;
+    public String getName() {
+        return this.name;
     }
 
-    public void setWorkload(final String workload) {
-        this.workload = workload;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public List<Service> getServices() {
-        return this.invokedServices;
+        return this.services;
     }
 
     public void setServices(final List<Service> services) {
-        this.invokedServices = services;
+        this.services = services;
     }
 
-    // public String getUsergroupGroupId() {
-    // return this.usergroupGroupId;
-    // }
-    //
-    // public void setUsergroupGroupId(final String usergroupGroupId) {
-    // this.usergroupGroupId = usergroupGroupId;
-    // }
+    public String getUsergroupId() {
+        return this.usergroupId;
+    }
+
+    public void setUsergroupId(final String usergroupId) {
+        this.usergroupId = usergroupId;
+    }
+
+    public String getServiceId() {
+        return this.serviceId;
+    }
+
+    public void setServiceId(final String serviceId) {
+        this.serviceId = serviceId;
+    }
 
 }

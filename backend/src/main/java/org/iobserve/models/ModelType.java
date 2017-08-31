@@ -12,6 +12,7 @@ import org.iobserve.models.dataaccessobjects.ServiceInstanceDto;
 import org.iobserve.models.dataaccessobjects.StatusInfoDto;
 import org.iobserve.models.dataaccessobjects.SystemDto;
 import org.iobserve.models.dataaccessobjects.TimeSeriesDto;
+import org.iobserve.models.dataaccessobjects.UserGroupDto;
 import org.iobserve.models.util.BaseEntity;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.models.util.StatusInfo;
@@ -28,14 +29,13 @@ public enum ModelType {
                     CommunicationInstance.class,
                     CommunicationInstanceDto.class), NODE(TypeName.NODE, Node.class, NodeDto.class), NODE_GROUP(
                             TypeName.NODE_GROUP, NodeGroup.class,
-                            NodeGroupDto.class), SERIES_ELEMENT(TypeName.SERIES_ELEMENT, SeriesElement.class,
-                                    SeriesElementDto.class), SERVICE(TypeName.SERVICE, Service.class,
-                                            ServiceDto.class), SERVICE_INSTANCE(TypeName.SERVICE_INSTANCE,
-                                                    ServiceInstance.class, ServiceInstanceDto.class), STATUS_INFO(
-                                                            TypeName.STATUS_INFO, StatusInfo.class,
-                                                            StatusInfoDto.class), SYSTEM(TypeName.SYSTEM, System.class,
-                                                                    SystemDto.class), TIME_SERIES(TypeName.TIME_SERIES,
-                                                                            TimeSeries.class, TimeSeriesDto.class);
+                            NodeGroupDto.class), USERGROUP(TypeName.USERGROUP, UserGroup.class, UserGroupDto.class),
+
+    SERIES_ELEMENT(TypeName.SERIES_ELEMENT, SeriesElement.class, SeriesElementDto.class), SERVICE(TypeName.SERVICE,
+            Service.class, ServiceDto.class), SERVICE_INSTANCE(TypeName.SERVICE_INSTANCE, ServiceInstance.class,
+                    ServiceInstanceDto.class), STATUS_INFO(TypeName.STATUS_INFO, StatusInfo.class,
+                            StatusInfoDto.class), SYSTEM(TypeName.SYSTEM, System.class, SystemDto.class), TIME_SERIES(
+                                    TypeName.TIME_SERIES, TimeSeries.class, TimeSeriesDto.class);
 
     public static ModelType getForType(final String type) {
         for (final ModelType modelType : ModelType.values()) {
@@ -85,7 +85,7 @@ public enum ModelType {
         public static final String NODE = "node";
         public static final String NODE_GROUP = "nodeGroup";
         public static final String USERGROUP = "userGroup";
-        public static final String USERGROUP_GROUP = "userGroupGroup";
+        // public static final String USERGROUP_GROUP = "userGroupGroup";
         public static final String SERIES_ELEMENT = "seriesElement";
         public static final String SERVICE = "service";
         public static final String SERVICE_INSTANCE = "serviceInstance";
