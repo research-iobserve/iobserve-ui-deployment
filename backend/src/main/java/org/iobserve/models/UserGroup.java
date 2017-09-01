@@ -2,11 +2,8 @@ package org.iobserve.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 import org.iobserve.models.util.Measurable;
 
@@ -17,17 +14,22 @@ public class UserGroup extends Measurable {
     private String name;
 
     @ElementCollection
-    @OneToMany(mappedBy = "usergroup", cascade = CascadeType.ALL)
-    private List<Service> services;
+    // @OneToMany(mappedBy = "userGroup", cascade = CascadeType.ALL)
+    // @JoinColumn(name="id", referencedColumnName="id")
+    private List<String> services;
 
-    private String usergroupId;
-    private String serviceId;
+    // private String usergroupId;
+    // private String serviceId;
 
     public UserGroup() {
         super();
     }
 
-    public UserGroup(final String name, final List<Service> calledServices) {
+    public UserGroup(final List<String> calledServices) {
+        this.services = this.services;
+    }
+
+    public UserGroup(final String name, final List<String> calledServices) {
         this.name = name;
         this.services = calledServices;
     }
@@ -40,30 +42,28 @@ public class UserGroup extends Measurable {
         this.name = name;
     }
 
-    @ElementCollection
-    @Column(name = "services")
-    public List<Service> getServices() {
+    public List<String> getServices() {
         return this.services;
     }
 
-    public void setServices(final List<Service> services) {
+    public void setServices(final List<String> services) {
         this.services = services;
     }
 
-    public String getUsergroupId() {
-        return this.usergroupId;
-    }
-
-    public void setUsergroupId(final String usergroupId) {
-        this.usergroupId = usergroupId;
-    }
-
-    public String getServiceId() {
-        return this.serviceId;
-    }
-
-    public void setServiceId(final String serviceId) {
-        this.serviceId = serviceId;
-    }
+    // public String getUsergroupId() {
+    // return this.usergroupId;
+    // }
+    //
+    // public void setUsergroupId(final String usergroupId) {
+    // this.usergroupId = usergroupId;
+    // }
+    //
+    // public String getServiceId() {
+    // return this.serviceId;
+    // }
+    //
+    // public void setServiceId(final String serviceId) {
+    // this.serviceId = serviceId;
+    // }
 
 }

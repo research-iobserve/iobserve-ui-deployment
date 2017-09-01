@@ -22,8 +22,8 @@ const Model = Measurable.extend({
      */
     services: attr(),
 
-    usergroupId:attr('string'),
-    serviceId:attr('string')
+    //usergroupId:attr('string'),
+    //serviceId:attr('string')
 });
 
 Model.reopenClass({
@@ -36,7 +36,7 @@ Model.reopenClass({
           "revisionNumber":0,
           "systemId":"system123",
           "name":"CoCoME-Usergroup",
-          "calledServices": [{"usergroupId":"test-system123-userGroup-1" , "serviceId":"test-calledService-1"}, {"usergroupId":"test-system123-userGroup-1" ,"serviceId":"test-calledService-2"}]
+          "services": ["test-calledService-1","test-calledService-2"]
        }
     ]
 });
