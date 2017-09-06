@@ -1,9 +1,11 @@
 package org.iobserve.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,6 +24,7 @@ import org.iobserve.models.NodeGroup;
 import org.iobserve.models.Service;
 import org.iobserve.models.ServiceInstance;
 import org.iobserve.models.System;
+import org.iobserve.models.UserGroup;
 import org.iobserve.models.util.Measurable;
 import org.iobserve.models.util.RevisionedBean;
 import org.iobserve.models.util.SeriesElement;
@@ -132,6 +135,12 @@ public class TestSystemCreator {
                 systemId, 6);
         final Service enterpriseService = this.createService("org.cocome.cloud .webservice .enterpriseservice", "",
                 systemId, 7);
+
+        final List<String> services = new ArrayList<>();
+        services.add(cloudWebservice.getId());
+        services.add(storeCashdeskService.getId());
+        /** usergroup */
+        final UserGroup userGroup = this.createUserGroup(services, systemId, 10);
 
         /** service adapter */
         final Service serviceAdapter = this.createService("org.cocome.cloud .sa.serviceprovider", "", systemId, 8);
@@ -325,6 +334,16 @@ public class TestSystemCreator {
         serviceInstance.setNode(node);
         this.generateSeries(serviceInstance, "Requests", "Number of Requests", low * 15, high * 15);
         return serviceInstance;
+    }
+
+    /**
+     * Create a usergroup
+     */
+    private UserGroup createUserGroup(final List<String> services, final String systemId, final int counter) {
+
+        final UserGroup userGroup = this.prepareDummy(new UserGroup("name", services), systemId, "usergroup", counter);
+
+        return userGroup;
     }
 
     /**

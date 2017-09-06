@@ -2,25 +2,26 @@ package org.iobserve.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.iobserve.models.util.Measurable;
 
 @Entity
-// @XmlAccessorType(XmlAccessType.FIELD)
 public class UserGroup extends Measurable {
 
     private String name;
 
     @ElementCollection
-    // @OneToMany(mappedBy = "userGroup", cascade = CascadeType.ALL)
-    // @JoinColumn(name="id", referencedColumnName="id")
     private List<String> services;
 
-    // private String usergroupId;
-    // private String serviceId;
-
+    /**
+     * constructor
+     */
     public UserGroup() {
         super();
     }
@@ -34,6 +35,11 @@ public class UserGroup extends Measurable {
         this.services = calledServices;
     }
 
+    /**
+     * getters and setters
+     *
+     * @return
+     */
     public String getName() {
         return this.name;
     }
@@ -42,6 +48,8 @@ public class UserGroup extends Measurable {
         this.name = name;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
     public List<String> getServices() {
         return this.services;
     }
@@ -50,20 +58,8 @@ public class UserGroup extends Measurable {
         this.services = services;
     }
 
-    // public String getUsergroupId() {
-    // return this.usergroupId;
-    // }
-    //
-    // public void setUsergroupId(final String usergroupId) {
-    // this.usergroupId = usergroupId;
-    // }
-    //
-    // public String getServiceId() {
-    // return this.serviceId;
-    // }
-    //
-    // public void setServiceId(final String serviceId) {
-    // this.serviceId = serviceId;
-    // }
+    public void addServices(final String serviceId) {
+        this.services.add(serviceId);
+    }
 
 }

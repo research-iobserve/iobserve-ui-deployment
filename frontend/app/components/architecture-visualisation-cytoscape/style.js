@@ -44,6 +44,14 @@ $node > node { /* compounds. "Nodes" in meta model. $ selects the parent node th
     font-weight: bold;
     z-index: 100;
 }
+/*usergroup like node*/
+[type="usergroup"] {
+background-color: ${theme.nodeColor};
+    color: ${theme.nodeTextColor};
+    border-color: ${theme.nodeBorderColor};
+    font-weight: bold;
+    z-index: 100;
+}
 
 [type="service"] {
     background-color: ${theme.serviceColor};

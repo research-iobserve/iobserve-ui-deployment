@@ -16,11 +16,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @ModelClassOfDto(value = UserGroup.class, service = UserGroupService.class)
 @JsonTypeName(ModelType.TypeName.USERGROUP)
-// @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserGroupDto extends MeasurableDataTrasferObject {
 
     private String name;
-    List<String> services;
+    List<String> serviceIds;
     // private String usergroupId;
     // private String serviceId;
 
@@ -30,7 +29,7 @@ public class UserGroupDto extends MeasurableDataTrasferObject {
 
     public UserGroupDto(final String name, final List<String> services) {
         this.name = name;
-        this.services = services;
+        this.serviceIds = services;
     }
 
     public String getName() {
@@ -42,11 +41,11 @@ public class UserGroupDto extends MeasurableDataTrasferObject {
     }
 
     public List<String> getServices() {
-        return this.services;
+        return this.serviceIds;
     }
 
     public void setServices(final List<String> services) {
-        this.services = services;
+        this.serviceIds = services;
     }
 
     // public String getUsergroupId() {

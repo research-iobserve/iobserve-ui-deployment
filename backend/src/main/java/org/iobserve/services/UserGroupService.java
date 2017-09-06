@@ -20,6 +20,8 @@ public class UserGroupService extends AbstractSystemComponentService<UserGroup, 
 
     @Override
     protected UserGroupDto transformModelToDto(final UserGroup userGroup) {
+        System.out.println("!!!!!!!!!!!!!! this.modelToDtoMapper.transform(userGroup): "
+                + this.modelToDtoMapper.transform(userGroup));
         return this.modelToDtoMapper.transform(userGroup);
     }
 
