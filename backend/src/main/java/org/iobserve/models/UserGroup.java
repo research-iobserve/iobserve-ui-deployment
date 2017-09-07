@@ -54,10 +54,12 @@ public class UserGroup extends Measurable {
         return this.services;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public void setServices(final List<String> services) {
         this.services = services;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public void addServices(final String serviceId) {
         this.services.add(serviceId);
     }
