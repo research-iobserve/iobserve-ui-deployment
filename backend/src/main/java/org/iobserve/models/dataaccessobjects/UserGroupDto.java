@@ -3,6 +3,7 @@ package org.iobserve.models.dataaccessobjects;
 import java.util.List;
 
 import org.iobserve.models.ModelType;
+import org.iobserve.models.Service;
 import org.iobserve.models.UserGroup;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.services.UserGroupService;
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class UserGroupDto extends MeasurableDataTrasferObject {
 
     private String name;
-    List<String> serviceIds;
+    List<Service> serviceIds;
     // private String usergroupId;
     // private String serviceId;
 
@@ -27,7 +28,7 @@ public class UserGroupDto extends MeasurableDataTrasferObject {
         super();
     }
 
-    public UserGroupDto(final String name, final List<String> services) {
+    public UserGroupDto(final String name, final List<Service> services) {
         this.name = name;
         this.serviceIds = services;
     }
@@ -40,11 +41,11 @@ public class UserGroupDto extends MeasurableDataTrasferObject {
         this.name = name;
     }
 
-    public List<String> getServices() {
+    public List<Service> getServices() {
         return this.serviceIds;
     }
 
-    public void setServices(final List<String> services) {
+    public void setServices(final List<Service> services) {
         this.serviceIds = services;
     }
 

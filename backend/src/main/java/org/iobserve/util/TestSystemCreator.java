@@ -136,9 +136,9 @@ public class TestSystemCreator {
         final Service enterpriseService = this.createService("org.cocome.cloud .webservice .enterpriseservice", "",
                 systemId, 7);
 
-        final List<String> services = new ArrayList<>();
-        services.add(cloudWebservice.getId());
-        services.add(storeCashdeskService.getId());
+        final List<Service> services = new ArrayList<>();
+        services.add(cloudWebservice);
+        services.add(storeCashdeskService);
         /** usergroup */
         final UserGroup userGroup = this.createUserGroup(services, systemId, 10);
 
@@ -339,7 +339,7 @@ public class TestSystemCreator {
     /**
      * Create a usergroup
      */
-    private UserGroup createUserGroup(final List<String> services, final String systemId, final int counter) {
+    private UserGroup createUserGroup(final List<Service> services, final String systemId, final int counter) {
 
         final UserGroup userGroup = this.prepareDummy(new UserGroup("name", services), systemId, "usergroup", counter);
 

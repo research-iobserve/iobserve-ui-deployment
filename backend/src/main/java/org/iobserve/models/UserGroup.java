@@ -3,10 +3,7 @@ package org.iobserve.models;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.iobserve.models.util.Measurable;
@@ -16,8 +13,8 @@ public class UserGroup extends Measurable {
 
     private String name;
 
-    @ElementCollection
-    private List<String> services;
+    @OneToMany(mappedBy = "userGroup", cascade = CascadeType.ALL)
+    private List<Service> services;
 
     /**
      * constructor
@@ -26,11 +23,11 @@ public class UserGroup extends Measurable {
         super();
     }
 
-    public UserGroup(final List<String> calledServices) {
-        this.services = this.services;
+    public UserGroup(final List<Service> calledServices) {
+        this.services = calledServices;
     }
 
-    public UserGroup(final String name, final List<String> calledServices) {
+    public UserGroup(final String name, final List<Service> calledServices) {
         this.name = name;
         this.services = calledServices;
     }
@@ -48,20 +45,20 @@ public class UserGroup extends Measurable {
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    public List<String> getServices() {
+    // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JoinColumn(name = "id")
+    public List<Service> getServices() {
         return this.services;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public void setServices(final List<String> services) {
+    // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public void setServices(final List<Service> services) {
         this.services = services;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public void addServices(final String serviceId) {
-        this.services.add(serviceId);
+    // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public void addServices(final Service service) {
+        this.services.add(service);
     }
 
 }
