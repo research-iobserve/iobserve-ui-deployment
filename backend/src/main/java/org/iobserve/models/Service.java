@@ -31,11 +31,6 @@ public class Service extends Measurable {
         super();
     }
 
-    // public Service(final String id) {
-    // super();
-    // super.setId(id);
-    // }
-
     public Service(final String name, final String description) {
         super();
         this.name = name;
