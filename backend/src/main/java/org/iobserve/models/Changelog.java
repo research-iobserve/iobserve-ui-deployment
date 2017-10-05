@@ -2,7 +2,7 @@ package org.iobserve.models;
 
 
 import org.iobserve.models.util.ChangelogOperation;
-import org.iobserve.models.util.RevisionedBean;
+import org.iobserve.models.util.AbstractRevisionedBean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,10 +12,15 @@ import javax.persistence.Lob;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class Changelog extends RevisionedBean {
+public class Changelog extends AbstractRevisionedBean {
 
 
-    private ChangelogOperation operation;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3332068548423546707L;
+
+	private ChangelogOperation operation;
 
     //@Column(columnDefinition = "TEXT")
     @Lob

@@ -3,16 +3,18 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="postgres">
+    <persistence-unit name="derby" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--Zum Testen muss eine Jar der main classes unter folgendem Pfad erstellt werden-->
+        <!-- <jar-file>target/iobserve-ui-backend-1.0-SNAPSHOT.war</jar-file>-->
+        <mapping-file>/META-INF/common-layer-mappings.xml</mapping-file>
         <properties>
-            <property name="hibernate.archive.autodetection" value="class" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
-            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-            <!--<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/playprototype" />-->
-            <!--<property name="hibernate.connection.username" value="cdor" />-->
-            <!--<property name="hibernate.connection.password" value="12345678" />-->
-             <!--<property name="hibernate.show_sql" value="true"/>-->
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:/var/cache/databases/deployment;create=true" />
+            <property name="javax.persistence.jdbc.user" value="iobserve" />
+            <property name="javax.persistence.jdbc.password" value="iobserve" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
+
             <property name="hibernate.flushMode" value="FLUSH_AUTO" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
         </properties>

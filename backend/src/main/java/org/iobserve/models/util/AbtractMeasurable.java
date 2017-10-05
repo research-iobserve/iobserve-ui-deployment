@@ -9,8 +9,13 @@ import java.util.Set;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Measurable extends RevisionedBean {
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+public abstract class AbtractMeasurable extends AbstractRevisionedBean {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6439695432761999173L;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="parent_id", referencedColumnName="id")
     private Set<StatusInfo> statusInformations = new HashSet<>();
 
@@ -20,11 +25,11 @@ public abstract class Measurable extends RevisionedBean {
 
     private Status status = Status.NORMAL;
 
-    public Measurable() {
+    public AbtractMeasurable() {
         super();
     }
 
-    public Measurable(Set<StatusInfo> statusInformations, Set<TimeSeries> timeSeries) {
+    public AbtractMeasurable(Set<StatusInfo> statusInformations, Set<TimeSeries> timeSeries) {
         super();
         this.statusInformations = statusInformations;
         this.timeSeries = timeSeries;

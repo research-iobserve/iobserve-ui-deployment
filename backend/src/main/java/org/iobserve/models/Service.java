@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.Measurable;
+import org.iobserve.models.util.AbtractMeasurable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,8 +9,14 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class Service extends Measurable{
-    private String  name;
+public class Service extends AbtractMeasurable{
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7245322632353880274L;
+	
+	private String  name;
     private String description;
 
 

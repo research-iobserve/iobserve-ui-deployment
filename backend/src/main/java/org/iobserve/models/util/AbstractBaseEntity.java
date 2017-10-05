@@ -8,9 +8,14 @@ import java.io.Serializable;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class  BaseEntity implements Serializable{
+public abstract class  AbstractBaseEntity implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3113270441001085656L;
+	
+	@Id
     @Column(name="id")
     private String id;
 

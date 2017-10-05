@@ -1,0 +1,13 @@
+<entity-mappings>   
+   <entity class="org.iobserve.models.Changelog"></entity>
+   <entity class="org.iobserve.models.Communication"></entity>
+   <entity class="org.iobserve.models.CommunicationInstance"></entity>
+   <entity class="org.iobserve.models.Node"></entity>
+   <entity class="org.iobserve.models.NodeGroup"></entity>
+   <entity class="org.iobserve.models.Service"></entity>
+   <entity class="org.iobserve.models.ServiceInstance"></entity>
+   <entity class="org.iobserve.models.System"></entity>  
+   <entity class="org.iobserve.models.util.TimeSeries"></entity>
+   <entity class="org.iobserve.models.util.SeriesElement"></entity>
+   <entity class="org.iobserve.models.util.StatusInfo"></entity>
+</entity-mappings>

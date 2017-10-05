@@ -6,8 +6,8 @@ import org.glassfish.hk2.api.ServiceLocator;
 import org.iobserve.models.Changelog;
 import org.iobserve.models.annotations.ModelClassOfDto;
 import org.iobserve.models.dataaccessobjects.*;
-import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
-import org.iobserve.models.mappers.EntityToDtoMapper;
+import org.iobserve.models.mappers.IDtoToBasePropertyEntityMapper;
+import org.iobserve.models.mappers.IEntityToDtoMapper;
 import org.iobserve.models.util.*;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
@@ -33,8 +33,8 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
     private final ChangelogStreamService changelogStreamService;
 
     @Inject
-    public ChangelogService(EntityManagerFactory entityManagerFactory, EntityToDtoMapper modelToDtoMapper,
-                            ServiceLocator serviceLocator, DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper,
+    public ChangelogService(EntityManagerFactory entityManagerFactory, IEntityToDtoMapper modelToDtoMapper,
+                            ServiceLocator serviceLocator, IDtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper,
                             ChangelogStreamService changelogStreamService) {
 
         super(entityManagerFactory, modelToDtoMapper, serviceLocator, dtoToBasePropertyEntityMapper);
@@ -84,9 +84,9 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
 
         final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
         final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
-        final BaseEntity entity = service.transformDtoToModel(dto);
+        final AbstractBaseEntity entity = service.transformDtoToModel(dto);
 
-        Set<ConstraintViolation<BaseEntity>> constraintViolations = validator.validate(entity);
+        Set<ConstraintViolation<AbstractBaseEntity>> constraintViolations = validator.validate(entity);
 
         if(constraintViolations.size() > 0) {
             throw new ConstraintViolationException("Changelog is invalid", constraintViolations);
@@ -136,7 +136,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
         final AbstractService service = (AbstractService) serviceLocator.getService(dtoClass);
 
-        final BaseEntity entity = service.transformDtoToModel(dto);
+        final AbstractBaseEntity entity = service.transformDtoToModel(dto);
 
         setRevisionOfEntity(entity, changelog);
 
@@ -164,7 +164,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         final Class dtoClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
         final AbstractService service = (AbstractService) this.serviceLocator.getService(dtoClass);
 
-        final BaseEntity entity = service.transformDtoToModel(dto);
+        final AbstractBaseEntity entity = service.transformDtoToModel(dto);
 
         if(!transaction.isActive()) transaction.begin();
         entityManager.persist(entity);
@@ -177,7 +177,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         ModelClassOfDto modelClass = changelog.getData().getClass().getAnnotation(ModelClassOfDto.class);
 
-        BaseEntity entity = entityManager.find(modelClass.value(), changelog.getData().getId());
+        AbstractBaseEntity entity = entityManager.find(modelClass.value(), changelog.getData().getId());
 
         setRevisionOfEntity(entity, changelog);
 
@@ -197,7 +197,7 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
         final Class dtoServiceClass = dto.getClass().getAnnotation(ModelClassOfDto.class).service();
         final AbstractService service = (AbstractService) this.serviceLocator.getService(dtoServiceClass);
 
-        final BaseEntity entity = service.transformDtoToModel(dto);
+        final AbstractBaseEntity entity = service.transformDtoToModel(dto);
 
         setRevisionOfEntity(entity, changelog);
 
@@ -209,13 +209,13 @@ public class ChangelogService extends AbstractSystemComponentService<Changelog,C
     }
 
 
-    private void setRevisionOfEntity(BaseEntity entity, ChangelogDto changelog){
-        if(entity instanceof RevisionedBean){
-            setRevisionOfEntity((RevisionedBean) entity, changelog);
+    private void setRevisionOfEntity(AbstractBaseEntity entity, ChangelogDto changelog){
+        if(entity instanceof AbstractRevisionedBean){
+            setRevisionOfEntity((AbstractRevisionedBean) entity, changelog);
         }
     }
 
-    private void setRevisionOfEntity(RevisionedBean revisionedBean,ChangelogDto changelog){
+    private void setRevisionOfEntity(AbstractRevisionedBean revisionedBean,ChangelogDto changelog){
         revisionedBean.setRevisionNumber(changelog.getRevisionNumber());
         revisionedBean.setChangelogSequence(changelog.getChangelogSequence());
         revisionedBean.setLastUpdate(changelog.getLastUpdate());

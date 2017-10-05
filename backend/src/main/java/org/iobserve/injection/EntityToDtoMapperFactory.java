@@ -1,20 +1,20 @@
 package org.iobserve.injection;
 
 import org.glassfish.hk2.api.Factory;
-import org.iobserve.models.mappers.EntityToDtoMapper;
+import org.iobserve.models.mappers.IEntityToDtoMapper;
 
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
-public class EntityToDtoMapperFactory implements Factory<EntityToDtoMapper> {
+public class EntityToDtoMapperFactory implements Factory<IEntityToDtoMapper> {
 
     @Override
-    public EntityToDtoMapper provide() {
-        return EntityToDtoMapper.INSTANCE;
+    public IEntityToDtoMapper provide() {
+        return IEntityToDtoMapper.INSTANCE;
     }
 
     @Override
-    public void dispose(EntityToDtoMapper instance) {
+    public void dispose(IEntityToDtoMapper instance) {
         // nothing to do
     }
 }

@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
-public interface SystemComponentModelResource<ModelDto extends RevisionedBeanDataTransportObject> extends ModelResource<ModelDto> {
+public interface ISystemComponentModelResource<ModelDto extends RevisionedBeanDataTransportObject> extends IModelResource<ModelDto> {
     List<ModelDto> getAllBySystem(String systemId);
 }

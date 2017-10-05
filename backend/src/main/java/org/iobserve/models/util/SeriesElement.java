@@ -6,9 +6,14 @@ import javax.persistence.Entity;
  * Created by cdor on 25.05.16.
  */
 @Entity
-public class SeriesElement extends NestedMeasurement {
+public class SeriesElement extends AbstractNestedMeasurement {
 
-    private Integer value;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6294093340146586093L;
+	
+	private Integer value;
     private Long timestamp;
 
     public SeriesElement() {

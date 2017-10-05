@@ -1,21 +1,12 @@
 package org.iobserve.services.util;
 
-import org.iobserve.models.*;
-import org.iobserve.models.System;
-import org.iobserve.models.util.*;
-import org.iobserve.util.TestSystemCreator;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-import javax.transaction.Transactional;
-import java.net.URI;
-import java.sql.DriverManager;
-import java.util.*;
+
+import org.iobserve.util.TestSystemCreator;
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>

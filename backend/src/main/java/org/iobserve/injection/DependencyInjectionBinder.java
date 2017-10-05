@@ -2,8 +2,8 @@ package org.iobserve.injection;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.process.internal.RequestScoped;
-import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
-import org.iobserve.models.mappers.EntityToDtoMapper;
+import org.iobserve.models.mappers.IDtoToBasePropertyEntityMapper;
+import org.iobserve.models.mappers.IEntityToDtoMapper;
 import org.iobserve.services.*;
 import org.iobserve.services.websocket.ChangelogStreamService;
 
@@ -25,8 +25,8 @@ public class DependencyInjectionBinder extends AbstractBinder {
         this.bindFactory(EMFFactory.class).to(EntityManagerFactory.class).in(Singleton.class);
         this.bindFactory(EMFFactory.EMFactory.class).to(EntityManager.class).in(RequestScoped.class);
 
-        this.bindFactory(EntityToDtoMapperFactory.class).to(EntityToDtoMapper.class).in(Singleton.class);
-        this.bindFactory(DtoToBasePropertyEntityMapperFactory.class).to(DtoToBasePropertyEntityMapper.class).in(Singleton.class);
+        this.bindFactory(EntityToDtoMapperFactory.class).to(IEntityToDtoMapper.class).in(Singleton.class);
+        this.bindFactory(DtoToBasePropertyEntityMapperFactory.class).to(IDtoToBasePropertyEntityMapper.class).in(Singleton.class);
 
         this.bindFactory(ChangelogStreamServiceFactory.class).to(ChangelogStreamService.class).in(Singleton.class);
 

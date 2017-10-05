@@ -1,6 +1,6 @@
 package org.iobserve.models.annotations;
 
-import org.iobserve.models.util.BaseEntity;
+import org.iobserve.models.util.AbstractBaseEntity;
 import org.iobserve.services.AbstractService;
 
 import java.lang.annotation.ElementType;
@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface ModelClassOfDto {
-    Class<? extends BaseEntity> value();
-    Class<? extends AbstractService> service();
+    Class<? extends AbstractBaseEntity> value();
+    Class<? extends AbstractService<?,?>> service();
 }

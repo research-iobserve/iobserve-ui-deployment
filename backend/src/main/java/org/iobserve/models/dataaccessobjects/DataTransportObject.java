@@ -13,10 +13,10 @@ import org.iobserve.models.util.StatusInfo;
  * of lazy loaded JPA references.
  *
  * The transformation functions between model instances and their corresponding DataTransportObject
- * are generated using MapStruct and {@link org.iobserve.models.mappers.EntityToDtoMapper}.
+ * are generated using MapStruct and {@link org.iobserve.models.mappers.IEntityToDtoMapper}.
  *
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
- * @see org.iobserve.models.mappers.EntityToDtoMapper
+ * @see org.iobserve.models.mappers.IEntityToDtoMapper
  */
 
 @JsonTypeName("baseEntity")

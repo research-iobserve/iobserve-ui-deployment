@@ -22,13 +22,13 @@ import org.mapstruct.factory.Mappers;
  * @see <a href="http://mapstruct.org">MapStruct</a>
  */
 @Mapper
-public interface DtoToBasePropertyEntityMapper  {
+public interface IDtoToBasePropertyEntityMapper  {
 
     // TODO: ignore measureable
 
     //TODO Maybe ignore for ids
 
-    DtoToBasePropertyEntityMapper INSTANCE = Mappers.getMapper(DtoToBasePropertyEntityMapper.class);
+    IDtoToBasePropertyEntityMapper INSTANCE = Mappers.getMapper(IDtoToBasePropertyEntityMapper.class);
     
     System transform(SystemDto systemDto);
 

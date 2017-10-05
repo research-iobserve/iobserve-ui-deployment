@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.Measurable;
+import org.iobserve.models.util.AbtractMeasurable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,8 +13,13 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CommunicationInstance extends Measurable{
-    @NotNull
+public class CommunicationInstance extends AbtractMeasurable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2701549210151796441L;
+
+	@NotNull
     @XmlTransient
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private ServiceInstance source;

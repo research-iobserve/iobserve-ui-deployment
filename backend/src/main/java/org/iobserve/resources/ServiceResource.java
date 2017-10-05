@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
-public class ServiceResource implements SystemComponentModelResource<ServiceDto> {
+public class ServiceResource implements ISystemComponentModelResource<ServiceDto> {
 
     private final ServiceService service;
 

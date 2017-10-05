@@ -1,21 +1,21 @@
 package org.iobserve.injection;
 
 import org.glassfish.hk2.api.Factory;
-import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
+import org.iobserve.models.mappers.IDtoToBasePropertyEntityMapper;
 
 /**
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
-public class DtoToBasePropertyEntityMapperFactory implements Factory<DtoToBasePropertyEntityMapper> {
+public class DtoToBasePropertyEntityMapperFactory implements Factory<IDtoToBasePropertyEntityMapper> {
 
 
     @Override
-    public DtoToBasePropertyEntityMapper provide() {
-        return DtoToBasePropertyEntityMapper.INSTANCE;
+    public IDtoToBasePropertyEntityMapper provide() {
+        return IDtoToBasePropertyEntityMapper.INSTANCE;
     }
 
     @Override
-    public void dispose(DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
+    public void dispose(IDtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
 
     }
 }

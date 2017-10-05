@@ -5,8 +5,8 @@ import org.iobserve.models.Communication;
 import org.iobserve.models.CommunicationInstance;
 import org.iobserve.models.ServiceInstance;
 import org.iobserve.models.dataaccessobjects.CommunicationInstanceDto;
-import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
-import org.iobserve.models.mappers.EntityToDtoMapper;
+import org.iobserve.models.mappers.IDtoToBasePropertyEntityMapper;
+import org.iobserve.models.mappers.IEntityToDtoMapper;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -18,7 +18,7 @@ import javax.persistence.EntityManagerFactory;
 public class CommunicationInstanceService extends AbstractSystemComponentService<CommunicationInstance,CommunicationInstanceDto> {
 
     @Inject
-    public CommunicationInstanceService(EntityManagerFactory entityManagerFactory, EntityToDtoMapper modelToDtoMapper, ServiceLocator serviceLocator, DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
+    public CommunicationInstanceService(EntityManagerFactory entityManagerFactory, IEntityToDtoMapper modelToDtoMapper, ServiceLocator serviceLocator, IDtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
         super(entityManagerFactory, modelToDtoMapper, serviceLocator, dtoToBasePropertyEntityMapper);
     }
 

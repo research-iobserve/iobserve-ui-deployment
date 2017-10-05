@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
-public interface Service<ModelDto extends DataTransportObject> {
+public interface IService<ModelDto extends DataTransportObject> {
     List<ModelDto> findAll();
     ModelDto findById(String id);
 }

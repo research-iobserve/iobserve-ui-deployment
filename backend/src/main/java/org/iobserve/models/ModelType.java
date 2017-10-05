@@ -1,7 +1,7 @@
 package org.iobserve.models;
 
 import org.iobserve.models.dataaccessobjects.*;
-import org.iobserve.models.util.BaseEntity;
+import org.iobserve.models.util.AbstractBaseEntity;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.models.util.StatusInfo;
 import org.iobserve.models.util.TimeSeries;
@@ -32,7 +32,7 @@ public enum ModelType {
         }
         throw new IllegalArgumentException("type "+ type +" does not exist");
     }
-    public static ModelType getForModel(Class<? extends BaseEntity> modelClass) {
+    public static ModelType getForModel(Class<? extends AbstractBaseEntity> modelClass) {
         for (ModelType modelType : ModelType.values()) {
             if(modelType.getModelClass().equals(modelClass)) {
                 return modelType;
@@ -42,10 +42,10 @@ public enum ModelType {
     }
 
     public final String type;
-    private final Class<? extends BaseEntity> modelClass;
+    private final Class<? extends AbstractBaseEntity> modelClass;
     private final Class<? extends DataTransportObject> dto;
 
-    ModelType(String type, Class<? extends BaseEntity> modelClass, Class<? extends DataTransportObject> dto) {
+    ModelType(String type, Class<? extends AbstractBaseEntity> modelClass, Class<? extends DataTransportObject> dto) {
         this.modelClass = modelClass;
         this.type = type;
         this.dto = dto;
@@ -55,7 +55,7 @@ public enum ModelType {
         return type;
     }
 
-    public Class<? extends BaseEntity> getModelClass() {
+    public Class<? extends AbstractBaseEntity> getModelClass() {
         return modelClass;
     }
 

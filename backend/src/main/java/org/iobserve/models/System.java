@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.BaseEntity;
+import org.iobserve.models.util.AbstractBaseEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,8 +9,13 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class System extends BaseEntity {
-    private String name;
+public class System extends AbstractBaseEntity {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4316849273184683823L;
+	
+	private String name;
     //Nodes
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="system_id", referencedColumnName="id")

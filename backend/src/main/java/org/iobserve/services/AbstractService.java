@@ -6,10 +6,10 @@ import java.util.Collections;
 import java.util.Set;
 import org.iobserve.models.dataaccessobjects.DataTransportObject;
 import org.iobserve.models.dataaccessobjects.MeasurableDataTrasferObject;
-import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
-import org.iobserve.models.mappers.EntityToDtoMapper;
-import org.iobserve.models.util.BaseEntity;
-import org.iobserve.models.util.Measurable;
+import org.iobserve.models.mappers.IDtoToBasePropertyEntityMapper;
+import org.iobserve.models.mappers.IEntityToDtoMapper;
+import org.iobserve.models.util.AbstractBaseEntity;
+import org.iobserve.models.util.AbtractMeasurable;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.models.util.TimeSeries;
 
@@ -27,19 +27,19 @@ import java.util.stream.Collectors;
  * TODO: implement generic findAll/findById (based on other branch)
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
-public abstract class AbstractService<Model extends BaseEntity, ModelDto extends DataTransportObject> implements Service<ModelDto> {
+public abstract class AbstractService<Model extends AbstractBaseEntity, ModelDto extends DataTransportObject> implements IService<ModelDto> {
 
     protected final EntityManagerFactory entityManagerFactory;
 
-    protected final EntityToDtoMapper modelToDtoMapper;
+    protected final IEntityToDtoMapper modelToDtoMapper;
 
     protected final ServiceLocator serviceLocator;
 
-    protected final DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper;
+    protected final IDtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper;
 
     @Inject
-    public AbstractService(EntityManagerFactory entityManagerFactory, EntityToDtoMapper modelToDtoMapper,
-                           ServiceLocator serviceLocator, DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
+    public AbstractService(EntityManagerFactory entityManagerFactory, IEntityToDtoMapper modelToDtoMapper,
+                           ServiceLocator serviceLocator, IDtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
 
         this.entityManagerFactory = entityManagerFactory;
         this.modelToDtoMapper = modelToDtoMapper;
@@ -66,8 +66,8 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
         Model result = entityManager.find(persistentClass,id);
         ModelDto dto = transformModelToDto(result);
 
-        if(result instanceof Measurable ){
-            final Measurable measurable =  (Measurable) result;
+        if(result instanceof AbtractMeasurable ){
+            final AbtractMeasurable measurable =  (AbtractMeasurable) result;
             final MeasurableDataTrasferObject measurableDto =  (MeasurableDataTrasferObject) dto;
             final Set<TimeSeries> timeSeriesSet = measurable.getTimeSeries();
 
@@ -94,11 +94,11 @@ public abstract class AbstractService<Model extends BaseEntity, ModelDto extends
 
     /**
      * Transforms a model instance to it's corresponding DataTransportObject.
-     * Probably uses the generated implementation of {@link EntityToDtoMapper}
+     * Probably uses the generated implementation of {@link IEntityToDtoMapper}
      * @param model
      * @return a lightweight version of the model instance using DataTransportObjects
      *
-     * @see EntityToDtoMapper
+     * @see IEntityToDtoMapper
      * @see DataTransportObject
      */
     protected abstract ModelDto transformModelToDto(Model model);

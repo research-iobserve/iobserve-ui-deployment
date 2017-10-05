@@ -67,11 +67,6 @@
             <version>${jackson.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.3-1100-jdbc41</version>
-        </dependency>
-        <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.0.Final</version>
@@ -103,6 +98,17 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.12.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.12.1.1</version>
+        </dependency>
 
         <!--<dependency>-->
             <!--<groupId>javax.validation</groupId>-->
@@ -128,18 +134,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>2.0.2-beta</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.12.1.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.12.1.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -198,13 +192,13 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
-                <configuration>
+                <configuration>-->
                     <!--<jettyXml>${project.build.directory}/${project.build.finalName}-jetty.xml</jettyXml>-->
-                    <httpConnector>
+<!--                    <httpConnector>
                         <port>9090</port>
                     </httpConnector>
                     <scanIntervalSeconds>0</scanIntervalSeconds>
@@ -214,7 +208,7 @@
                     </webApp>
                     <war>${project.build.directory}/${project.build.finalName}.war</war>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

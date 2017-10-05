@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
-public class CommunicationInstanceResource implements SystemComponentModelResource<CommunicationInstanceDto> {
+public class CommunicationInstanceResource implements ISystemComponentModelResource<CommunicationInstanceDto> {
     private CommunicationInstanceService service;
 
     @Inject

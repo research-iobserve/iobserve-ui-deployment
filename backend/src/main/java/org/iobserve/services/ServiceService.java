@@ -2,8 +2,8 @@ package org.iobserve.services;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.iobserve.models.Service;
 import org.iobserve.models.dataaccessobjects.ServiceDto;
-import org.iobserve.models.mappers.DtoToBasePropertyEntityMapper;
-import org.iobserve.models.mappers.EntityToDtoMapper;
+import org.iobserve.models.mappers.IDtoToBasePropertyEntityMapper;
+import org.iobserve.models.mappers.IEntityToDtoMapper;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManagerFactory;
@@ -14,7 +14,7 @@ import javax.persistence.EntityManagerFactory;
 public class ServiceService extends AbstractSystemComponentService<Service,ServiceDto> {
 
     @Inject
-    public ServiceService(EntityManagerFactory entityManagerFactory, EntityToDtoMapper modelToDtoMapper, ServiceLocator serviceLocator, DtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
+    public ServiceService(EntityManagerFactory entityManagerFactory, IEntityToDtoMapper modelToDtoMapper, ServiceLocator serviceLocator, IDtoToBasePropertyEntityMapper dtoToBasePropertyEntityMapper) {
         super(entityManagerFactory, modelToDtoMapper, serviceLocator, dtoToBasePropertyEntityMapper);
     }
 

@@ -1,6 +1,6 @@
 package org.iobserve.models.util;
 
-import org.iobserve.models.util.BaseEntity;
+import org.iobserve.models.util.AbstractBaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,9 +12,14 @@ import javax.persistence.InheritanceType;
  */
 
 @Entity
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
-public abstract class NestedMeasurement extends BaseEntity{
-    @Column(name="parent_id", nullable = false, updatable = false)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public abstract class AbstractNestedMeasurement extends AbstractBaseEntity {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6355722065109512130L;
+
+	@Column(name="parent_id", nullable = false, updatable = false)
     private String parentId;
 
     @Column(name="parent_type", nullable = false, updatable = false)

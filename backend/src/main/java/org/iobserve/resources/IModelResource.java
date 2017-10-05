@@ -5,6 +5,6 @@ import org.iobserve.models.dataaccessobjects.DataTransportObject;
 /**
  * @author Mathis Neumann <mne@informatik.uni-kiel.de>
  */
-public interface ModelResource<ModelDto extends DataTransportObject> {
+public interface IModelResource<ModelDto extends DataTransportObject> {
     ModelDto getById(String id);
 }

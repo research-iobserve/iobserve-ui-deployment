@@ -8,8 +8,13 @@ import java.util.List;
  * Created by cdor on 25.04.16.
  */
 @Entity
-public class TimeSeries extends NestedMeasurement {
-    private String label;
+public class TimeSeries extends AbstractNestedMeasurement {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4240924881176008822L;
+	
+	private String label;
     private String valueLabel;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

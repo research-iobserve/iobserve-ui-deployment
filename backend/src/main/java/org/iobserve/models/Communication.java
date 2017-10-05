@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.Measurable;
+import org.iobserve.models.util.AbtractMeasurable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,8 +11,13 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class Communication extends Measurable{
-    private String technology;
+public class Communication extends AbtractMeasurable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3098874362907685654L;
+
+	private String technology;
 
     @NotNull
     @XmlTransient

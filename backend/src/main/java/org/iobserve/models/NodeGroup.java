@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.Measurable;
+import org.iobserve.models.util.AbtractMeasurable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,8 +9,14 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class NodeGroup extends Measurable{
-    @OneToMany(mappedBy = "nodeGroup",cascade = CascadeType.ALL)
+public class NodeGroup extends AbtractMeasurable{
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8957458065144920232L;
+	
+	@OneToMany(mappedBy = "nodeGroup",cascade = CascadeType.ALL)
     private List<Node> nodes;
     private String name;
 

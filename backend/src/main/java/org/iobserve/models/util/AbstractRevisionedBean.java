@@ -11,15 +11,20 @@ import java.util.Date;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class RevisionedBean extends BaseEntity {
-    @Column(name="system_id")
+public abstract class AbstractRevisionedBean extends AbstractBaseEntity {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6612685956366194008L;
+
+	@Column(name="system_id")
     private String systemId;
 
     private Long revisionNumber;
     private Long changelogSequence;
     private Date lastUpdate; // TODO: set automatically!
 
-    public RevisionedBean() {
+    public AbstractRevisionedBean() {
         super();
     }
 

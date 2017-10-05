@@ -49,46 +49,38 @@ public class TestSystemCreator {
     public void createTestSystem(final String systemId) {
         final EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         final System oldSystem = entityManager.find(System.class, systemId);
-        if (oldSystem != null) {
-            final EntityTransaction tx = entityManager.getTransaction();
-            tx.begin();
-            entityManager.remove(oldSystem);
-            tx.commit();
-        }
-        final System system = new System();
-        system.setId(systemId);
-        system.setName("Test System");
+        if (oldSystem == null) {
+            final System system = new System();
+            system.setId(systemId);
+            system.setName("Test System");
 
-        // nodes
-        final Node webFrontendNode = this.createNode(systemId, "node", 1, "Web Frontend", "web-frontend", "172.17.0.2",
-                20, 40);
-        final Node storeServiceNode = this.createNode(systemId, "node", 2, "Store Service", "store1", "172.17.0.4", 40,
-                70);
-        final Node enterpriseServiceNode = this.createNode(systemId, "node", 3, "Enterprise Service", "enterprise",
-                "172.17.0.5", 2, 3);
-        final Node registryServiceNode = this.createNode(systemId, "node", 4, "Registry Service", "register",
-                "172.17.0.3", 0, 1);
-        final Node serviceAdapterNode = this.createNode(systemId, "node", 5, "Service Adapter", "adapter", "172.17.0.6",
+            // nodes
+           final Node webFrontendNode = this.createNode(systemId, "node", 1, "Web Frontend", "web-frontend", "172.17.0.2", 20,
+                    40);
+           final Node storeServiceNode = this.createNode(systemId, "node", 2, "Store Service", "store1", "172.17.0.4", 40, 70);
+           final Node enterpriseServiceNode = this.createNode(systemId, "node", 3, "Enterprise Service", "enterprise",
+                    "172.17.0.5", 2, 3);
+           final Node registryServiceNode = this.createNode(systemId, "node", 4, "Registry Service", "register", "172.17.0.3", 0, 1);
+            final Node serviceAdapterNode = this.createNode(systemId, "node", 5, "Service Adapter", "adapter", "172.17.0.6",
                 2, 7);
-        final Node databaseNode = this.createNode(systemId, "node", 6, "Data Center", "psql1", "172.17.0.8", 1, 2);
+           final Node databaseNode = this.createNode(systemId, "node", 6, "Data Center", "psql1", "172.17.0.8", 1, 2);
 
-        // node group - has both nodes
-        final NodeGroup nodeGroup1 = this.prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
-        nodeGroup1.setName("CoCoME");
-        nodeGroup1.setNodes(Arrays.asList(webFrontendNode, storeServiceNode, enterpriseServiceNode, registryServiceNode,
-                serviceAdapterNode, databaseNode));
+            // node group - has both nodes
+           final NodeGroup nodeGroup1 = this.prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
+            nodeGroup1.setName("CoCoME");
+            nodeGroup1.setNodes(Arrays.asList(webFrontendNode, storeServiceNode, enterpriseServiceNode,
+                    registryServiceNode, serviceAdapterNode, databaseNode));
 
-        webFrontendNode.setNodeGroup(nodeGroup1);
-        storeServiceNode.setNodeGroup(nodeGroup1);
-        enterpriseServiceNode.setNodeGroup(nodeGroup1);
-        registryServiceNode.setNodeGroup(nodeGroup1);
-        serviceAdapterNode.setNodeGroup(nodeGroup1);
-        databaseNode.setNodeGroup(nodeGroup1);
+            webFrontendNode.setNodeGroup(nodeGroup1);
+            storeServiceNode.setNodeGroup(nodeGroup1);
+            enterpriseServiceNode.setNodeGroup(nodeGroup1);
+            registryServiceNode.setNodeGroup(nodeGroup1);
+            serviceAdapterNode.setNodeGroup(nodeGroup1);
+            databaseNode.setNodeGroup(nodeGroup1);
 
-        // service instances
-        /** webfrontend */
-        final ServiceInstance cloudWebInstance = this.createServiceInstance(webFrontendNode, "org.cocome.cloud .web",
-                20, 40, systemId, 1);
+            // service instances
+            /** webfrontend */
+            final ServiceInstance cloudWebInstance = this.createServiceInstance(webFrontendNode, "org.cocome.cloud .web", 20, 40, systemId, 1);
         /** store service */
         final ServiceInstance storeCashdeskInstance = this.createServiceInstance(storeServiceNode,
                 "org.cocome.cloud .logic.webservice .cashdeskline.cashdesk", 5, 8, systemId, 2);
@@ -230,11 +222,17 @@ public class TestSystemCreator {
                 serviceAdapter, databaseService));
         system.setNodeGroups(Collections.singletonList(nodeGroup1));
 
-        final EntityTransaction tx = entityManager.getTransaction();
-        tx.begin();
-        entityManager.persist(system); // saves all thanks to cascading
-        tx.commit();
-        entityManager.close();
+            final EntityTransaction tx = entityManager.getTransaction();
+            tx.begin();
+            entityManager.persist(system); // saves all thanks to cascading
+            tx.commit();
+            entityManager.close();
+        } else {
+            final EntityTransaction tx = entityManager.getTransaction();
+            tx.begin();
+            entityManager.remove(oldSystem);
+            tx.commit();
+        }
     }
 
     /**

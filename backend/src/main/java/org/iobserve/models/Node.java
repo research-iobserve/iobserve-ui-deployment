@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.Measurable;
+import org.iobserve.models.util.AbtractMeasurable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,9 +13,14 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class Node extends Measurable {
+public class Node extends AbtractMeasurable {
 
-    private String name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1600425950794188553L;
+
+	private String name;
 
     @OneToMany(mappedBy="node",cascade = CascadeType.ALL)
     private List<ServiceInstance> services;

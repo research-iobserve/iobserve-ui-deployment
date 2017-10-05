@@ -27,17 +27,18 @@ public class EntityManagerSetup implements ServletContextListener {
         try {
 
             Map<String, String> properties = new HashMap<>();
-            URI dbUri = new URI(System.getenv("DATABASE_URL"));
-            String username = dbUri.getUserInfo().split(":")[0];
-            String password = dbUri.getUserInfo().split(":")[1];
-            String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+            //URI dbUri = new URI(System.getenv("DATABASE_URL"));
+            //String username = dbUri.getUserInfo().split(":")[0];
+            //String password = dbUri.getUserInfo().split(":")[1];
+ 
+            //String dbUrl = "jdbc:" + System.getenv("DATABASE_URL");
 
-            System.out.println("SET JDBC URL TO " + dbUrl);
-            properties.put("javax.persistence.jdbc.url", dbUrl);
-            properties.put("javax.persistence.jdbc.user", username);
-            properties.put("javax.persistence.jdbc.password", password);
+            //System.out.println("SET JDBC URL TO " + dbUrl);
+            //properties.put("javax.persistence.jdbc.url", );
+            //properties.put("javax.persistence.jdbc.user", username);
+            //properties.put("javax.persistence.jdbc.password", password);
 
-            emf = Persistence.createEntityManagerFactory("postgres", properties);
+            emf = Persistence.createEntityManagerFactory("derby", properties);
         } catch (Exception e) {
             e.printStackTrace();
         }

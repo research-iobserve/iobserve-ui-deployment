@@ -7,9 +7,15 @@ import javax.persistence.Entity;
  * Created by cdor on 25.04.16.
  */
 @Entity
-public class StatusInfo extends NestedMeasurement {
-    private Long timestamp;
-    @Column(name="`key`") //since key is keyword in derby, the word has to be  escaped for table creation
+public class StatusInfo extends AbstractNestedMeasurement {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1864889386148695400L;
+	
+	private Long timestamp;
+	
+    @Column(name="`key`") /** since key is keyword in derby, the word has to be  escaped for table creation */
     private String key;
     private String value;
 
