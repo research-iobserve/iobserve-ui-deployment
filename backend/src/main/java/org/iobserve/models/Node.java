@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.AbtractMeasurable;
+import org.iobserve.models.util.AbstractMeasurable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class Node extends AbtractMeasurable {
+public class Node extends AbstractMeasurable {
 
     /**
 	 * 

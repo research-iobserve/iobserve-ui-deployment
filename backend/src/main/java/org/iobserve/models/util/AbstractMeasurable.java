@@ -9,7 +9,7 @@ import java.util.Set;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class AbtractMeasurable extends AbstractRevisionedBean {
+public abstract class AbstractMeasurable extends AbstractRevisionedBean {
     /**
 	 * 
 	 */
@@ -25,11 +25,11 @@ public abstract class AbtractMeasurable extends AbstractRevisionedBean {
 
     private Status status = Status.NORMAL;
 
-    public AbtractMeasurable() {
+    public AbstractMeasurable() {
         super();
     }
 
-    public AbtractMeasurable(Set<StatusInfo> statusInformations, Set<TimeSeries> timeSeries) {
+    public AbstractMeasurable(Set<StatusInfo> statusInformations, Set<TimeSeries> timeSeries) {
         super();
         this.statusInformations = statusInformations;
         this.timeSeries = timeSeries;

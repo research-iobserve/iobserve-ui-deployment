@@ -1,3 +1,18 @@
+/***************************************************************************
+ * Copyright (C) 2017 iObserve Project (https://www.iobserve-devops.net)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ***************************************************************************/
 package org.iobserve.util;
 
 import java.util.Arrays;
@@ -22,8 +37,8 @@ import org.iobserve.models.NodeGroup;
 import org.iobserve.models.Service;
 import org.iobserve.models.ServiceInstance;
 import org.iobserve.models.System;
-import org.iobserve.models.util.Measurable;
-import org.iobserve.models.util.RevisionedBean;
+import org.iobserve.models.util.AbstractMeasurable;
+import org.iobserve.models.util.AbstractRevisionedBean;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.models.util.Status;
 import org.iobserve.models.util.StatusInfo;
@@ -55,18 +70,20 @@ public class TestSystemCreator {
             system.setName("Test System");
 
             // nodes
-           final Node webFrontendNode = this.createNode(systemId, "node", 1, "Web Frontend", "web-frontend", "172.17.0.2", 20,
-                    40);
-           final Node storeServiceNode = this.createNode(systemId, "node", 2, "Store Service", "store1", "172.17.0.4", 40, 70);
-           final Node enterpriseServiceNode = this.createNode(systemId, "node", 3, "Enterprise Service", "enterprise",
+            final Node webFrontendNode = this.createNode(systemId, "node", 1, "Web Frontend", "web-frontend",
+                    "172.17.0.2", 20, 40);
+            final Node storeServiceNode = this.createNode(systemId, "node", 2, "Store Service", "store1", "172.17.0.4",
+                    40, 70);
+            final Node enterpriseServiceNode = this.createNode(systemId, "node", 3, "Enterprise Service", "enterprise",
                     "172.17.0.5", 2, 3);
-           final Node registryServiceNode = this.createNode(systemId, "node", 4, "Registry Service", "register", "172.17.0.3", 0, 1);
-            final Node serviceAdapterNode = this.createNode(systemId, "node", 5, "Service Adapter", "adapter", "172.17.0.6",
-                2, 7);
-           final Node databaseNode = this.createNode(systemId, "node", 6, "Data Center", "psql1", "172.17.0.8", 1, 2);
+            final Node registryServiceNode = this.createNode(systemId, "node", 4, "Registry Service", "register",
+                    "172.17.0.3", 0, 1);
+            final Node serviceAdapterNode = this.createNode(systemId, "node", 5, "Service Adapter", "adapter",
+                    "172.17.0.6", 2, 7);
+            final Node databaseNode = this.createNode(systemId, "node", 6, "Data Center", "psql1", "172.17.0.8", 1, 2);
 
             // node group - has both nodes
-           final NodeGroup nodeGroup1 = this.prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
+            final NodeGroup nodeGroup1 = this.prepareDummy(new NodeGroup(), systemId, "nodeGroup", 1);
             nodeGroup1.setName("CoCoME");
             nodeGroup1.setNodes(Arrays.asList(webFrontendNode, storeServiceNode, enterpriseServiceNode,
                     registryServiceNode, serviceAdapterNode, databaseNode));
@@ -80,147 +97,148 @@ public class TestSystemCreator {
 
             // service instances
             /** webfrontend */
-            final ServiceInstance cloudWebInstance = this.createServiceInstance(webFrontendNode, "org.cocome.cloud .web", 20, 40, systemId, 1);
-        /** store service */
-        final ServiceInstance storeCashdeskInstance = this.createServiceInstance(storeServiceNode,
-                "org.cocome.cloud .logic.webservice .cashdeskline.cashdesk", 5, 8, systemId, 2);
-        final ServiceInstance storeTradingsystemCashdesklineInstance = this.createServiceInstance(storeServiceNode,
-                "org.cocome .tradingsystem .cashdeskline", 7, 9, systemId, 3);
-        final ServiceInstance storeTradingsystemInventoryInstance = this.createServiceInstance(storeServiceNode,
-                "org.cocome .tradingsystem .inventory", 92, 95, systemId, 4);
-        storeTradingsystemInventoryInstance.setStatus(Status.WARNING);
-        /** registry service */
-        final ServiceInstance registryServiceInstance = this.createServiceInstance(registryServiceNode,
-                "org.cocome.cloud .registry.service", 0, 1, systemId, 5);
-        /** enterprise service */
-        final ServiceInstance enterpriseInventoryInstance = this.createServiceInstance(enterpriseServiceNode,
-                "org.cocome .tradingsystem .inventory", 1, 2, systemId, 6);
-        final ServiceInstance enterpriseServiceInstance = this.createServiceInstance(enterpriseServiceNode,
-                "org.cocome.cloud .webservice .enterpriseservice", 0, 1, systemId, 7);
-        /** service adapter */
-        final ServiceInstance serviceAdapterInstance = this.createServiceInstance(serviceAdapterNode,
-                "org.cocome.cloud .sa.serviceprovider", 2, 7, systemId, 8);
-        /** database */
-        final ServiceInstance databaseInstance = this.createServiceInstance(databaseNode, "Postgres", 1, 2, systemId,
-                9);
+            final ServiceInstance cloudWebInstance = this.createServiceInstance(webFrontendNode,
+                    "org.cocome.cloud .web", 20, 40, systemId, 1);
+            /** store service */
+            final ServiceInstance storeCashdeskInstance = this.createServiceInstance(storeServiceNode,
+                    "org.cocome.cloud .logic.webservice .cashdeskline.cashdesk", 5, 8, systemId, 2);
+            final ServiceInstance storeTradingsystemCashdesklineInstance = this.createServiceInstance(storeServiceNode,
+                    "org.cocome .tradingsystem .cashdeskline", 7, 9, systemId, 3);
+            final ServiceInstance storeTradingsystemInventoryInstance = this.createServiceInstance(storeServiceNode,
+                    "org.cocome .tradingsystem .inventory", 92, 95, systemId, 4);
+            storeTradingsystemInventoryInstance.setStatus(Status.WARNING);
+            /** registry service */
+            final ServiceInstance registryServiceInstance = this.createServiceInstance(registryServiceNode,
+                    "org.cocome.cloud .registry.service", 0, 1, systemId, 5);
+            /** enterprise service */
+            final ServiceInstance enterpriseInventoryInstance = this.createServiceInstance(enterpriseServiceNode,
+                    "org.cocome .tradingsystem .inventory", 1, 2, systemId, 6);
+            final ServiceInstance enterpriseServiceInstance = this.createServiceInstance(enterpriseServiceNode,
+                    "org.cocome.cloud .webservice .enterpriseservice", 0, 1, systemId, 7);
+            /** service adapter */
+            final ServiceInstance serviceAdapterInstance = this.createServiceInstance(serviceAdapterNode,
+                    "org.cocome.cloud .sa.serviceprovider", 2, 7, systemId, 8);
+            /** database */
+            final ServiceInstance databaseInstance = this.createServiceInstance(databaseNode, "Postgres", 1, 2,
+                    systemId, 9);
 
-        // create services
-        /** web frontend */
-        final Service cloudWebservice = this.createService("org.cocome.cloud.web", "", systemId, 1);
+            // create services
+            /** web frontend */
+            final Service cloudWebservice = this.createService("org.cocome.cloud.web", "", systemId, 1);
 
-        /** store service */
-        final Service storeCashdeskService = this
-                .createService("org.cocome.cloud .logic.webservice .cashdeskline.cashdesk", "", systemId, 2);
-        final Service storeTradingsystemCashdesklineService = this
-                .createService("org.cocome .tradingsystem .cashdeskline", "", systemId, 3);
-        final Service storeTradingsystemInventoryService = this.createService("org.cocome .tradingsystem .inventory",
-                "", systemId, 4);
+            /** store service */
+            final Service storeCashdeskService = this
+                    .createService("org.cocome.cloud .logic.webservice .cashdeskline.cashdesk", "", systemId, 2);
+            final Service storeTradingsystemCashdesklineService = this
+                    .createService("org.cocome .tradingsystem .cashdeskline", "", systemId, 3);
+            final Service storeTradingsystemInventoryService = this
+                    .createService("org.cocome .tradingsystem .inventory", "", systemId, 4);
 
-        /** registry service */
-        final Service registryService = this.createService("org.cocome.cloud .registry.service", "", systemId, 5);
+            /** registry service */
+            final Service registryService = this.createService("org.cocome.cloud .registry.service", "", systemId, 5);
 
-        /** enterprise service */
-        final Service enterpriseInventoryService = this.createService("org.cocome .tradingsystem .inventory", "",
-                systemId, 6);
-        final Service enterpriseService = this.createService("org.cocome.cloud .webservice .enterpriseservice", "",
-                systemId, 7);
+            /** enterprise service */
+            final Service enterpriseInventoryService = this.createService("org.cocome .tradingsystem .inventory", "",
+                    systemId, 6);
+            final Service enterpriseService = this.createService("org.cocome.cloud .webservice .enterpriseservice", "",
+                    systemId, 7);
 
-        /** service adapter */
-        final Service serviceAdapter = this.createService("org.cocome.cloud .sa.serviceprovider", "", systemId, 8);
+            /** service adapter */
+            final Service serviceAdapter = this.createService("org.cocome.cloud .sa.serviceprovider", "", systemId, 8);
 
-        /** database */
-        final Service databaseService = this.createService("Postgres", "", systemId, 9);
+            /** database */
+            final Service databaseService = this.createService("Postgres", "", systemId, 9);
 
-        // link service to instances and backwards
-        this.link(cloudWebInstance, cloudWebservice);
+            // link service to instances and backwards
+            this.link(cloudWebInstance, cloudWebservice);
 
-        this.link(storeCashdeskInstance, storeCashdeskService);
-        this.link(storeTradingsystemCashdesklineInstance, storeTradingsystemCashdesklineService);
-        this.link(storeTradingsystemInventoryInstance, storeTradingsystemInventoryService);
+            this.link(storeCashdeskInstance, storeCashdeskService);
+            this.link(storeTradingsystemCashdesklineInstance, storeTradingsystemCashdesklineService);
+            this.link(storeTradingsystemInventoryInstance, storeTradingsystemInventoryService);
 
-        this.link(registryServiceInstance, registryService);
+            this.link(registryServiceInstance, registryService);
 
-        this.link(enterpriseInventoryInstance, enterpriseInventoryService);
-        this.link(enterpriseServiceInstance, enterpriseService);
+            this.link(enterpriseInventoryInstance, enterpriseInventoryService);
+            this.link(enterpriseServiceInstance, enterpriseService);
 
-        this.link(serviceAdapterInstance, serviceAdapter);
+            this.link(serviceAdapterInstance, serviceAdapter);
 
-        this.link(databaseInstance, databaseService);
+            this.link(databaseInstance, databaseService);
 
-        /** write services back to node */
-        webFrontendNode.setServices(Collections.singletonList(cloudWebInstance));
+            /** write services back to node */
+            webFrontendNode.setServices(Collections.singletonList(cloudWebInstance));
 
-        storeServiceNode.setServices(Collections.singletonList(storeCashdeskInstance));
-        storeServiceNode.setServices(Collections.singletonList(storeTradingsystemCashdesklineInstance));
-        storeServiceNode.setServices(Collections.singletonList(storeTradingsystemInventoryInstance));
+            storeServiceNode.setServices(Collections.singletonList(storeCashdeskInstance));
+            storeServiceNode.setServices(Collections.singletonList(storeTradingsystemCashdesklineInstance));
+            storeServiceNode.setServices(Collections.singletonList(storeTradingsystemInventoryInstance));
 
-        registryServiceNode.setServices(Collections.singletonList(registryServiceInstance));
+            registryServiceNode.setServices(Collections.singletonList(registryServiceInstance));
 
-        enterpriseServiceNode.setServices(Collections.singletonList(enterpriseInventoryInstance));
-        enterpriseServiceNode.setServices(Collections.singletonList(enterpriseServiceInstance));
+            enterpriseServiceNode.setServices(Collections.singletonList(enterpriseInventoryInstance));
+            enterpriseServiceNode.setServices(Collections.singletonList(enterpriseServiceInstance));
 
-        serviceAdapterNode.setServices(Collections.singletonList(serviceAdapterInstance));
+            serviceAdapterNode.setServices(Collections.singletonList(serviceAdapterInstance));
 
-        databaseNode.setServices(Collections.singletonList(databaseInstance));
+            databaseNode.setServices(Collections.singletonList(databaseInstance));
 
-        /** communication instances - duplex communication */
-        final CommunicationInstance comInstance1 = this.createCommunication(cloudWebInstance, storeCashdeskInstance,
-                systemId, 1);
+            /** communication instances - duplex communication */
+            final CommunicationInstance comInstance1 = this.createCommunication(cloudWebInstance, storeCashdeskInstance,
+                    systemId, 1);
 
-        final CommunicationInstance comInstance2 = this.createCommunication(storeCashdeskInstance,
-                storeTradingsystemCashdesklineInstance, systemId, 2);
-        final CommunicationInstance comInstance3 = this.createCommunication(storeTradingsystemCashdesklineInstance,
-                storeTradingsystemInventoryInstance, systemId, 3);
-        final CommunicationInstance comInstance4 = this.createCommunication(storeTradingsystemInventoryInstance,
-                serviceAdapterInstance, systemId, 4);
-        final CommunicationInstance comInstance5 = this.createCommunication(storeTradingsystemInventoryInstance,
-                enterpriseInventoryInstance, systemId, 5);
+            final CommunicationInstance comInstance2 = this.createCommunication(storeCashdeskInstance,
+                    storeTradingsystemCashdesklineInstance, systemId, 2);
+            final CommunicationInstance comInstance3 = this.createCommunication(storeTradingsystemCashdesklineInstance,
+                    storeTradingsystemInventoryInstance, systemId, 3);
+            final CommunicationInstance comInstance4 = this.createCommunication(storeTradingsystemInventoryInstance,
+                    serviceAdapterInstance, systemId, 4);
+            final CommunicationInstance comInstance5 = this.createCommunication(storeTradingsystemInventoryInstance,
+                    enterpriseInventoryInstance, systemId, 5);
 
-        final CommunicationInstance comInstance6 = this.createCommunication(serviceAdapterInstance, databaseInstance,
-                systemId, 6);
+            final CommunicationInstance comInstance6 = this.createCommunication(serviceAdapterInstance,
+                    databaseInstance, systemId, 6);
 
-        final CommunicationInstance comInstance7 = this.createCommunication(enterpriseInventoryInstance,
-                enterpriseServiceInstance, systemId, 7);
-        final CommunicationInstance comInstance8 = this.createCommunication(enterpriseServiceInstance,
-                serviceAdapterInstance, systemId, 8);
+            final CommunicationInstance comInstance7 = this.createCommunication(enterpriseInventoryInstance,
+                    enterpriseServiceInstance, systemId, 7);
+            final CommunicationInstance comInstance8 = this.createCommunication(enterpriseServiceInstance,
+                    serviceAdapterInstance, systemId, 8);
 
-        final CommunicationInstance comInstance9 = this.createCommunication(storeTradingsystemInventoryInstance,
-                registryServiceInstance, systemId, 9);
-        final CommunicationInstance comInstance10 = this.createCommunication(enterpriseServiceInstance,
-                registryServiceInstance, systemId, 10);
+            final CommunicationInstance comInstance9 = this.createCommunication(storeTradingsystemInventoryInstance,
+                    registryServiceInstance, systemId, 9);
+            final CommunicationInstance comInstance10 = this.createCommunication(enterpriseServiceInstance,
+                    registryServiceInstance, systemId, 10);
 
-        // communications - duplex
-        final Communication communication1 = this.createCommunication(cloudWebservice, storeCashdeskService,
-                TestSystemCreator.REST, comInstance1, systemId, 1);
+            // communications - duplex
+            final Communication communication1 = this.createCommunication(cloudWebservice, storeCashdeskService,
+                    TestSystemCreator.REST, comInstance1, systemId, 1);
 
-        final Communication communication2 = this.createCommunication(storeCashdeskService,
-                storeTradingsystemCashdesklineService, TestSystemCreator.TCP, comInstance2, systemId, 2);
-        final Communication communication3 = this.createCommunication(storeTradingsystemCashdesklineService,
-                storeTradingsystemInventoryService, TestSystemCreator.TCP, comInstance3, systemId, 3);
-        final Communication communication4 = this.createCommunication(storeTradingsystemInventoryService,
-                serviceAdapter, TestSystemCreator.TCP, comInstance4, systemId, 4);
-        final Communication communication5 = this.createCommunication(storeTradingsystemInventoryService,
-                serviceAdapter, TestSystemCreator.TCP, comInstance5, systemId, 5);
+            final Communication communication2 = this.createCommunication(storeCashdeskService,
+                    storeTradingsystemCashdesklineService, TestSystemCreator.TCP, comInstance2, systemId, 2);
+            final Communication communication3 = this.createCommunication(storeTradingsystemCashdesklineService,
+                    storeTradingsystemInventoryService, TestSystemCreator.TCP, comInstance3, systemId, 3);
+            final Communication communication4 = this.createCommunication(storeTradingsystemInventoryService,
+                    serviceAdapter, TestSystemCreator.TCP, comInstance4, systemId, 4);
+            final Communication communication5 = this.createCommunication(storeTradingsystemInventoryService,
+                    serviceAdapter, TestSystemCreator.TCP, comInstance5, systemId, 5);
 
-        final Communication communication6 = this.createCommunication(serviceAdapter, databaseService,
-                TestSystemCreator.TCP, comInstance6, systemId, 6);
+            final Communication communication6 = this.createCommunication(serviceAdapter, databaseService,
+                    TestSystemCreator.TCP, comInstance6, systemId, 6);
 
-        final Communication communication7 = this.createCommunication(enterpriseInventoryService, enterpriseService,
-                TestSystemCreator.TCP, comInstance7, systemId, 7);
-        final Communication communication8 = this.createCommunication(enterpriseService, serviceAdapter,
-                TestSystemCreator.TCP, comInstance8, systemId, 8);
+            final Communication communication7 = this.createCommunication(enterpriseInventoryService, enterpriseService,
+                    TestSystemCreator.TCP, comInstance7, systemId, 7);
+            final Communication communication8 = this.createCommunication(enterpriseService, serviceAdapter,
+                    TestSystemCreator.TCP, comInstance8, systemId, 8);
 
-        final Communication communication9 = this.createCommunication(storeTradingsystemInventoryService,
-                registryService, TestSystemCreator.TCP, comInstance9, systemId, 9);
-        final Communication communication10 = this.createCommunication(enterpriseService, registryService,
-                TestSystemCreator.TCP, comInstance10, systemId, 10);
+            final Communication communication9 = this.createCommunication(storeTradingsystemInventoryService,
+                    registryService, TestSystemCreator.TCP, comInstance9, systemId, 9);
+            final Communication communication10 = this.createCommunication(enterpriseService, registryService,
+                    TestSystemCreator.TCP, comInstance10, systemId, 10);
 
-        system.setCommunications(Arrays.asList(communication1, communication2, communication3, communication4,
-                communication5, communication6, communication7, communication8, communication9, communication10));
-        system.setServices(Arrays.asList(cloudWebservice, storeCashdeskService, storeTradingsystemCashdesklineService,
-                storeTradingsystemInventoryService, enterpriseInventoryService, enterpriseService, registryService,
-                serviceAdapter, databaseService));
-        system.setNodeGroups(Collections.singletonList(nodeGroup1));
+            system.setCommunications(Arrays.asList(communication1, communication2, communication3, communication4,
+                    communication5, communication6, communication7, communication8, communication9, communication10));
+            system.setServices(Arrays.asList(cloudWebservice, storeCashdeskService,
+                    storeTradingsystemCashdesklineService, storeTradingsystemInventoryService,
+                    enterpriseInventoryService, enterpriseService, registryService, serviceAdapter, databaseService));
+            system.setNodeGroups(Collections.singletonList(nodeGroup1));
 
             final EntityTransaction tx = entityManager.getTransaction();
             tx.begin();
@@ -261,7 +279,7 @@ public class TestSystemCreator {
     }
 
     private Integer randomNumber(final int i, final int j) {
-        return (this.random.nextInt() % (j - i)) + i;
+        return this.random.nextInt() % (j - i) + i;
     }
 
     /**
@@ -366,8 +384,8 @@ public class TestSystemCreator {
      *
      * @return returns the configured object
      */
-    private <Bean extends RevisionedBean> Bean prepareDummy(final Bean bean, final String systemId, final String prefix,
-            final int counter) {
+    private <Bean extends AbstractRevisionedBean> Bean prepareDummy(final Bean bean, final String systemId,
+            final String prefix, final int counter) {
         bean.setId(this.generateTestId(systemId, prefix, counter));
         bean.setSystemId(systemId);
         bean.setChangelogSequence(0L);
@@ -380,7 +398,7 @@ public class TestSystemCreator {
         return "test-" + systemId + "-" + prefix + "-" + counter;
     }
 
-    private StatusInfo createInfo(final Measurable parent, final String key, final String value) {
+    private StatusInfo createInfo(final AbstractMeasurable parent, final String key, final String value) {
         final StatusInfo info = new StatusInfo();
         info.setId(this.generateId());
         info.setTimestamp(new Date().getTime());
@@ -395,8 +413,8 @@ public class TestSystemCreator {
         return UUID.randomUUID().toString();
     }
 
-    private Measurable generateSeries(final Measurable parent, final String label, final String axisLabel,
-            final int low, final int high) {
+    private AbstractMeasurable generateSeries(final AbstractMeasurable parent, final String label,
+            final String axisLabel, final int low, final int high) {
         final Integer numObj = 10;
         final Random random = new Random();
         final Calendar cal = Calendar.getInstance();
@@ -415,8 +433,8 @@ public class TestSystemCreator {
         for (int j = 0; j < numObj; j++) {
             final SeriesElement elem = new SeriesElement();
             elem.setId(this.generateId());
-            elem.setValue((random.nextInt() % (high - low)) + low);
-            elem.setTimestamp(yesterday.getTime() + (j * 60000));
+            elem.setValue(random.nextInt() % (high - low) + low);
+            elem.setTimestamp(yesterday.getTime() + j * 60000);
             elem.setParentId(timeSeries.getId());
             elem.setParentType(timeSeries.getClass().toString());
             timeSeries.getSeries().add(elem);

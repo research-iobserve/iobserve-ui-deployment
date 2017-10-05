@@ -9,7 +9,7 @@ import org.iobserve.models.dataaccessobjects.MeasurableDataTrasferObject;
 import org.iobserve.models.mappers.IDtoToBasePropertyEntityMapper;
 import org.iobserve.models.mappers.IEntityToDtoMapper;
 import org.iobserve.models.util.AbstractBaseEntity;
-import org.iobserve.models.util.AbtractMeasurable;
+import org.iobserve.models.util.AbstractMeasurable;
 import org.iobserve.models.util.SeriesElement;
 import org.iobserve.models.util.TimeSeries;
 
@@ -66,8 +66,8 @@ public abstract class AbstractService<Model extends AbstractBaseEntity, ModelDto
         Model result = entityManager.find(persistentClass,id);
         ModelDto dto = transformModelToDto(result);
 
-        if(result instanceof AbtractMeasurable ){
-            final AbtractMeasurable measurable =  (AbtractMeasurable) result;
+        if(result instanceof AbstractMeasurable ){
+            final AbstractMeasurable measurable =  (AbstractMeasurable) result;
             final MeasurableDataTrasferObject measurableDto =  (MeasurableDataTrasferObject) dto;
             final Set<TimeSeries> timeSeriesSet = measurable.getTimeSeries();
 

@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.AbtractMeasurable;
+import org.iobserve.models.util.AbstractMeasurable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class Communication extends AbtractMeasurable {
+public class Communication extends AbstractMeasurable {
     /**
 	 * 
 	 */

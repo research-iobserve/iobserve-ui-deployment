@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.AbtractMeasurable;
+import org.iobserve.models.util.AbstractMeasurable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CommunicationInstance extends AbtractMeasurable{
+public class CommunicationInstance extends AbstractMeasurable{
     /**
 	 * 
 	 */

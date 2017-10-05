@@ -1,6 +1,6 @@
 package org.iobserve.models;
 
-import org.iobserve.models.util.AbtractMeasurable;
+import org.iobserve.models.util.AbstractMeasurable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
  * @author Christoph Dornieden <cdor@informatik.uni-kiel.de>
  */
 @Entity
-public class Service extends AbtractMeasurable{
+public class Service extends AbstractMeasurable{
 	
     /**
 	 * 
